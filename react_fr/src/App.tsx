@@ -10,6 +10,7 @@ import { AllProducts } from './components/products/AllProducts'
 import { ProductDelete } from './components/products/ProductDelete'
 import { ProductAdd } from './components/products/ProductAdd'
 import { ProductDetails } from './components/products/ProductDetails'
+import { ProductUpdate } from './components/products/ProductUpdate'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,7 @@ function App() {
           <Route path="/products/add" element={<ProductAdd />} />
           <Route path="/products/:productId/details" element={<ProductDetails />} />
           <Route path="/products/:productId/delete" element={<ProductDelete />} />
+          <Route path="/products/:productId/edit" element={<ProductUpdate />} />
 				</Routes>
 			</Router>
 		</React.Fragment>
