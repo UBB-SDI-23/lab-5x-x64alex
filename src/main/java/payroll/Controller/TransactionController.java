@@ -22,7 +22,6 @@ public class TransactionController {
     public List<TransactionIdDTO> getTransactions(){
         return this.transactionService.getTransactionIdDTOList();
     }
-    // Filter product quantity
     @GetMapping("/{transactionId}")
     public TransactionDTO getOneTransaction(@PathVariable("transactionId") Long transactionId){
         return this.transactionService.getOneTransaction(transactionId);

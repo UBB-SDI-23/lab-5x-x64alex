@@ -26,7 +26,7 @@ public class ProductService {
     private TransactionRepository transactionRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private CategoryRepository clientRepository;
 
 
     public Product saveProduct(ProductIdDTO productIdDTO) {

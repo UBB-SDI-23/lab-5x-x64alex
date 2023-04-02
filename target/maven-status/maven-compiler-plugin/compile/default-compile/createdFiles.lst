@@ -11,6 +11,7 @@ payroll/Service/ProductService$2.class
 payroll/Model/Category$CategoryBuilder.class
 payroll/Model/DTO/CategoryProductDTO.class
 payroll/Repository/ProductRepository.class
+payroll/Model/DTO/ProductTransactionDTO.class
 payroll/Controller/CategoryController.class
 payroll/Repository/TransactionRepository.class
 payroll/Controller/TransactionController.class

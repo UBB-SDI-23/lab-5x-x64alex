@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Client;
 import payroll.Model.DTO.ClientDTO;
+import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Service.ClientService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +29,11 @@ public class ClientController {
     @PostMapping()
     public Client saveClient(@RequestBody Client client){
         return this.clientService.saveClient(client);
+    }
+
+    @PostMapping("/{clientId}/products")
+    public Client saveClientProducts(@PathVariable("clientId") Long clientId, @RequestBody ArrayList<ProductTransactionDTO> client){
+        return this.clientService.saveProductsTransactions(clientId, client);
     }
 
     @PutMapping("/{clientId}")

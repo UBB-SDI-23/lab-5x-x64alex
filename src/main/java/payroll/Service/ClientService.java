@@ -6,7 +6,13 @@ import payroll.Model.Category;
 import payroll.Model.Client;
 import payroll.Model.DTO.CategoryDTO;
 import payroll.Model.DTO.ClientDTO;
+import payroll.Model.DTO.ProductTransactionDTO;
+import payroll.Model.Product;
+import payroll.Model.Transaction;
+import payroll.Repository.CategoryRepository;
 import payroll.Repository.ClientRepository;
+import payroll.Repository.ProductRepository;
+import payroll.Repository.TransactionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +22,38 @@ public class ClientService implements ClientInterface{
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public Client saveClient(Client client) {
         return this.clientRepository.save(client);
+    }
+
+    public Client saveProductsTransactions(Long clientId, ArrayList<ProductTransactionDTO> productTransactionDTOS) {
+        Client client = this.clientRepository.findById(clientId).get();
+        for(ProductTransactionDTO productTransactionDTO: productTransactionDTOS){
+            Product product = productRepository.findById(productTransactionDTO.getProductId()).get();
+            Transaction transaction = new Transaction();
+
+            transaction.setTransactionDate(productTransactionDTO.getTransactionDate());
+            transaction.setTransactionQuantity(productTransactionDTO.getTransactionQuantity());
+
+            transaction.setProduct(product);
+            transaction.setClient(client);
+
+            productRepository.save(product);
+            transactionRepository.save(transaction);
+
+        }
+
+        return client;
     }
 
     public List<ClientDTO> getClientsDTOList() {

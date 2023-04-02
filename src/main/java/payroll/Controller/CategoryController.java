@@ -20,7 +20,7 @@ public class CategoryController {
         return this.categoryService.getCategoryDTOList();
     }
 
-    @GetMapping("/categories/average")
+    @GetMapping("/categories/orderByAveragePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts(){
         return this.categoryService.orderByAveragePriceProduct();
     }

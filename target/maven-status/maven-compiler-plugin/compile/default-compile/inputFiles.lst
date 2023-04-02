@@ -23,5 +23,6 @@
 /Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Service/ProductService.java
 /Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Model/DTO/ClientDTO.java
 /Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Model/DTO/ProductBoughtDTO.java
+/Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Model/DTO/ProductTransactionDTO.java
 /Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Service/ClientInterface.java
 /Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/src/main/java/payroll/Service/TransactionService.java

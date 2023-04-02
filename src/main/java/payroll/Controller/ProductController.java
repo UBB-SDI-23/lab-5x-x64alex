@@ -21,8 +21,8 @@ public class ProductController {
         return this.productService.getProductIdDTOList();
     }
 
-    @GetMapping("/products/sorted")
-    public List<ProductBoughtDTO> getProductsSorted(){
+    @GetMapping("/products/sortedByProductsInCategory")
+    public List<ProductBoughtDTO> getProductsSortedByProductsInCategory(){
         return this.productService.sorted();
     }
 
@@ -36,7 +36,7 @@ public class ProductController {
         return this.productService.getOneProduct(productId);
     }
     // Filter product quantity
-    @GetMapping("/products/filter/{filterValue}")
+    @GetMapping("/products/filterQuantityGreaterThan/{filterValue}")
     public List<ProductIdDTO> filterQuantity(@PathVariable("filterValue") int filterValue){
         return this.productService.filterQuantity(filterValue);
     }
