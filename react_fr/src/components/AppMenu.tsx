@@ -25,13 +25,13 @@ export const AppMenu = () => {
 						Course management
 					</Typography>
 					<Button
-						variant={path.startsWith("/clients") ? "outlined" : "text"}
-						to="/clients"
+						variant={path.startsWith("/products") ? "outlined" : "text"}
+						to="/products"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
 						startIcon={<LocalLibraryIcon />}>
-						Clients
+						Products
 					</Button>
 				</Toolbar>
 			</AppBar>
