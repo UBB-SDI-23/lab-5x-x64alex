@@ -41,13 +41,6 @@ export const Allclients = () => {
 
 			{loading && <CircularProgress />}
 			{!loading && clients.length === 0 && <p>No clients found</p>}
-			{!loading && (
-				<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/add`}>
-					<Tooltip title="Add a new client" arrow>
-						<AddIcon color="primary" />
-					</Tooltip>
-				</IconButton>
-			)}
 			{!loading && clients.length > 0 && (
 				<TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -67,27 +60,16 @@ export const Allclients = () => {
 										{index + 1}
 									</TableCell>
 									<TableCell component="th" scope="row">
-										<Link to={`/clients/${client.clientId}/details`} title="View client details">
 											{client.clientFirstName}
-										</Link>
 									</TableCell>
 									<TableCell align="right">{client.clientEmail}</TableCell>
 									<TableCell align="right">{client.clientAddress}</TableCell>
 									<TableCell align="right">
-										<IconButton
-											component={Link}
-											sx={{ mr: 3 }}
-											to={`/clients/${client.clientId}/details`}>
-											<Tooltip title="View client details" arrow>
-												<ReadMoreIcon color="primary" />
-											</Tooltip>
-										</IconButton>
-
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${client.clientId}/edit`}>
+										<IconButton>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${client.clientId}/delete`}>
+										<IconButton>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
