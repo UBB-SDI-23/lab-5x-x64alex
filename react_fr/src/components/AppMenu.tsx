@@ -22,7 +22,7 @@ export const AppMenu = () => {
 						<SchoolIcon />
 					</IconButton>
 					<Typography variant="h6" component="div" sx={{ mr: 5 }}>
-						Course management
+						Payroll
 					</Typography>
 					<Button
 						variant={path.startsWith("/products") ? "outlined" : "text"}

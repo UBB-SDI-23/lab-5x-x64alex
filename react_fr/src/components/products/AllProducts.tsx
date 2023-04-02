@@ -10,6 +10,8 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+	TextField,
+	Stack,
 } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -24,30 +26,63 @@ import { Product } from "../../models/Product";
 export const AllProducts = () => {
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState([]);
+	const [productQuantityError, setProductQuantityError] = useState(false);
+	const [productQuantityString, setProductQuantityString] = useState("");
+	const [productQuantityHelper, setProductQuantityHelper] = useState("");
+	const [productQuantity, setProductQuantity] = useState(-1);
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/products`)
+		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan/${productQuantity}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setproducts(data);
 				setLoading(false);
 			});
-	}, []);
+	}, [productQuantity]);
+
 
 	return (
 		<Container>
 			<h1>All products</h1>
-
-			{loading && <CircularProgress />}
-			{!loading && products.length === 0 && <p>No products found</p>}
-			{!loading && (
+			<Stack direction="row" spacing={2}   alignItems="center">
+				<h3>Add a product:</h3>
 				<IconButton>
 					<Tooltip title="Add a new product" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-			)}
+				<h3>Filter by quantity greater than:</h3>
+				<TextField value={productQuantityString} 
+					error={productQuantityError} 
+					id="Outlined" 
+					label="Quantity" 
+					variant="outlined" 
+					helperText={productQuantityHelper}
+					onChange={(newValue) => {
+						setProductQuantityError(false);
+						setProductQuantityHelper("");
+						setProductQuantityString(newValue.target.value);
+
+
+						var newQuantity = Number(newValue.target.value);
+						if (isNaN(newQuantity)){
+							setProductQuantityError(true);
+							setProductQuantityHelper("The input must be a number");
+						}
+						else{
+							setProductQuantity(newQuantity);
+						}
+						if (newValue.target.value ===""){
+							setProductQuantity(-1);
+						}
+					}}/>
+				
+			</Stack>
+			 			
+			{loading && <CircularProgress />}
+			{!loading && products.length === 0 && <p>No products found</p>}
+
 			{!loading && products.length > 0 && (
 				<TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
