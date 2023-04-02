@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import { Button, Card, CardActions, CardContent, IconButton, TextField } from "@mui/material";
 import { Container } from "@mui/system";
@@ -11,17 +10,20 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product";
 
+
 export const ProductAdd = () => {
 	const navigate = useNavigate();
 
 	const [product, setProduct] = useState<Product>({
 	    productName: "Dumbbell",
-    	productPrice: Number,
-    	productQuantity: 2,
+    	productPrice: 0,
+    	productQuantity: 0,
     	productOnSale: false,
-    	productWeight: 2,
-    	categoryId: 1,
+    	productWeight: 0,
+    	categoryId: 0,
 	});
+
+	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
 
 	const [productPriceError, setProductPriceError] = useState(false);
 	const [productPriceString, setProductPriceString] = useState<String>("");
@@ -30,16 +32,13 @@ export const ProductAdd = () => {
 		setProductPriceError(false);
 		setProductPriceHelper("");
 		setProductPriceString(newValue);
+		setAddButtonDissabled(false);
 
 		var newPrice = Number(newValue);
-		if(newValue = "") {
-			setProductPriceError(true);
-			setProductPriceHelper("The input must not be empty");
-			return false;
-		}
 		if (isNaN(newPrice)){
 			setProductPriceError(true);
 			setProductPriceHelper("The input must be a number");
+			setAddButtonDissabled(true);
 			return false;
 		}
 		else{
@@ -56,15 +55,68 @@ export const ProductAdd = () => {
 		setProductQuantityError(false);
 		setProductQuantityHelper("");
 		setProductQuantityString(newValue);
+		setAddButtonDissabled(false);
+
 
 		var newQuantity = Number(newValue);
 		if (isNaN(newQuantity) || !Number.isInteger(newQuantity)){
 			setProductQuantityError(true);
 			setProductQuantityHelper("The input must be an integer");
+			setAddButtonDissabled(true);
+
 			return false;
 		}
 		else{
 			product.productQuantity = newQuantity;
+			return true;
+		}
+
+	}
+
+	const [productSaleError, setProductSaleError] = useState(false);
+	const [productSaleString, setProductSaleString] = useState<String>("");
+	const [productSaleHelper, setProductSaleHelper] = useState("");
+	const checkNewSale = (newValue: String) => {
+		setProductSaleError(false);
+		setProductSaleHelper("");
+		setProductSaleString(newValue);
+		setAddButtonDissabled(false);
+
+
+		if (newValue !== "true" && newValue !== "false"){
+			setProductSaleError(true);
+			setProductSaleHelper("The input must be a bool");
+			setAddButtonDissabled(true);
+
+			return false;
+		}
+		else{
+			var newSale = Boolean(newValue);
+			product.productOnSale = newSale;
+			return true;
+		}
+
+	}
+
+	const [productWeightError, setProductWeightError] = useState(false);
+	const [productWeightString, setProductWeightString] = useState<String>("");
+	const [productWeightHelper, setProductWeightHelper] = useState("");
+	const checkNewWeight = (newValue: String) => {
+		setProductWeightError(false);
+		setProductWeightHelper("");
+		setProductWeightString(newValue);
+		setAddButtonDissabled(false);
+
+
+		var newWeight = Number(newValue);
+		if (isNaN(newWeight)){
+			setProductWeightError(true);
+			setProductWeightHelper("The input must be a number");
+			setAddButtonDissabled(true);
+			return false;
+		}
+		else{
+			product.productWeight = newWeight;
 			return true;
 		}
 
@@ -77,11 +129,14 @@ export const ProductAdd = () => {
 		setProductCategoryIdError(false);
 		setProductCategoryIdHelper("");
 		setProductCategoryIdString(newValue);
+		setAddButtonDissabled(false);
+
 
 		var newCategoryId = Number(newValue);
 		if (isNaN(newCategoryId) || !Number.isInteger(newCategoryId)){
 			setProductCategoryIdError(true);
 			setProductCategoryIdHelper("The input must be an integer");
+			setAddButtonDissabled(true);
 			return false;
 		}
 		else{
@@ -102,7 +157,8 @@ export const ProductAdd = () => {
 		} catch (error) {
 			setProductCategoryIdError(true);
 			setProductCategoryIdHelper("Category id doesn't exist");
-			console.log(error.response.data);
+			setAddButtonDissabled(true);
+			console.log(error);
 		}
 	};
 
@@ -144,21 +200,29 @@ export const ProductAdd = () => {
 							onChange={(newValue) => {
 								checkNewQuantity(newValue.target.value)
 							}}/>
-						<TextField
-							id="onSale"
-							label="OnSale"
-							variant="outlined"
+						<TextField 
+							value={productSaleString} 
+							error={productSaleError} 
+							label="Product Sale"
+							variant="outlined" 
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(event) => setProduct({ ...product, productOnSale: Boolean(event.target.value) })}
+							helperText={productSaleHelper}
+							onChange={(newValue) => {
+								checkNewSale(newValue.target.value)
+							}}
 						/>
-						<TextField
-							id="name"
+						<TextField 
+							value={productWeightString} 
+							error={productWeightError} 
 							label="Product Weight"
-							variant="outlined"
+							variant="outlined" 
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(event) => setProduct({ ...product, productName: event.target.value })}
+							helperText={productWeightHelper}
+							onChange={(newValue) => {
+								checkNewWeight(newValue.target.value)
+							}}
 						/>
 						<TextField 
 							value={productCategoryIdString} 
@@ -172,7 +236,7 @@ export const ProductAdd = () => {
 								checkNewCategoryId(newValue.target.value)
 							}}/>
 
-						<Button type="submit">Add Product</Button>
+						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Add Product</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
