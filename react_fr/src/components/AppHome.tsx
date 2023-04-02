@@ -7,8 +7,8 @@ export const AppHome = () => {
 			<CssBaseline />
 
 			<Container maxWidth="xl">
-				<Typography variant="h1" component="h1" gutterBottom>
-					Welcome to the app! Use the menu above to navigate. This has been changed.
+				<Typography variant="h3" component="h3" gutterBottom>
+					Welcome to the app! Use the menu above to navigate.
 				</Typography>
 			</Container>
 		</React.Fragment>

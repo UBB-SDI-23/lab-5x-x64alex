@@ -105,7 +105,9 @@ export const AllProducts = () => {
 										{index + 1}
 									</TableCell>
 									<TableCell component="th" scope="row">
+										<Link to={`/products/${product.productId}/details`} title="View product details">
 											{product.productName}
+										</Link>
 									</TableCell>
 									<TableCell align="right">{product.productPrice}</TableCell>
 									<TableCell align="right">{product.productQuantity}</TableCell>
@@ -113,7 +115,7 @@ export const AllProducts = () => {
 									<TableCell align="right">{product.productWeight}</TableCell>
 									<TableCell align="right">{product.categoryId}</TableCell>
 									<TableCell align="right">
-										<IconButton>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/edit`}>
 											<EditIcon />
 										</IconButton>
 
