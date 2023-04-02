@@ -1,5 +1,5 @@
 
-import { Button, Card, CardActions, CardContent, IconButton, TextField } from "@mui/material";
+import { Button, Card, CardActions, CardContent, IconButton, Stack, TextField } from "@mui/material";
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -166,9 +166,12 @@ export const ProductAdd = () => {
 		<Container>
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/products`} >
-						<ArrowBackIcon />
-					</IconButton>{" "}
+					<Stack direction="row" spacing={2}   alignItems="center">
+						<IconButton component={Link} sx={{ mr: 3 }} to={`/products`} >
+							<ArrowBackIcon />
+						</IconButton>{" "}
+					</Stack>
+
 					<form onSubmit={addProduct}>
 						<TextField
 							id="name"

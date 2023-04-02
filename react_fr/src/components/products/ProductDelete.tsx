@@ -1,4 +1,4 @@
-import { Container, Card, CardContent, IconButton, CardActions, Button } from "@mui/material";
+import { Container, Card, CardContent, IconButton, CardActions, Button, Stack } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
@@ -25,10 +25,13 @@ export const ProductDelete = () => {
 		<Container>
 			<Card>
 				<CardContent>
+                <Stack direction="row" spacing={2}   alignItems="center">
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/products`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					Are you sure you want to delete this product? This cannot be undone!
+                </Stack>
+
 				</CardContent>
 				<CardActions>
 					<Button onClick={handleDelete}>Delete it</Button>
