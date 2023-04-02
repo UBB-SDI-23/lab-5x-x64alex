@@ -8,6 +8,7 @@ payroll/Service/CategoryService.class
 payroll/Service/TransactionService.class
 payroll/Model/DTO/ProductBoughtDTO.class
 payroll/Service/ProductService$2.class
+payroll/PayrollApplication$1.class
 payroll/Model/Category$CategoryBuilder.class
 payroll/Model/DTO/CategoryProductDTO.class
 payroll/Repository/ProductRepository.class
@@ -20,6 +21,7 @@ payroll/Controller/ClientController.class
 payroll/Repository/ClientRepository.class
 payroll/Model/DTO/CategoryDTO.class
 payroll/Model/Category.class
+payroll/Cors/CorsFilter.class
 payroll/Service/ProductService$1.class
 payroll/Service/CategoryService$1.class
 payroll/Model/Client.class

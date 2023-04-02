@@ -4,6 +4,7 @@
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/TransactionService.java
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client.java
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/ClientInterface.java
+/Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Cors/CorsFilter.java
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/ProductService.java
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/CategoryRepository.java
 /Users/alexandrucantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/CategoryController.java
