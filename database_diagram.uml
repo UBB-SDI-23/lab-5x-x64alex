@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/9fc9b627/entityManagerFactory/rest/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="16.25" y="-82.0">Transaction#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Transaction.java</node>
+    <node x="-130.0" y="278.0">Category#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Category.java</node>
+    <node x="-98.0" y="65.0">Product#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Product.java</node>
+    <node x="376.5" y="-82.0">AbstractPersistable#jar:///Users/alexandrucantor/.m2/repository/org/springframework/data/spring-data-jpa/2.3.0.RELEASE/spring-data-jpa-2.3.0.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class</node>
+    <node x="118.0" y="65.0">Client#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Client.java</node>
+    <node x="374.0" y="21.0">AbstractAuditable#jar:///Users/alexandrucantor/.m2/repository/org/springframework/data/spring-data-jpa/2.3.0.RELEASE/spring-data-jpa-2.3.0.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="AbstractAuditable#jar:///Users/alexandrucantor/.m2/repository/org/springframework/data/spring-data-jpa/2.3.0.RELEASE/spring-data-jpa-2.3.0.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class" target="AbstractPersistable#jar:///Users/alexandrucantor/.m2/repository/org/springframework/data/spring-data-jpa/2.3.0.RELEASE/spring-data-jpa-2.3.0.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class" relationship="INHERITANCE">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="Category#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Category.java" target="Product#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Product.java" relationship="RELATION">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="Product#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Product.java" target="Transaction#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Transaction.java" relationship="RELATION">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="40.0" />
+      <point x="111.75" y="40.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="Client#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Client.java" target="Transaction#file:///Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest/src/main/java/payroll/Model/Transaction.java" relationship="RELATION">
+      <point x="0.0" y="-81.5" />
+      <point x="223.5" y="40.0" />
+      <point x="111.75" y="40.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8308843106180666" showDependencies="false" x="289.7683334350586" y="207.78633880615234" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+

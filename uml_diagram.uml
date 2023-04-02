@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/alexandrucantor/Documents/GitHub/lab-3-x64alex/rest</OriginalElement>
+  <nodes>
+    <node x="171.99999999999994" y="462.0">payroll.Model.DTO.ClientDTO</node>
+    <node x="-127.0" y="1261.0">payroll.Service.ClientService</node>
+    <node x="292.2499999999999" y="686.0">payroll.Model.DTO.TransactionDTO</node>
+    <node x="-433.46375990939976" y="419.1449603624009">payroll.Model.Client</node>
+    <node x="514.0" y="1386.0">payroll.Controller.ProductController</node>
+    <node x="199.0" y="1151.0">payroll.Repository.TransactionRepository</node>
+    <node x="-262.2318799546999" y="857.3063420158551">payroll.Model.Transaction</node>
+    <node x="487.0" y="1250.0">payroll.Service.ProductService</node>
+    <node x="846.5" y="1151.0">payroll.Repository.CategoryRepository</node>
+    <node x="1136.0" y="1151.0">payroll.Model.DTO.CategoryProductDTO</node>
+    <node x="-110.0" y="387.6126840317101">payroll.Model.Product</node>
+    <node x="112.0" y="1484.0">payroll.Model.DTO.TransactionIdDTO</node>
+    <node x="165.0" y="1386.0">payroll.Controller.TransactionController</node>
+    <node x="400.9999999999999" y="451.0">payroll.Model.DTO.ProductDTO</node>
+    <node x="345.0" y="1484.0">payroll.PayrollApplication</node>
+    <node x="799.0" y="1261.0">payroll.Service.CategoryService</node>
+    <node x="-127.0" y="74.02265005662503">payroll.Model.Category</node>
+    <node x="-127.0" y="1484.0">payroll.Model.DTO.ProductIdDTO</node>
+    <node x="145.0" y="1239.0">payroll.Service.TransactionService</node>
+    <node x="819.0" y="1386.0">payroll.Controller.CategoryController</node>
+    <node x="-107.0" y="1386.0">payroll.Controller.ClientController</node>
+    <node x="539.5" y="1151.0">payroll.Repository.ProductRepository</node>
+    <node x="-87.0" y="1151.0">payroll.Repository.ClientRepository</node>
+    <node x="380.9999999999999" y="238.0">payroll.Model.DTO.CategoryDTO</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="payroll.Service.ProductService" target="payroll.Repository.CategoryRepository" relationship="TO_ONE">
+      <point x="22.5" y="-37.5" />
+      <point x="655.5" y="1218.0" />
+      <point x="945.0" y="1218.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="payroll.Model.Product" target="payroll.Model.Category" relationship="TO_ONE">
+      <point x="0.0" y="103.5" />
+      <point x="8.5" y="745.3063420158551" />
+      <point x="163.5339750849377" y="745.3063420158551" />
+      <point x="163.5339750849377" y="323.3176670441676" />
+      <point x="0.0" y="323.3176670441676" />
+      <point x="0.0" y="-92.5" />
+    </edge>
+    <edge source="payroll.Controller.TransactionController" target="payroll.Service.TransactionService" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="payroll.Model.DTO.TransactionDTO" target="payroll.Model.DTO.ClientDTO" relationship="TO_ONE">
+      <point x="-18.749999999999943" y="-70.5" />
+      <point x="97.0" y="81.5" />
+    </edge>
+    <edge source="payroll.Controller.CategoryController" target="payroll.Service.CategoryService" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="payroll.Model.Transaction" target="payroll.Model.Client" relationship="TO_ONE">
+      <point x="15.0" y="-70.5" />
+      <point x="-153.23187995469988" y="388.43431483578706" />
+      <point x="-299.96375990939976" y="388.43431483578706" />
+      <point x="15.0" y="92.5" />
+    </edge>
+    <edge source="payroll.Service.ProductService" target="payroll.Repository.ProductRepository" relationship="TO_ONE">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="payroll.Model.Client" target="payroll.Model.Transaction" relationship="TO_MANY">
+      <point x="0.0" y="92.5" />
+      <point x="-314.96375990939976" y="388.43431483578706" />
+      <point x="-168.23187995469988" y="388.43431483578706" />
+      <point x="0.0" y="-70.5" />
+    </edge>
+    <edge source="payroll.Model.Product" target="payroll.Model.Transaction" relationship="TO_MANY">
+      <point x="-118.5" y="0.0" />
+      <point x="-144.5" y="491.1126840317101" />
+      <point x="-144.5" y="448.0" />
+      <point x="-168.23187995469988" y="448.0" />
+      <point x="0.0" y="-70.5" />
+    </edge>
+    <edge source="payroll.Model.DTO.ProductDTO" target="payroll.Model.DTO.CategoryDTO" relationship="TO_ONE">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="payroll.Controller.ClientController" target="payroll.Service.ClientService" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="payroll.Service.ClientService" target="payroll.Repository.ClientRepository" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="-1.0" y="1196.5" />
+      <point x="115.0" y="1196.5" />
+      <point x="115.0" y="1165.0" />
+      <point x="86.0" y="0.0" />
+    </edge>
+    <edge source="payroll.Service.TransactionService" target="payroll.Repository.ProductRepository" relationship="TO_ONE">
+      <point x="-15.0" y="-48.5" />
+      <point x="291.0" y="1218.0" />
+      <point x="633.0" y="1218.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="payroll.Model.Transaction" target="payroll.Model.Product" relationship="TO_ONE">
+      <point x="0.0" y="70.5" />
+      <point x="-168.23187995469988" y="639.0" />
+      <point x="8.5" y="639.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="payroll.Controller.ProductController" target="payroll.Service.ProductService" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="payroll.Model.DTO.TransactionDTO" target="payroll.Model.DTO.ProductDTO" relationship="TO_ONE">
+      <point x="16.25" y="-70.5" />
+      <point x="-99.5" y="92.5" />
+    </edge>
+    <edge source="payroll.Model.Category" target="payroll.Model.Product" relationship="TO_MANY">
+      <point x="127.0" y="0.0" />
+      <point x="152.5" y="166.52265005662503" />
+      <point x="152.5" y="645.0" />
+      <point x="8.5" y="645.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="payroll.Service.TransactionService" target="payroll.Repository.TransactionRepository" relationship="TO_ONE">
+      <point x="-30.0" y="-48.5" />
+      <point x="-30.0" y="14.0" />
+    </edge>
+    <edge source="payroll.Service.CategoryService" target="payroll.Repository.CategoryRepository" relationship="TO_ONE">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="payroll.Service.TransactionService" target="payroll.Repository.ClientRepository" relationship="TO_ONE">
+      <point x="0.0" y="-48.5" />
+      <point x="306.0" y="1196.5" />
+      <point x="115.0" y="1196.5" />
+      <point x="115.0" y="1165.0" />
+      <point x="86.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6127689104788342" showDependencies="true" x="482.1727066817666" y="1148.92355605889" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
