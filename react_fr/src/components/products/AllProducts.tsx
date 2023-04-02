@@ -18,8 +18,8 @@ import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL } from "../constants";
-import { Product } from "../models/Product";
+import { BACKEND_API_URL } from "../../constants";
+import { Product } from "../../models/Product";
 
 export const AllProducts = () => {
 	const [loading, setLoading] = useState(false);
@@ -80,7 +80,7 @@ export const AllProducts = () => {
 											<EditIcon />
 										</IconButton>
 
-										<IconButton>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
