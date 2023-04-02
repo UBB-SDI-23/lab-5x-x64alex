@@ -47,7 +47,7 @@ export const AllProducts = () => {
 			<h1>All products</h1>
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a product:</h3>
-				<IconButton>
+				<IconButton component={Link} sx={{ mr: 3 }} to={`/products/add`}>
 					<Tooltip title="Add a new product" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
@@ -66,9 +66,9 @@ export const AllProducts = () => {
 
 
 						var newQuantity = Number(newValue.target.value);
-						if (isNaN(newQuantity)){
+						if (isNaN(newQuantity) || !Number.isInteger(newQuantity)){
 							setProductQuantityError(true);
-							setProductQuantityHelper("The input must be a number");
+							setProductQuantityHelper("The input must be an integer");
 						}
 						else{
 							setProductQuantity(newQuantity);
@@ -94,7 +94,8 @@ export const AllProducts = () => {
 								<TableCell align="right">Quantity</TableCell>
 								<TableCell align="right">Sale</TableCell>
                                 <TableCell align="right">Weight</TableCell>
-                                <TableCell align="right"></TableCell>
+								<TableCell align="right">Category Id</TableCell>
+                                <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
@@ -110,6 +111,7 @@ export const AllProducts = () => {
 									<TableCell align="right">{product.productQuantity}</TableCell>
 									<TableCell align="right">{String(product.productOnSale)}</TableCell>
 									<TableCell align="right">{product.productWeight}</TableCell>
+									<TableCell align="right">{product.categoryId}</TableCell>
 									<TableCell align="right">
 										<IconButton>
 											<EditIcon />

@@ -8,6 +8,7 @@ import { AppMenu } from './components/AppMenu'
 import { AppHome } from './components/AppHome'
 import { AllProducts } from './components/products/AllProducts'
 import { ProductDelete } from './components/products/ProductDelete'
+import { ProductAdd } from './components/products/ProductAdd'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<AppHome />} />
 					<Route path="/products" element={<AllProducts />} />
+          <Route path="/products/add" element={<ProductAdd />} />
           <Route path="/products/:productId/delete" element={<ProductDelete />} />
 				</Routes>
 			</Router>
