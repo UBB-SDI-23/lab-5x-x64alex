@@ -20,6 +20,7 @@ export const ProductUpdate = () => {
 		event.preventDefault();
 		try {
 			await axios.put(`${BACKEND_API_URL}/products/${productId}`, product);
+			alert("Product updated")
 			navigate("/products");
 		} catch (error) {
 			setProductCategoryIdError(true);
@@ -35,7 +36,7 @@ export const ProductUpdate = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
-    	categoryId: 0,
+    	categoryId: 1,
 	});
 
 
@@ -56,7 +57,6 @@ export const ProductUpdate = () => {
                 checkNewSale(String(response.productOnSale));
                 checkNewWeight(String(response.productWeight));
                 checkNewCategoryId(String(response.categoryDTO.categoryId));
-				alert("Product updated")
             });
             
 		};
