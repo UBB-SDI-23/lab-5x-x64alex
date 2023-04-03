@@ -65,8 +65,8 @@ export const AllProducts = () => {
 		}
 	};
 	const handleSortRequestPrice = () => {
-		setproducts(sortArrayPrice(products, orderDirectionQuantity)!);
-		setOrderDirectionPrice(orderDirectionQuantity === "asc" ? "desc" : "asc");
+		setproducts(sortArrayPrice(products, orderDirectionPrice)!);
+		setOrderDirectionPrice(orderDirectionPrice === "asc" ? "desc" : "asc");
 	};
 
 	const [orderDirectionQuantity, setOrderDirectionQuantity] = useState<arrowDirectionType>("asc");
