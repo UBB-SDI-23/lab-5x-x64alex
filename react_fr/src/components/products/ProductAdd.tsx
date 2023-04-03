@@ -154,6 +154,7 @@ export const ProductAdd = () => {
 		try {
 			await axios.post(`${BACKEND_API_URL}/products/`, product);
 			navigate("/products");
+			alert("Product added")
 		} catch (error) {
 			setProductCategoryIdError(true);
 			setProductCategoryIdHelper("Category id doesn't exist");
@@ -227,17 +228,6 @@ export const ProductAdd = () => {
 								checkNewWeight(newValue.target.value)
 							}}
 						/>
-						<TextField 
-							value={productCategoryIdString} 
-							error={productCategoryIdError} 
-							label="Product CategoryId"
-							variant="outlined" 
-							fullWidth
-							sx={{ mb: 2 }}
-							helperText={productCategoryIdHelper}
-							onChange={(newValue) => {
-								checkNewCategoryId(newValue.target.value)
-							}}/>
 
 						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Add Product</Button>
 					</form>

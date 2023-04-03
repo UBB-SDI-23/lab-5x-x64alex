@@ -14,12 +14,10 @@ export const ProductDetails = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			// TODO: use axios instead of fetch
-			// TODO: handle errors
-			// TODO: handle loading state
 			const response = await fetch(`${BACKEND_API_URL}/products/${productId}`);
 			const product = await response.json();
 			setProduct(product);
+
 		};
 		fetchProduct();
 	}, [productId]);
@@ -39,7 +37,7 @@ export const ProductDetails = () => {
 					<p>Product Name: {product?.productName}</p>
 					<p>Product Price: {product?.productPrice}</p>
 					<p>Product Quantity: {product?.productQuantity}</p>
-					<p>Product Sale: {product?.productOnSale}</p>
+					<p>Product Sale: {String(product?.productOnSale)}</p>
 					<p>Product Weight: {product?.productWeight}</p>
 				</Stack>
 

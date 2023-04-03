@@ -56,6 +56,7 @@ export const ProductUpdate = () => {
                 checkNewSale(String(response.productOnSale));
                 checkNewWeight(String(response.productWeight));
                 checkNewCategoryId(String(response.categoryDTO.categoryId));
+				alert("Product updated")
             });
             
 		};
