@@ -153,8 +153,8 @@ export const ProductAdd = () => {
 		event.preventDefault();
 		try {
 			await axios.post(`${BACKEND_API_URL}/products/`, product);
-			navigate("/products");
 			alert("Product added")
+			navigate("/products");
 		} catch (error) {
 			setProductCategoryIdError(true);
 			setProductCategoryIdHelper("Category id doesn't exist");

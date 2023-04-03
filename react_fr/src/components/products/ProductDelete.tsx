@@ -11,9 +11,8 @@ export const ProductDelete = () => {
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		await axios.delete(`${BACKEND_API_URL}/products/${productId}`);
-		// go to products list
-		navigate("/products");
 		alert("Product deleted")
+		navigate("/products");
 	};
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
