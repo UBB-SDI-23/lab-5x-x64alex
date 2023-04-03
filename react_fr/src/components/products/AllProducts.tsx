@@ -24,10 +24,13 @@ import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
 import { Product } from "../../models/Product";
 
+
 export const AllProducts = () => {
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState<Product[]>([]);
-	const [orderDirection, setOrderDirection] = useState("asc");
+
+	type arrowDirectionType = "asc" | "desc"
+	const [orderDirection, setOrderDirection] = useState<arrowDirectionType>("asc");
 
 	const sortArray = (arr: Product[], orderBy: String) => {
 		switch (orderBy) {
@@ -42,6 +45,7 @@ export const AllProducts = () => {
 			);
 		}
 	  };
+
 
 	  const handleSortRequest = () => {
 		setproducts(sortArray(products, orderDirection)!);
@@ -112,9 +116,7 @@ export const AllProducts = () => {
 							<TableRow>
 								<TableCell>#</TableCell>
 								<TableCell align="left" onClick={handleSortRequest}>
-									<TableSortLabel
-										active={true}
-									>
+									<TableSortLabel active={true} direction={orderDirection}>
 										Name
 									</TableSortLabel>
 			 					</TableCell>
