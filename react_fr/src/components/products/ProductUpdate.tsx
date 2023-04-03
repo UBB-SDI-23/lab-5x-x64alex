@@ -8,6 +8,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product";
+import { ProductCategory } from "../../models/ProductCategory";
 
 
 export const ProductUpdate = () => {
@@ -28,7 +29,7 @@ export const ProductUpdate = () => {
 		}
 	};
 
-	const [product, setProduct] = useState<Product>({
+    const [product, setProduct] = useState<Product>({
 	    productName: "",
     	productPrice: 0,
     	productQuantity: 0,
@@ -37,7 +38,42 @@ export const ProductUpdate = () => {
     	categoryId: 0,
 	});
 
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+            
+			// TODO: use axios instead of fetch
+			// TODO: handle errors
+			// TODO: handle loading state
+			const response = await fetch(`${BACKEND_API_URL}/products/${productId}`)
+                .then(response => response.json())
+                .then(response => {
+
+                console.log(response)
+                checkNewName(response.productName);
+                checkNewPrice(String(response.productPrice!));
+                checkNewQuantity(String(response.productQuantity));
+                checkNewSale(String(response.productOnSale));
+                checkNewWeight(String(response.productWeight));
+                checkNewCategoryId(String(response.categoryDTO.categoryId));
+            });
+            
+		};
+		fetchProduct();
+	}, [productId]);
+
+
+
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
+
+	const [productNameString, setProductNameString] = useState<String>("");
+	const checkNewName = (newValue: String) => {
+		setProductNameString(newValue);
+
+		var newName = String(newValue);
+		product.productName = newName;
+
+	}
 
 	const [productPriceError, setProductPriceError] = useState(false);
 	const [productPriceString, setProductPriceString] = useState<String>("");
@@ -183,13 +219,15 @@ export const ProductUpdate = () => {
 							sx={{ mb: 2 }}
                         />
 						<TextField
+                        	value={productNameString} 
 							id="name"
 							label="Product Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(event) => setProduct({ ...product, productName: event.target.value })}
-						/>
+                            onChange={(newValue) => {
+								checkNewName(newValue.target.value)
+							}}/>
 						<TextField 
 							value={productPriceString} 
 							error={productPriceError} 
