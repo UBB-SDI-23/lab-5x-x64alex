@@ -233,11 +233,11 @@ export const AllProducts = () => {
 									Weight
 									</TableSortLabel>
 								</TableCell>
-								<TableCell align="right" onClick={handleSortRequestCategoryId}>
+								{/* <TableCell align="right" onClick={handleSortRequestCategoryId}>
 									<TableSortLabel active={true} direction={orderDirectionCategoryId}>
 									CategoryId
 									</TableSortLabel>
-								</TableCell>
+								</TableCell> */}
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -256,7 +256,7 @@ export const AllProducts = () => {
 									<TableCell align="right">{product.productQuantity}</TableCell>
 									<TableCell align="right">{String(product.productOnSale)}</TableCell>
 									<TableCell align="right">{product.productWeight}</TableCell>
-									<TableCell align="right">{product.categoryId}</TableCell>
+									{/* <TableCell align="right">{product.categoryId}</TableCell> */}
 									<TableCell align="right">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/edit`}>
 											<EditIcon />

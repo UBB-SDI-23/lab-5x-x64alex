@@ -274,17 +274,7 @@ export const ProductUpdate = () => {
 								checkNewWeight(newValue.target.value)
 							}}
 						/>
-						<TextField 
-							value={productCategoryIdString} 
-							error={productCategoryIdError} 
-							label="Product CategoryId"
-							variant="outlined" 
-							fullWidth
-							sx={{ mb: 2 }}
-							helperText={productCategoryIdHelper}
-							onChange={(newValue) => {
-								checkNewCategoryId(newValue.target.value)
-							}}/>
+
 
 						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Update Product</Button>
 					</form>
