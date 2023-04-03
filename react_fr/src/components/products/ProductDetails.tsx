@@ -39,6 +39,8 @@ export const ProductDetails = () => {
 					<p>Product Name: {product?.productName}</p>
 					<p>Product Price: {product?.productPrice}</p>
 					<p>Product Quantity: {product?.productQuantity}</p>
+					<p>Product Sale: {product?.productOnSale}</p>
+					<p>Product Weight: {product?.productWeight}</p>
 				</Stack>
 
 			
