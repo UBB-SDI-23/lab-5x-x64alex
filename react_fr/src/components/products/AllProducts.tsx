@@ -26,10 +26,10 @@ import { Product } from "../../models/Product";
 
 export const AllProducts = () => {
 	const [loading, setLoading] = useState(false);
-    const [products, setproducts] = useState([]);
+    const [products, setproducts] = useState<Product[]>([]);
 	const [orderDirection, setOrderDirection] = useState("asc");
 
-	const sortArray = (arr, orderBy: String) => {
+	const sortArray = (arr: Product[], orderBy: String) => {
 		switch (orderBy) {
 		  case "asc":
 		  default:
