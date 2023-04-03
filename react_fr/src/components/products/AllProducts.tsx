@@ -12,6 +12,7 @@ import {
 	Tooltip,
 	TextField,
 	Stack,
+	TableSortLabel
 } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -26,6 +27,27 @@ import { Product } from "../../models/Product";
 export const AllProducts = () => {
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState([]);
+	const [orderDirection, setOrderDirection] = useState("asc");
+
+	const sortArray = (arr: Product[], orderBy: String) => {
+		switch (orderBy) {
+		  case "asc":
+		  default:
+			return arr.sort((a, b) =>
+			  a.productPrice > b.productPrice ? 1 : b.productPrice > a.productPrice ? -1 : 0
+			);
+		  case "desc":
+			return arr.sort((a, b) =>
+			  a.productPrice < b.productPrice ? 1 : b.productPrice < a.productPrice ? -1 : 0
+			);
+		}
+	  };
+
+	  const handleSortRequest = () => {
+		//setproducts(sortArray(products, orderDirection)!);
+		setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
+	  };
+
 	const [productQuantityError, setProductQuantityError] = useState(false);
 	const [productQuantityString, setProductQuantityString] = useState("");
 	const [productQuantityHelper, setProductQuantityHelper] = useState("");
@@ -89,7 +111,13 @@ export const AllProducts = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
-								<TableCell align="left">Name</TableCell>
+								<TableCell align="left" onClick={handleSortRequest}>
+									<TableSortLabel
+										active={true}
+									>
+										Name
+									</TableSortLabel>
+			 					</TableCell>
 								<TableCell align="right">Price</TableCell>
 								<TableCell align="right">Quantity</TableCell>
 								<TableCell align="right">Sale</TableCell>
