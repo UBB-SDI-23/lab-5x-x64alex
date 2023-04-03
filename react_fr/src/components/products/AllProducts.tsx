@@ -29,7 +29,7 @@ export const AllProducts = () => {
     const [products, setproducts] = useState([]);
 	const [orderDirection, setOrderDirection] = useState("asc");
 
-	const sortArray = (arr: Product[], orderBy: String) => {
+	const sortArray = (arr, orderBy: String) => {
 		switch (orderBy) {
 		  case "asc":
 		  default:
@@ -44,7 +44,7 @@ export const AllProducts = () => {
 	  };
 
 	  const handleSortRequest = () => {
-		//setproducts(sortArray(products, orderDirection)!);
+		setproducts(sortArray(products, orderDirection)!);
 		setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
 	  };
 
