@@ -126,6 +126,24 @@ export const AllProducts = () => {
 		setOrderDirectionWeight(orderDirectionWeight === "asc" ? "desc" : "asc");
 	};
 	
+	const [orderDirectionCategoryId, setOrderDirectionCategoryId] = useState<arrowDirectionType>("asc");
+	const sortArrayCategoryId = (arr: Product[], orderBy: String) => {
+		switch (orderBy) {
+		  case "asc":
+		  default:
+			return arr.sort((a, b) =>
+			  a.categoryId > b.categoryId ? 1 : b.categoryId > a.categoryId ? -1 : 0
+			);
+		  case "desc":
+			return arr.sort((a, b) =>
+			  a.categoryId < b.categoryId ? 1 : b.categoryId < a.categoryId ? -1 : 0
+			);
+		}
+	};
+	const handleSortRequestCategoryId = () => {
+		setproducts(sortArrayCategoryId(products, orderDirectionCategoryId)!);
+		setOrderDirectionCategoryId(orderDirectionCategoryId === "asc" ? "desc" : "asc");
+	};
 
 	const [productQuantityError, setProductQuantityError] = useState(false);
 	const [productQuantityString, setProductQuantityString] = useState("");
@@ -215,7 +233,11 @@ export const AllProducts = () => {
 									Weight
 									</TableSortLabel>
 								</TableCell>
-								<TableCell align="right">Category Id</TableCell>
+								<TableCell align="right" onClick={handleSortRequestCategoryId}>
+									<TableSortLabel active={true} direction={orderDirectionCategoryId}>
+									CategoryId
+									</TableSortLabel>
+								</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
