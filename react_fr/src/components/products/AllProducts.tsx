@@ -65,8 +65,27 @@ export const AllProducts = () => {
 		}
 	};
 	const handleSortRequestPrice = () => {
-		setproducts(sortArrayPrice(products, orderDirectionPrice)!);
-		setOrderDirectionPrice(orderDirectionPrice === "asc" ? "desc" : "asc");
+		setproducts(sortArrayPrice(products, orderDirectionQuantity)!);
+		setOrderDirectionPrice(orderDirectionQuantity === "asc" ? "desc" : "asc");
+	};
+
+	const [orderDirectionQuantity, setOrderDirectionQuantity] = useState<arrowDirectionType>("asc");
+	const sortArrayQuantity = (arr: Product[], orderBy: String) => {
+		switch (orderBy) {
+		  case "asc":
+		  default:
+			return arr.sort((a, b) =>
+			  a.productQuantity > b.productQuantity ? 1 : b.productQuantity > a.productQuantity ? -1 : 0
+			);
+		  case "desc":
+			return arr.sort((a, b) =>
+			  a.productQuantity < b.productQuantity ? 1 : b.productQuantity < a.productQuantity ? -1 : 0
+			);
+		}
+	};
+	const handleSortRequestQuantity = () => {
+		setproducts(sortArrayQuantity(products, orderDirectionQuantity)!);
+		setOrderDirectionQuantity(orderDirectionQuantity === "asc" ? "desc" : "asc");
 	};
 
 	
@@ -144,7 +163,11 @@ export const AllProducts = () => {
 										Price
 									</TableSortLabel>
 								</TableCell>
-								<TableCell align="right">Quantity</TableCell>
+								<TableCell align="right" onClick={handleSortRequestQuantity}>
+									<TableSortLabel active={true} direction={orderDirectionQuantity}>
+									Quantity
+									</TableSortLabel>
+								</TableCell>
 								<TableCell align="right">Sale</TableCell>
                                 <TableCell align="right">Weight</TableCell>
 								<TableCell align="right">Category Id</TableCell>
