@@ -20,7 +20,7 @@ export const ProductAdd = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
-    	categoryId: 0,
+    	categoryId: 1,
 	});
 
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
@@ -148,11 +148,11 @@ export const ProductAdd = () => {
 
 
 
-	const addProduct = async (event: { preventDefault: () => void }) => {
+	const addProduct = (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_API_URL}/products/`, product);
+			axios.post(`${BACKEND_API_URL}/products/`, product);
 			alert("Product added")
 			navigate("/products");
 		} catch (error) {
