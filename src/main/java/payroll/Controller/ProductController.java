@@ -21,6 +21,11 @@ public class ProductController {
         return this.productService.getProductIdDTOList();
     }
 
+    @GetMapping("/products100")
+    public List<ProductDTO> getProducts100(){
+        return this.productService.getFirst100Products().stream().map(Product::getProductDTO)
+                .toList();
+    }
 
     @GetMapping("/products/getProductsSortedClientsBought")
     public List<ProductClientDTO> getProductsSortedClientsBought(){
@@ -35,6 +40,12 @@ public class ProductController {
     @GetMapping("/products/filterQuantityGreaterThan/{filterValue}")
     public List<ProductIdDTO> filterQuantity(@PathVariable("filterValue") int filterValue){
         return this.productService.filterQuantity(filterValue);
+    }
+
+    @GetMapping("/products/filterQuantityGreaterThan100/{filterValue}")
+    public List<ProductDTO> filterQuantity100(@PathVariable("filterValue") int filterValue){
+        return this.productService.getFilterGreaterThan(filterValue,1,100).stream().map(Product::getProductDTO)
+                .toList();
     }
     @PostMapping("/products")
     public Product saveProduct(@RequestBody ProductIdDTO product){

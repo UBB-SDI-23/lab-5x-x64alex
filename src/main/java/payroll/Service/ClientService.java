@@ -31,6 +31,7 @@ public class ClientService implements ClientInterface{
         return this.clientRepository.save(client);
     }
 
+
     public Client saveProductsTransactions(Long clientId, ArrayList<ProductTransactionDTO> productTransactionDTOS) {
         Client client = this.clientRepository.findById(clientId).get();
         for(ProductTransactionDTO productTransactionDTO: productTransactionDTOS){

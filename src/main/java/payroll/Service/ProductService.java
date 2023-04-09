@@ -19,6 +19,13 @@ public class ProductService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    public List<Product> getFirst100Products() {
+        return productRepository.findFirst100By();
+    }
+
+    public List<Product> getFilterGreaterThan(int quantity, int startId, int endId) {
+        return productRepository.filterByQuantityGreater(quantity, (long) startId, (long) endId);
+    }
 
 
     public Product saveProduct(ProductIdDTO productIdDTO) {
