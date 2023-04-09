@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "Products")
-@SequenceGenerator(name="seq", initialValue=1000000, allocationSize=1000)
+@SequenceGenerator(name="seq", initialValue=1000000, allocationSize=100)
 public class Product {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
