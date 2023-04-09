@@ -21,11 +21,11 @@ public class ProductController {
         return this.productService.getProductIdDTOList();
     }
 
-    @GetMapping("/products100")
-    public List<ProductDTO> getProducts100(){
-        return this.productService.getFirst100Products().stream().map(Product::getProductDTO)
-                .toList();
-    }
+//    @GetMapping("/products100")
+//    public List<ProductDTO> getProducts100(){
+//        return this.productService.getFirst100Products().stream().map(Product::getProductDTO)
+//                .toList();
+//    }
 
     @GetMapping("/products/getProductsSortedClientsBought")
     public List<ProductClientDTO> getProductsSortedClientsBought(){
@@ -43,9 +43,10 @@ public class ProductController {
     }
 
     @GetMapping("/products/filterQuantityGreaterThan100/{filterValue}")
-    public List<ProductDTO> filterQuantity100(@PathVariable("filterValue") int filterValue){
-        return this.productService.getFilterGreaterThan(filterValue,1,100).stream().map(Product::getProductDTO)
-                .toList();
+    public List<ProductDTO> filterQuantity100(@PathVariable("filterValue") int filterValue,
+                                              @RequestParam(defaultValue = "1") Long startId,
+                                              @RequestParam(defaultValue = "100") Long endId){
+        return this.productService.getFilterGreaterThan(filterValue,startId,endId).stream().map(Product::getProductDTO).toList();
     }
     @PostMapping("/products")
     public Product saveProduct(@RequestBody ProductIdDTO product){

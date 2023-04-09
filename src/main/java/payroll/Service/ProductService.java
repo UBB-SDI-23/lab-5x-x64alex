@@ -23,8 +23,8 @@ public class ProductService {
         return productRepository.findFirst100By();
     }
 
-    public List<Product> getFilterGreaterThan(int quantity, int startId, int endId) {
-        return productRepository.filterByQuantityGreater(quantity, (long) startId, (long) endId);
+    public List<Product> getFilterGreaterThan(int quantity, long startId, long endId) {
+        return productRepository.filterByQuantityGreater(quantity, startId, endId);
     }
 
 

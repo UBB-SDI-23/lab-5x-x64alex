@@ -3,7 +3,7 @@ package payroll.Model.DTO;
 import lombok.*;
 import payroll.Model.Transaction;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

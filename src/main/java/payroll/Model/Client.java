@@ -1,6 +1,8 @@
 package payroll.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,9 +10,7 @@ import lombok.NoArgsConstructor;
 import payroll.Model.DTO.ClientDTO;
 import payroll.Model.DTO.ProductDTO;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
