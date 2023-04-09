@@ -2,14 +2,11 @@ package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import payroll.Model.Category;
 import payroll.Model.Client;
-import payroll.Model.DTO.CategoryDTO;
 import payroll.Model.DTO.ClientDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Model.Product;
 import payroll.Model.Transaction;
-import payroll.Repository.CategoryRepository;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
@@ -28,8 +25,6 @@ public class ClientService implements ClientInterface{
     @Autowired
     private TransactionRepository transactionRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @Override
     public Client saveClient(Client client) {

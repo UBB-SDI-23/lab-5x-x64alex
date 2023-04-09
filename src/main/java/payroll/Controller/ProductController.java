@@ -21,10 +21,6 @@ public class ProductController {
         return this.productService.getProductIdDTOList();
     }
 
-    @GetMapping("/products/sortedByProductsInCategory")
-    public List<ProductBoughtDTO> getProductsSortedByProductsInCategory(){
-        return this.productService.sorted();
-    }
 
     @GetMapping("/products/getProductsSortedClientsBought")
     public List<ProductClientDTO> getProductsSortedClientsBought(){

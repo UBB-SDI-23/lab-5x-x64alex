@@ -37,7 +37,7 @@ public class ProductTests {
 
     @Test
     public void basicTest() throws Exception {
-        ProductIdDTO p = new ProductIdDTO(1L,"",3.0F,3,true,2.0,1L);
+        ProductIdDTO p = new ProductIdDTO(1L,"",3.0F,3,true,2.0);
         List<ProductIdDTO> productList = new ArrayList<>();
         productList.add(p);
 
@@ -49,7 +49,7 @@ public class ProductTests {
 
     @Test
     public void filterTest() throws Exception {
-        ProductIdDTO p1 = new ProductIdDTO(1L,"",3.0F,3,true,2.0,1L);
+        ProductIdDTO p1 = new ProductIdDTO(1L,"",3.0F,3,true,2.0);
         List<ProductIdDTO> productList = new ArrayList<>();
         List<ProductIdDTO> emptyProductList = new ArrayList<>();
         productList.add(p1);
@@ -65,19 +65,5 @@ public class ProductTests {
                 .andExpect(jsonPath("$", hasSize(1)));
 
 
-    }
-
-    @Test
-    public void sortTest() throws Exception {
-        ProductBoughtDTO p1 = new ProductBoughtDTO(1L,"",3.0F,3,true,2.0,1);
-        ProductBoughtDTO p2 = new ProductBoughtDTO(2L,"",3.0F,3,true,2.0,2);
-        List<ProductBoughtDTO> productList = new ArrayList<>();
-        productList.add(p1);
-        productList.add(p2);
-        when(service.sorted()).thenReturn(productList);
-
-        mvc.perform(get("/products/sortedByProductsInCategory"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(content().json("[{\"productId\":1,\"productName\":\"\",\"productPrice\":3.0,\"productQuantity\":3,\"productOnSale\":true,\"productWeight\":2.0,\"numberOfProductsInCategory\":1},{\"productId\":2,\"productName\":\"\",\"productPrice\":3.0,\"productQuantity\":3,\"productOnSale\":true,\"productWeight\":2.0,\"numberOfProductsInCategory\":2}]"));
     }
 }

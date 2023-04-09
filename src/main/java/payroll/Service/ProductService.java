@@ -2,14 +2,10 @@ package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import payroll.Model.Category;
 import payroll.Model.Client;
 import payroll.Model.DTO.*;
 import payroll.Model.Product;
 import payroll.Model.Transaction;
-import payroll.Repository.CategoryRepository;
-import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
 
@@ -18,19 +14,14 @@ import java.util.*;
 @Service
 public class ProductService {
     @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private TransactionRepository transactionRepository;
 
-    @Autowired
-    private CategoryRepository clientRepository;
 
 
     public Product saveProduct(ProductIdDTO productIdDTO) {
-        Category category = categoryRepository.findById(productIdDTO.getCategoryId()).get();
         Product product = new Product();
 
         product.setProductId(productIdDTO.getProductId());
@@ -39,8 +30,6 @@ public class ProductService {
         product.setProductQuantity(productIdDTO.getProductQuantity());
         product.setProductOnSale(productIdDTO.isProductOnSale());
         product.setProductWeight(productIdDTO.getProductWeight());
-
-        product.setCategory(category);
 
         productRepository.save(product);
 
@@ -59,7 +48,6 @@ public class ProductService {
             productIdDTO.setProductOnSale(product.isProductOnSale());
             productIdDTO.setProductWeight(product.getProductWeight());
 
-            productIdDTO.setCategoryId(product.getCategory().getCategoryId());
 
             productIdDTOS.add(productIdDTO);
         }
@@ -68,16 +56,6 @@ public class ProductService {
 
     public ProductDTO getOneProduct(Long productId){
         Product product = productRepository.findById(productId).get();
-
-        // Get categoryDTO from category
-        Category category = categoryRepository.findById(product.getCategory().getCategoryId()).get();
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setCategoryId(category.getCategoryId());
-        categoryDTO.setCategoryName(category.getCategoryName());
-        categoryDTO.setCategoryProfitability(category.getCategoryProfitability());
-        categoryDTO.setCategoryPopularity(category.getCategoryPopularity());
-        categoryDTO.setCategorySales(category.getCategorySales());
-        categoryDTO.setCategoryReturnsPerMonth(category.getCategoryReturnsPerMonth());
 
         // Construct productDTO
         ProductDTO productDTO = new ProductDTO();
@@ -88,7 +66,6 @@ public class ProductService {
         productDTO.setProductOnSale(product.isProductOnSale());
         productDTO.setProductWeight(product.getProductWeight());
 
-        productDTO.setCategoryDTO(categoryDTO);
 
 
         return productDTO;
@@ -100,7 +77,6 @@ public class ProductService {
 
     public Product updateProduct(ProductIdDTO product, Long productId) {
         Product oldProduct = productRepository.findById(productId).get();
-        Category category = categoryRepository.findById(product.getCategoryId()).get();
 
         oldProduct.setProductName(product.getProductName());
         oldProduct.setProductPrice(product.getProductPrice());
@@ -108,7 +84,6 @@ public class ProductService {
         oldProduct.setProductOnSale(product.isProductOnSale());
         oldProduct.setProductWeight(product.getProductWeight());
 
-        oldProduct.setCategory(category);
 
         return productRepository.save(oldProduct);
     }
@@ -126,52 +101,10 @@ public class ProductService {
                 filteredProduct.setProductOnSale(product.isProductOnSale());
                 filteredProduct.setProductWeight(product.getProductWeight());
 
-                filteredProduct.setCategoryId(product.getCategory().getCategoryId());
 
                 productList.add(filteredProduct);
             }
         }
-        return productList;
-    }
-
-    public List<ProductBoughtDTO> sorted(){
-        List<ProductBoughtDTO> productList = new ArrayList<>();
-        for(Product product : this.productRepository.findAll()){
-            HashMap<Long, Integer> categoryHashMap = new HashMap<>();
-
-            for(Category category: this.categoryRepository.findAll()) {
-                if(! categoryHashMap.containsKey(category.getCategoryId())){
-                    categoryHashMap.put(category.getCategoryId(), 0);
-                }
-
-                if(Objects.equals(category.getCategoryId(), product.getCategory().getCategoryId())){
-                    categoryHashMap.put(category.getCategoryId(), categoryHashMap.get(category.getCategoryId())+ product.getCategory().getProducts().size()-1);
-                }
-            }
-
-            ProductBoughtDTO productBoughtDTO = new ProductBoughtDTO();
-
-            productBoughtDTO.setProductId(product.getProductId());
-            productBoughtDTO.setProductName(product.getProductName());
-
-            productBoughtDTO.setNumberOfProductsInCategory(categoryHashMap.get(product.getCategory().getCategoryId()));
-
-            productList.add(productBoughtDTO);
-        }
-
-        //sort in ascending order bubble sort
-        productList.sort(new Comparator<ProductBoughtDTO>() {
-            @Override
-            public int compare(ProductBoughtDTO o1, ProductBoughtDTO o2) {
-                if(o1.getNumberOfProductsInCategory()==o2.getNumberOfProductsInCategory())
-                    return 0;
-                else if(o1.getNumberOfProductsInCategory()>o2.getNumberOfProductsInCategory())
-                    return 1;
-                else
-                    return -1;
-            }
-        });
-
         return productList;
     }
 
