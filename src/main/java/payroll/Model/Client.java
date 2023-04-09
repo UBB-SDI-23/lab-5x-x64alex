@@ -20,9 +20,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "Clients")
+@SequenceGenerator(name="seq", initialValue=1000000, allocationSize=1000)
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long clientId;
 
     @NotBlank(message = "Please enter clientFirstName")

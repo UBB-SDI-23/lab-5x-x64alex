@@ -19,9 +19,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "Products")
+@SequenceGenerator(name="seq", initialValue=1000000, allocationSize=1000)
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long productId;
 
     @Column(name = "ProductName")

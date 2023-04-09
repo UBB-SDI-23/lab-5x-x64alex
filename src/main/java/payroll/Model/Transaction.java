@@ -17,9 +17,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Table(name = "Transactions")
+@SequenceGenerator(name="seq", initialValue=1000000, allocationSize=1000)
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long transactionId;
 
     @Column(name = "TransactionDate")

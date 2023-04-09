@@ -1,8 +1,8 @@
 from faker import Faker
 import random as rand
 
-batches_no = 2 #1000 for last version
-inserts_no = batches_no * 2  #1000 for last version
+batches_no = 1000 #1000 for last version
+inserts_no = 100 #1000 for last version
 many_to_many_no = inserts_no*10
 fake = Faker(False)
 
@@ -14,6 +14,7 @@ file.write('TRUNCATE products, clients, transactions;\n')
 
 
 for i in range(inserts_no):
+    print(i)
     file.write('INSERT INTO products(product_id,product_name,product_price,product_quantity,product_on_sale,product_weight) VALUES ')
     for j in range(batches_no):
         end = ", "
@@ -22,9 +23,7 @@ for i in range(inserts_no):
         file.write(f'({i * batches_no + j + 1},\'{rand.choice(productNames)}_{i * batches_no + j + 1}\',\'{rand.randint(1, 100000)}\','+
         f'\'{rand.randint(1, 100000)}\',\'{bool(rand.getrandbits(1))}\',\'{rand.randint(1, 1000)}\')'+ end)
 
-file.write("\n")
-
-for i in range(inserts_no):
+    file.write("\n")
     file.write('INSERT INTO clients(client_id,client_first_name,client_last_name,client_email,client_address,client_phone_number) VALUES ')   
     for j in range(batches_no):
         fakeName = fake.name()
@@ -36,9 +35,11 @@ for i in range(inserts_no):
             end = ";"
         file.write(f'({i * batches_no + j + 1},\'{clientFirstName}\',\'{clientLastName}\','+
         f'\'{fake.email(False)}\',\'{fake.address()}\',\'{fake.phone_number()}\')'+ end)
-file.write("\n")
+    file.write("\n")
+
 
 for i in range(many_to_many_no):
+    print(i)
     file.write('INSERT INTO transactions(transaction_id,transaction_date,transaction_quantity,client_id,product_id) VALUES ')
     for j in range(batches_no):
         end = ", "

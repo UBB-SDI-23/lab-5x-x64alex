@@ -20,7 +20,6 @@ export const ProductAdd = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
-    	categoryId: 1,
 	});
 
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
@@ -122,30 +121,6 @@ export const ProductAdd = () => {
 
 	}
 
-	const [productCategoryIdError, setProductCategoryIdError] = useState(false);
-	const [productCategoryIdString, setProductCategoryIdString] = useState<String>("");
-	const [productCategoryIdHelper, setProductCategoryIdHelper] = useState("");
-	const checkNewCategoryId = (newValue: String) => {
-		setProductCategoryIdError(false);
-		setProductCategoryIdHelper("");
-		setProductCategoryIdString(newValue);
-		setAddButtonDissabled(false);
-
-
-		var newCategoryId = Number(newValue);
-		if (isNaN(newCategoryId) || !Number.isInteger(newCategoryId)){
-			setProductCategoryIdError(true);
-			setProductCategoryIdHelper("The input must be an integer");
-			setAddButtonDissabled(true);
-			return false;
-		}
-		else{
-			product.categoryId = newCategoryId;
-			return true;
-		}
-
-	}
-
 
 
 	const addProduct = (event: { preventDefault: () => void }) => {
@@ -156,8 +131,6 @@ export const ProductAdd = () => {
 			alert("Product added")
 			navigate("/products");
 		} catch (error) {
-			setProductCategoryIdError(true);
-			setProductCategoryIdHelper("Category id doesn't exist");
 			setAddButtonDissabled(true);
 			console.log(error);
 		}
