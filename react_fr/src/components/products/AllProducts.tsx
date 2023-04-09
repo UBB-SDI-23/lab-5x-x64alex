@@ -26,6 +26,22 @@ import { Product } from "../../models/Product";
 
 
 export const AllProducts = () => {
+	
+	const [productQuantityError, setProductQuantityError] = useState(false);
+	const [productQuantityString, setProductQuantityString] = useState("");
+	const [productQuantityHelper, setProductQuantityHelper] = useState("");
+	const [productQuantity, setProductQuantity] = useState(-1);
+
+	useEffect(() => {
+		setLoading(true);
+		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setproducts(data);
+				setLoading(false);
+			});
+	}, [productQuantity]);
+
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState<Product[]>([]);
 
@@ -127,20 +143,7 @@ export const AllProducts = () => {
 	};
 
 
-	const [productQuantityError, setProductQuantityError] = useState(false);
-	const [productQuantityString, setProductQuantityString] = useState("");
-	const [productQuantityHelper, setProductQuantityHelper] = useState("");
-	const [productQuantity, setProductQuantity] = useState(-1);
 
-	useEffect(() => {
-		setLoading(true);
-		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan/${productQuantity}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setproducts(data);
-				setLoading(false);
-			});
-	}, [productQuantity]);
 
 
 	return (
