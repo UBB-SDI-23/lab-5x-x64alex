@@ -125,25 +125,7 @@ export const AllProducts = () => {
 		setproducts(sortArrayWeight(products, orderDirectionWeight)!);
 		setOrderDirectionWeight(orderDirectionWeight === "asc" ? "desc" : "asc");
 	};
-	
-	const [orderDirectionCategoryId, setOrderDirectionCategoryId] = useState<arrowDirectionType>("asc");
-	const sortArrayCategoryId = (arr: Product[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.categoryId > b.categoryId ? 1 : b.categoryId > a.categoryId ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.categoryId < b.categoryId ? 1 : b.categoryId < a.categoryId ? -1 : 0
-			);
-		}
-	};
-	const handleSortRequestCategoryId = () => {
-		setproducts(sortArrayCategoryId(products, orderDirectionCategoryId)!);
-		setOrderDirectionCategoryId(orderDirectionCategoryId === "asc" ? "desc" : "asc");
-	};
+
 
 	const [productQuantityError, setProductQuantityError] = useState(false);
 	const [productQuantityString, setProductQuantityString] = useState("");
@@ -233,11 +215,6 @@ export const AllProducts = () => {
 									Weight
 									</TableSortLabel>
 								</TableCell>
-								{/* <TableCell align="right" onClick={handleSortRequestCategoryId}>
-									<TableSortLabel active={true} direction={orderDirectionCategoryId}>
-									CategoryId
-									</TableSortLabel>
-								</TableCell> */}
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -256,7 +233,6 @@ export const AllProducts = () => {
 									<TableCell align="right">{product.productQuantity}</TableCell>
 									<TableCell align="right">{String(product.productOnSale)}</TableCell>
 									<TableCell align="right">{product.productWeight}</TableCell>
-									{/* <TableCell align="right">{product.categoryId}</TableCell> */}
 									<TableCell align="right">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/edit`}>
 											<EditIcon />

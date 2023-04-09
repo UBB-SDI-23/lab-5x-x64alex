@@ -129,7 +129,7 @@ export const ProductAdd = () => {
 		try {
 			axios.post(`${BACKEND_API_URL}/products/`, product);
 			alert("Product added")
-			navigate("/products");
+			// navigate("/products");
 		} catch (error) {
 			setAddButtonDissabled(true);
 			console.log(error);

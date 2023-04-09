@@ -36,7 +36,6 @@ export const ProductUpdate = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
-    	categoryId: 1,
 	});
 
 
@@ -182,18 +181,6 @@ export const ProductUpdate = () => {
 		setProductCategoryIdString(newValue);
 		setAddButtonDissabled(false);
 
-
-		var newCategoryId = Number(newValue);
-		if (isNaN(newCategoryId) || !Number.isInteger(newCategoryId)){
-			setProductCategoryIdError(true);
-			setProductCategoryIdHelper("The input must be an integer");
-			setAddButtonDissabled(true);
-			return false;
-		}
-		else{
-			product.categoryId = newCategoryId;
-			return true;
-		}
 
 	}
 

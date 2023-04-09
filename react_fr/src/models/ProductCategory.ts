@@ -7,5 +7,4 @@ export interface ProductCategory{
     productQuantity: number;
     productOnSale: boolean;
     productWeight: number;
-    categoryDTO: CategoryDTO;
 }
