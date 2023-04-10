@@ -6,7 +6,7 @@ import { BACKEND_API_URL } from "../../constants";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { ProductCategory } from "../../models/ProductCategory";
+import { ProductCategory } from "../../models/ProductDetails";
 
 export const ProductDetails = () => {
 	const { productId } = useParams();
@@ -39,6 +39,7 @@ export const ProductDetails = () => {
 					<p>Product Quantity: {product?.productQuantity}</p>
 					<p>Product Sale: {String(product?.productOnSale)}</p>
 					<p>Product Weight: {product?.productWeight}</p>
+					<p>Product Description: {product?.productDescription}</p>
 				</Stack>
 
 			

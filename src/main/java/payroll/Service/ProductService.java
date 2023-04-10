@@ -37,6 +37,7 @@ public class ProductService {
         product.setProductQuantity(productIdDTO.getProductQuantity());
         product.setProductOnSale(productIdDTO.isProductOnSale());
         product.setProductWeight(productIdDTO.getProductWeight());
+        product.setProductDescription(productIdDTO.getProductDescription());
 
         productRepository.save(product);
 
@@ -54,6 +55,7 @@ public class ProductService {
             productIdDTO.setProductQuantity(product.getProductQuantity());
             productIdDTO.setProductOnSale(product.isProductOnSale());
             productIdDTO.setProductWeight(product.getProductWeight());
+            productIdDTO.setProductDescription(product.getProductDescription());
 
 
             productIdDTOS.add(productIdDTO);
@@ -72,6 +74,7 @@ public class ProductService {
         productDTO.setProductQuantity(product.getProductQuantity());
         productDTO.setProductOnSale(product.isProductOnSale());
         productDTO.setProductWeight(product.getProductWeight());
+        productDTO.setProductDescription(product.getProductDescription());
 
 
 
@@ -90,6 +93,7 @@ public class ProductService {
         oldProduct.setProductQuantity(product.getProductQuantity());
         oldProduct.setProductOnSale(product.isProductOnSale());
         oldProduct.setProductWeight(product.getProductWeight());
+        oldProduct.setProductDescription(product.getProductDescription());
 
 
         return productRepository.save(oldProduct);

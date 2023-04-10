@@ -16,4 +16,6 @@ public class ProductIdDTO {
     private Integer productQuantity;
     private boolean productOnSale;
     private double productWeight;
+
+    private String productDescription;
 }

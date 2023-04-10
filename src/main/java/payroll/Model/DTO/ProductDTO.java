@@ -17,4 +17,5 @@ public class ProductDTO {
     private Integer productQuantity;
     private boolean productOnSale;
     private double productWeight;
+    private String productDescription;
 }

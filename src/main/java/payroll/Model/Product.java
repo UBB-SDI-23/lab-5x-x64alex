@@ -37,6 +37,8 @@ public class Product {
 
     @Column(name = "ProductWeight")
     private double productWeight;
+    @Column(name = "ProductDescription")
+    private String productDescription;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
