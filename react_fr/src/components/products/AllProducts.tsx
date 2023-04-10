@@ -186,7 +186,7 @@ export const AllProducts = () => {
 						}
 					}}/>
 				<IconButton edge="start" onClick={() => {setStartIndex(startIndex+50)}}>
-        			<ArrowForwardIcon></ArrowForwardIcon>
+        			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
 			 			

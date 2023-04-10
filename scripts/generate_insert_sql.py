@@ -6,7 +6,11 @@ inserts_no = 100 #1000 for last version
 many_to_many_no = inserts_no*10
 fake = Faker(False)
 
+drop_index = open('sql_script.sql',"w")
+
+
 file = open('sql_script.sql', 'w')
+drop_index = open('sql_script.sql',"w")
 
 productNames = ["Lego", "Barbie", "Duplo","Toy Story","Avengers","Animals","Fence","Slide","Backpack"]
 
