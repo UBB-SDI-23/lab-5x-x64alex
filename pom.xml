@@ -96,7 +96,15 @@
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
-				<version>8.5.13</version>
+				<version>9.8.1</version>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/mydatabase2</url>
+					<user>dbuser2</user>
+					<password>1234</password>
+					<schemas>
+						<schema>mydatabase2</schema>
+					</schemas>
+				</configuration>
 			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
