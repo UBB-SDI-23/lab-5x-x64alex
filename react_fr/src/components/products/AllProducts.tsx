@@ -23,24 +23,28 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
 import { Product } from "../../models/Product";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 export const AllProducts = () => {
-	
+
 	const [productQuantityError, setProductQuantityError] = useState(false);
 	const [productQuantityString, setProductQuantityString] = useState("");
 	const [productQuantityHelper, setProductQuantityHelper] = useState("");
 	const [productQuantity, setProductQuantity] = useState(-1);
 
+
+	const [startIndex, setStartIndex] = useState(1);
+
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}`)
+		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}?startId=${startIndex}&endId=${startIndex+50}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setproducts(data);
 				setLoading(false);
 			});
-	}, [productQuantity]);
+	}, [productQuantity, startIndex]);
 
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState<Product[]>([]);
@@ -181,7 +185,9 @@ export const AllProducts = () => {
 							setProductQuantity(-1);
 						}
 					}}/>
-				
+				<IconButton edge="start" onClick={() => {setStartIndex(startIndex+50)}}>
+        			<ArrowForwardIcon></ArrowForwardIcon>
+      			</IconButton>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
