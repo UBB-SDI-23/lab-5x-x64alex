@@ -37,7 +37,7 @@ public class Product {
 
     @Column(name = "ProductWeight")
     private double productWeight;
-    @Column(name = "ProductDescription")
+    @Column(name = "ProductDescription", columnDefinition="text")
     private String productDescription;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,

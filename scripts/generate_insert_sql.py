@@ -14,8 +14,8 @@ drop_index = open('sql_script.sql',"w")
 
 productNames = ["Lego", "Barbie", "Duplo","Toy Story","Avengers","Animals","Fence","Slide","Backpack"]
 productDescription = [
-    "description1",
-    "description2"
+    "Logic Pro puts a complete recording and MIDI production studio on your Mac, with everything you need to write, record, edit, and mix like never before. And with a huge collection of full-featured plug-ins along with thousands of sounds and loops, youll have everything you need to go from first inspiration to final master, no matter what kind of music you want to create.",
+    "A sleek interface matches Final Cut Pro and makes it simple to navigate compression projects. Browse encoding settings in the left sidebar, and open the inspector to quickly configure advanced audio and video properties. Your batch appears in the center, directly below a large viewer that lets you view and navigate your file."
 ]
 
 file.write('TRUNCATE products, clients, transactions;\n')
@@ -29,7 +29,7 @@ for i in range(inserts_no):
         if j == batches_no - 1:
             end = ";"
         file.write(f'({i * batches_no + j + 1},\'{rand.choice(productNames)}_{i * batches_no + j + 1}\',\'{rand.randint(1, 100000)}\','+
-        f'\'{rand.randint(1, 100000)}\',\'{bool(rand.getrandbits(1))}\',\'{rand.randint(1, 1000)}\',\'{rand.choice(productDescription)}\')'+ end)
+        f'\'{rand.randint(1, 100000)}\',\'{bool(rand.getrandbits(1))}\',\'{rand.randint(1, 1000)}\',\'{rand.choice(productDescription)}_{i * batches_no + j + 1}\')'+ end)
 
     file.write("\n")
     file.write('INSERT INTO clients(client_id,client_first_name,client_last_name,client_email,client_address,client_phone_number) VALUES ')   
