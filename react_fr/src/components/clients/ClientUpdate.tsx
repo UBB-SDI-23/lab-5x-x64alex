@@ -33,8 +33,7 @@ export const ClientUpdate= () => {
 		const fetchProduct = async () => {
 			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`);
 			const data = await response.json();
-            ClientUpdateDTO client = ClientUpdateDTO(data.clientFirstName)
-            clientFirstName = data.
+            setClientFirstName(data.clientFirstName)
 			setClient(data);
 
 		};
@@ -72,7 +71,7 @@ export const ClientUpdate= () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientFirstName = newValue.target.value}
+							onChange={(newValue) => {client.clientFirstName = newValue.target.value; setClientFirstName(client.clientFirstName)}}
 						/>
                         <TextField
                             value={client.clientLastName} 
