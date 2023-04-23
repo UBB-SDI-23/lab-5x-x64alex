@@ -12,7 +12,7 @@ import {
 	Tooltip,
 	TextField,
 	Stack,
-	TableSortLabel
+	TableSortLabel,
 } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -24,6 +24,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
 import { Product } from "../../models/Product";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowForward';
 
 
 export const AllProducts = () => {
@@ -185,6 +186,9 @@ export const AllProducts = () => {
 							setProductQuantity(-1);
 						}
 					}}/>
+				<IconButton edge="start" onClick={() => {setStartIndex(startIndex-50)}}>
+        			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
+      			</IconButton>
 				<IconButton edge="start" onClick={() => {setStartIndex(startIndex+50)}}>
         			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
       			</IconButton>
@@ -231,7 +235,7 @@ export const AllProducts = () => {
 							{products.map((product: Product, index) => (
 								<TableRow key={product.productId}>
 									<TableCell component="th" scope="row">
-										{index + 1}
+										{startIndex+index}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/products/${product.productId}/details`} title="View product details">

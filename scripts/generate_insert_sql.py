@@ -1,7 +1,7 @@
 from faker import Faker
 import random as rand
 
-batches_no = 10 #1000 for last version
+batches_no = 100 #1000 for last version
 inserts_no = 1 #1000 for last version
 many_to_many_no = inserts_no*10
 fake = Faker(False)
