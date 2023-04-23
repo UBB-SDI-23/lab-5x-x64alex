@@ -19,6 +19,11 @@ export const ClientUpdate= () => {
     const { clientId } = useParams();
 	const navigate = useNavigate();
     const [clientFirstName, setClientFirstName] = useState<String>("");
+    const [clientLastName, setClientLastName] = useState<String>("");
+    const [clientAddress, setClientAddress] = useState<String>("");
+    const [clientEmail, setClientEmail] = useState<String>("");
+    const [clientPhoneNumber, setClientPhoneNumber] = useState<String>("");
+
 
 
 	const [client, setClient] = useState<ClientUpdateDTO>({
@@ -34,6 +39,10 @@ export const ClientUpdate= () => {
 			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`);
 			const data = await response.json();
             setClientFirstName(data.clientFirstName)
+            setClientLastName(data.clientLastName)
+            setClientAddress(data.clientAddress)
+            setClientEmail(data.clientEmail)
+            setClientPhoneNumber(data.clientPhoneNumber)
 			setClient(data);
 
 		};
@@ -74,44 +83,44 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => {client.clientFirstName = newValue.target.value; setClientFirstName(client.clientFirstName)}}
 						/>
                         <TextField
-                            value={client.clientLastName} 
+                            value={clientLastName} 
                             type="string"
 							id="name"
 							label="Last Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientLastName = newValue.target.value}
+							onChange={(newValue) => {client.clientLastName = newValue.target.value; setClientLastName(client.clientLastName)}}
 						/>
                         <TextField
-                            value={client.clientEmail} 
+                            value={clientEmail} 
                             type="string"
 							id="name"
 							label="Email"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientEmail = newValue.target.value}
+							onChange={(newValue) => {client.clientEmail = newValue.target.value; setClientEmail(clientEmail)}}
 						/>
                         <TextField
-                            value={client.clientAddress} 
+                            value={clientAddress} 
                             type="string"
 							id="name"
 							label="Address"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientAddress = newValue.target.value}
+							onChange={(newValue) => {client.clientAddress = newValue.target.value; setClientAddress(clientAddress)}}
 						/>
                         <TextField
-                            value={client.clientPhoneNumber} 
+                            value={clientPhoneNumber} 
                             type="string"
 							id="name"
 							label="Phone Number"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientPhoneNumber = newValue.target.value}
+							onChange={(newValue) => {client.clientPhoneNumber = newValue.target.value; setClientPhoneNumber(clientPhoneNumber)}}
 						/>
 
 					
