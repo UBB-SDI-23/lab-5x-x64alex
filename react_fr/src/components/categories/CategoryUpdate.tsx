@@ -70,6 +70,7 @@ export const CategoryUpdate = () => {
 
 					<form onSubmit={updateProduct}>
 						<TextField
+                            value={category.categoryName} 
                             type="string"
 							id="name"
 							label="Name"
@@ -79,6 +80,7 @@ export const CategoryUpdate = () => {
 							onChange={(newValue) => category.categoryName = newValue.target.value}
 						/>
                         <TextField
+                            value={category.categoryPopularity} 
                             type="number"
 							id="name"
 							label="Popularity"
@@ -88,6 +90,7 @@ export const CategoryUpdate = () => {
 							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
 						/>
                         <TextField
+                            value={category.categoryProfitability} 
                             type="number"
 							id="name"
 							label="Profitability"
@@ -97,6 +100,7 @@ export const CategoryUpdate = () => {
 							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
                         />
                         <TextField
+                            value={category.categoryReturnsPerMonth} 
                             type="number"
 							id="name"
 							label="ReturnsPerMonth"
@@ -106,6 +110,7 @@ export const CategoryUpdate = () => {
 							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
                         />
                         <TextField
+                            value={category.categorySales} 
                             type="number"
 							id="name"
 							label="Sales"
