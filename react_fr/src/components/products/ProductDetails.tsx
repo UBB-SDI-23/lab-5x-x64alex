@@ -40,6 +40,15 @@ export const ProductDetails = () => {
 					<p>Product Sale: {String(product?.productOnSale)}</p>
 					<p>Product Weight: {product?.productWeight}</p>
 					<p>Product Description: {product?.productDescription}</p>
+					<p>Product category:</p>
+					<ul>
+						<li>Category Id:{product?.categoryDTO.categoryId}</li>
+						<li>Category name:{product?.categoryDTO.categoryName}</li>
+						<li>Category popularity{product?.categoryDTO.categoryPopularity}</li>
+						<li>Category profitability:{product?.categoryDTO.categoryProfitability}</li>
+						<li>Category returns per month:{product?.categoryDTO.categoryReturnsPerMonth}</li>
+						<li>Category sales:{product?.categoryDTO.categorySales}</li>
+					</ul>
 				</Stack>
 
 			

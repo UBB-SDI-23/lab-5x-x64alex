@@ -8,4 +8,5 @@ export interface ProductCategory{
     productOnSale: boolean;
     productWeight: number;
     productDescription: string;
+    categoryDTO: CategoryDTO;
 }
