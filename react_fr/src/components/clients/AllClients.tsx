@@ -94,7 +94,6 @@ export const AllClients = () => {
 									<TableCell align="right">{client.clientEmail}</TableCell>
 									<TableCell align="right">{client.clientAddress}</TableCell>
 									<TableCell align="right">{client.clientPhoneNumber}</TableCell>
-									<TableCell align="right">{client.clientPhoneNumber}</TableCell>
 									<TableCell align="center">{client.transactionsCount}</TableCell>
 									<TableCell align="right">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${client.clientId}/edit`}>
