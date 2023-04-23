@@ -42,7 +42,7 @@ export const AllCategories = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/categories/pageNumber=${pageNumber}&pageSize=${pageSize}`)
+		fetch(`${BACKEND_API_URL}/categories/averagePriceProduct?pageNumber=${pageNumber}&pageSize=${pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setCategory(data);
