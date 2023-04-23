@@ -53,46 +53,9 @@ export const AllProducts = () => {
 
 	type arrowDirectionType = "asc" | "desc"
 
-	const [orderDirectionName, setOrderDirectionName] = useState<arrowDirectionType>("asc");
-	const sortArrayName = (arr: ProductTransactions[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.productName > b.productName ? 1 : b.productName > a.productName ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.productName < b.productName ? 1 : b.productName < a.productName ? -1 : 0
-			);
-		}
-	};
-	const handleSortRequestName = () => {
-		setproducts(sortArrayName(products, orderDirectionName)!);
-		setOrderDirectionName(orderDirectionName === "asc" ? "desc" : "asc");
-	};
-
-	const [orderDirectionPrice, setOrderDirectionPrice] = useState<arrowDirectionType>("asc");
-	const sortArrayPrice = (arr: Product[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.productPrice > b.productPrice ? 1 : b.productPrice > a.productPrice ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.productPrice < b.productPrice ? 1 : b.productPrice < a.productPrice ? -1 : 0
-			);
-		}
-	};
-	const handleSortRequestPrice = () => {
-		setproducts(sortArrayPrice(products, orderDirectionPrice)!);
-		setOrderDirectionPrice(orderDirectionPrice === "asc" ? "desc" : "asc");
-	};
 
 	const [orderDirectionQuantity, setOrderDirectionQuantity] = useState<arrowDirectionType>("asc");
-	const sortArrayQuantity = (arr: Product[], orderBy: String) => {
+	const sortArrayQuantity = (arr: ProductTransactions[], orderBy: String) => {
 		switch (orderBy) {
 		  case "asc":
 		  default:
@@ -110,43 +73,8 @@ export const AllProducts = () => {
 		setOrderDirectionQuantity(orderDirectionQuantity === "asc" ? "desc" : "asc");
 	};
 
-	const [orderDirectionOnSale, setOrderDirectionOnSale] = useState<arrowDirectionType>("asc");
-	const sortArrayOnSale = (arr: Product[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.productOnSale > b.productOnSale ? 1 : b.productOnSale > a.productOnSale ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.productOnSale < b.productOnSale ? 1 : b.productOnSale < a.productOnSale ? -1 : 0
-			);
-		}
-	};
-	const handleSortRequestOnSale = () => {
-		setproducts(sortArrayOnSale(products, orderDirectionOnSale)!);
-		setOrderDirectionOnSale(orderDirectionOnSale === "asc" ? "desc" : "asc");
-	};
 
-	const [orderDirectionWeight, setOrderDirectionWeight] = useState<arrowDirectionType>("asc");
-	const sortArrayWeight = (arr: Product[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.productWeight > b.productWeight ? 1 : b.productWeight > a.productWeight ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.productWeight < b.productWeight ? 1 : b.productWeight < a.productWeight ? -1 : 0
-			);
-		}
-	};
-	const handleSortRequestWeight = () => {
-		setproducts(sortArrayWeight(products, orderDirectionWeight)!);
-		setOrderDirectionWeight(orderDirectionWeight === "asc" ? "desc" : "asc");
-	};
+
 
 
 
@@ -204,31 +132,15 @@ export const AllProducts = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
-								<TableCell align="left" onClick={handleSortRequestName}>
-									<TableSortLabel active={true} direction={orderDirectionName}>
-										Name
-									</TableSortLabel>
-			 					</TableCell>
-								<TableCell align="right" onClick={handleSortRequestPrice}>
-									<TableSortLabel active={true} direction={orderDirectionPrice}>
-										Price
-									</TableSortLabel>
-								</TableCell>
+								<TableCell align="left">Name</TableCell>
+								<TableCell align="right">Price</TableCell>
 								<TableCell align="right" onClick={handleSortRequestQuantity}>
 									<TableSortLabel active={true} direction={orderDirectionQuantity}>
 									Quantity
 									</TableSortLabel>
 								</TableCell>
-								<TableCell align="right" onClick={handleSortRequestOnSale}>
-									<TableSortLabel active={true} direction={orderDirectionOnSale}>
-									Sale
-									</TableSortLabel>
-								</TableCell>
-								<TableCell align="right" onClick={handleSortRequestWeight}>
-									<TableSortLabel active={true} direction={orderDirectionWeight}>
-									Weight
-									</TableSortLabel>
-								</TableCell>
+								<TableCell>Sale</TableCell>
+								<TableCell align="right">Weight</TableCell>
 								<TableCell align="center">Transactions</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
