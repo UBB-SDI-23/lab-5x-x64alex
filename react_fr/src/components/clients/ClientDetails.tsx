@@ -15,7 +15,7 @@ export const ClientDetails = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/categories/${ClientId}`);
+			const response = await fetch(`${BACKEND_API_URL}/clients/${ClientId}`);
 			const data = await response.json();
 			setClient(data);
 
@@ -29,7 +29,7 @@ export const ClientDetails = () => {
 				<CardContent>
 				<Stack  spacing={2}   alignItems="left">
 					<Stack direction="row" spacing={2}   alignItems="center">
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients`}>
 							<ArrowBackIcon />
 						</IconButton>{" "}
 						<h1>Client Details</h1>
