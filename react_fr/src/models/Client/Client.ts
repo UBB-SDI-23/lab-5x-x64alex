@@ -1,4 +1,4 @@
-import { Transaction } from "../Transaction";
+import { Transaction } from "../Transaction/Transaction";
 
 export interface Client {
     clientId?: number;

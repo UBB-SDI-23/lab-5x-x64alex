@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { ClientShowAll } from './components/ClientShowAll'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AppMenu } from './components/AppMenu'
 import { AppHome } from './components/AppHome'
@@ -21,6 +20,7 @@ import { ClientDelete } from './components/clients/ClientDelete'
 import { ClientDetails } from './components/clients/ClientDetails'
 import { ClientAdd } from './components/clients/ClientAdd'
 import { ClientUpdate } from './components/clients/ClientUpdate'
+import { AllTransactions } from './components/transactions/AllTransactions'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -49,6 +49,9 @@ function App() {
 					<Route path="/clients/:clientId/details" element={<ClientDetails />} />
 					<Route path="/clients/:clientId/delete" element={<ClientDelete />} />
 					<Route path="/clients/:clientId/edit" element={<ClientUpdate />} />
+
+					<Route path="/transactions" element={<AllTransactions/>} />
+
 
 
 				</Routes>
