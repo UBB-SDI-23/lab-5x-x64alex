@@ -18,4 +18,7 @@ public class ProductIdDTO {
     private double productWeight;
 
     private String productDescription;
+
+    private Long categoryId;
+
 }

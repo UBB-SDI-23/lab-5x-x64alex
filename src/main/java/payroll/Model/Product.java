@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
@@ -40,6 +42,12 @@ public class Product {
     @Column(name = "ProductDescription", columnDefinition="text")
     private String productDescription;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "categoryID", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Category category;
+
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
@@ -54,6 +62,9 @@ public class Product {
         productDTO.setProductQuantity(productQuantity);
         productDTO.setProductOnSale(productOnSale);
         productDTO.setProductWeight(productWeight);
+
+        productDTO.setCategoryDTO(category.getCategoryDTO());
+
 
         return productDTO;
     }

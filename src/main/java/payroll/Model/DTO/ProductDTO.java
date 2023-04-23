@@ -18,4 +18,6 @@ public class ProductDTO {
     private boolean productOnSale;
     private double productWeight;
     private String productDescription;
+    private CategoryDTO categoryDTO;
+
 }

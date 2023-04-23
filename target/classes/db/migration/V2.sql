@@ -1,1 +1,1 @@
-ALTER TABLE products ALTER COLUMN product_description TYPE text;
+alter table products add column product_description text;

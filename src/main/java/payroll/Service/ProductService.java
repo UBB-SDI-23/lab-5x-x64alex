@@ -2,10 +2,12 @@ package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import payroll.Model.Category;
 import payroll.Model.Client;
 import payroll.Model.DTO.*;
 import payroll.Model.Product;
 import payroll.Model.Transaction;
+import payroll.Repository.CategoryRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
 
@@ -19,6 +21,9 @@ public class ProductService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public List<Product> getFirst100Products() {
         return productRepository.findFirst100By();
     }
@@ -31,6 +36,9 @@ public class ProductService {
     public Product saveProduct(ProductIdDTO productIdDTO) {
         Product product = new Product();
 
+        Category category = categoryRepository.findById(productIdDTO.getCategoryId()).get();
+
+
         product.setProductId(productIdDTO.getProductId());
         product.setProductName(productIdDTO.getProductName());
         product.setProductPrice(productIdDTO.getProductPrice());
@@ -38,6 +46,9 @@ public class ProductService {
         product.setProductOnSale(productIdDTO.isProductOnSale());
         product.setProductWeight(productIdDTO.getProductWeight());
         product.setProductDescription(productIdDTO.getProductDescription());
+
+        product.setCategory(category);
+
 
         productRepository.save(product);
 
@@ -57,6 +68,8 @@ public class ProductService {
             productIdDTO.setProductWeight(product.getProductWeight());
             productIdDTO.setProductDescription(product.getProductDescription());
 
+            productIdDTO.setCategoryId(product.getCategory().getCategoryId());
+
 
             productIdDTOS.add(productIdDTO);
         }
@@ -65,6 +78,16 @@ public class ProductService {
 
     public ProductDTO getOneProduct(Long productId){
         Product product = productRepository.findById(productId).get();
+
+        // Get categoryDTO from category
+        Category category = categoryRepository.findById(product.getCategory().getCategoryId()).get();
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setCategoryId(category.getCategoryId());
+        categoryDTO.setCategoryName(category.getCategoryName());
+        categoryDTO.setCategoryProfitability(category.getCategoryProfitability());
+        categoryDTO.setCategoryPopularity(category.getCategoryPopularity());
+        categoryDTO.setCategorySales(category.getCategorySales());
+        categoryDTO.setCategoryReturnsPerMonth(category.getCategoryReturnsPerMonth());
 
         // Construct productDTO
         ProductDTO productDTO = new ProductDTO();
@@ -75,6 +98,8 @@ public class ProductService {
         productDTO.setProductOnSale(product.isProductOnSale());
         productDTO.setProductWeight(product.getProductWeight());
         productDTO.setProductDescription(product.getProductDescription());
+
+        productDTO.setCategoryDTO(categoryDTO);
 
 
 

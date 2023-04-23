@@ -7,6 +7,7 @@ import payroll.Model.DTO.ProductClientDTO;
 import payroll.Model.DTO.ProductDTO;
 import payroll.Model.DTO.ProductIdDTO;
 import payroll.Model.Product;
+import payroll.Repository.CategoryRepository;
 import payroll.Service.ProductService;
 
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/products")
     public List<ProductIdDTO> getProducts(){
