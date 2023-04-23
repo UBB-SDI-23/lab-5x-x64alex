@@ -36,7 +36,7 @@ function App() {
 					<Route path="/categories/add" element={<CategoryAdd />} />
           			<Route path="/categories/:categoryId/details" element={<CategoryDetails />} />
           			<Route path="/categories/:categoryId/delete" element={<CategoryDelete />} />
-          			{/* <Route path="/categories/:categoryId/edit" element={<CategoryUpdate />} /> */}
+          			<Route path="/categories/:categoryId/edit" element={<CategoryUpdate />} />
 
 				</Routes>
 			</Router>

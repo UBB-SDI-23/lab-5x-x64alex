@@ -68,13 +68,48 @@ export const CategoryAdd = () => {
 						<TextField
                             type="string"
 							id="name"
-							label="Product Name"
+							label="Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryName = newValue.target.value}
 						/>
-
+                        <TextField
+                            type="number"
+							id="name"
+							label="Popularity"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
+						/>
+                        <TextField
+                            type="number"
+							id="name"
+							label="Profitability"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
+                        />
+                        <TextField
+                            type="number"
+							id="name"
+							label="ReturnsPerMonth"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
+                        />
+                        <TextField
+                            type="number"
+							id="name"
+							label="Sales"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
+						/>
 
 						<Button id = "submitButton" type="submit">Add Category</Button>
 					</form>
