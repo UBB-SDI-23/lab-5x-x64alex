@@ -68,7 +68,7 @@ export const ClientUpdate= () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientFirstName = newValue.target.value}
+							onChange={(newValue) => {console.log(newValue); client.clientFirstName = newValue.target.value; setClient(client)}}
 						/>
                         <TextField
                             value={client.clientLastName} 
