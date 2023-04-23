@@ -45,7 +45,7 @@ export const ClientDetails = () => {
 
 
                     <Grid container spacing={1}>
-                        {client?.transactions.map((transaction) => {
+                        {client?.transactions?.map((transaction) => {
                         return (<Grid item>
                         <li>Transaction date: {transaction.transactionDate.toDateString()}</li>
                         <li>Transaction Quantity: {transaction.transactionQuantity}</li>
