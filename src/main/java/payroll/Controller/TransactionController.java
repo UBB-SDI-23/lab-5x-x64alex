@@ -2,9 +2,9 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.DTO.TransactionDTO;
-import payroll.Model.DTO.TransactionIdDTO;
-import payroll.Model.Transaction;
+import payroll.Model.Transactions.TransactionDTO;
+import payroll.Model.Transactions.TransactionIdDTO;
+import payroll.Model.Transactions.Transaction;
 import payroll.Service.TransactionService;
 
 import java.util.List;

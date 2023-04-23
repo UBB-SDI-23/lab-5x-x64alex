@@ -1,4 +1,4 @@
-package payroll.Model.DTO;
+package payroll.Model.Transactions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

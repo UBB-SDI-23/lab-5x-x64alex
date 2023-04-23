@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
-import payroll.Model.Transaction;
+import payroll.Model.Transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

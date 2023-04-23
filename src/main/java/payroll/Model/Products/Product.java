@@ -11,8 +11,7 @@ import payroll.Model.Category.Category;
 import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
-import payroll.Model.Products.ProductAggregate;
-import payroll.Model.Transaction;
+import payroll.Model.Transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

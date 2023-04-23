@@ -1,4 +1,4 @@
-package payroll.Model;
+package payroll.Model.Transactions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

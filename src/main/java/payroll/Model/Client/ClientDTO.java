@@ -1,11 +1,6 @@
 package payroll.Model.Client;
 
 import lombok.*;
-import payroll.Model.Transaction;
-
-import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

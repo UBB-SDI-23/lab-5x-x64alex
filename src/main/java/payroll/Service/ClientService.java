@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Model.Products.Product;
-import payroll.Model.Transaction;
+import payroll.Model.Transactions.Transaction;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;

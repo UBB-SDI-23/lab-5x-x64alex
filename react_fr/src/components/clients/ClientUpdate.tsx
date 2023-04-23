@@ -13,19 +13,18 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
-import { Client } from "../../models/Client/Client";
+import { ClientUpdateDTO } from "../../models/Client/ClientUpdateDTO";
 
 export const ClientUpdate= () => {
     const { clientId } = useParams();
 	const navigate = useNavigate();
 
-	const [client, setClient] = useState<Client>({
+	const [client, setClient] = useState<ClientUpdateDTO>({
 	    clientFirstName:"",
         clientLastName:"",
         clientEmail: "",
         clientAddress: "",
         clientPhoneNumber: "",
-        transactions: []
 	});
 
     useEffect(() => {
@@ -62,6 +61,7 @@ export const ClientUpdate= () => {
 
 					<form onSubmit={updateClient}>
 						<TextField
+                            value={client.clientFirstName} 
                             type="string"
 							id="name"
 							label="First Name"
@@ -71,6 +71,7 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => client.clientFirstName = newValue.target.value}
 						/>
                         <TextField
+                            value={client.clientLastName} 
                             type="string"
 							id="name"
 							label="Last Name"
@@ -80,6 +81,7 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => client.clientLastName = newValue.target.value}
 						/>
                         <TextField
+                            value={client.clientEmail} 
                             type="string"
 							id="name"
 							label="Email"
@@ -89,6 +91,7 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => client.clientEmail = newValue.target.value}
 						/>
                         <TextField
+                            value={client.clientAddress} 
                             type="string"
 							id="name"
 							label="Address"
@@ -98,6 +101,7 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => client.clientAddress = newValue.target.value}
 						/>
                         <TextField
+                            value={client.clientPhoneNumber} 
                             type="string"
 							id="name"
 							label="Phone Number"

@@ -1,10 +1,11 @@
-package payroll.Model.DTO;
+package payroll.Model.Transactions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import payroll.Model.Client.ClientDTO;
+import payroll.Model.DTO.ProductDTO;
 
 
 import java.util.Date;

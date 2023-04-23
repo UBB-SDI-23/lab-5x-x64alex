@@ -10,7 +10,7 @@ import payroll.Model.Category.CategoryDTO;
 import payroll.Model.Client.Client;
 import payroll.Model.DTO.*;
 import payroll.Model.Products.Product;
-import payroll.Model.Transaction;
+import payroll.Model.Transactions.Transaction;
 import payroll.Repository.CategoryRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
