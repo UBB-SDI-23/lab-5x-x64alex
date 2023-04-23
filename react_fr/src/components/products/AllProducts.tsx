@@ -99,7 +99,7 @@ export const AllProducts = () => {
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
       			</IconButton>
-				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+				<IconButton edge="start" onClick={() => {if(products.length == pageSize){setPageNumber(pageNumber+1)}}}>
         			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
