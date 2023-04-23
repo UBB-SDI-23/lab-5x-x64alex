@@ -58,7 +58,7 @@ export const AppMenu = () => {
 						color="inherit"
 						sx={{ mr: 5 }}
 						startIcon={<LocalLibraryIcon />}>
-						Products
+						Transactions
 					</Button>
 				</Toolbar>
 			</AppBar>

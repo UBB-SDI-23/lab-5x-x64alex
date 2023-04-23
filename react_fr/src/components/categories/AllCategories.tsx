@@ -95,7 +95,6 @@ export const AllCategories = () => {
 								<TableCell align="right">ReturnsPerMonth</TableCell>
 								<TableCell align="right">Profitability</TableCell>
 								<TableCell align="right">Products</TableCell>
-								<TableCell align="right">Products</TableCell>
 								<TableCell align="right">Avg Product price</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
@@ -107,11 +106,10 @@ export const AllCategories = () => {
 										{pageNumber*pageSize+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
-										<Link to={`/category/${category.categoryId}/details`} title="View category details">
+										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
 											{category.categoryName}
 										</Link>
 									</TableCell>
-									<TableCell component="th" scope="row">{category.categoryName}</TableCell>
 									<TableCell align="right">{category.categoryPopularity}</TableCell>
 									<TableCell align="right">{category.categorySales}</TableCell>
 									<TableCell align="right">{category.categoryReturnsPerMonth}</TableCell>
