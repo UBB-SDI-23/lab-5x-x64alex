@@ -24,7 +24,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
 import { Product } from "../../models/Product";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 export const AllProducts = () => {
@@ -35,7 +35,7 @@ export const AllProducts = () => {
 	const [productQuantity, setProductQuantity] = useState(-1);
 
 
-	const [startIndex, setStartIndex] = useState(1);
+	const [startIndex, setStartIndex] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
@@ -186,7 +186,7 @@ export const AllProducts = () => {
 							setProductQuantity(-1);
 						}
 					}}/>
-				<IconButton edge="start" onClick={() => {setStartIndex(startIndex-50)}}>
+				<IconButton edge="start" onClick={() => {if(startIndex>0){setStartIndex(startIndex-50)}}}>
         			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
       			</IconButton>
 				<IconButton edge="start" onClick={() => {setStartIndex(startIndex+50)}}>
@@ -235,7 +235,7 @@ export const AllProducts = () => {
 							{products.map((product: Product, index) => (
 								<TableRow key={product.productId}>
 									<TableCell component="th" scope="row">
-										{startIndex+index}
+										{startIndex+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/products/${product.productId}/details`} title="View product details">
