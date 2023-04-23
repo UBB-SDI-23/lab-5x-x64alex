@@ -36,6 +36,7 @@ export const ProductUpdate = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
+		categoryId: 1,
 	});
 
 

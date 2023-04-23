@@ -20,6 +20,7 @@ export const ProductAdd = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
+		categoryId: 1,
 	});
 
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
