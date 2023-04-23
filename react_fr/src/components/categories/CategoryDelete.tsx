@@ -10,7 +10,7 @@ export const CategoryDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/category/${categoryId}`);
+		await axios.delete(`${BACKEND_API_URL}/categories/${categoryId}`);
 		alert("Category deleted")
 		navigate("/categories");
 	};
@@ -25,7 +25,7 @@ export const CategoryDelete = () => {
 			<Card>
 				<CardContent>
                 <Stack direction="row" spacing={2}   alignItems="center">
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/products`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					Are you sure you want to delete this category? This cannot be undone!
