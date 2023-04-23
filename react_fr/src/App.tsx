@@ -16,6 +16,7 @@ import { CategoryAdd } from './components/categories/CategoryAdd'
 import { CategoryDelete } from './components/categories/CategoryDelete'
 import { CategoryDetails } from './components/categories/CategoryDetails'
 import { CategoryUpdate } from './components/categories/CategoryUpdate'
+import { AllClients } from './components/clients/AllClients'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,6 +39,8 @@ function App() {
           			<Route path="/categories/:categoryId/details" element={<CategoryDetails />} />
           			<Route path="/categories/:categoryId/delete" element={<CategoryDelete />} />
           			<Route path="/categories/:categoryId/edit" element={<CategoryUpdate />} />
+
+					<Route path="/clients" element={<AllClients/>} />
 
 				</Routes>
 			</Router>

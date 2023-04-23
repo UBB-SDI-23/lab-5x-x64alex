@@ -75,6 +75,7 @@ export const AllClients = () => {
 								<TableCell align="right">Email</TableCell>
 								<TableCell align="right">Address</TableCell>
 								<TableCell align="right">Phone number</TableCell>
+								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>

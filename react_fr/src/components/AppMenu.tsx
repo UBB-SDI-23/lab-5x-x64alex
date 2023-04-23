@@ -44,7 +44,7 @@ export const AppMenu = () => {
 					</Button>
 					<Button
 						variant={path.startsWith("/clients") ? "outlined" : "text"}
-						to="/products"
+						to="/clients"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
