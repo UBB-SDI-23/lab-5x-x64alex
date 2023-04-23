@@ -9,6 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product/Product";
+import { CategoryName } from "../../models/CategoryName";
 
 
 export const ProductAdd = () => {
@@ -22,8 +23,17 @@ export const ProductAdd = () => {
     	productWeight: 0,
 		categoryId: 0,
 	});
-	const [categories, setCategories] = useState([]);
+	const [categories, setCategories] = useState<CategoryName[]>([]);
+	const [searchString, setSearchString] = useState("");
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
+
+	useEffect(() => {
+		fetch(`${BACKEND_API_URL}/categories/names?searchString=${searchString}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setCategories(data);
+			});
+	}, [searchString]);
 
 	const [productPriceError, setProductPriceError] = useState(false);
 	const [productPriceString, setProductPriceString] = useState<String>("");
@@ -205,9 +215,12 @@ export const ProductAdd = () => {
 						<Autocomplete
 							disablePortal
 							id="combo-box-demo"
-							options={categories}
+							options={categories.map((category) => category.categoryName)}
 							sx={{ width: 300 }}
-							renderInput={(params) => <TextField {...params} label="Category Names" />}
+							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							onChange={(newValue) => {
+								setSearchString(newValue.target.value)
+							}}/>}
 						/>
 
 						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Add Product</Button>

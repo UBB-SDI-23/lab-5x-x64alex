@@ -21,7 +21,7 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/names")
-    public List<CategoryNameDTO> getCategoryNames(@RequestParam(defaultValue = "0") String searchString) {
+    public List<CategoryNameDTO> getCategoryNames(@RequestParam(defaultValue = "") String searchString) {
         return this.categoryService.getCategoryNames(searchString);
     }
 
