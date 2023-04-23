@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Category;
 import payroll.Model.DTO.CategoryDTO;
+import payroll.Model.DTO.CategoryNameDTO;
 import payroll.Model.DTO.CategoryProductDTO;
 import payroll.Service.CategoryService;
 
@@ -18,6 +19,12 @@ public class CategoryController {
     public List<CategoryDTO> getCategories() {
         return this.categoryService.getCategoryDTOList();
     }
+
+    @GetMapping("/categories/names")
+    public List<CategoryNameDTO> getCategoryNames(@RequestParam(defaultValue = "0") String searchString) {
+        return this.categoryService.getCategoryNames(searchString);
+    }
+
 
     @GetMapping("/categories/orderByAveragePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts() {

@@ -1,9 +1,13 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import payroll.Model.Category;
 import payroll.Model.DTO.CategoryDTO;
+import payroll.Model.DTO.CategoryNameDTO;
 import payroll.Model.DTO.CategoryProductDTO;
 import payroll.Model.Product;
 import payroll.Repository.CategoryRepository;
@@ -24,6 +28,12 @@ public class CategoryService {
     public List<Category> getCategoryList(){
         return  this.categoryRepository.findAll();
     }
+
+    public List<CategoryNameDTO> getCategoryNames(String givenString){
+        Pageable page = PageRequest.of(0, 10);
+        return this.categoryRepository.findCategoryNames(givenString, page);
+    }
+
 
     public List<CategoryDTO> getCategoryDTOList() {
         List<CategoryDTO> categoryDTOS = new ArrayList<>();
