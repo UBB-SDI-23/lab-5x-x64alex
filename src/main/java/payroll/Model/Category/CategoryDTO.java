@@ -1,4 +1,4 @@
-package payroll.Model.DTO;
+package payroll.Model.Category;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryProductDTO {
+public class CategoryDTO {
     private Long categoryId;
     private String categoryName;
     private int categoryPopularity;
     private Long categorySales;
     private double categoryReturnsPerMonth;
-    private int categoryProfitability;
-    private double categoryAveragePrice;
+    private int CategoryProfitability;
 }

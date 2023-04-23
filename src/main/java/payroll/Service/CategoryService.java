@@ -3,17 +3,15 @@ package payroll.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import payroll.Model.Category;
-import payroll.Model.DTO.CategoryDTO;
-import payroll.Model.DTO.CategoryNameDTO;
-import payroll.Model.DTO.CategoryProductDTO;
+import payroll.Model.Category.Category;
+import payroll.Model.Category.CategoryDTO;
+import payroll.Model.Category.CategoryNameDTO;
+import payroll.Model.Category.CategoryProductDTO;
 import payroll.Model.Product;
 import payroll.Repository.CategoryRepository;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -74,6 +72,26 @@ public class CategoryService {
         this.categoryRepository.deleteById(categoryId);
     }
 
+    public List<CategoryProductDTO> averagePriceProduct(int pageNumber, int pageSize){
+       Pageable page = PageRequest.of(pageNumber, pageSize);
+       List<Category> categories =  this.categoryRepository.findAll(page).stream().toList();
+
+        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 1));
+        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 2));
+        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 3));
+        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 4));
+        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 5));
+
+       return categories.stream().map((category)-> {
+           Double categoryAvgPrice = (double) -100;
+           if(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()) != null){
+               categoryAvgPrice = Double.valueOf(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()));
+           }
+           System.out.println(categoryAvgPrice);
+           return category.getCategoryProductDTO(categoryAvgPrice);}
+       ).toList();
+
+    }
     public List<CategoryProductDTO> orderByAveragePriceProduct(){
         List<CategoryProductDTO> categoryProductDTOS = new ArrayList<>();
 
@@ -101,18 +119,18 @@ public class CategoryService {
             categoryProductDTOS.add(categoryProductDTO);
         }
 
-        //sort in ascending order bubble sort
-        categoryProductDTOS.sort(new Comparator<CategoryProductDTO>() {
-            @Override
-            public int compare(CategoryProductDTO o1, CategoryProductDTO o2) {
-                if(o1.getCategoryAveragePrice()==o2.getCategoryAveragePrice())
-                    return 0;
-                else if(o1.getCategoryAveragePrice()>o2.getCategoryAveragePrice())
-                    return 1;
-                else
-                    return -1;
-            }
-        });
+//        //sort in ascending order bubble sort
+//        categoryProductDTOS.sort(new Comparator<CategoryProductDTO>() {
+//            @Override
+//            public int compare(CategoryProductDTO o1, CategoryProductDTO o2) {
+//                if(o1.getCategoryAveragePrice()==o2.getCategoryAveragePrice())
+//                    return 0;
+//                else if(o1.getCategoryAveragePrice()>o2.getCategoryAveragePrice())
+//                    return 1;
+//                else
+//                    return -1;
+//            }
+//        });
         return categoryProductDTOS;
     }
 }

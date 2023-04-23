@@ -1,4 +1,4 @@
-package payroll.Model;
+package payroll.Model.Category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import payroll.Model.DTO.CategoryDTO;
+import payroll.Model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,4 +53,20 @@ public class Category {
 
         return categoryDTO;
     }
+
+    @JsonIgnore
+    public CategoryProductDTO getCategoryProductDTO(double averagePrice){
+        CategoryProductDTO categoryDTO = new CategoryProductDTO();
+
+        categoryDTO.setCategoryId(categoryId);
+        categoryDTO.setCategoryName(categoryName);
+        categoryDTO.setCategoryPopularity(categoryPopularity);
+        categoryDTO.setCategoryReturnsPerMonth(categoryReturnsPerMonth);
+        categoryDTO.setCategoryProfitability(categoryProfitability);
+        categoryDTO.setCategoryAveragePrice(averagePrice);
+
+        return categoryDTO;
+    }
+
+
 }

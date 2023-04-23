@@ -2,10 +2,10 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.Category;
-import payroll.Model.DTO.CategoryDTO;
-import payroll.Model.DTO.CategoryNameDTO;
-import payroll.Model.DTO.CategoryProductDTO;
+import payroll.Model.Category.Category;
+import payroll.Model.Category.CategoryDTO;
+import payroll.Model.Category.CategoryNameDTO;
+import payroll.Model.Category.CategoryProductDTO;
 import payroll.Service.CategoryService;
 
 import java.util.List;
@@ -29,6 +29,12 @@ public class CategoryController {
     @GetMapping("/categories/orderByAveragePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts() {
         return this.categoryService.orderByAveragePriceProduct();
+    }
+
+    @GetMapping("/categories/averagePriceProduct")
+    public List<CategoryProductDTO> getCategoryProducts(@RequestParam(defaultValue = "0") int pageNumber,
+                                                        @RequestParam(defaultValue = "100") int pageSize) {
+        return this.categoryService.averagePriceProduct(pageNumber, pageSize);
     }
 
     @GetMapping("/categories/{categoryId}")

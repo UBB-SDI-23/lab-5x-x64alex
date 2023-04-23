@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import payroll.Model.Product;
+import payroll.Model.Category.CategoryDTO;
 
 @Getter
 @Setter

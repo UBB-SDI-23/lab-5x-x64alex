@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import payroll.Model.Category.Category;
 import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
