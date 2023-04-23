@@ -61,7 +61,7 @@ export const ClientUpdate= () => {
 
 					<form onSubmit={updateClient}>
 						<TextField
-                            value={client.clientFirstName} 
+                            defaultValue={client.clientFirstName} 
                             type="string"
 							id="name"
 							label="First Name"
@@ -71,7 +71,7 @@ export const ClientUpdate= () => {
 							onChange={(newValue) => {console.log(newValue); client.clientFirstName = newValue.target.value; setClient(client)}}
 						/>
                         <TextField
-                            value={client.clientLastName} 
+                            defaultValue={client.clientLastName} 
                             type="string"
 							id="name"
 							label="Last Name"
