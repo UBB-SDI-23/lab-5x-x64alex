@@ -1,5 +1,6 @@
 package payroll.Repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -8,7 +9,7 @@ import payroll.Model.Product;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findFirst100By();
+    List<Product> findByProductQuantityGreaterThan(int quantity, Pageable pageable);
 
     @Query("select p from Product p where p.productQuantity> :quantity AND p.productId >= :startIndex AND p.productId <= :endIndex")
     List<Product> filterByQuantityGreater(

@@ -45,6 +45,16 @@ public class ProductController {
         return this.productService.filterQuantity(filterValue);
     }
 
+
+    @GetMapping("/products/filterQuantityGreaterThanPageable/{filterValue}")
+    public List<ProductAggregate> filterQuantityPageable(@PathVariable("filterValue") int filterValue,
+                                                    @RequestParam(defaultValue = "0") int pageNumber,
+                                                    @RequestParam(defaultValue = "100") int pageSize,
+                                                         @RequestParam(defaultValue = "0") int sortByQuantityDescending){
+        return this.productService.getFilterGreaterThanPageable(filterValue,pageNumber,pageSize, sortByQuantityDescending).stream().map(product -> product.getProductAggregate(productService.getTransactionsCount(product.getProductId()))).toList();
+    }
+
+
     @GetMapping("/products/filterQuantityGreaterThan100/{filterValue}")
     public List<ProductAggregate> filterQuantity100(@PathVariable("filterValue") int filterValue,
                                                     @RequestParam(defaultValue = "1") Long startId,

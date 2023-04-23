@@ -1,6 +1,9 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import payroll.Model.Category;
 import payroll.Model.Client;
@@ -24,10 +27,15 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Product> getFirst100Products() {
-        return productRepository.findFirst100By();
+    public List<Product> getFilterGreaterThanPageable(int quantity, int pageNumber, int pageSize, int sortByQuantityDescending) {
+        Pageable page;
+        if(sortByQuantityDescending == 0){
+            page = PageRequest.of(pageNumber, pageSize, Sort.by("ProductQuantity").ascending());
+        }else {
+            page = PageRequest.of(pageNumber, pageSize, Sort.by("ProductQuantity").descending());
+        }
+        return productRepository.findByProductQuantityGreaterThan(quantity, page);
     }
-
     public List<Product> getFilterGreaterThan(int quantity, long startId, long endId) {
         return productRepository.filterByQuantityGreater(quantity, startId, endId);
     }

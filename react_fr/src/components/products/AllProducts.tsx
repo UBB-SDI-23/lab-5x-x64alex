@@ -34,17 +34,20 @@ export const AllProducts = () => {
 	const [productQuantity, setProductQuantity] = useState(-1);
 
 
-	const [startIndex, setStartIndex] = useState(0);
+	const [pageNumber, setPageNumber] = useState(0);
+	const [pageSize, setPageSize] = useState(50);
+
+	const [sortByQuantityDescending, setSortByQuantityDescending] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}?startId=${startIndex}&endId=${startIndex+50}`)
+		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortByQuantityDescending=${sortByQuantityDescending}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setproducts(data);
 				setLoading(false);
 			});
-	}, [productQuantity, startIndex]);
+	}, [productQuantity, pageNumber, sortByQuantityDescending]);
 
 	const [loading, setLoading] = useState(false);
     const [products, setproducts] = useState<ProductTransactions[]>([]);
@@ -53,21 +56,9 @@ export const AllProducts = () => {
 
 
 	const [orderDirectionQuantity, setOrderDirectionQuantity] = useState<arrowDirectionType>("asc");
-	const sortArrayQuantity = (arr: ProductTransactions[], orderBy: String) => {
-		switch (orderBy) {
-		  case "asc":
-		  default:
-			return arr.sort((a, b) =>
-			  a.productQuantity > b.productQuantity ? 1 : b.productQuantity > a.productQuantity ? -1 : 0
-			);
-		  case "desc":
-			return arr.sort((a, b) =>
-			  a.productQuantity < b.productQuantity ? 1 : b.productQuantity < a.productQuantity ? -1 : 0
-			);
-		}
-	};
+
 	const handleSortRequestQuantity = () => {
-		setproducts(sortArrayQuantity(products, orderDirectionQuantity)!);
+		setSortByQuantityDescending(sortByQuantityDescending === 0 ? 1 : 0);
 		setOrderDirectionQuantity(orderDirectionQuantity === "asc" ? "desc" : "asc");
 	};
 	return (
@@ -105,10 +96,10 @@ export const AllProducts = () => {
 							setProductQuantity(-1);
 						}
 					}}/>
-				<IconButton edge="start" onClick={() => {if(startIndex>0){setStartIndex(startIndex-50)}}}>
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
       			</IconButton>
-				<IconButton edge="start" onClick={() => {setStartIndex(startIndex+50)}}>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
         			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
@@ -139,7 +130,7 @@ export const AllProducts = () => {
 							{products.map((product: ProductTransactions, index) => (
 								<TableRow key={product.productId}>
 									<TableCell component="th" scope="row">
-										{startIndex+index+1}
+										{pageNumber*pageSize+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/products/${product.productId}/details`} title="View product details">
