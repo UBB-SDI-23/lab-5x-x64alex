@@ -25,6 +25,16 @@ export const CategoryUpdate = () => {
         categoryProfitability: 0
 	});
 
+	useEffect(() => {
+		const fetchProduct = async () => {
+			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`);
+			const data = await response.json();
+			setCategory(data);
+
+		};
+		fetchProduct();
+	}, [categoryId]);
+
     const updateProduct = async (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
@@ -36,27 +46,6 @@ export const CategoryUpdate = () => {
 			alert(error);
 		}
 	};
-    useEffect(() => {
-
-		const fetchProduct = async () => {
-			// TODO: use axios instead of fetch
-			// TODO: handle errors
-			// TODO: handle loading state
-			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`)
-                .then(response => response.json())
-                .then(response => {
-
-                console.log(response)
-                category.categoryName = String(response.categoryName)
-                category.categoryPopularity = Number(response.categoryPopularity)
-                category.categorySales =  Number(response.categorySales)
-                category.categoryReturnsPerMonth =  Number(response.categoryReturnsPerMonth)
-                category.categoryProfitability =  Number(response.categoryProfitability)
-            });
-            
-		};
-		fetchProduct();
-	},[]);
 
 	return (
 		<Container>
