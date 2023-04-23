@@ -1,4 +1,4 @@
-package payroll.Model;
+package payroll.Model.Client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
@@ -7,10 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import payroll.Model.DTO.ClientDTO;
-import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
+import payroll.Model.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class Client {
     private List<Transaction> transactions = new ArrayList<>();
 
     @JsonIgnore
-    public ClientDTO getClientDTO(){
+    public ClientDTO getClientDTO(int transactionsCount ){
         ClientDTO clientDTO = new ClientDTO();
 
         clientDTO.setClientId(clientId);
@@ -61,6 +61,7 @@ public class Client {
         clientDTO.setClientLastName(clientLastName);
         clientDTO.setClientPhoneNumber(clientPhoneNumber);
 
+        clientDTO.setTransactionsCount(transactionsCount);
         return clientDTO;
     }
 }

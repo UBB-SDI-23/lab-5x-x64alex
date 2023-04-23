@@ -5,4 +5,6 @@ export interface ClientDTO {
     "clientEmail": string;
     "clientAddress": string;
     "clientPhoneNumber": string;
+    "transactionsCount": number;
+
 }

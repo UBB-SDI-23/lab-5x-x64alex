@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import payroll.Model.Client;
-import payroll.Model.DTO.ClientDTO;
+import payroll.Model.Client.Client;
 import payroll.Model.DTO.ProductTransactionDTO;
-import payroll.Model.Product;
+import payroll.Model.Products.Product;
 import payroll.Model.Transaction;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
@@ -57,6 +56,10 @@ public class ClientService implements ClientInterface{
     public List<Client> getClients(int pageNumber,int pageSize) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
         return clientRepository.findAll(page).stream().toList();
+    }
+
+    public int getTransactionsCount(Long clientId) {
+        return clientRepository.getTransactionsCount(clientId);
     }
 
     public Client getOne(Long clientId) {return  this.clientRepository.findById(clientId).get(); }

@@ -2,14 +2,11 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.DTO.ProductBoughtDTO;
 import payroll.Model.DTO.ProductClientDTO;
 import payroll.Model.DTO.ProductDTO;
 import payroll.Model.DTO.ProductIdDTO;
-import payroll.Model.Product;
+import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;
-import payroll.Repository.CategoryRepository;
-import payroll.Service.CategoryService;
 import payroll.Service.ProductService;
 
 import java.util.List;

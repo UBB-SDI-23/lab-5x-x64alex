@@ -1,4 +1,4 @@
-package payroll.Model.DTO;
+package payroll.Model.Client;
 
 import lombok.*;
 import payroll.Model.Transaction;
@@ -18,4 +18,6 @@ public class ClientDTO {
     private String clientEmail;
     private String clientAddress;
     private String clientPhoneNumber;
+
+    private int transactionsCount;
 }

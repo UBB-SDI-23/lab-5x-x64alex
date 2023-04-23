@@ -2,9 +2,10 @@ package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import payroll.Model.Client;
+import payroll.Model.Client.Client;
+import payroll.Model.Client.ClientDTO;
 import payroll.Model.DTO.*;
-import payroll.Model.Product;
+import payroll.Model.Products.Product;
 import payroll.Model.Transaction;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
@@ -63,7 +64,7 @@ public class TransactionService {
         ProductDTO productDTO = productRepository.findById(transaction.getProduct().getProductId()).get().getProductDTO();
 
         // Construct ClientDTO from client
-        ClientDTO clientDTO = clientRepository.findById(transaction.getClient().getClientId()).get().getClientDTO();
+        ClientDTO clientDTO = clientRepository.findById(transaction.getClient().getClientId()).get().getClientDTO(clientRepository.getTransactionsCount(transaction.getClient().getClientId()));
 
         TransactionDTO transactionDTO = new TransactionDTO();
 

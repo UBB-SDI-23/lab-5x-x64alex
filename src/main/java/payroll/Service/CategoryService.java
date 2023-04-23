@@ -8,7 +8,7 @@ import payroll.Model.Category.Category;
 import payroll.Model.Category.CategoryDTO;
 import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.Category.CategoryProductDTO;
-import payroll.Model.Product;
+import payroll.Model.Products.Product;
 import payroll.Repository.CategoryRepository;
 
 import java.util.ArrayList;

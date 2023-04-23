@@ -2,9 +2,6 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.Client;
-import payroll.Model.DTO.ProductDTO;
-import payroll.Model.DTO.ProductIdDTO;
 import payroll.Model.DTO.TransactionDTO;
 import payroll.Model.DTO.TransactionIdDTO;
 import payroll.Model.Transaction;

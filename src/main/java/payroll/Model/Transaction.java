@@ -9,6 +9,9 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.*;
+import payroll.Model.Client.Client;
+import payroll.Model.Products.Product;
+
 import java.util.Date;
 
 @Entity

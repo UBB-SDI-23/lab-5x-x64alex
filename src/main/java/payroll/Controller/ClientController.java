@@ -2,8 +2,8 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.Client;
-import payroll.Model.DTO.ClientDTO;
+import payroll.Model.Client.Client;
+import payroll.Model.Client.ClientDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Service.ClientService;
 
@@ -19,7 +19,7 @@ public class ClientController {
     @GetMapping()
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){
-        return this.clientService.getClients(pageNumber,pageSize).stream().map(Client::getClientDTO).toList();
+        return this.clientService.getClients(pageNumber,pageSize).stream().map(client -> client.getClientDTO(clientService.getTransactionsCount(client.getClientId()))).toList();
     }
 
     @GetMapping("/{clientId}")

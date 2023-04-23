@@ -1,4 +1,4 @@
-package payroll.Model;
+package payroll.Model.Products;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -12,6 +12,7 @@ import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
 import payroll.Model.Products.ProductAggregate;
+import payroll.Model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
