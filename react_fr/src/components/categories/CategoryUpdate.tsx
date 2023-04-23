@@ -13,6 +13,8 @@ import { CategoryName } from "../../models/Category/CategoryName";
 import { Category } from "../../models/Category/Category";
 
 export const CategoryUpdate = () => {
+    const { categoryId } = useParams();
+
     const navigate = useNavigate();
 
 	const [category, setCategory] = useState<Category>({
@@ -23,17 +25,38 @@ export const CategoryUpdate = () => {
         categoryProfitability: 0
 	});
 
-	const addCategory = (event: { preventDefault: () => void }) => {
+    const updateProduct = async (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category);
-			alert("Product added")
-			navigate("/categories");
+			await axios.put(`${BACKEND_API_URL}/categories/${categoryId}`, category);
+			alert("Product updated")
+			navigate("/products");
 		} catch (error) {
 			alert(error);
 		}
 	};
+    useEffect(() => {
+
+		const fetchProduct = async () => {
+			// TODO: use axios instead of fetch
+			// TODO: handle errors
+			// TODO: handle loading state
+			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`)
+                .then(response => response.json())
+                .then(response => {
+
+                console.log(response)
+                category.categoryName = response.categoryName
+                category.categoryPopularity = response.categoryPopularity
+                category.categorySales = response.categorySales
+                category.categoryReturnsPerMonth = response.categoryReturnsPerMonth
+                category.categoryProfitability = response.categoryProfitability
+            });
+            
+		};
+		fetchProduct();
+	},[]);
 
 	return (
 		<Container>
@@ -45,7 +68,7 @@ export const CategoryUpdate = () => {
 						</IconButton>{" "}
 					</Stack>
 
-					<form onSubmit={addCategory}>
+					<form onSubmit={updateProduct}>
 						<TextField
                             type="string"
 							id="name"
