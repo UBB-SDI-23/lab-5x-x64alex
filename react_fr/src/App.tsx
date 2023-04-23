@@ -20,6 +20,7 @@ import { AllClients } from './components/clients/AllClients'
 import { ClientDelete } from './components/clients/ClientDelete'
 import { ClientDetails } from './components/clients/ClientDetails'
 import { ClientAdd } from './components/clients/ClientAdd'
+import { ClientUpdate } from './components/clients/ClientUpdate'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -47,6 +48,7 @@ function App() {
 					<Route path="/clients/add" element={<ClientAdd />} />
 					<Route path="/clients/:clientId/details" element={<ClientDetails />} />
 					<Route path="/clients/:clientId/delete" element={<ClientDelete />} />
+					<Route path="/clients/:clientId/edit" element={<ClientUpdate />} />
 
 
 				</Routes>
