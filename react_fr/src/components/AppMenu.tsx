@@ -25,6 +25,15 @@ export const AppMenu = () => {
 						Payroll
 					</Typography>
 					<Button
+						variant={path.startsWith("/categories") ? "outlined" : "text"}
+						to="/categories"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LocalLibraryIcon />}>
+						Categories
+					</Button>
+					<Button
 						variant={path.startsWith("/products") ? "outlined" : "text"}
 						to="/products"
 						component={Link}
