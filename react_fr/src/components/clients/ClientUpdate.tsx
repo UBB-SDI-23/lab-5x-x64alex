@@ -100,7 +100,7 @@ export const ClientUpdate= () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => {client.clientEmail = newValue.target.value; setClientEmail(clientEmail)}}
+							onChange={(newValue) => {client.clientEmail = newValue.target.value; setClientEmail(client.clientEmail)}}
 						/>
                         <TextField
                             value={clientAddress} 
@@ -110,7 +110,7 @@ export const ClientUpdate= () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => {client.clientAddress = newValue.target.value; setClientAddress(clientAddress)}}
+							onChange={(newValue) => {client.clientAddress = newValue.target.value; setClientAddress(client.clientAddress)}}
 						/>
                         <TextField
                             value={clientPhoneNumber} 
@@ -120,7 +120,7 @@ export const ClientUpdate= () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => {client.clientPhoneNumber = newValue.target.value; setClientPhoneNumber(clientPhoneNumber)}}
+							onChange={(newValue) => {client.clientPhoneNumber = newValue.target.value; setClientPhoneNumber(client.clientPhoneNumber)}}
 						/>
 
 					
