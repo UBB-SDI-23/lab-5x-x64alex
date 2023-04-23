@@ -18,6 +18,7 @@ import { CategoryDetails } from './components/categories/CategoryDetails'
 import { CategoryUpdate } from './components/categories/CategoryUpdate'
 import { AllClients } from './components/clients/AllClients'
 import { ClientDelete } from './components/clients/ClientDelete'
+import { ClientDetails } from './components/clients/ClientDetails'
 import { ClientAdd } from './components/clients/ClientAdd'
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
 
 					<Route path="/clients" element={<AllClients/>} />
 					<Route path="/clients/add" element={<ClientAdd />} />
+					<Route path="/clients/:clientId/details" element={<ClientDetails />} />
 					<Route path="/clients/:clientId/delete" element={<ClientDelete />} />
 
 
