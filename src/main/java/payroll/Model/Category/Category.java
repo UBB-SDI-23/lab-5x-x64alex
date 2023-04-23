@@ -63,6 +63,7 @@ public class Category {
         categoryDTO.setCategoryPopularity(categoryPopularity);
         categoryDTO.setCategoryReturnsPerMonth(categoryReturnsPerMonth);
         categoryDTO.setCategoryProfitability(categoryProfitability);
+        categoryDTO.setCategorySales(categorySales);
         categoryDTO.setCategoryNumberProducts(numberProducts);
         categoryDTO.setCategoryAveragePrice(averagePrice);
 
