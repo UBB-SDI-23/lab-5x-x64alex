@@ -17,12 +17,10 @@ import {
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
-import { Product } from "../../models/Product/Product";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
@@ -72,14 +70,6 @@ export const AllProducts = () => {
 		setproducts(sortArrayQuantity(products, orderDirectionQuantity)!);
 		setOrderDirectionQuantity(orderDirectionQuantity === "asc" ? "desc" : "asc");
 	};
-
-
-
-
-
-
-
-
 	return (
 		<Container>
 			<h1>All products</h1>

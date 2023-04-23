@@ -5,5 +5,5 @@ export interface Product{
     productQuantity: number;
     productOnSale: boolean;
     productWeight: number;
-    transactionsCount: number;
+    categoryId: number;
 }
