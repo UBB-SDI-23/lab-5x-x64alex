@@ -41,7 +41,7 @@ export const AllProducts = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThan100/${productQuantity}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortByQuantityDescending=${sortByQuantityDescending}`)
+		fetch(`${BACKEND_API_URL}/products/filterQuantityGreaterThanPageable/${productQuantity}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortByQuantityDescending=${sortByQuantityDescending}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setproducts(data);
