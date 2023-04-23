@@ -138,7 +138,7 @@ export const ProductAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/products/`, product);
+			axios.post(`${BACKEND_API_URL}/products`, product);
 			alert("Product added")
 			navigate("/products");
 		} catch (error) {
