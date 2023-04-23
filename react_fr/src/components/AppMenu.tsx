@@ -42,6 +42,24 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Products
 					</Button>
+					<Button
+						variant={path.startsWith("/clients") ? "outlined" : "text"}
+						to="/products"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LocalLibraryIcon />}>
+						Clients
+					</Button>
+					<Button
+						variant={path.startsWith("/transactions") ? "outlined" : "text"}
+						to="/transactions"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LocalLibraryIcon />}>
+						Products
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</Box>

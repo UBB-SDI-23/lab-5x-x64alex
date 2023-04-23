@@ -22,13 +22,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
-import { Product } from "../../models/Product/Product";
+import { Product } from "../../models/Product";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ProductTransactions } from "../../models/Product/ProductTransactions";
 
 
-export const AllProducts = () => {
+export const AllClients = () => {
 
 	const [productQuantityError, setProductQuantityError] = useState(false);
 	const [productQuantityString, setProductQuantityString] = useState("");
@@ -49,12 +48,12 @@ export const AllProducts = () => {
 	}, [productQuantity, startIndex]);
 
 	const [loading, setLoading] = useState(false);
-    const [products, setproducts] = useState<ProductTransactions[]>([]);
+    const [products, setproducts] = useState<Product[]>([]);
 
 	type arrowDirectionType = "asc" | "desc"
 
 	const [orderDirectionName, setOrderDirectionName] = useState<arrowDirectionType>("asc");
-	const sortArrayName = (arr: ProductTransactions[], orderBy: String) => {
+	const sortArrayName = (arr: Product[], orderBy: String) => {
 		switch (orderBy) {
 		  case "asc":
 		  default:
@@ -229,12 +228,11 @@ export const AllProducts = () => {
 									Weight
 									</TableSortLabel>
 								</TableCell>
-								<TableCell align="center">Transactions</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{products.map((product: ProductTransactions, index) => (
+							{products.map((product: Product, index) => (
 								<TableRow key={product.productId}>
 									<TableCell component="th" scope="row">
 										{startIndex+index+1}
@@ -248,7 +246,6 @@ export const AllProducts = () => {
 									<TableCell align="right">{product.productQuantity}</TableCell>
 									<TableCell align="right">{String(product.productOnSale)}</TableCell>
 									<TableCell align="right">{product.productWeight}</TableCell>
-									<TableCell align="right">{product.transactionsCount}</TableCell>
 									<TableCell align="right">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/edit`}>
 											<EditIcon />

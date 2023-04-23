@@ -32,6 +32,10 @@ public class ProductService {
         return productRepository.filterByQuantityGreater(quantity, startId, endId);
     }
 
+    public int getTransactionsCount(Long productId) {
+        return productRepository.getTransactionsCount(productId);
+    }
+
 
     public Product saveProduct(ProductIdDTO productIdDTO) {
         Product product = new Product();

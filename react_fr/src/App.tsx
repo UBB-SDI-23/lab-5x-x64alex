@@ -30,6 +30,8 @@ function App() {
           			<Route path="/products/:productId/edit" element={<ProductUpdate />} />
 
 					<Route path="/categories" element={<AllCategories/>} />
+
+
 				</Routes>
 			</Router>
 		</React.Fragment>

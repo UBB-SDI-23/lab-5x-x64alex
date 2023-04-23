@@ -7,8 +7,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { Product } from "../../models/Product";
-import { ProductCategory } from "../../models/ProductDetails";
+import { Product } from "../../models/Product/Product";
+import { ProductCategory } from "../../models/Product/ProductDetails";
 
 
 export const ProductUpdate = () => {

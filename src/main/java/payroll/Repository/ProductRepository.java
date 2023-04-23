@@ -16,4 +16,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("startIndex") Long startIndex,
             @Param("endIndex") Long endIndex
             );
+
+    @Query("select count(*) from Transaction t where t.product.productId = :productId")
+    Integer getTransactionsCount(
+            @Param("productId") Long productId
+    );
 }

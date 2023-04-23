@@ -10,6 +10,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.DTO.ProductDTO;
 
 import jakarta.persistence.*;
+import payroll.Model.Products.ProductAggregate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,5 +70,22 @@ public class Product {
 
         return productDTO;
     }
+
+    @JsonIgnore
+    public ProductAggregate getProductAggregate(int transactionsCount){
+        ProductAggregate product = new ProductAggregate();
+
+        product.setProductId(productId);
+        product.setProductName(productName);
+        product.setProductPrice(productPrice);
+        product.setProductQuantity(productQuantity);
+        product.setProductOnSale(productOnSale);
+        product.setProductWeight(productWeight);
+
+        product.setTransactionsCount(transactionsCount);
+
+        return product;
+    }
+
 }
 

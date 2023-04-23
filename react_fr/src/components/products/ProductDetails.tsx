@@ -6,7 +6,7 @@ import { BACKEND_API_URL } from "../../constants";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { ProductCategory } from "../../models/ProductDetails";
+import { ProductCategory } from "../../models/Product/ProductDetails";
 
 export const ProductDetails = () => {
 	const { productId } = useParams();

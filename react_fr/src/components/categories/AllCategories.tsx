@@ -22,7 +22,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
-import { Product } from "../../models/Product";
+import { Product } from "../../models/Product/Product";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
