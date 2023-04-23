@@ -17,8 +17,9 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping()
-    public List<ClientDTO> getCategories(){
-        return this.clientService.getClientsDTOList();
+    public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
+                                      @RequestParam(defaultValue = "100") int pageSize){
+        return this.clientService.getClients(pageNumber,pageSize).stream().map(Client::getClientDTO).toList();
     }
 
     @GetMapping("/{clientId}")

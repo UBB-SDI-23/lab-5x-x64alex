@@ -10,11 +10,8 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
-	TextField,
 	Stack,
-	TableSortLabel,
 } from "@mui/material";
-import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,22 +20,13 @@ import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ProductTransactions } from "../../models/Product/ProductTransactions";
 import { CategoryProduct } from "../../models/Category/CategoryProduct";
 
 
 export const AllCategories = () => {
 
-	const [productQuantityError, setProductQuantityError] = useState(false);
-	const [productQuantityString, setProductQuantityString] = useState("");
-	const [productQuantityHelper, setProductQuantityHelper] = useState("");
-	const [productQuantity, setProductQuantity] = useState(-1);
-
-
 	const [pageNumber, setPageNumber] = useState(0);
 	const [pageSize, setPageSize] = useState(50);
-
-	const [sortByQuantityDescending, setSortByQuantityDescending] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
@@ -48,20 +36,11 @@ export const AllCategories = () => {
 				setCategory(data);
 				setLoading(false);
 			});
-	}, [productQuantity, pageNumber, sortByQuantityDescending]);
+	}, [pageNumber]);
 
 	const [loading, setLoading] = useState(false);
     const [categories, setCategory] = useState<CategoryProduct[]>([]);
 
-	type arrowDirectionType = "asc" | "desc"
-
-
-	const [orderDirectionQuantity, setOrderDirectionQuantity] = useState<arrowDirectionType>("asc");
-
-	const handleSortRequestQuantity = () => {
-		setSortByQuantityDescending(sortByQuantityDescending === 0 ? 1 : 0);
-		setOrderDirectionQuantity(orderDirectionQuantity === "asc" ? "desc" : "asc");
-	};
 	return (
 		<Container>
 			<h1>All categories</h1>

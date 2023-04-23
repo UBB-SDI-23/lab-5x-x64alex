@@ -1,6 +1,8 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client;
 import payroll.Model.DTO.ClientDTO;
@@ -52,21 +54,9 @@ public class ClientService implements ClientInterface{
         return client;
     }
 
-    public List<ClientDTO> getClientsDTOList() {
-        List<ClientDTO> clientDTOS = new ArrayList<>();
-        for(Client client : clientRepository.findAll()){
-            ClientDTO clientDTO = new ClientDTO();
-
-            clientDTO.setClientId(client.getClientId());
-            clientDTO.setClientFirstName(client.getClientFirstName());
-            clientDTO.setClientLastName(client.getClientLastName());
-            clientDTO.setClientEmail(client.getClientEmail());
-            clientDTO.setClientAddress(client.getClientAddress());
-            clientDTO.setClientPhoneNumber(client.getClientPhoneNumber());
-
-            clientDTOS.add(clientDTO);
-        }
-        return clientDTOS;
+    public List<Client> getClients(int pageNumber,int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return clientRepository.findAll(page).stream().toList();
     }
 
     public Client getOne(Long clientId) {return  this.clientRepository.findById(clientId).get(); }

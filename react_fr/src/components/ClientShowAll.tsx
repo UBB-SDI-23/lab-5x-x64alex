@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Client } from "../models/Client";
+import { Client } from "../models/Client/Client";
 
 export const ClientShowAll = () => {
     const [clients, setClients] = useState([]);
