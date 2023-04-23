@@ -16,6 +16,7 @@ export const ProductUpdate = () => {
     const { productId } = useParams();
 	const [categories, setCategories] = useState<CategoryName[]>([]);
 	const [searchString, setSearchString] = useState("");
+	const [productCategoryName, setProductCategoryName] = useState("");
 
 	const navigate = useNavigate();
     const updateProduct = async (event: { preventDefault: () => void }) => {
@@ -69,7 +70,7 @@ export const ProductUpdate = () => {
                 checkNewWeight(String(response.productWeight));
                 checkNewCategoryId(String(response.categoryDTO.categoryId));
 
-				
+				setProductCategoryName(response.categoryDTO.categoryName);
             });
             
 		};
@@ -277,6 +278,7 @@ export const ProductUpdate = () => {
 							}}
 						/>
 						<Autocomplete
+							value={productCategoryName} 
 							disablePortal
 							id="combo-box-demo"
 							options={categories.map((category) => category.categoryName)}
