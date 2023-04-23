@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Stack, TextField } from "@mui/material";
+import { Autocomplete, Button, Card, CardActions, CardContent, IconButton, Stack, TextField } from "@mui/material";
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -9,10 +9,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product/Product";
 import { ProductCategory } from "../../models/Product/ProductDetails";
+import { CategoryName } from "../../models/CategoryName";
 
 
 export const ProductUpdate = () => {
     const { productId } = useParams();
+	const [categories, setCategories] = useState<CategoryName[]>([]);
+	const [searchString, setSearchString] = useState("");
 
 	const navigate = useNavigate();
     const updateProduct = async (event: { preventDefault: () => void }) => {
@@ -30,6 +33,8 @@ export const ProductUpdate = () => {
 		}
 	};
 
+
+
     const [product, setProduct] = useState<Product>({
 	    productName: "",
     	productPrice: 0,
@@ -41,6 +46,12 @@ export const ProductUpdate = () => {
 
 
 	useEffect(() => {
+		fetch(`${BACKEND_API_URL}/categories/names?searchString=${searchString}`)
+		.then((response) => response.json())
+		.then((data) => {
+			setCategories(data);
+		});
+
 		const fetchProduct = async () => {
             
 			// TODO: use axios instead of fetch
@@ -57,11 +68,13 @@ export const ProductUpdate = () => {
                 checkNewSale(String(response.productOnSale));
                 checkNewWeight(String(response.productWeight));
                 checkNewCategoryId(String(response.categoryDTO.categoryId));
+
+				
             });
             
 		};
 		fetchProduct();
-	}, [productId]);
+	}, [searchString]);
 
 
 
@@ -262,6 +275,23 @@ export const ProductUpdate = () => {
 							onChange={(newValue) => {
 								checkNewWeight(newValue.target.value)
 							}}
+						/>
+						<Autocomplete
+							disablePortal
+							id="combo-box-demo"
+							options={categories.map((category) => category.categoryName)}
+							sx={{ width: 300 }}
+							onChange={(e, value) => {
+								for (let i = 0; i < categories.length; i++) {
+									if(categories[i].categoryName ===value){
+										product.categoryId = categories[i].categoryId;
+									}
+								}
+							}}
+							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							onChange={(newValue) => {
+								setSearchString(newValue.target.value)
+							}}/>}
 						/>
 
 
