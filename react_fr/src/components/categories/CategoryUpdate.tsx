@@ -47,11 +47,11 @@ export const CategoryUpdate = () => {
                 .then(response => {
 
                 console.log(response)
-                category.categoryName = response.categoryName
-                category.categoryPopularity = response.categoryPopularity
-                category.categorySales = response.categorySales
-                category.categoryReturnsPerMonth = response.categoryReturnsPerMonth
-                category.categoryProfitability = response.categoryProfitability
+                category.categoryName = String(response.categoryName)
+                category.categoryPopularity = Number(response.categoryPopularity)
+                category.categorySales =  Number(response.categorySales)
+                category.categoryReturnsPerMonth =  Number(response.categoryReturnsPerMonth)
+                category.categoryProfitability =  Number(response.categoryProfitability)
             });
             
 		};
@@ -115,7 +115,7 @@ export const CategoryUpdate = () => {
 							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
 						/>
 
-						<Button id = "submitButton" type="submit">Add Category</Button>
+						<Button id = "submitButton" type="submit">Update Category</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
