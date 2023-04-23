@@ -10,18 +10,18 @@ import { Client } from "../../models/Client/Client";
 import Grid from '@mui/material/Grid'; // Grid version 1
 
 export const ClientDetails = () => {
-	const { ClientId } = useParams();
+	const { clientId } = useParams();
 	const [client, setClient] = useState<Client>();
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/clients/${ClientId}`);
+			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`);
 			const data = await response.json();
 			setClient(data);
 
 		};
 		fetchProduct();
-	}, [ClientId]);
+	}, [clientId]);
 
 	return (
 		<Container>
@@ -44,15 +44,7 @@ export const ClientDetails = () => {
 					<p>Client transactions:</p>
 
 
-                    <Grid container spacing={1}>
-                        {client?.transactions?.map((transaction) => {
-                        return (<Grid item>
-                        <li>Transaction date: {transaction.transactionDate.toDateString()}</li>
-                        <li>Transaction Quantity: {transaction.transactionQuantity}</li>
 
-                        </Grid>)
-                    })}
-                    </Grid> 
 				</Stack>
 
 			
@@ -60,11 +52,11 @@ export const ClientDetails = () => {
 
 				</CardContent>
 				<CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${ClientId}/edit`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/edit`}>
 						<EditIcon />
 					</IconButton>
 
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${ClientId}/delete`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
 				</CardActions>
