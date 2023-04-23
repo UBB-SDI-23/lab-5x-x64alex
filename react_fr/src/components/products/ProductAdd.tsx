@@ -217,7 +217,13 @@ export const ProductAdd = () => {
 							id="combo-box-demo"
 							options={categories.map((category) => category.categoryName)}
 							sx={{ width: 300 }}
-							onChange={(e, value) => {console.log(e.target, value)}}
+							onChange={(e, value) => {
+								for (let i = 0; i < categories.length; i++) {
+									if(categories[i].categoryName ===value){
+										product.categoryId = categories[i].categoryId;
+									}
+								}
+							}}
 							renderInput={(params) => <TextField {...params} label="Category Names" 	
 							onChange={(newValue) => {
 								setSearchString(newValue.target.value)
