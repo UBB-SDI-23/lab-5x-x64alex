@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Client } from "../../models/Client/Client";
+import Grid from '@mui/material/Grid'; // Grid version 1
 
 export const ClientDetails = () => {
 	const { ClientId } = useParams();
@@ -40,22 +41,18 @@ export const ClientDetails = () => {
                     <p>Address: {client?.clientAddress}</p>
                     <p>Phone number: {client?.clientPhoneNumber}</p>
 
-					{/* <p>Category products:</p>
-					<ul>
-                        {category?.products.map(
-                            (product: Product) => {
-                                <li>
-                                <p>Product Name: {product?.productName}</p>
-                                <p>Product Price: {product?.productPrice}</p>
-                                <p>Product Quantity: {product?.productQuantity}</p>
-                                <p>Product Sale: {String(product?.productOnSale)}</p>
-                                <p>Product Weight: {product?.productWeight}</p>
-                                <p>Product Description: {product?.productDescription}</p>
-                            }
-                            </li>
-                        )
-                        }
-					</ul> */}
+					<p>Client transactions:</p>
+
+
+                    <Grid container spacing={1}>
+                        {client?.transactions.map((transaction) => {
+                        return (<Grid item>
+                        <li>Transaction date: {transaction.transactionDate.toDateString()}</li>
+                        <li>Transaction Quantity: {transaction.transactionQuantity}</li>
+
+                        </Grid>)
+                    })}
+                    </Grid> 
 				</Stack>
 
 			
