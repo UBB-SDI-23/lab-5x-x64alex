@@ -94,7 +94,7 @@ export const AllCategories = () => {
 								<TableCell align="right">Sales</TableCell>
 								<TableCell align="right">ReturnsPerMonth</TableCell>
 								<TableCell align="right">Profitability</TableCell>
-								<TableCell align="right">Products</TableCell>
+								<TableCell align="right">Nr Products</TableCell>
 								<TableCell align="right">Avg Product price</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>

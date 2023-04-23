@@ -1,7 +1,7 @@
 import { Product } from "../Product/Product";
 
 export interface Category {
-    categoryId: number;
+    categoryId?: number;
     categoryName: string;
     categoryPopularity: number;
     categorySales: number;

@@ -33,7 +33,7 @@ function App() {
           			<Route path="/products/:productId/edit" element={<ProductUpdate />} />
 
 					<Route path="/categories" element={<AllCategories/>} />
-					{/* <Route path="/categories/add" element={<CategoryAdd />} /> */}
+					<Route path="/categories/add" element={<CategoryAdd />} />
           			<Route path="/categories/:categoryId/details" element={<CategoryDetails />} />
           			<Route path="/categories/:categoryId/delete" element={<CategoryDelete />} />
           			{/* <Route path="/categories/:categoryId/edit" element={<CategoryUpdate />} /> */}

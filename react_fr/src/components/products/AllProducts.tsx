@@ -122,7 +122,7 @@ export const AllProducts = () => {
 								</TableCell>
 								<TableCell>Sale</TableCell>
 								<TableCell align="right">Weight</TableCell>
-								<TableCell align="center">Transactions</TableCell>
+								<TableCell align="center">Nr. Transactions</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
