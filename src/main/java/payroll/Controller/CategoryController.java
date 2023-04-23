@@ -2,10 +2,7 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.Category.Category;
-import payroll.Model.Category.CategoryDTO;
-import payroll.Model.Category.CategoryNameDTO;
-import payroll.Model.Category.CategoryProductDTO;
+import payroll.Model.Category.*;
 import payroll.Service.CategoryService;
 
 import java.util.List;
@@ -48,7 +45,7 @@ public class CategoryController {
     }
 
     @PutMapping("/categories/{categoryId}")
-    public Category updateCategory(@RequestBody Category category, @PathVariable("categoryId") Long categoryId) {
+    public Category updateCategory(@RequestBody CategoryNoProductDTO category, @PathVariable("categoryId") Long categoryId) {
         return this.categoryService.updateCategory(category, categoryId);
     }
 

@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import payroll.Model.Category.Category;
-import payroll.Model.Category.CategoryDTO;
-import payroll.Model.Category.CategoryNameDTO;
-import payroll.Model.Category.CategoryProductDTO;
+import payroll.Model.Category.*;
 import payroll.Model.Products.Product;
 import payroll.Repository.CategoryRepository;
 
@@ -52,7 +49,7 @@ public class CategoryService {
 
     public Category getOne(Long categoryID) {return  this.categoryRepository.findById(categoryID).get(); }
 
-    public Category updateCategory(Category category, Long categoryId) {
+    public Category updateCategory(CategoryNoProductDTO category, Long categoryId) {
         Category foundCategory = this.categoryRepository.findById(categoryId).get();
 
         // Do not update id
@@ -61,9 +58,7 @@ public class CategoryService {
         foundCategory.setCategoryPopularity(category.getCategoryPopularity());
         foundCategory.setCategorySales(category.getCategorySales());
         foundCategory.setCategoryReturnsPerMonth(category.getCategoryReturnsPerMonth());
-
-        // Many to one update
-        foundCategory.setProducts(category.getProducts());
+        
 
         return this.categoryRepository.save(foundCategory);
     }
