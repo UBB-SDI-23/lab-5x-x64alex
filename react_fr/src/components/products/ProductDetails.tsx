@@ -42,7 +42,6 @@ export const ProductDetails = () => {
 					<p>Product Description: {product?.productDescription}</p>
 					<p>Product category:</p>
 					<ul>
-						<li>Category Id:{product?.categoryDTO.categoryId}</li>
 						<li>Category name:{product?.categoryDTO.categoryName}</li>
 						<li>Category popularity{product?.categoryDTO.categoryPopularity}</li>
 						<li>Category profitability:{product?.categoryDTO.categoryProfitability}</li>

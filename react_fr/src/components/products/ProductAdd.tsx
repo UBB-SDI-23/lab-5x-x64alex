@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import Autocomplete from '@mui/material/Autocomplete';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product/Product";
@@ -20,9 +20,9 @@ export const ProductAdd = () => {
     	productQuantity: 0,
     	productOnSale: false,
     	productWeight: 0,
-		categoryId: 1,
+		categoryId: 0,
 	});
-
+	const [categories, setCategories] = useState([]);
 	const [addButtonDissabled, setAddButtonDissabled] = useState(false);
 
 	const [productPriceError, setProductPriceError] = useState(false);
@@ -201,6 +201,16 @@ export const ProductAdd = () => {
 							onChange={(newValue) => {
 								checkNewWeight(newValue.target.value)
 							}}
+						/>
+						<Autocomplete
+							disablePortal
+							id="combo-box-demo"
+							options={categories}
+							sx={{ width: 300 }}
+							renderInput={(params) => <TextField {...params} label="Category"}
+							// onChange={(newValue) => {
+							// 	product.categoryId = newValue.
+							// }}
 						/>
 
 						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Add Product</Button>
