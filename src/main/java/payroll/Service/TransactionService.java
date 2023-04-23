@@ -1,6 +1,8 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
@@ -42,23 +44,14 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public List<TransactionIdDTO> getTransactionIdDTOList(){
-        List<TransactionIdDTO> transactionIdDTOS = new ArrayList<>();
-        for(Transaction transaction : this.transactionRepository.findAll()){
-            TransactionIdDTO transactionIdDTO = new TransactionIdDTO();
-
-            transactionIdDTO.setTransactionId(transaction.getTransactionId());
-            transactionIdDTO.setTransactionDate(transaction.getTransactionDate());
-            transactionIdDTO.setTransactionQuantity(transaction.getTransactionQuantity());
-
-            transactionIdDTO.setClientId(transaction.getClient().getClientId());
-            transactionIdDTO.setProductId(transaction.getProduct().getProductId());
-
-            transactionIdDTOS.add(transactionIdDTO);
-        }
-        return transactionIdDTOS;
+    public int getClientAvgOrderQuantity(Long clientId){
+        return transactionRepository.getClientAverageOrderQuantity(clientId);
     }
 
+    public List<Transaction> getTransactions(int pageNumber,int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return transactionRepository.findAll(page).stream().toList();
+    }
     public TransactionDTO getOneTransaction(Long transactionId){
         Transaction transaction = transactionRepository.findById(transactionId).get();
 

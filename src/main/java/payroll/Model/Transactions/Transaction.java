@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import jakarta.persistence.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Products.Product;
+import payroll.Model.Products.ProductAggregate;
 
 import java.util.Date;
 
@@ -43,4 +44,21 @@ public class Transaction {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Product product;
+
+    @JsonIgnore
+    public TransactionAvgClientOrderQuantity getTransactionAvgClientOrderQuantity(int orderQuantity){
+        TransactionAvgClientOrderQuantity transactionAvgClientOrderQuantity = new TransactionAvgClientOrderQuantity();
+
+        transactionAvgClientOrderQuantity.setTransactionId(transactionId);
+        transactionAvgClientOrderQuantity.setTransactionDate(transactionDate);
+        transactionAvgClientOrderQuantity.setTransactionQuantity(transactionQuantity);
+
+        transactionAvgClientOrderQuantity.setClientId(client.getClientId());
+        transactionAvgClientOrderQuantity.setProductId(product.getProductId());
+
+        transactionAvgClientOrderQuantity.setAvgClientOrderQuantity(orderQuantity);
+
+        return transactionAvgClientOrderQuantity;
+    }
+
 }

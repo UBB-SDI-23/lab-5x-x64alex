@@ -2,6 +2,7 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import payroll.Model.Transactions.TransactionAvgClientOrderQuantity;
 import payroll.Model.Transactions.TransactionDTO;
 import payroll.Model.Transactions.TransactionIdDTO;
 import payroll.Model.Transactions.Transaction;
@@ -16,8 +17,9 @@ public class TransactionController {
     TransactionService transactionService;
 
     @GetMapping()
-    public List<TransactionIdDTO> getTransactions(){
-        return this.transactionService.getTransactionIdDTOList();
+    public List<TransactionAvgClientOrderQuantity> getTransactions(@RequestParam(defaultValue = "0") int pageNumber,
+                                                                   @RequestParam(defaultValue = "100") int pageSize){
+        return this.transactionService.getTransactions(pageNumber, pageSize).stream().map(transaction -> transaction.getTransactionAvgClientOrderQuantity(this.transactionService.getClientAvgOrderQuantity(transaction.getClient().getClientId()))).toList();
     }
     @GetMapping("/{transactionId}")
     public TransactionDTO getOneTransaction(@PathVariable("transactionId") Long transactionId){

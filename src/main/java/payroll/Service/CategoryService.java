@@ -58,7 +58,7 @@ public class CategoryService {
         foundCategory.setCategoryPopularity(category.getCategoryPopularity());
         foundCategory.setCategorySales(category.getCategorySales());
         foundCategory.setCategoryReturnsPerMonth(category.getCategoryReturnsPerMonth());
-        
+
 
         return this.categoryRepository.save(foundCategory);
     }
