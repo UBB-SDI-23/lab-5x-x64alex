@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
+import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Model.Products.Product;
 import payroll.Model.Transactions.Transaction;
@@ -64,7 +65,7 @@ public class ClientService implements ClientInterface{
 
     public Client getOne(Long clientId) {return  this.clientRepository.findById(clientId).get(); }
 
-    public Client updateClient(Client client, Long clientId) {
+    public Client updateClient(ClientUpdateDTO client, Long clientId) {
         Client foundClient = this.clientRepository.findById(clientId).get();
 
         // Do not update id
@@ -74,8 +75,6 @@ public class ClientService implements ClientInterface{
         foundClient.setClientAddress(client.getClientAddress());
         foundClient.setClientPhoneNumber(client.getClientPhoneNumber());
 
-        // Many to one update
-        foundClient.setTransactions(client.getTransactions());
 
         return this.clientRepository.save(foundClient);
     }

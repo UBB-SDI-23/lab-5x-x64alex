@@ -18,6 +18,8 @@ import { ClientUpdateDTO } from "../../models/Client/ClientUpdateDTO";
 export const ClientUpdate= () => {
     const { clientId } = useParams();
 	const navigate = useNavigate();
+    const [clientFirstName, setClientFirstName] = useState<String>("");
+
 
 	const [client, setClient] = useState<ClientUpdateDTO>({
 	    clientFirstName:"",
@@ -31,6 +33,8 @@ export const ClientUpdate= () => {
 		const fetchProduct = async () => {
 			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`);
 			const data = await response.json();
+            ClientUpdateDTO client = ClientUpdateDTO(data.clientFirstName)
+            clientFirstName = data.
 			setClient(data);
 
 		};
@@ -61,17 +65,17 @@ export const ClientUpdate= () => {
 
 					<form onSubmit={updateClient}>
 						<TextField
-                            defaultValue={client.clientFirstName} 
+                            value={clientFirstName} 
                             type="string"
 							id="name"
 							label="First Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => {console.log(newValue); client.clientFirstName = newValue.target.value; setClient(client)}}
+							onChange={(newValue) => client.clientFirstName = newValue.target.value}
 						/>
                         <TextField
-                            defaultValue={client.clientLastName} 
+                            value={client.clientLastName} 
                             type="string"
 							id="name"
 							label="Last Name"

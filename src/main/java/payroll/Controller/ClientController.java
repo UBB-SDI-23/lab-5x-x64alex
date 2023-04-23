@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
+import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Service.ClientService;
 
@@ -38,7 +39,7 @@ public class ClientController {
     }
 
     @PutMapping("/{clientId}")
-    public Client updateClient(@RequestBody Client client, @PathVariable("clientId") Long clientId){
+    public Client updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
         return this.clientService.updateClient(client, clientId);
     }
 
