@@ -18,6 +18,7 @@ import { CategoryDetails } from './components/categories/CategoryDetails'
 import { CategoryUpdate } from './components/categories/CategoryUpdate'
 import { AllClients } from './components/clients/AllClients'
 import { ClientDelete } from './components/clients/ClientDelete'
+import { ClientAdd } from './components/clients/ClientAdd'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -42,6 +43,7 @@ function App() {
           			<Route path="/categories/:categoryId/edit" element={<CategoryUpdate />} />
 
 					<Route path="/clients" element={<AllClients/>} />
+					<Route path="/clients/add" element={<ClientAdd />} />
 					<Route path="/clients/:clientId/delete" element={<ClientDelete />} />
 
 

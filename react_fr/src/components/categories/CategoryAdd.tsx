@@ -1,33 +1,17 @@
 import {
-	TableContainer,
-	Paper,
-	Table,
-	TableHead,
-	TableRow,
-	TableCell,
-	TableBody,
-	CircularProgress,
 	Container,
 	IconButton,
-	Tooltip,
 	TextField,
 	Stack,
-	TableSortLabel,
     Card,
     CardContent,
     Button,
     CardActions,
 } from "@mui/material";
-import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL } from "../../constants";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ProductTransactions } from "../../models/Product/ProductTransactions";
 import { Category } from "../../models/Category/Category";
 import axios from "axios";
 
