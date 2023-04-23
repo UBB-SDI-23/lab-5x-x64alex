@@ -15,6 +15,7 @@ import { AllCategories } from './components/categories/AllCategories'
 import { CategoryAdd } from './components/categories/CategoryAdd'
 import { CategoryDelete } from './components/categories/CategoryDelete'
 import { CategoryDetails } from './components/categories/CategoryDetails'
+import { CategoryUpdate } from './components/categories/CategoryUpdate'
 
 function App() {
   const [count, setCount] = useState(0)
