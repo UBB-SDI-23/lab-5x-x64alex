@@ -16,6 +16,11 @@ export const CategoryUpdate = () => {
     const { categoryId } = useParams();
 
     const navigate = useNavigate();
+    const [categoryName, setCategoryName] = useState<String>("");
+    const [categoryPopularity, setCategoryPopularity] = useState<Number>(0);
+    const [categoryProfitability, setCategoryProfitability] = useState<Number>(0);
+    const [categoryReturnsPerMonth, setCategoryReturnsPerMonth] = useState<Number>(0);
+    const [categorySales, setCategorySales] = useState<Number>(0);
 
 	const [category, setCategory] = useState<Category>({
 	    categoryName:"",
@@ -29,6 +34,11 @@ export const CategoryUpdate = () => {
 		const fetchProduct = async () => {
 			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`);
 			const data = await response.json();
+            setCategoryName(data.categoryName);
+            setCategoryPopularity(data.categoryProfitability)
+            setCategoryProfitability(data.categoryProfitability)
+            setCategoryReturnsPerMonth(data.categoryReturnsPerMonth)
+            setCategorySales(data.categorySales)
 			setCategory(data);
 
 		};
@@ -40,8 +50,8 @@ export const CategoryUpdate = () => {
 		event.preventDefault();
 		try {
 			await axios.put(`${BACKEND_API_URL}/categories/${categoryId}`, category);
-			alert("Product updated")
-			navigate("/products");
+			alert("Category updated")
+			navigate("/categories");
 		} catch (error) {
 			alert(error);
 		}
@@ -59,54 +69,54 @@ export const CategoryUpdate = () => {
 
 					<form onSubmit={updateProduct}>
 						<TextField
-                            value={category.categoryName} 
+                            value={categoryName} 
                             type="string"
 							id="name"
 							label="Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryName = newValue.target.value}
+							onChange={(newValue) => {category.categoryName = newValue.target.value; setCategoryName(category.categoryName);}}
 						/>
                         <TextField
-                            value={category.categoryPopularity} 
+                            value={categoryPopularity} 
                             type="number"
 							id="name"
 							label="Popularity"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
+							onChange={(newValue) => {category.categoryPopularity = Number(newValue.target.value); setCategoryPopularity(category.categoryPopularity);}}
 						/>
                         <TextField
-                            value={category.categoryProfitability} 
+                            value={categoryProfitability} 
                             type="number"
 							id="name"
 							label="Profitability"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
+							onChange={(newValue) => {category.categoryProfitability = Number(newValue.target.value); setCategoryProfitability(category.categoryProfitability);}}
                         />
                         <TextField
-                            value={category.categoryReturnsPerMonth} 
+                            value={categoryReturnsPerMonth} 
                             type="number"
 							id="name"
 							label="ReturnsPerMonth"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
+							onChange={(newValue) => {category.categoryReturnsPerMonth = Number(newValue.target.value); setCategoryReturnsPerMonth(category.categoryReturnsPerMonth);}}
                         />
                         <TextField
-                            value={category.categorySales} 
+                            value={categorySales} 
                             type="number"
 							id="name"
 							label="Sales"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
+							onChange={(newValue) => {category.categorySales = Number(newValue.target.value); setCategorySales(category.categorySales);}}
 						/>
 
 						<Button id = "submitButton" type="submit">Update Category</Button>
