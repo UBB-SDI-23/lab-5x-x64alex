@@ -207,10 +207,7 @@ export const ProductAdd = () => {
 							id="combo-box-demo"
 							options={categories}
 							sx={{ width: 300 }}
-							renderInput={(params) => <TextField {...params} label="Category"}
-							// onChange={(newValue) => {
-							// 	product.categoryId = newValue.
-							// }}
+							renderInput={(params) => <TextField {...params} label="Category Names" />}
 						/>
 
 						<Button disabled={addButtonDissabled} id = "submitButton" type="submit">Add Product</Button>
