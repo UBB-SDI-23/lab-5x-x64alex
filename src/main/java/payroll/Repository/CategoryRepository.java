@@ -10,6 +10,10 @@ import payroll.Model.Category.CategoryNameDTO;
 import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+    @Query("select count(*) from Product p where p.category.categoryId = :categoryId")
+    Integer getNumberProducts(
+            @Param("categoryId") Long categoryId
+    );
 
     @Query("select avg(p.productPrice) from Product p where p.category.categoryId = :categoryId")
     Integer getCategoryAveragePrice(

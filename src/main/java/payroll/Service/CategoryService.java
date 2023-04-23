@@ -88,7 +88,10 @@ public class CategoryService {
                categoryAvgPrice = Double.valueOf(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()));
            }
            System.out.println(categoryAvgPrice);
-           return category.getCategoryProductDTO(categoryAvgPrice);}
+
+           Integer numberProducts = this.categoryRepository.getNumberProducts(category.getCategoryId());
+
+           return category.getCategoryProductDTO(numberProducts, categoryAvgPrice);}
        ).toList();
 
     }

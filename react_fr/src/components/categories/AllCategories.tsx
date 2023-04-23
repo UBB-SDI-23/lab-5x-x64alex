@@ -24,6 +24,7 @@ import { BACKEND_API_URL } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
+import { CategoryProduct } from "../../models/Category/CategoryProduct";
 
 
 export const AllCategories = () => {
@@ -44,13 +45,13 @@ export const AllCategories = () => {
 		fetch(`${BACKEND_API_URL}/categories/pageNumber=${pageNumber}&pageSize=${pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
-				setproducts(data);
+				setCategory(data);
 				setLoading(false);
 			});
 	}, [productQuantity, pageNumber, sortByQuantityDescending]);
 
 	const [loading, setLoading] = useState(false);
-    const [products, setproducts] = useState<ProductTransactions[]>([]);
+    const [categories, setCategory] = useState<CategoryProduct[]>([]);
 
 	type arrowDirectionType = "asc" | "desc"
 
@@ -74,15 +75,15 @@ export const AllCategories = () => {
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
       			</IconButton>
-				<IconButton edge="start" onClick={() => {if(products.length == pageSize){setPageNumber(pageNumber+1)}}}>
+				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
         			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
-			{!loading && products.length === 0 && <p>No categories found</p>}
+			{!loading && categories.length === 0 && <p>No categories found</p>}
 
-			{!loading && products.length > 0 && (
+			{!loading && categories.length > 0 && (
 				<TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
@@ -92,32 +93,29 @@ export const AllCategories = () => {
 								<TableCell align="right">Popularity</TableCell>
 								<TableCell align="right">Sales</TableCell>
 								<TableCell align="right">ReturnsPerMonth</TableCell>
-								<TableCell align="center">Profitability</TableCell>
+								<TableCell align="right">Profitability</TableCell>
+								<TableCell align="right">Products</TableCell>
                                 <TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{products.map((product: ProductTransactions, index) => (
-								<TableRow key={product.productId}>
+							{categories.map((category: CategoryProduct, index) => (
+								<TableRow key={category.categoryId}>
 									<TableCell component="th" scope="row">
 										{pageNumber*pageSize+index+1}
 									</TableCell>
-									<TableCell component="th" scope="row">
-										<Link to={`/products/${product.productId}/details`} title="View product details">
-											{product.productName}
-										</Link>
-									</TableCell>
-									<TableCell align="right">{product.productPrice}</TableCell>
-									<TableCell align="right">{product.productQuantity}</TableCell>
-									<TableCell align="right">{String(product.productOnSale)}</TableCell>
-									<TableCell align="right">{product.productWeight}</TableCell>
-									<TableCell align="right">{product.transactionsCount}</TableCell>
+									<TableCell component="th" scope="row">{category.categoryName}</TableCell>
+									<TableCell align="right">{category.categoryPopularity}</TableCell>
+									<TableCell align="right">{category.categorySales}</TableCell>
+									<TableCell align="right">{category.categoryReturnsPerMonth}</TableCell>
+									<TableCell align="right">{category.categoryProfitability}</TableCell>
+									<TableCell align="right">{category.categoryNumberProducts}</TableCell>
 									<TableCell align="right">
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/edit`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${category.categoryId}/edit`}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${product.productId}/delete`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${category.categoryId}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>

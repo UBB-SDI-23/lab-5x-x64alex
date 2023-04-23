@@ -55,7 +55,7 @@ public class Category {
     }
 
     @JsonIgnore
-    public CategoryProductDTO getCategoryProductDTO(double averagePrice){
+    public CategoryProductDTO getCategoryProductDTO(int numberProducts,double averagePrice){
         CategoryProductDTO categoryDTO = new CategoryProductDTO();
 
         categoryDTO.setCategoryId(categoryId);
@@ -63,6 +63,7 @@ public class Category {
         categoryDTO.setCategoryPopularity(categoryPopularity);
         categoryDTO.setCategoryReturnsPerMonth(categoryReturnsPerMonth);
         categoryDTO.setCategoryProfitability(categoryProfitability);
+        categoryDTO.setCategoryNumberProducts(numberProducts);
         categoryDTO.setCategoryAveragePrice(averagePrice);
 
         return categoryDTO;

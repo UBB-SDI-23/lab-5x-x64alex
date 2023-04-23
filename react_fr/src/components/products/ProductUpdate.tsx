@@ -9,7 +9,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Product } from "../../models/Product/Product";
 import { ProductCategory } from "../../models/Product/ProductDetails";
-import { CategoryName } from "../../models/CategoryName";
+import { CategoryName } from "../../models/Category/CategoryName";
 
 
 export const ProductUpdate = () => {
