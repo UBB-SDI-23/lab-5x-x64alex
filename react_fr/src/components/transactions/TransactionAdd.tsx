@@ -95,7 +95,7 @@ export const TransactionAdd = () => {
 							disablePortal
 							id="combo-box-demo"
 							options={clients.map((client) => client.clientLastName)}
-							sx={{ width: 300 }}
+							sx={{ mb: 2 }}
 							onChange={(e, value) => {
 								for (let i = 0; i < clients.length; i++) {
 									if(clients[i].clientLastName === value){
@@ -113,7 +113,7 @@ export const TransactionAdd = () => {
 							disablePortal
 							id="combo-box-demo"
 							options={products.map((product) => product.productName)}
-							sx={{ width: 300, mb: 2}}
+							sx={{ mb: 2}}
 							onChange={(e, value) => {
 								for (let i = 0; i < products.length; i++) {
 									if(products[i].productName === value){
