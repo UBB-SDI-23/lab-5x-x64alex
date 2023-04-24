@@ -31,7 +31,7 @@ export const AllCategories = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/categories/averagePriceProduct?pageNumber=${pageNumber-1}&pageSize=${pageSize}`)
+		fetch(`${BACKEND_API_URL}/categories/averagePriceProduct?pageNumber=${pageNumber}&pageSize=${pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setCategory(data);
@@ -54,12 +54,6 @@ export const AllCategories = () => {
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
-        			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
-      			</IconButton>
 				<Pagination count={20000} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){setPageNumber( Math.floor(value/10));  setMulti(10);}else{setPageNumber(value);  setMulti(1);}}}/>
 			</Stack>
 			 			
@@ -85,6 +79,14 @@ export const AllCategories = () => {
 						<TableBody>
 							{categories.map((category: CategoryProduct, index) => (
 								<TableRow key={category.categoryId}>
+									<TableCell component="th" scope="row">
+										{(pageNumber-1)*pageSize*multi+index+1}
+									</TableCell>
+									<TableCell component="th" scope="row">
+										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
+											{category.categoryName}
+										</Link>
+									</TableCell>
 									<TableCell align="right">{category.categoryPopularity}</TableCell>
 									<TableCell align="right">{category.categorySales}</TableCell>
 									<TableCell align="right">{category.categoryReturnsPerMonth}</TableCell>
