@@ -58,7 +58,7 @@ export const AllCategories = () => {
 					setPageNumber( Math.floor(value/10));  
 					setMulti(value*pageSize);
 				}
-					else{setPageNumber(value);  setMulti(value*pageSize);}
+					else{setPageNumber(value);  setMulti((value-1)*pageSize);}
 					}}/>
 			</Stack>
 			 			
