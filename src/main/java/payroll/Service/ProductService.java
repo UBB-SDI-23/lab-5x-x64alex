@@ -10,6 +10,7 @@ import payroll.Model.Category.CategoryDTO;
 import payroll.Model.Client.Client;
 import payroll.Model.DTO.*;
 import payroll.Model.Products.Product;
+import payroll.Model.Products.ProductNameDTO;
 import payroll.Model.Transactions.Transaction;
 import payroll.Repository.CategoryRepository;
 import payroll.Repository.ProductRepository;
@@ -45,6 +46,10 @@ public class ProductService {
         return productRepository.getTransactionsCount(productId);
     }
 
+    public List<ProductNameDTO> getProductNames(String givenString){
+        Pageable page = PageRequest.of(0, 10);
+        return this.productRepository.findProductNames(givenString, page);
+    }
 
     public Product saveProduct(ProductIdDTO productIdDTO) {
         Product product = new Product();

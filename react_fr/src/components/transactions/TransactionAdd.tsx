@@ -23,6 +23,10 @@ export const TransactionAdd = () => {
 	const [clients, setClients] = useState<ClientName[]>([]);
 	const [searchString, setSearchString] = useState("");
 
+
+    
+
+
 	const [transaction, setTransaction] = useState<TransactionIdDTO>({
 	    transactionDate: new Date(),
         transactionQuantity: 0,

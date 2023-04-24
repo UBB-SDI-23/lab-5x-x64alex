@@ -2,11 +2,13 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import payroll.Model.Client.ClientNameDTO;
 import payroll.Model.DTO.ProductClientDTO;
 import payroll.Model.DTO.ProductDTO;
 import payroll.Model.DTO.ProductIdDTO;
 import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;
+import payroll.Model.Products.ProductNameDTO;
 import payroll.Service.ProductService;
 
 import java.util.List;
@@ -26,6 +28,10 @@ public class ProductController {
         return this.productService.sortNumberOfProductsBought();
     }
 
+    @GetMapping("/products/names")
+    public List<ProductNameDTO> getProductNames(@RequestParam(defaultValue = "") String searchString) {
+        return this.productService.getProductNames(searchString);
+    }
     @GetMapping("/products/{productId}")
     public ProductDTO getOneProduct(@PathVariable("productId") Long productId){
         return this.productService.getOneProduct(productId);
