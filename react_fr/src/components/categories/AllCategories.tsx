@@ -11,6 +11,7 @@ import {
 	IconButton,
 	Tooltip,
 	Stack,
+	Pagination
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -57,6 +58,7 @@ export const AllCategories = () => {
 				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
         			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
       			</IconButton>
+				<Pagination count={11} defaultPage={6} boundaryCount={2} />
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
