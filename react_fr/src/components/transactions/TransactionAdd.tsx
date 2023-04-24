@@ -113,7 +113,7 @@ export const TransactionAdd = () => {
 							disablePortal
 							id="combo-box-demo"
 							options={products.map((product) => product.productName)}
-							sx={{ width: 300 }}
+							sx={{ width: 300, mb: 2}}
 							onChange={(e, value) => {
 								for (let i = 0; i < products.length; i++) {
 									if(products[i].productName === value){
@@ -121,7 +121,7 @@ export const TransactionAdd = () => {
 									}
 								}
 							}}
-							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							renderInput={(params) => <TextField {...params} label="Product Names" 	
 							onChange={(newValue) => {
 								setSearchString(newValue.target.value)
 							}}/>}
