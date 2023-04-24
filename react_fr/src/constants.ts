@@ -1,2 +1,2 @@
-export const  BACKEND_API_URL = "https://alexcant.mooo.com";
+export const  BACKEND_API_URL = "/api";
 
