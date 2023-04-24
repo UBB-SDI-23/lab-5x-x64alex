@@ -54,7 +54,12 @@ export const AllCategories = () => {
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){setPageNumber( Math.floor(value/10));  setMulti(10);}else{setPageNumber(value);  setMulti(1);}}}/>
+				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
+					setPageNumber( Math.floor(value/10));  
+					setMulti(value);
+				}
+					else{setPageNumber(value);  setMulti(value);}
+					}}/>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
@@ -80,7 +85,7 @@ export const AllCategories = () => {
 							{categories.map((category: CategoryProduct, index) => (
 								<TableRow key={category.categoryId}>
 									<TableCell component="th" scope="row">
-										{pageNumber*pageSize*multi+index+1}
+										{multi+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
