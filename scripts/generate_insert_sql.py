@@ -2,7 +2,7 @@ from faker import Faker
 import random as rand
 
 batches_no = 100 #1000 for last version
-inserts_no = 1 #1000 for last version
+inserts_no = 10 #1000 for last version
 many_to_many_no = inserts_no*10
 fake = Faker(False)
 
@@ -33,6 +33,7 @@ for i in range(inserts_no):
         f'\'{rand.randint(1, 1000)}\',\'{rand.randint(1, 100)}\',\'{rand.randint(1, 10000)}\')'+ end)
     file.write("\n")
 
+for i in range(inserts_no):
     file.write('INSERT INTO products(product_id,product_name,product_price,product_quantity,product_on_sale,product_weight,product_description,categoryid) VALUES ')
     for j in range(batches_no):
         end = ", "
