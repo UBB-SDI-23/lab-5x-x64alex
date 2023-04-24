@@ -58,7 +58,7 @@ export const AllCategories = () => {
 				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
         			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
       			</IconButton>
-				<Pagination count={2000} defaultPage={1} boundaryCount={11} hidePrevButton hideNextButton/>
+				<Pagination count={2000} defaultPage={1} siblingCount={6} boundaryCount={5} hidePrevButton hideNextButton/>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
