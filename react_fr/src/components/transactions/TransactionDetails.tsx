@@ -28,7 +28,7 @@ export const TransactionDetails = () => {
 				<CardContent>
 				<Stack  spacing={2}   alignItems="left">
 					<Stack direction="row" spacing={2}   alignItems="center">
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions`}>
 							<ArrowBackIcon />
 						</IconButton>{" "}
 						<h1>Transaction Details</h1>
@@ -60,11 +60,11 @@ export const TransactionDetails = () => {
 
 				</CardContent>
 				<CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${transactionId}/edit`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/edit`}>
 						<EditIcon />
 					</IconButton>
 
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${transactionId}/delete`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
 				</CardActions>

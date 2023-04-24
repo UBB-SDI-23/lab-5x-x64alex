@@ -22,6 +22,8 @@ import { ClientAdd } from './components/clients/ClientAdd'
 import { ClientUpdate } from './components/clients/ClientUpdate'
 import { AllTransactions } from './components/transactions/AllTransactions'
 import { TransactionDelete } from './components/transactions/TransactionDelete'
+import { TransactionAdd } from './components/transactions/TransactionAdd'
+import { TransactionDetails } from './components/transactions/TransactionDetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -52,7 +54,10 @@ function App() {
 					<Route path="/clients/:clientId/edit" element={<ClientUpdate />} />
 
 					<Route path="/transactions" element={<AllTransactions/>} />
+					<Route path="/transactions/add" element={<TransactionAdd />} />
+					<Route path="/transactions/:transactionId/details" element={<TransactionDetails />} />
 					<Route path="/transactions/:transactionId/delete" element={<TransactionDelete />} />
+					<Route path="/transactions/:transactionId/edit" element={<TransactionAdd />} />
 
 
 
