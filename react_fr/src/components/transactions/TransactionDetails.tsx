@@ -34,6 +34,7 @@ export const TransactionDetails = () => {
 						<h1>Transaction Details</h1>
 
 					</Stack>
+					<p>Transaction Date: {transaction?.transactionDate.toString()}</p>
 					<p>Transaction Quantity: {transaction?.transactionQuantity}</p>
                     <p>Transaction client:</p>
                     <ul>
@@ -50,7 +51,7 @@ export const TransactionDetails = () => {
                         <li>Price: {transaction?.productDTO.productPrice}</li>
                         <li>Quantity: {transaction?.productDTO.productQuantity}</li>
                         <li>Weight: {transaction?.productDTO.productWeight}</li>
-                        <li>OnSale: {transaction?.productDTO.productOnSale}</li>
+                        <li>OnSale: {String(transaction?.productDTO.productOnSale)}</li>
                     </ul>
 				</Stack>
 
