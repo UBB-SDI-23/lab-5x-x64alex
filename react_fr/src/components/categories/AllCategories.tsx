@@ -54,7 +54,7 @@ export const AllCategories = () => {
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				<Pagination count={20000} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){setPageNumber( Math.floor(value/10));  setMulti(10);}else{setPageNumber(value);  setMulti(1);}}}/>
+				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){setPageNumber( Math.floor(value/10));  setMulti(10);}else{setPageNumber(value);  setMulti(1);}}}/>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
