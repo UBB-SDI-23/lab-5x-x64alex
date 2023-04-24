@@ -2,8 +2,10 @@ package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
+import payroll.Model.Client.ClientNameDTO;
 import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Service.ClientService;
@@ -21,6 +23,11 @@ public class ClientController {
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){
         return this.clientService.getClients(pageNumber,pageSize).stream().map(client -> client.getClientDTO(clientService.getTransactionsCount(client.getClientId()))).toList();
+    }
+
+    @GetMapping("/names")
+    public List<ClientNameDTO> getCategoryNames(@RequestParam(defaultValue = "") String searchString) {
+        return this.clientService.getClientNames(searchString);
     }
 
     @GetMapping("/{clientId}")

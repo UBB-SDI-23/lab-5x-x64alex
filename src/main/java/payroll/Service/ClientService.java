@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.Client.Client;
+import payroll.Model.Client.ClientNameDTO;
 import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.DTO.ProductTransactionDTO;
 import payroll.Model.Products.Product;
@@ -33,6 +35,11 @@ public class ClientService implements ClientInterface{
         return this.clientRepository.save(client);
     }
 
+
+    public List<ClientNameDTO> getClientNames(String givenString){
+        Pageable page = PageRequest.of(0, 10);
+        return this.clientRepository.findClientLastNames(givenString, page);
+    }
 
     public Client saveProductsTransactions(Long clientId, ArrayList<ProductTransactionDTO> productTransactionDTOS) {
         Client client = this.clientRepository.findById(clientId).get();

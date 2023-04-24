@@ -42,7 +42,7 @@ for i in range(inserts_no):
         f'\'{rand.randint(1, 100000)}\',\'{bool(rand.getrandbits(1))}\',\'{rand.randint(1, 1000)}\',\'{rand.choice(productDescription)}_{i * batches_no + j + 1}\',{rand.randint(1, inserts_no*batches_no)})'+ end)
     file.write("\n")
 
-    file.write('INSERT INTO clients(client_id,client_first_name,client_last_name,client_email,client_address,client_phone_number) VALUES ')   
+    file.write('INSERT INTO clients(client_id,client_last_name,client_first_name,client_email,client_address,client_phone_number) VALUES ')   
     for j in range(batches_no):
         fakeName = fake.name()
         names = fakeName.split()

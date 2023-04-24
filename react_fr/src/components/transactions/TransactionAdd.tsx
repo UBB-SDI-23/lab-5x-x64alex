@@ -7,22 +7,37 @@ import {
     CardContent,
     Button,
     CardActions,
+    Autocomplete,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { Client } from "../../models/Client/Client";
 import { TransactionIdDTO } from "../../models/Transaction/TransactionIdDTO";
+import { ClientName } from "../../models/Client/ClientName";
 
 export const TransactionAdd = () => {
 	const navigate = useNavigate();
+	const [clients, setClients] = useState<ClientName[]>([]);
+	const [searchString, setSearchString] = useState("");
 
 	const [transaction, setTransaction] = useState<TransactionIdDTO>({
 	    transactionDate: new Date(),
-        transactionQuantity: 0
+        transactionQuantity: 0,
+        transactionId: 0,
+        clientId: 1,
+        productId: 1 
 	});
+
+    useEffect(() => {
+		fetch(`${BACKEND_API_URL}/clients/names?searchString=${searchString}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setClients(data);
+			});
+	}, [searchString]);
 
 	const addTransaction = (event: { preventDefault: () => void }) => {
 
@@ -64,10 +79,26 @@ export const TransactionAdd = () => {
 							onChange={(newValue) => transaction.transactionQuantity = Number(newValue.target.value)}
 						/>
 
-
+						<Autocomplete
+							disablePortal
+							id="combo-box-demo"
+							options={clients.map((client) => client.clientLastName)}
+							sx={{ width: 300 }}
+							onChange={(e, value) => {
+								for (let i = 0; i < clients.length; i++) {
+									if(clients[i].clientLastName === value){
+										transaction.clientId = clients[i].clientId;
+									}
+								}
+							}}
+							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							onChange={(newValue) => {
+								setSearchString(newValue.target.value)
+							}}/>}
+						/>
 					
 
-						<Button id = "submitButton" type="submit">Add Transactio </Button>
+						<Button id = "submitButton" type="submit">Add Transaction </Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
