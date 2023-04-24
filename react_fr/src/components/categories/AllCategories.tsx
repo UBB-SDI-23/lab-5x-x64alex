@@ -55,7 +55,7 @@ export const AllCategories = () => {
 					</Tooltip>
 				</IconButton>
 				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
-					if(value == Math.floor(value/10)){
+					if(value === Math.floor(value/10)){
 						setPageNumber( Math.floor(value/10)-1);  
 					}
 					else{
