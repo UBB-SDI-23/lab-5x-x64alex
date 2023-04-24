@@ -42,7 +42,7 @@ export const AllCategories = () => {
 	const [loading, setLoading] = useState(false);
     const [categories, setCategory] = useState<CategoryProduct[]>([]);
 
-	const [page, setPage] = useState(2)
+	const [page, setPage] = useState(1)
 	const [multi, setMulti] = useState(1)
 	return (
 		<Container>
@@ -85,14 +85,6 @@ export const AllCategories = () => {
 						<TableBody>
 							{categories.map((category: CategoryProduct, index) => (
 								<TableRow key={category.categoryId}>
-									<TableCell component="th" scope="row">
-										{(pageNumber-1)*pageSize*multi+index+1}
-									</TableCell>
-									<TableCell component="th" scope="row">
-										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
-											{category.categoryName}
-										</Link>
-									</TableCell>
 									<TableCell align="right">{category.categoryPopularity}</TableCell>
 									<TableCell align="right">{category.categorySales}</TableCell>
 									<TableCell align="right">{category.categoryReturnsPerMonth}</TableCell>
