@@ -17,6 +17,7 @@ import axios from "axios";
 import { Client } from "../../models/Client/Client";
 import { TransactionIdDTO } from "../../models/Transaction/TransactionIdDTO";
 import { ClientName } from "../../models/Client/ClientName";
+import { ProductName } from "../../models/Product/ProductName";
 
 export const TransactionAdd = () => {
 	const navigate = useNavigate();
@@ -24,7 +25,8 @@ export const TransactionAdd = () => {
 	const [searchString, setSearchString] = useState("");
 
 
-    
+    const [products, setProducts] = useState<ProductName[]>([]);
+	const [searchString2, setSearchString2] = useState("");
 
 
 	const [transaction, setTransaction] = useState<TransactionIdDTO>({
@@ -41,7 +43,13 @@ export const TransactionAdd = () => {
 			.then((data) => {
 				setClients(data);
 			});
-	}, [searchString]);
+
+        fetch(`${BACKEND_API_URL}/products/names?searchString=${searchString2}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setProducts(data);
+			});
+	}, [searchString, searchString2]);
 
 	const addTransaction = (event: { preventDefault: () => void }) => {
 
@@ -92,6 +100,24 @@ export const TransactionAdd = () => {
 								for (let i = 0; i < clients.length; i++) {
 									if(clients[i].clientLastName === value){
 										transaction.clientId = clients[i].clientId;
+									}
+								}
+							}}
+							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							onChange={(newValue) => {
+								setSearchString(newValue.target.value)
+							}}/>}
+						/>
+
+                        <Autocomplete
+							disablePortal
+							id="combo-box-demo"
+							options={products.map((product) => product.productName)}
+							sx={{ width: 300 }}
+							onChange={(e, value) => {
+								for (let i = 0; i < products.length; i++) {
+									if(products[i].productName === value){
+										transaction.productId = products[i].productId;
 									}
 								}
 							}}
