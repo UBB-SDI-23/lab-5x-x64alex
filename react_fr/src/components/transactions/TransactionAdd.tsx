@@ -14,26 +14,23 @@ import { BACKEND_API_URL } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { Client } from "../../models/Client/Client";
+import { TransactionIdDTO } from "../../models/Transaction/TransactionIdDTO";
 
 export const TransactionAdd = () => {
 	const navigate = useNavigate();
 
-	const [client, setclient] = useState<Client>({
-	    clientFirstName:"",
-        clientLastName:"",
-        clientEmail: "",
-        clientAddress: "",
-        clientPhoneNumber: "",
-        transactions: []
+	const [transaction, setTransaction] = useState<TransactionIdDTO>({
+	    transactionDate: new Date(),
+        transactionQuantity: 0
 	});
 
-	const addclient = (event: { preventDefault: () => void }) => {
+	const addTransaction = (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/clients`, client);
-			alert("Client added")
-			navigate("/clients");
+			axios.post(`${BACKEND_API_URL}/transactions`, transaction);
+			alert("Transaction added")
+			navigate("/transactions");
 		} catch (error) {
 			alert(error);
 		}
@@ -44,61 +41,33 @@ export const TransactionAdd = () => {
 			<Card>
 				<CardContent>
 					<Stack direction="row" spacing={2}   alignItems="center">
-						<IconButton component={Link} sx={{ mr: 3 }} to={`/clients`} >
+						<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions`} >
 							<ArrowBackIcon />
 						</IconButton>{" "}
 					</Stack>
 
-					<form onSubmit={addclient}>
+					<form onSubmit={addTransaction}>
 						<TextField
                             type="string"
-							id="name"
-							label="First Name"
+							label="Transaction date"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientFirstName = newValue.target.value}
+							onChange={(newValue) => {transaction.transactionDate = new Date(newValue.target.value)}}
 						/>
                         <TextField
-                            type="string"
-							id="name"
-							label="Last Name"
+                            type="number"
+							label="Transaction quantity"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientLastName = newValue.target.value}
+							onChange={(newValue) => transaction.transactionQuantity = Number(newValue.target.value)}
 						/>
-                        <TextField
-                            type="string"
-							id="name"
-							label="Email"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientEmail = newValue.target.value}
-						/>
-                        <TextField
-                            type="string"
-							id="name"
-							label="Address"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientAddress = newValue.target.value}
-						/>
-                        <TextField
-                            type="string"
-							id="name"
-							label="Phone Number"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => client.clientPhoneNumber = newValue.target.value}
-						/>
+
 
 					
 
-						<Button id = "submitButton" type="submit">Add Client</Button>
+						<Button id = "submitButton" type="submit">Add Transactio </Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
