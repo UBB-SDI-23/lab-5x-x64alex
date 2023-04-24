@@ -85,7 +85,7 @@ export const AllCategories = () => {
 							{categories.map((category: CategoryProduct, index) => (
 								<TableRow key={category.categoryId}>
 									<TableCell component="th" scope="row">
-										{multi+index+1}
+										{multi+index}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
