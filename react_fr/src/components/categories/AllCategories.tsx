@@ -42,6 +42,7 @@ export const AllCategories = () => {
 	const [loading, setLoading] = useState(false);
     const [categories, setCategory] = useState<CategoryProduct[]>([]);
 
+	const [page, setPage] = useState(2)
 	return (
 		<Container>
 			<h1>All categories</h1>
@@ -58,7 +59,7 @@ export const AllCategories = () => {
 				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
         			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
       			</IconButton>
-				<Pagination count={2000} defaultPage={1} siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton/>
+				<Pagination count={2000} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value)}}/>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
