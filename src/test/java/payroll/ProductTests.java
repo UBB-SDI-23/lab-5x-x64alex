@@ -37,7 +37,7 @@ public class ProductTests {
 
     @Test
     public void basicTest() throws Exception {
-        ProductIdDTO p = new ProductIdDTO(1L,"",3.0F,3,true,2.0,"");
+        ProductIdDTO p = new ProductIdDTO(1L,"",3.0F,3,true,2.0,"",(long) 0);
         List<ProductIdDTO> productList = new ArrayList<>();
         productList.add(p);
 
@@ -49,7 +49,7 @@ public class ProductTests {
 
     @Test
     public void filterTest() throws Exception {
-        ProductIdDTO p1 = new ProductIdDTO(1L,"",3.0F,3,true,2.0,"");
+        ProductIdDTO p1 = new ProductIdDTO(1L,"",3.0F,3,true,2.0,"",(long) 0);
         List<ProductIdDTO> productList = new ArrayList<>();
         List<ProductIdDTO> emptyProductList = new ArrayList<>();
         productList.add(p1);
