@@ -86,7 +86,7 @@ export const AllCategories = () => {
 							{categories.map((category: CategoryProduct, index) => (
 								<TableRow key={category.categoryId}>
 									<TableCell component="th" scope="row">
-										{pageNumber*pageSize*multi+index+1}
+										{(pageNumber-1)*pageSize*multi+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
