@@ -1,2 +1,2 @@
-/api/* http://alexcant.mooo.com:splat 200!
+/api/* http://alexcant.mooo.com:80/:splat 200!
 /* /index.html 200
