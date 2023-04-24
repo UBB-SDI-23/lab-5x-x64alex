@@ -20,7 +20,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Transactions")
+@Table(name = "Transactions", indexes = {@Index(name="name2",columnList = "clientId"),
+        @Index(name="name3",columnList = "productId")
+})
 @SequenceGenerator(name="seq", initialValue=1000000, allocationSize=100)
 public class Transaction {
     @Id

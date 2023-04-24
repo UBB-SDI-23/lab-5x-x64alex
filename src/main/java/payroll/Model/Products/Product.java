@@ -21,7 +21,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Products")
+@Table(name = "Products", indexes = {@Index(name="name1",columnList = "ProductQuantity"),
+        @Index(name="name4",columnList = "categoryID")
+})
 @SequenceGenerator(name="seq", initialValue=1000000, allocationSize=100)
 public class Product {
     @Id
