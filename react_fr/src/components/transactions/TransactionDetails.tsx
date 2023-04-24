@@ -34,7 +34,6 @@ export const TransactionDetails = () => {
 						<h1>Transaction Details</h1>
 
 					</Stack>
-					<p>Transaction Date: {new Date(transaction!.transactionDate).toLocaleDateString()}</p>
 					<p>Transaction Quantity: {transaction?.transactionQuantity}</p>
                     <p>Transaction client:</p>
                     <ul>
