@@ -56,9 +56,9 @@ export const AllCategories = () => {
 				</IconButton>
 				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
 					setPageNumber( Math.floor(value/10));  
-					setMulti(value);
+					setMulti(value*pageSize);
 				}
-					else{setPageNumber(value);  setMulti(value);}
+					else{setPageNumber(value);  setMulti(value*pageSize);}
 					}}/>
 			</Stack>
 			 			
