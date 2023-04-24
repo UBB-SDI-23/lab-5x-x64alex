@@ -14,7 +14,7 @@ export const TransactionDetails = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/categories/${transactionId}`);
+			const response = await fetch(`${BACKEND_API_URL}/transactions/${transactionId}`);
 			const data = await response.json();
 			setTransaction(data);
 
