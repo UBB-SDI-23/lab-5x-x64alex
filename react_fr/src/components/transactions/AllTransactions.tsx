@@ -84,7 +84,7 @@ export const AllTransactions = () => {
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/transactions/${transaction.transactionId}/details`} title="View client details">
-											{transaction.transactionDate.toString()}
+											{transaction.transactionDate.toDateString()}
 										</Link>
 									</TableCell>
 									<TableCell align="right">{transaction.transactionQuantity}</TableCell>
