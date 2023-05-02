@@ -31,4 +31,8 @@ public class PayrollApplication{
 		};
 	}
 
+	@Bean public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 }
