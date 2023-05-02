@@ -15,14 +15,19 @@ public class UserService {
     private UserRepository userRepository;
 
     public String registerUser(UserRegister userRegister){
-        // do check for username
-        User user = new User();
-        user.setUsername(userRegister.getUsername());
-        user.setPassword(bCryptPasswordEncoder().encode(userRegister.getPassword()));
+        try{
+            // do check for username
+            User user = new User();
+            user.setUsername(userRegister.getUsername());
+            user.setPassword(bCryptPasswordEncoder().encode(userRegister.getPassword()));
 
-        userRepository.save(user);
+            userRepository.save(user);
+            return "Successful";
+        }catch(Exception e){
+            return "Unsuccessful";
+        }
 
-        return "Succesful";
+
     }
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
