@@ -9,8 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import payroll.Controller.ProductController;
-import payroll.Model.DTO.ProductBoughtDTO;
-import payroll.Model.DTO.ProductIdDTO;
+import payroll.Model.Products.ProductIdDTO;
 import payroll.Service.ProductService;
 
 import java.util.ArrayList;

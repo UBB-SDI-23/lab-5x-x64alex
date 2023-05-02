@@ -6,8 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
-import payroll.Model.DTO.*;
 import payroll.Model.Products.Product;
+import payroll.Model.Products.ProductDTO;
 import payroll.Model.Transactions.Transaction;
 import payroll.Model.Transactions.TransactionDTO;
 import payroll.Model.Transactions.TransactionIdDTO;
@@ -15,7 +15,6 @@ import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
