@@ -1,13 +1,13 @@
 package payroll.Model.Category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import payroll.Model.Products.Product;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

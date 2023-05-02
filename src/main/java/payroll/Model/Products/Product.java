@@ -9,7 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.Category.Category;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import payroll.Model.Transactions.Transaction;
 
 import java.util.ArrayList;

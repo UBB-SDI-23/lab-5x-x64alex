@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;

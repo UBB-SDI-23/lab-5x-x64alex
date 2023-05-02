@@ -1,22 +1,40 @@
 package payroll.Model.User;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "UserProfile")
+@Table(name = "user_profiles")
 public class UserProfile {
+
     @Id
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String bio;
+
+    @Column
+    private String location;
+
+    @Column
+    private Date birthdate;
+
+    @Column
+    private String gender;
+
+    @Column
+    private String maritalStatus;
 
 
-    @Column(name = "accountActivated")
-    private Boolean accountActivated;
 }
