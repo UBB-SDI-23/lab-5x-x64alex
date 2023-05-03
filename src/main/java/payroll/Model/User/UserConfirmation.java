@@ -12,8 +12,8 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_jwts")
-public class UserJwt {
+@Table(name = "user_confirmation")
+public class UserConfirmation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class UserJwt {
     private Date expirationDate;
 
     @Column(length = 2000)
-    private String jwtToken;
+    private String confirmationToken;
 
     @Column
     private String name;

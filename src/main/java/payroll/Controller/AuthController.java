@@ -1,6 +1,5 @@
 package payroll.Controller;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,7 @@ import payroll.Exception.JwtTokenInvalidException;
 import payroll.Model.RegisterDTO;
 import payroll.Model.User.*;
 import payroll.Repository.RoleRepository;
-import payroll.Repository.UserJwtRepository;
+import payroll.Repository.UserConfirmationRepository;
 import payroll.Repository.UserProfileRepository;
 import payroll.Repository.UserRepository;
 import payroll.Security.JWT.JwtUtils;
@@ -44,7 +43,7 @@ public class AuthController {
 
     UserProfileRepository userProfileRepository;
 
-    UserJwtRepository userJwtRepository;
+    UserConfirmationRepository userConfirmationRepository;
 
     RoleRepository roleRepository;
 
@@ -55,14 +54,14 @@ public class AuthController {
     public AuthController(AuthenticationManager authenticationManager,
                           UserRepository userRepository,
                           UserProfileRepository userProfileRepository,
-                          UserJwtRepository userJwtRepository,
+                          UserConfirmationRepository userConfirmationRepository,
                           RoleRepository roleRepository,
                           PasswordEncoder encoder,
                           JwtUtils jwtUtils) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.userProfileRepository = userProfileRepository;
-        this.userJwtRepository = userJwtRepository;
+        this.userConfirmationRepository = userConfirmationRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
         this.jwtUtils = jwtUtils;
@@ -75,70 +74,66 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        if (userJwtRepository.existsByUsername(signUpRequest.getUsername())) {
-            userJwtRepository.deleteByUsername(signUpRequest.getUsername());
+        if (userConfirmationRepository.existsByUsername(signUpRequest.getUsername())) {
+            userConfirmationRepository.deleteByUsername(signUpRequest.getUsername());
         }
 
-        String jwtToken = jwtUtils.generateTokenFromUsernameRegister(signUpRequest.getUsername()).getValue();
+        String confirmationToken = UUID.randomUUID().toString();
 
-        UserJwt userJwtPair = new UserJwt();
-        userJwtPair.setUsername(signUpRequest.getUsername());
-        userJwtPair.setPassword(encoder.encode(signUpRequest.getPassword()));
-        userJwtPair.setJwtToken(jwtToken);
+        UserConfirmation userConfirmation = new UserConfirmation();
+        userConfirmation.setUsername(signUpRequest.getUsername());
+        userConfirmation.setPassword(encoder.encode(signUpRequest.getPassword()));
+        userConfirmation.setConfirmationToken(confirmationToken);
 
-        userJwtPair.setName(signUpRequest.getName());
-        userJwtPair.setBio(signUpRequest.getBio());
-        userJwtPair.setGender(signUpRequest.getGender());
-        userJwtPair.setLocation(signUpRequest.getLocation());
-        userJwtPair.setBirthdate(signUpRequest.getBirthdate());
+        userConfirmation.setName(signUpRequest.getName());
+        userConfirmation.setBio(signUpRequest.getBio());
+        userConfirmation.setGender(signUpRequest.getGender());
+        userConfirmation.setLocation(signUpRequest.getLocation());
+        userConfirmation.setBirthdate(signUpRequest.getBirthdate());
 
         Calendar date = Calendar.getInstance();
         long timeInSecs = date.getTimeInMillis();
         Date afterAdding10Mins = new Date(timeInSecs + (10 * 60 * 1000));
 
-        userJwtPair.setExpirationDate(afterAdding10Mins);
+        userConfirmation.setExpirationDate(afterAdding10Mins);
 
-        userJwtRepository.save(userJwtPair);
+        userConfirmationRepository.save(userConfirmation);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new RegisterDTO(userJwtPair.getUsername(), userJwtPair.getJwtToken()));
+                .body(new RegisterDTO(userConfirmation.getUsername(), userConfirmation.getConfirmationToken()));
     }
 
-    @PostMapping("register/confirm/{jwtToken}")
-    public ResponseEntity<?> confirmUser(@PathVariable String jwtToken) {
+    @PostMapping("register/confirm/{confirmationToken}")
+    public ResponseEntity<?> confirmUser(@PathVariable String confirmationToken) {
 
-        if (!userJwtRepository.existsByJwtToken(jwtToken)) {
+        if (!userConfirmationRepository.existsByConfirmationToken(confirmationToken)) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Token is invalid!"));
         }
 
-        UserJwt userJwt = userJwtRepository.findByJwtToken(jwtToken);
-        System.out.println(userJwt.getExpirationDate());
+        UserConfirmation userConfirmation = userConfirmationRepository.findByConfirmationToken(confirmationToken);
         Date now = new Date();
-        if(now.compareTo(userJwt.getExpirationDate())>0){
+        if(now.compareTo(userConfirmation.getExpirationDate())>0){
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Token has expired!"));
         }
 
-        if (! jwtUtils.validateJwtToken(userJwt.getJwtToken()))
-            throw new JwtTokenInvalidException(userJwt.getJwtToken());
-
         UserProfile userProfile = new UserProfile();
-        userProfile.setBio(userJwt.getBio());
-        userProfile.setName(userJwt.getName());
-        userProfile.setBirthdate(userJwt.getBirthdate());
-        userProfile.setGender(userJwt.getGender());
-        userProfile.setLocation(userJwt.getLocation());
+        userProfile.setBio(userConfirmation.getBio());
+        userProfile.setName(userConfirmation.getName());
+        userProfile.setBirthdate(userConfirmation.getBirthdate());
+        userProfile.setGender(userConfirmation.getGender());
+        userProfile.setLocation(userConfirmation.getLocation());
 
 
         userProfileRepository.save(userProfile);
 
         User user = new User();
-        user.setUsername(userJwt.getUsername());
-        user.setPassword(userJwt.getPassword());
+        user.setUsername(userConfirmation.getUsername());
+        user.setPassword(userConfirmation.getPassword());
 
         Set<Role> roles = new HashSet<>();
         Role userRole = new Role();
@@ -151,7 +146,7 @@ public class AuthController {
 
         user.setUserProfile(userProfile);
 
-        userJwtRepository.delete(userJwt);
+        userConfirmationRepository.delete(userConfirmation);
 
         userRepository.save(user);
         return ResponseEntity

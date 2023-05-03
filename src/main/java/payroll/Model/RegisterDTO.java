@@ -11,6 +11,6 @@ public class RegisterDTO {
 
     String username;
 
-    String jwtToken;
+    String confirmationToken;
 
 }
