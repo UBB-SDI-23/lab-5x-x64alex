@@ -1,10 +1,13 @@
 package payroll.Security.Payload.request;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,5 +20,20 @@ public class SignupRequest {
 
     @NotBlank
     private String password;
+
+    @Column
+    private String name;
+
+    @Column
+    private String gender;
+
+    @Column
+    private String bio;
+
+    @Column
+    private String location;
+
+    @Column
+    private Date birthdate;
 
 }

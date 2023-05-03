@@ -45,7 +45,7 @@ public class UserService {
                     userProfile.setBio(newUserProfile.getBio());
                     userProfile.setLocation(newUserProfile.getLocation());
                     userProfile.setGender(newUserProfile.getGender());
-                    userProfile.setMaritalStatus(newUserProfile.getMaritalStatus());
+                    userProfile.setName(newUserProfile.getName());
                     userProfile.setBirthdate(newUserProfile.getBirthdate());
                     return userProfileRepository.save(userProfile);
                 })

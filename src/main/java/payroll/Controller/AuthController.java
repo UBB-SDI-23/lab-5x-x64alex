@@ -86,11 +86,15 @@ public class AuthController {
         userJwtPair.setPassword(encoder.encode(signUpRequest.getPassword()));
         userJwtPair.setJwtToken(jwtToken);
 
+        userJwtPair.setName(signUpRequest.getName());
+        userJwtPair.setBio(signUpRequest.getBio());
+        userJwtPair.setGender(signUpRequest.getGender());
+        userJwtPair.setLocation(signUpRequest.getLocation());
+        userJwtPair.setBirthdate(signUpRequest.getBirthdate());
+
         Calendar date = Calendar.getInstance();
-        System.out.println("Current Date and TIme : " + date.getTime());
         long timeInSecs = date.getTimeInMillis();
         Date afterAdding10Mins = new Date(timeInSecs + (10 * 60 * 1000));
-        System.out.println("After adding 10 mins : " + afterAdding10Mins);
 
         userJwtPair.setExpirationDate(afterAdding10Mins);
 
@@ -122,17 +126,24 @@ public class AuthController {
         if (! jwtUtils.validateJwtToken(userJwt.getJwtToken()))
             throw new JwtTokenInvalidException(userJwt.getJwtToken());
 
-        User user = new User();
         UserProfile userProfile = new UserProfile();
+        userProfile.setBio(userJwt.getBio());
+        userProfile.setName(userJwt.getName());
+        userProfile.setBirthdate(userJwt.getBirthdate());
+        userProfile.setGender(userJwt.getGender());
+        userProfile.setLocation(userJwt.getLocation());
+
+
         userProfileRepository.save(userProfile);
 
+        User user = new User();
         user.setUsername(userJwt.getUsername());
         user.setPassword(userJwt.getPassword());
 
         Set<Role> roles = new HashSet<>();
         Role userRole = new Role();
 
-        userRole.setName(ERole.ROLE_USER);
+        userRole.setName(ERole.ROLE_REGULAR );
         roleRepository.save(userRole);
         roles.add(userRole);
         user.setRoles(roles);

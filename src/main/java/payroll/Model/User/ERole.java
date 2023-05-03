@@ -2,7 +2,7 @@ package payroll.Model.User;
 
 public enum ERole {
 
-    ROLE_USER,
+    ROLE_REGULAR,
 
     ROLE_MODERATOR,
 

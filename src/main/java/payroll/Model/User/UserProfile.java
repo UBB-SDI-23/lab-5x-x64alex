@@ -22,6 +22,12 @@ public class UserProfile {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
+    private String gender;
+
+    @Column
     private String bio;
 
     @Column
@@ -30,11 +36,9 @@ public class UserProfile {
     @Column
     private Date birthdate;
 
-    @Column
-    private String gender;
 
-    @Column
-    private String maritalStatus;
+
+
 
 
 }

@@ -30,4 +30,19 @@ public class UserJwt {
 
     @Column(length = 2000)
     private String jwtToken;
+
+    @Column
+    private String name;
+
+    @Column
+    private String gender;
+
+    @Column
+    private String bio;
+
+    @Column
+    private String location;
+
+    @Column
+    private Date birthdate;
 }
