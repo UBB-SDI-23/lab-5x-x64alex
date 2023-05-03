@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "Clients")
+
 public class Client {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
