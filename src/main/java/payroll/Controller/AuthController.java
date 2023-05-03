@@ -1,8 +1,7 @@
 package payroll.Controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -87,6 +86,14 @@ public class AuthController {
         userJwtPair.setPassword(encoder.encode(signUpRequest.getPassword()));
         userJwtPair.setJwtToken(jwtToken);
 
+        Calendar date = Calendar.getInstance();
+        System.out.println("Current Date and TIme : " + date.getTime());
+        long timeInSecs = date.getTimeInMillis();
+        Date afterAdding10Mins = new Date(timeInSecs + (10 * 60 * 1000));
+        System.out.println("After adding 10 mins : " + afterAdding10Mins);
+
+        userJwtPair.setExpirationDate(afterAdding10Mins);
+
         userJwtRepository.save(userJwtPair);
 
         return ResponseEntity
@@ -104,6 +111,14 @@ public class AuthController {
         }
 
         UserJwt userJwt = userJwtRepository.findByJwtToken(jwtToken);
+        System.out.println(userJwt.getExpirationDate());
+        Date now = new Date();
+        if(now.compareTo(userJwt.getExpirationDate())>0){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Token has expired!"));
+        }
+
         if (! jwtUtils.validateJwtToken(userJwt.getJwtToken()))
             throw new JwtTokenInvalidException(userJwt.getJwtToken());
 

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -23,6 +24,9 @@ public class UserJwt {
 
     @Column
     private String password;
+
+    @Column
+    private Date expirationDate;
 
     @Column(length = 2000)
     private String jwtToken;
