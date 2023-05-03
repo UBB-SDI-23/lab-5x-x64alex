@@ -9,6 +9,7 @@ import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.Products.ProductTransactionDTO;
 import payroll.Service.ClientService;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Transactional
     @GetMapping()
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){

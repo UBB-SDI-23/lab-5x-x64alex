@@ -72,24 +72,10 @@ public class JwtUtils {
                 .build();
     }
 
-    public ResponseCookie generateTokenFromUsernameRegister(String username) {
-        String token = Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + 10 * 60 * 1000)) // 10 minutes available
-                .signWith(SignatureAlgorithm.HS512, this.jwtSecret)
-                .compact();
-
-        return ResponseCookie.from(this.jwtCookie, token)
-                .path("/api/register/confirm")
-                .httpOnly(true)
-                .build();
-    }
-
     public ResponseCookie getCleanJwtCookie() {
         String token = Jwts.builder()
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime())) // 0 seconds available
+                .setExpiration(new Date((new Date()).getTime() + this.jwtExpirationMs)) // 1 day available
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
 

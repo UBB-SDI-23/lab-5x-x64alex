@@ -22,7 +22,6 @@ import payroll.Security.Services.UserDetailsServiceImpl;
 
 import java.util.Arrays;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(

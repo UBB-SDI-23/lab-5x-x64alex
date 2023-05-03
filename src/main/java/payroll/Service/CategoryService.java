@@ -1,6 +1,7 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class CategoryService {
     public List<Category> getCategoryList(){
         return  this.categoryRepository.findAll();
     }
+
+    public long getUserIdForCategory(long categoryId){return categoryId;}
 
     public List<CategoryNameDTO> getCategoryNames(String givenString){
         Pageable page = PageRequest.of(0, 10);
