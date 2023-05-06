@@ -92,6 +92,8 @@ public class Product {
 
         product.setTransactionsCount(transactionsCount);
 
+        product.setUserName(user.getUsername());
+
         return product;
     }
 

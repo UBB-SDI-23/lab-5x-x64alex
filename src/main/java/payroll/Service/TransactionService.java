@@ -3,6 +3,8 @@ package payroll.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
@@ -14,8 +16,10 @@ import payroll.Model.Transactions.TransactionIdDTO;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
+import payroll.Security.Services.UserDetailsImpl;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TransactionService {
@@ -26,6 +30,19 @@ public class TransactionService {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    public Boolean hasCurrentUserAccess(long transactionId){
+        Long userId = this.transactionRepository.getById(transactionId).getUser().getId();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            if (authentication.getPrincipal() instanceof UserDetailsImpl userDetails) {
+                Long currentUserId = userDetails.getId();
+                return Objects.equals(userId, currentUserId);
+            }
+        }
+        return false;
+    }
 
     public Transaction saveTransaction(TransactionIdDTO transactionIdDTO) {
         Client client = clientRepository.findById(transactionIdDTO.getClientId()).get();
