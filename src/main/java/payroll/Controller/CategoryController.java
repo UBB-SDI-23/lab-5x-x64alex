@@ -23,12 +23,6 @@ public class CategoryController {
         return this.categoryService.getCategoryNames(searchString);
     }
 
-
-    @GetMapping("/orderByAveragePriceProduct")
-    public List<CategoryProductDTO> getCategoryProducts() {
-        return this.categoryService.orderByAveragePriceProduct();
-    }
-
     @GetMapping("/averagePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts(@RequestParam(defaultValue = "0") int pageNumber,
                                                         @RequestParam(defaultValue = "100") int pageSize) {
@@ -37,7 +31,7 @@ public class CategoryController {
 
     @GetMapping("/{categoryId}")
     public CategoryProductIdDTO getOne(@PathVariable("categoryId") Long categoryId) {
-        return this.categoryService.getOne(categoryId).getCategoryProductIdDTO();
+        return this.categoryService.getOne(categoryId);
     }
     @PostMapping()
     @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")

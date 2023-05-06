@@ -3,8 +3,11 @@ package payroll.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import payroll.Model.Client.Client;
+import payroll.Model.Client.ClientGetOneDTO;
 import payroll.Model.Client.ClientNameDTO;
 import payroll.Model.Client.ClientUpdateDTO;
 import payroll.Model.Products.ProductTransactionDTO;
@@ -13,12 +16,15 @@ import payroll.Model.Transactions.Transaction;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
+import payroll.Repository.UserRepository;
+import payroll.Security.Services.UserDetailsImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
-public class ClientService implements ClientInterface{
+public class ClientService{
     @Autowired
     private ClientRepository clientRepository;
 
@@ -26,14 +32,32 @@ public class ClientService implements ClientInterface{
     private ProductRepository productRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private TransactionRepository transactionRepository;
 
 
-    @Override
     public Client saveClient(Client client) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = ((UserDetailsImpl) principal).getId();
+        client.setUser(userRepository.getById(userId));
+
         return this.clientRepository.save(client);
     }
 
+    public Boolean hasCurrentUserAccess(long clientId){
+        Long categoryUserId = this.clientRepository.getById(clientId).getUser().getId();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            if (authentication.getPrincipal() instanceof UserDetailsImpl userDetails) {
+                Long currentUserId = userDetails.getId();
+                return Objects.equals(categoryUserId, currentUserId);
+            }
+        }
+        return false;
+    }
 
     public List<ClientNameDTO> getClientNames(String givenString){
         Pageable page = PageRequest.of(0, 10);
@@ -69,7 +93,9 @@ public class ClientService implements ClientInterface{
         return clientRepository.getTransactionsCount(clientId);
     }
 
-    public Client getOne(Long clientId) {return  this.clientRepository.findById(clientId).get(); }
+    public ClientGetOneDTO getOne(Long clientId) {
+        return this.clientRepository.findById(clientId).get().getClientGetOneDTO();
+    }
 
     public Client updateClient(ClientUpdateDTO client, Long clientId) {
         Client foundClient = this.clientRepository.findById(clientId).get();
@@ -80,7 +106,6 @@ public class ClientService implements ClientInterface{
         foundClient.setClientEmail(client.getClientEmail());
         foundClient.setClientAddress(client.getClientAddress());
         foundClient.setClientPhoneNumber(client.getClientPhoneNumber());
-
 
         return this.clientRepository.save(foundClient);
     }

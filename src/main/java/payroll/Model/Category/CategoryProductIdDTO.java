@@ -21,5 +21,5 @@ public class CategoryProductIdDTO {
     private double categoryReturnsPerMonth;
     private int CategoryProfitability;
     private List<Product> products;
-    private Long userId;
+    private String userName;
 }

@@ -3,10 +3,7 @@ package payroll.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import payroll.Model.Client.Client;
-import payroll.Model.Client.ClientDTO;
-import payroll.Model.Client.ClientNameDTO;
-import payroll.Model.Client.ClientUpdateDTO;
+import payroll.Model.Client.*;
 import payroll.Model.Products.ProductTransactionDTO;
 import payroll.Service.ClientService;
 
@@ -27,12 +24,12 @@ public class ClientController {
     }
 
     @GetMapping("/names")
-    public List<ClientNameDTO> getCategoryNames(@RequestParam(defaultValue = "") String searchString) {
+    public List<ClientNameDTO> getClientNames(@RequestParam(defaultValue = "") String searchString) {
         return this.clientService.getClientNames(searchString);
     }
 
     @GetMapping("/{clientId}")
-    public Client getOne(@PathVariable("clientId") Long clientId){
+    public ClientGetOneDTO getOne(@PathVariable("clientId") Long clientId){
         return this.clientService.getOne(clientId);
     }
 
@@ -49,13 +46,13 @@ public class ClientController {
     }
 
     @PutMapping("/{clientId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @clientService.hasCurrentUserAccess(#clientId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Client updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
         return this.clientService.updateClient(client, clientId);
     }
 
     @DeleteMapping("/{clientId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @clientService.hasCurrentUserAccess(#clientId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteClient(@PathVariable("clientId") Long clientId){
         this.clientService.deleteClients(clientId);
         return "Category deleted";

@@ -61,7 +61,7 @@ public class Client {
     private User user;
 
     @JsonIgnore
-    public ClientDTO getClientDTO(int transactionsCount ){
+    public ClientDTO getClientDTO(int transactionsCount){
         ClientDTO clientDTO = new ClientDTO();
 
         clientDTO.setClientId(clientId);
@@ -71,9 +71,25 @@ public class Client {
         clientDTO.setClientLastName(clientLastName);
         clientDTO.setClientPhoneNumber(clientPhoneNumber);
 
-       // clientDTO.setClientId(cl);
+        clientDTO.setUserName(user.getUsername());
 
         clientDTO.setTransactionsCount(transactionsCount);
+        return clientDTO;
+    }
+
+    @JsonIgnore
+    public ClientGetOneDTO getClientGetOneDTO(){
+        ClientGetOneDTO clientDTO = new ClientGetOneDTO();
+
+        clientDTO.setClientId(clientId);
+        clientDTO.setClientEmail(clientEmail);
+        clientDTO.setClientAddress(clientAddress);
+        clientDTO.setClientFirstName(clientFirstName);
+        clientDTO.setClientLastName(clientLastName);
+        clientDTO.setClientPhoneNumber(clientPhoneNumber);
+
+        clientDTO.setUserName(user.getUsername());
+
         return clientDTO;
     }
 }

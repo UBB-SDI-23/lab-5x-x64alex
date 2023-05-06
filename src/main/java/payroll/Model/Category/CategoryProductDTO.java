@@ -19,4 +19,6 @@ public class CategoryProductDTO {
 
     private int categoryNumberProducts;
     private double categoryAveragePrice;
+
+    private String userName;
 }

@@ -25,7 +25,7 @@ public class CategoryService {
     @Autowired
     private UserRepository userRepository;
 
-    public Category saveCategory(Category category) {   
+    public Category saveCategory(Category category) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long userId = ((UserDetailsImpl) principal).getId();
 
@@ -76,7 +76,9 @@ public class CategoryService {
         return categoryDTOS;
     }
 
-    public Category getOne(Long categoryID) {return  this.categoryRepository.findById(categoryID).get(); }
+    public CategoryProductIdDTO getOne(Long categoryID) {
+        return this.categoryRepository.findById(categoryID).get().getCategoryProductIdDTO();
+    }
 
     public Category updateCategory(CategoryNoProductDTO category, Long categoryId) {
         Category foundCategory = this.categoryRepository.findById(categoryId).get();
@@ -109,7 +111,9 @@ public class CategoryService {
 
            Integer numberProducts = this.categoryRepository.getNumberProducts(category.getCategoryId());
 
-           return category.getCategoryProductDTO(numberProducts, categoryAvgPrice);}
+           String username = this.userRepository.getById(category.getUser().getId()).getUsername();
+
+           return category.getCategoryProductDTO(numberProducts, categoryAvgPrice, username);}
        ).toList();
 
     }
