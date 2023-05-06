@@ -1,6 +1,7 @@
 package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Products.ProductClientDTO;
 import payroll.Model.Products.ProductDTO;
@@ -64,6 +65,7 @@ public class ProductController {
         return this.productService.getFilterGreaterThan(filterValue,startId,endId).stream().map(product -> product.getProductAggregate(productService.getTransactionsCount(product.getProductId()))).toList();
     }
     @PostMapping("/products")
+    @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Product saveProduct(@RequestBody ProductIdDTO product){
         return this.productService.saveProduct(product);
     }

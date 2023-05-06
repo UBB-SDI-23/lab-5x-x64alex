@@ -1,6 +1,7 @@
 package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Client.ClientDTO;
@@ -19,7 +20,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @Transactional
     @GetMapping()
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){
@@ -37,6 +37,7 @@ public class ClientController {
     }
 
     @PostMapping()
+    @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Client saveClient(@RequestBody Client client){
         return this.clientService.saveClient(client);
     }

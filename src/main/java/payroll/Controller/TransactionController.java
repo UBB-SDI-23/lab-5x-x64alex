@@ -1,6 +1,7 @@
 package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Transactions.TransactionAvgClientOrderQuantity;
 import payroll.Model.Transactions.TransactionDTO;
@@ -26,6 +27,7 @@ public class TransactionController {
         return this.transactionService.getOneTransaction(transactionId);
     }
     @PostMapping()
+    @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Transaction saveTransaction(@RequestBody TransactionIdDTO transactionIdDTO){
         return this.transactionService.saveTransaction(transactionIdDTO);
     }

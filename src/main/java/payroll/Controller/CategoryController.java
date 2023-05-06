@@ -52,7 +52,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    @PreAuthorize("hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteCategory(@PathVariable("categoryId") Long categoryId) {
         this.categoryService.deleteCategory(categoryId);
         return "Category deleted";
