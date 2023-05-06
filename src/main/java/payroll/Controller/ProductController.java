@@ -78,7 +78,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @productService .hasCurrentUserAccess(#productId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @productService.hasCurrentUserAccess(#productId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteProduct(@PathVariable("productId") Long productId){
         this.productService.deleteProduct(productId);
         return "Product deleted";

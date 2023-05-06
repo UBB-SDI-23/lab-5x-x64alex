@@ -16,6 +16,7 @@ import payroll.Model.Transactions.TransactionIdDTO;
 import payroll.Repository.ClientRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
+import payroll.Repository.UserRepository;
 import payroll.Security.Services.UserDetailsImpl;
 
 import java.util.List;
@@ -30,6 +31,9 @@ public class TransactionService {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Boolean hasCurrentUserAccess(long transactionId){
         Long userId = this.transactionRepository.getById(transactionId).getUser().getId();
@@ -56,6 +60,11 @@ public class TransactionService {
 
         transaction.setProduct(product);
         transaction.setClient(client);
+
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = ((UserDetailsImpl) principal).getId();
+        transaction.setUser(userRepository.getById(userId));
 
         return transactionRepository.save(transaction);
     }
@@ -85,6 +94,10 @@ public class TransactionService {
 
         transactionDTO.setProductDTO(productDTO);
         transactionDTO.setClientDTO(clientDTO);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = ((UserDetailsImpl) principal).getId();
+        transactionDTO.setUserName(userRepository.getById(userId).getUsername());
 
         return transactionDTO;
     }

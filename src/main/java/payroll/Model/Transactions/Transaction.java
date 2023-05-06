@@ -60,11 +60,11 @@ public class Transaction {
         transactionAvgClientOrderQuantity.setTransactionId(transactionId);
         transactionAvgClientOrderQuantity.setTransactionDate(transactionDate);
         transactionAvgClientOrderQuantity.setTransactionQuantity(transactionQuantity);
-
         transactionAvgClientOrderQuantity.setClientId(client.getClientId());
         transactionAvgClientOrderQuantity.setProductId(product.getProductId());
 
         transactionAvgClientOrderQuantity.setAvgClientOrderQuantity(orderQuantity);
+        transactionAvgClientOrderQuantity.setUserName(user.getUsername());
 
         return transactionAvgClientOrderQuantity;
     }

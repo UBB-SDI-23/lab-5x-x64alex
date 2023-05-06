@@ -12,7 +12,7 @@ import payroll.Service.TransactionService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionController {
     @Autowired
     TransactionService transactionService;
@@ -33,11 +33,13 @@ public class TransactionController {
     }
 
     @PutMapping("/{transactionId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @transactionService.hasCurrentUserAccess(#transactionId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Transaction updateTransaction(@RequestBody TransactionIdDTO transactionIdDTO, @PathVariable("transactionId") Long transactionId){
         return this.transactionService.updateTransaction(transactionIdDTO, transactionId);
     }
 
     @DeleteMapping("/{transactionId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @transactionService.hasCurrentUserAccess(#transactionId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteTransaction(@PathVariable("transactionId") Long transactionId){
         this.transactionService.deleteTransaction(transactionId);
         return "Transaction deleted";
