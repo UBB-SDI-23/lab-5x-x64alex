@@ -12,6 +12,7 @@ import javax.persistence.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;
+import payroll.Model.User.User;
 
 import java.util.Date;
 
@@ -46,6 +47,11 @@ public class Transaction {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Product product;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @JsonIgnore
     public TransactionAvgClientOrderQuantity getTransactionAvgClientOrderQuantity(int orderQuantity){

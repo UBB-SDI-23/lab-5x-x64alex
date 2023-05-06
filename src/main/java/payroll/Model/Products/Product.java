@@ -11,6 +11,7 @@ import payroll.Model.Category.Category;
 
 import javax.persistence.*;
 import payroll.Model.Transactions.Transaction;
+import payroll.Model.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,11 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @JsonIgnore
     public ProductDTO getProductDTO(){

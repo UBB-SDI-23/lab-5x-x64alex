@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.Products.Product;
+import payroll.Model.User.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -42,6 +45,12 @@ public class Category {
             cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
+
     @JsonIgnore
     public CategoryDTO getCategoryDTO(){
         CategoryDTO categoryDTO = new CategoryDTO();
@@ -71,5 +80,21 @@ public class Category {
         return categoryDTO;
     }
 
+    @JsonIgnore
+    public CategoryProductIdDTO getCategoryProductIdDTO() {
+        CategoryProductIdDTO categoryDTO = new CategoryProductIdDTO();
+
+        categoryDTO.setCategoryId(categoryId);
+        categoryDTO.setCategoryName(categoryName);
+        categoryDTO.setCategoryPopularity(categoryPopularity);
+        categoryDTO.setCategoryReturnsPerMonth(categoryReturnsPerMonth);
+        categoryDTO.setCategoryProfitability(categoryProfitability);
+        categoryDTO.setCategorySales(categorySales);
+        categoryDTO.setProducts(products);
+
+        categoryDTO.setUserId(user.getId());
+
+        return categoryDTO;
+    }
 
 }

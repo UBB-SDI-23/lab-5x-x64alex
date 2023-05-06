@@ -43,16 +43,19 @@ public class ClientController {
     }
 
     @PostMapping("/{clientId}/products")
+    @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Client saveClientProducts(@PathVariable("clientId") Long clientId, @RequestBody ArrayList<ProductTransactionDTO> client){
         return this.clientService.saveProductsTransactions(clientId, client);
     }
 
     @PutMapping("/{clientId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Client updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
         return this.clientService.updateClient(client, clientId);
     }
 
     @DeleteMapping("/{clientId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteClient(@PathVariable("clientId") Long clientId){
         this.clientService.deleteClients(clientId);
         return "Category deleted";

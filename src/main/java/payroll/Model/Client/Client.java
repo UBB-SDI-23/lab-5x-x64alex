@@ -9,7 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.Transactions.Transaction;
+import payroll.Model.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +54,12 @@ public class Client {
             cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
+
     @JsonIgnore
     public ClientDTO getClientDTO(int transactionsCount ){
         ClientDTO clientDTO = new ClientDTO();
@@ -60,6 +70,8 @@ public class Client {
         clientDTO.setClientFirstName(clientFirstName);
         clientDTO.setClientLastName(clientLastName);
         clientDTO.setClientPhoneNumber(clientPhoneNumber);
+
+       // clientDTO.setClientId(cl);
 
         clientDTO.setTransactionsCount(transactionsCount);
         return clientDTO;

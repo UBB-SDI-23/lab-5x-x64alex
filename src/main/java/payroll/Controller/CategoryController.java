@@ -36,8 +36,8 @@ public class CategoryController {
     }
 
     @GetMapping("/{categoryId}")
-    public Category getOne(@PathVariable("categoryId") Long categoryId) {
-        return this.categoryService.getOne(categoryId);
+    public CategoryProductIdDTO getOne(@PathVariable("categoryId") Long categoryId) {
+        return this.categoryService.getOne(categoryId).getCategoryProductIdDTO();
     }
     @PostMapping()
     @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
@@ -46,13 +46,13 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.hasCurrentUserAccess(#categoryId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Category updateCategory(@RequestBody CategoryNoProductDTO category, @PathVariable("categoryId") Long categoryId) {
         return this.categoryService.updateCategory(category, categoryId);
     }
 
     @DeleteMapping("/{categoryId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.hasCurrentUserAccess(#categoryId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteCategory(@PathVariable("categoryId") Long categoryId) {
         this.categoryService.deleteCategory(categoryId);
         return "Category deleted";
