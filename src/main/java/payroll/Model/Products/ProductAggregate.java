@@ -18,4 +18,5 @@ public class ProductAggregate {
     private double productWeight;
     private int transactionsCount;
 
+    private String userName;
 }

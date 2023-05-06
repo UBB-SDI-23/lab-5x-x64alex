@@ -12,6 +12,7 @@ import javax.persistence.*;
 import payroll.Model.Client.Client;
 import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;
+import payroll.Model.User.User;
 
 import java.util.Date;
 
@@ -47,6 +48,11 @@ public class Transaction {
     @JsonIgnore
     private Product product;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @JsonIgnore
     public TransactionAvgClientOrderQuantity getTransactionAvgClientOrderQuantity(int orderQuantity){
         TransactionAvgClientOrderQuantity transactionAvgClientOrderQuantity = new TransactionAvgClientOrderQuantity();
@@ -54,11 +60,11 @@ public class Transaction {
         transactionAvgClientOrderQuantity.setTransactionId(transactionId);
         transactionAvgClientOrderQuantity.setTransactionDate(transactionDate);
         transactionAvgClientOrderQuantity.setTransactionQuantity(transactionQuantity);
-
         transactionAvgClientOrderQuantity.setClientId(client.getClientId());
         transactionAvgClientOrderQuantity.setProductId(product.getProductId());
 
         transactionAvgClientOrderQuantity.setAvgClientOrderQuantity(orderQuantity);
+        transactionAvgClientOrderQuantity.setUserName(user.getUsername());
 
         return transactionAvgClientOrderQuantity;
     }

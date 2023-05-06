@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import payroll.Model.Category.Category;
 import payroll.Model.Category.CategoryDTO;
@@ -13,6 +15,8 @@ import payroll.Model.Transactions.Transaction;
 import payroll.Repository.CategoryRepository;
 import payroll.Repository.ProductRepository;
 import payroll.Repository.TransactionRepository;
+import payroll.Repository.UserRepository;
+import payroll.Security.Services.UserDetailsImpl;
 
 import java.util.*;
 
@@ -26,6 +30,23 @@ public class ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+
+    public Boolean hasCurrentUserAccess(long productId){
+        Long userId = this.productRepository.getById(productId).getUser().getId();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            if (authentication.getPrincipal() instanceof UserDetailsImpl userDetails) {
+                Long currentUserId = userDetails.getId();
+                return Objects.equals(userId, currentUserId);
+            }
+        }
+        return false;
+    }
 
     public List<Product> getFilterGreaterThanPageable(int quantity, int pageNumber, int pageSize, int sortByQuantityDescending) {
         Pageable page;
@@ -55,6 +76,7 @@ public class ProductService {
         Category category = categoryRepository.findById(productIdDTO.getCategoryId()).get();
 
 
+
         product.setProductId(productIdDTO.getProductId());
         product.setProductName(productIdDTO.getProductName());
         product.setProductPrice(productIdDTO.getProductPrice());
@@ -65,6 +87,9 @@ public class ProductService {
 
         product.setCategory(category);
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = ((UserDetailsImpl) principal).getId();
+        product.setUser(userRepository.getById(userId));
 
         productRepository.save(product);
 

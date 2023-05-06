@@ -1,6 +1,7 @@
 package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Transactions.TransactionAvgClientOrderQuantity;
 import payroll.Model.Transactions.TransactionDTO;
@@ -11,7 +12,7 @@ import payroll.Service.TransactionService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionController {
     @Autowired
     TransactionService transactionService;
@@ -26,16 +27,19 @@ public class TransactionController {
         return this.transactionService.getOneTransaction(transactionId);
     }
     @PostMapping()
+    @PreAuthorize("hasRole('ROLE_REGULAR') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Transaction saveTransaction(@RequestBody TransactionIdDTO transactionIdDTO){
         return this.transactionService.saveTransaction(transactionIdDTO);
     }
 
     @PutMapping("/{transactionId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @transactionService.hasCurrentUserAccess(#transactionId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Transaction updateTransaction(@RequestBody TransactionIdDTO transactionIdDTO, @PathVariable("transactionId") Long transactionId){
         return this.transactionService.updateTransaction(transactionIdDTO, transactionId);
     }
 
     @DeleteMapping("/{transactionId}")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @transactionService.hasCurrentUserAccess(#transactionId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteTransaction(@PathVariable("transactionId") Long transactionId){
         this.transactionService.deleteTransaction(transactionId);
         return "Transaction deleted";

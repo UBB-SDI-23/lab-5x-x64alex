@@ -1,31 +1,55 @@
 package payroll.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import payroll.Model.Category.*;
 import payroll.Model.Products.Product;
+import payroll.Model.User.User;
 import payroll.Repository.CategoryRepository;
+import payroll.Repository.UserRepository;
+import payroll.Security.Services.UserDetailsImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category saveCategory(Category category) {
-        return this.categoryRepository.save(category);
-    }
+    @Autowired
+    private UserRepository userRepository;
 
+    public Category saveCategory(Category category) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = ((UserDetailsImpl) principal).getId();
+
+        category.setUser(userRepository.getById(userId));
+        categoryRepository.save(category);
+
+        return category;
+    }
     public List<Category> getCategoryList(){
         return  this.categoryRepository.findAll();
     }
 
-    public long getUserIdForCategory(long categoryId){return categoryId;}
+    public Boolean hasCurrentUserAccess(long categoryId){
+        Long categoryUserId = this.categoryRepository.getById(categoryId).getUser().getId();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            if (authentication.getPrincipal() instanceof UserDetailsImpl userDetails) {
+                Long currentUserId = userDetails.getId();
+                return Objects.equals(categoryUserId, currentUserId);
+            }
+        }
+        return false;
+    }
 
     public List<CategoryNameDTO> getCategoryNames(String givenString){
         Pageable page = PageRequest.of(0, 10);
@@ -45,12 +69,16 @@ public class CategoryService {
             categoryDTO.setCategorySales(category.getCategorySales());
             categoryDTO.setCategoryReturnsPerMonth(category.getCategoryReturnsPerMonth());
 
+            categoryDTO.setUserId(category.getUser().getId());
+
             categoryDTOS.add(categoryDTO);
         }
         return categoryDTOS;
     }
 
-    public Category getOne(Long categoryID) {return  this.categoryRepository.findById(categoryID).get(); }
+    public CategoryProductIdDTO getOne(Long categoryID) {
+        return this.categoryRepository.findById(categoryID).get().getCategoryProductIdDTO();
+    }
 
     public Category updateCategory(CategoryNoProductDTO category, Long categoryId) {
         Category foundCategory = this.categoryRepository.findById(categoryId).get();
@@ -74,12 +102,6 @@ public class CategoryService {
        Pageable page = PageRequest.of(pageNumber, pageSize);
        List<Category> categories =  this.categoryRepository.findAll(page).stream().toList();
 
-        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 1));
-        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 2));
-        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 3));
-        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 4));
-        System.out.println(this.categoryRepository.getCategoryAveragePrice((long) 5));
-
        return categories.stream().map((category)-> {
            Double categoryAvgPrice = (double) -100;
            if(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()) != null){
@@ -89,7 +111,9 @@ public class CategoryService {
 
            Integer numberProducts = this.categoryRepository.getNumberProducts(category.getCategoryId());
 
-           return category.getCategoryProductDTO(numberProducts, categoryAvgPrice);}
+           String username = this.userRepository.getById(category.getUser().getId()).getUsername();
+
+           return category.getCategoryProductDTO(numberProducts, categoryAvgPrice, username);}
        ).toList();
 
     }

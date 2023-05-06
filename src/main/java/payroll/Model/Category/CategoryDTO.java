@@ -16,4 +16,5 @@ public class CategoryDTO {
     private Long categorySales;
     private double categoryReturnsPerMonth;
     private int CategoryProfitability;
+    private Long userId;
 }

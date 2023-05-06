@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import payroll.Model.Category.Category;
+import payroll.Model.Category.CategoryDTO;
 import payroll.Model.Category.CategoryNameDTO;
+import payroll.Model.Products.Product;
+import payroll.Model.Products.ProductIdDTO;
 
 import java.util.List;
 
@@ -21,5 +24,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     );
     @Query(value = "select c.category_id as categoryId, c.category_name as categoryName from Category c where strpos(lower(c.category_name), lower(:givenString)) > 0", nativeQuery = true)
     List<CategoryNameDTO> findCategoryNames(String givenString, Pageable pageable);
+
+
+
 
 }

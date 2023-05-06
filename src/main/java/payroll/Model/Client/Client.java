@@ -9,7 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import payroll.Model.Transactions.Transaction;
+import payroll.Model.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +54,14 @@ public class Client {
             cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    public ClientDTO getClientDTO(int transactionsCount ){
+    private User user;
+
+    @JsonIgnore
+    public ClientDTO getClientDTO(int transactionsCount){
         ClientDTO clientDTO = new ClientDTO();
 
         clientDTO.setClientId(clientId);
@@ -61,7 +71,25 @@ public class Client {
         clientDTO.setClientLastName(clientLastName);
         clientDTO.setClientPhoneNumber(clientPhoneNumber);
 
+        clientDTO.setUserName(user.getUsername());
+
         clientDTO.setTransactionsCount(transactionsCount);
+        return clientDTO;
+    }
+
+    @JsonIgnore
+    public ClientGetOneDTO getClientGetOneDTO(){
+        ClientGetOneDTO clientDTO = new ClientGetOneDTO();
+
+        clientDTO.setClientId(clientId);
+        clientDTO.setClientEmail(clientEmail);
+        clientDTO.setClientAddress(clientAddress);
+        clientDTO.setClientFirstName(clientFirstName);
+        clientDTO.setClientLastName(clientLastName);
+        clientDTO.setClientPhoneNumber(clientPhoneNumber);
+
+        clientDTO.setUserName(user.getUsername());
+
         return clientDTO;
     }
 }

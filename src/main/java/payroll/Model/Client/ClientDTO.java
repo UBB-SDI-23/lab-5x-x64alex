@@ -15,4 +15,6 @@ public class ClientDTO {
     private String clientPhoneNumber;
 
     private int transactionsCount;
+
+    private String userName;
 }

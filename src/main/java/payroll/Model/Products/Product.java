@@ -11,6 +11,7 @@ import payroll.Model.Category.Category;
 
 import javax.persistence.*;
 import payroll.Model.Transactions.Transaction;
+import payroll.Model.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,11 @@ public class Product {
             cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @JsonIgnore
     public ProductDTO getProductDTO(){
         ProductDTO productDTO = new ProductDTO();
@@ -85,6 +91,8 @@ public class Product {
         product.setProductWeight(productWeight);
 
         product.setTransactionsCount(transactionsCount);
+
+        product.setUserName(user.getUsername());
 
         return product;
     }

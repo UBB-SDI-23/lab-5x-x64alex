@@ -19,5 +19,6 @@ public class TransactionAvgClientOrderQuantity {
     private Long clientId;
     private Long productId;
     private int avgClientOrderQuantity;
+    private String userName;
 
 }

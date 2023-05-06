@@ -24,4 +24,6 @@ public class TransactionDTO {
     private ClientDTO clientDTO;
 
     private ProductDTO productDTO;
+    private String userName;
+
 }

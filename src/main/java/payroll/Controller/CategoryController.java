@@ -23,12 +23,6 @@ public class CategoryController {
         return this.categoryService.getCategoryNames(searchString);
     }
 
-
-    @GetMapping("/orderByAveragePriceProduct")
-    public List<CategoryProductDTO> getCategoryProducts() {
-        return this.categoryService.orderByAveragePriceProduct();
-    }
-
     @GetMapping("/averagePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts(@RequestParam(defaultValue = "0") int pageNumber,
                                                         @RequestParam(defaultValue = "100") int pageSize) {
@@ -36,7 +30,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{categoryId}")
-    public Category getOne(@PathVariable("categoryId") Long categoryId) {
+    public CategoryProductIdDTO getOne(@PathVariable("categoryId") Long categoryId) {
         return this.categoryService.getOne(categoryId);
     }
     @PostMapping()
@@ -46,13 +40,13 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.getUserIdForCategory(#categoryId) == 1) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.hasCurrentUserAccess(#categoryId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public Category updateCategory(@RequestBody CategoryNoProductDTO category, @PathVariable("categoryId") Long categoryId) {
         return this.categoryService.updateCategory(category, categoryId);
     }
 
     @DeleteMapping("/{categoryId}")
-    @PreAuthorize("hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_REGULAR') and @categoryService.hasCurrentUserAccess(#categoryId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     public String deleteCategory(@PathVariable("categoryId") Long categoryId) {
         this.categoryService.deleteCategory(categoryId);
         return "Category deleted";
