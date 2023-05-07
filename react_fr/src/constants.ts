@@ -22,7 +22,7 @@ export function isLoggedIn() {
 }
 
 
-export function logOut(){
+export const logOut = () =>{
 	const navigate = useNavigate();
     userRole = "ROLE_ANONYMOUS";
     alert("signed out");
