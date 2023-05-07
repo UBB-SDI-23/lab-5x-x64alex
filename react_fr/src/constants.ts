@@ -39,7 +39,7 @@ export const config = {
 
 
 export function updateUserName(newValue: string) {
-    userRole = newValue;
+    userName = newValue;
 }
 
 export function canAdd() {
