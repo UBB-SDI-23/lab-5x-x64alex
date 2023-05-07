@@ -14,3 +14,11 @@ export function updateUserRole(newValue: string) {
 export function isAdmin() {
     return  userRole === "ROLE_ADMIN";
 }
+
+export function isLoggedIn() {
+    return  userRole !== "ROLE_ANONYMOUS";
+}
+
+export function logOut(){
+    userRole = "ROLE_ANONYMOUS"
+}

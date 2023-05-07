@@ -2,7 +2,7 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/mater
 import { Link, useLocation } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import { BACKEND_API_URL,userRole,updateGlobalVar,isAdmin } from "../constants";
+import { isAdmin, isLoggedIn, logOut } from "../constants";
 
 export const AppMenu = () => {
 	const location = useLocation();
@@ -70,14 +70,22 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Login
 					</Button>
-					{isAdmin() &&
+					{isLoggedIn() &&
 					<Button
 						variant={path.startsWith("/admin") ? "outlined" : "text"}
 						to="/admin"
 						component={Link}
-						color="error"
-						sx={{ mr: 5 }}>
+						color="inherit"
+						sx={{ mr: 2 }}>
 						Admin
+					</Button>
+					}
+					{isAdmin() &&
+					<Button
+						onClick={logOut}
+						color="inherit"
+						sx={{ mr: 10 }}>
+						LogOut
 					</Button>
 					}
 				</Toolbar>
