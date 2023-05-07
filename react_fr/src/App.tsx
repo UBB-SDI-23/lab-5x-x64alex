@@ -64,7 +64,7 @@ function App() {
 
 					<Route path="/login" element={<Login/>} />
 
-					<Route path="/user/:userId" element={<UserProfile/>} />
+					<Route path="/user/:userName" element={<UserProfile/>} />
 
 				</Routes>
 			</Router>

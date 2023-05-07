@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { UserDetails } from "../models/Login/UserDetails";
+import { UserStatistics } from "../models/Login/UserStatistics";
 
 export const UserProfile = () => {
 	const { userName } = useParams();
@@ -18,6 +19,17 @@ export const UserProfile = () => {
 			const user = await response.json();
 			setUserProfile(user);
 
+		};
+		fetchProduct();
+	}, [userName]);
+
+	const [userStatistic, setUserStatistics] = useState<UserStatistics>();
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			const response = await fetch(`${BACKEND_API_URL}/user/statistics/${userName}`);
+			const user = await response.json();
+			setUserStatistics(user);
 		};
 		fetchProduct();
 	}, [userName]);
@@ -41,7 +53,7 @@ export const UserProfile = () => {
 					<p>User Location: {userProfile?.location}</p>
 					<p>User statistics:</p>
 					<ul>
-						{/* <li>Category name:{product?.categoryDTO.categoryName}</li> */}
+						<li>Categories Added:{userStatistic?.categoriesAdded}</li>
 					</ul>
 				</Stack>		
 
