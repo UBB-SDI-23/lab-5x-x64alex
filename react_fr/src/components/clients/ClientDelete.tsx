@@ -10,7 +10,7 @@ export const ClientDelete = () => {
 
 	const config = {
 		headers: {
-		  Authorization: 'Bearer ' + "2",
+		  Authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MzQ5NDc5OCwiZXhwIjoxNjgzNTgxMTk4fQ.Qtfg7d_cJXWDuhjNhMBTS3WFeap5OBdWU7wQIqrERs4ePKOzyLI8CDD1dr1nl7TxTLCkmtNt5eZDpCnkfmobXA",
 		  'Content-Type': 'application/json'
 		}
 	  };
