@@ -8,9 +8,16 @@ export const ClientDelete = () => {
 	const { clientId } = useParams();
 	const navigate = useNavigate();
 
+	const config = {
+		headers: {
+		  Authorization: 'Bearer ' + "2",
+		  'Content-Type': 'application/json'
+		}
+	  };
+
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/clients/${clientId}`,{withCredentials: true});
+		await axios.delete(`${BACKEND_API_URL}/clients/${clientId}`,config);
 		alert("client deleted")
 		navigate("/clients");
 	};
