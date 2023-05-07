@@ -10,6 +10,7 @@ export function updateGlobalVar(newValue: string) {
     authorization = newValue;
 }
 export let userRole = "ROLE_ANONYMOUS"
+export let userName = ""
 export function updateUserRole(newValue: string) {
     userRole = newValue;
 }
@@ -24,6 +25,7 @@ export function isLoggedIn() {
 
 export const logOut = () => {
     userRole = "ROLE_ANONYMOUS";
+    userName = "";
     alert("signed out");
 }
 
@@ -33,3 +35,18 @@ export const config = {
       'Content-Type': 'application/json'
     }
   };
+
+
+export function updateUserName(newValue: string) {
+    userRole = newValue;
+}
+
+export function canAdd() {
+    return (userRole === "ROLE_REGULAR") || (userRole === "ROLE_MODERATOR") || (userRole === "ROLE_ADMIN")
+}
+
+
+
+  export function canEdit(user: String) {
+        return (user === userName && userRole === "ROLE_REGULAR") || (userRole === "ROLE_MODERATOR") || (userRole === "ROLE_ADMIN")
+  }

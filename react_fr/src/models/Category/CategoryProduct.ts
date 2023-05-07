@@ -7,4 +7,5 @@ export interface CategoryProduct {
     categoryProfitability: number;
     categoryNumberProducts: number;
     categoryAveragePrice: number;
+    userName: string;
 }
