@@ -16,6 +16,14 @@ export const Login = () => {
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ loginRequest })
+        };
+        fetch('https://reqres.in/api/posts', requestOptions)
+            .then(response =>{return response.json()})
+
 	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest)
         .then((response: AxiosResponse) => {
             // Manually define the type of the headers object as AxiosHeaders
