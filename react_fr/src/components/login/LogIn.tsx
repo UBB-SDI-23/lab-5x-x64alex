@@ -17,7 +17,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
-        Cookies.set('myCookie', 'cookieValue', { expires: 7 });
+        Cookies.set('confirmation', 'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODM0ODI4MzIsImV4cCI6MTY4MzU2OTIzMn0.CUGDpWHUClm_BRK86rknCQWXcUNiqx20QPnw8OanFNyKPuEFJNVlWdLCzMqhHeYSHHaNrrgJmbKgv7GFWvkzPw', { expires: 7 });
 		event.preventDefault();
         const requestOptions = {
             method: 'POST',
