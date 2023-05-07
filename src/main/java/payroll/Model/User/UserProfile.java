@@ -16,9 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "user_profiles")
 public class UserProfile {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
 
     @Column
