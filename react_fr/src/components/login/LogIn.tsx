@@ -25,10 +25,12 @@ export const Login = () => {
 
         const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
         const product = await response.json();
-        console.log(product);
+        console.log(product.jwtToken);
+        console.log(product.jwtToken);
 
 
-        Cookies.set('confirmation', 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MzQ4NTYwNywiZXhwIjoxNjgzNTcyMDA3fQ.vkubyh13j0yMyCsPAsG58Uyu0wy4gNfos0Fu_h17gwh5RlKumOl8zb9jJyz1UCeeqo2F3qrsIdXaJVKaOCsggw',{
+
+        Cookies.set('confirmation', product.jwtToken,{
             httpOnly: true,
             path: '/api',
             domain: 'localhost',
