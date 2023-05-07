@@ -34,7 +34,7 @@ export const Login = () => {
 
 		alert("Sigin")
 		navigate("/");
-        }catch{
+        }catch(error){
             alert("Error")
         }
 	};
