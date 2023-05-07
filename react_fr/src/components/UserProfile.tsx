@@ -54,6 +54,9 @@ export const UserProfile = () => {
 					<p>User statistics:</p>
 					<ul>
 						<li>Categories Added:{userStatistic?.categoriesAdded}</li>
+						<li>Products Added:{userStatistic?.productsAdded}</li>
+						<li>Clients Added:{userStatistic?.clientsAdded}</li>
+						<li>Transaction Added:{userStatistic?.transactionsAdded}</li>
 					</ul>
 				</Stack>		
 
