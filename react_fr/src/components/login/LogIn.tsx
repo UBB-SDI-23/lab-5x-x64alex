@@ -24,6 +24,8 @@ export const Login = () => {
         fetch(`${BACKEND_API_URL}/signin`, requestOptions)
             .then(response =>{
                 console.log(response);
+                console.log(response.json());
+                console.log(response.headers);
                 return response.json()
             })
 
