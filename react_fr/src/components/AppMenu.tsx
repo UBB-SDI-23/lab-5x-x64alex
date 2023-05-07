@@ -67,6 +67,7 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Transactions
 					</Button>
+					{!isAdmin() &&
 					<Button
 						variant={path.startsWith("/login") ? "outlined" : "text"}
 						to="/login"
@@ -76,7 +77,8 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Login
 					</Button>
-					{isLoggedIn() &&
+					}
+					{isAdmin() &&
 					<Button
 						variant={path.startsWith("/admin") ? "outlined" : "text"}
 						to="/admin"
@@ -86,7 +88,7 @@ export const AppMenu = () => {
 						Admin
 					</Button>
 					}
-					{isAdmin() &&
+					{isLoggedIn() &&
 					<Button
 						onClick={handleLogOut}
 						color="inherit"
