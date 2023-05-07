@@ -23,6 +23,9 @@ export const Login = () => {
         };
         fetch(`${BACKEND_API_URL}/signin`, requestOptions)
             .then(response =>{
+                const isJson = response.headers.get('Set-cookie');
+
+                console.log(isJson);
                 console.log(response);
                 console.log(response.json());
                 console.log(response.headers);
