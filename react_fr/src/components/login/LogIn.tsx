@@ -2,7 +2,7 @@ import { Container, Card, CardContent, IconButton, CardActions, Button, Stack, T
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
-import { BACKEND_API_URL,userRole,updateGlobalVar,updateUserRole,updateUserName } from "../../constants";
+import { BACKEND_API_URL,userRole,updateGlobalVar,updateUserRole,updateUserName, userName } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
 
@@ -31,18 +31,14 @@ export const Login = () => {
 
         updateUserRole(product.roles[0]);
         updateUserName(product.username);
-        console.log(userRole)
+        console.log(userName);
+        console.log(userRole);
 
 		alert("Sigin")
 		navigate("/");
         }catch(error){
-            alert("Error")
+            alert("User"+userName+" signed in")
         }
-	};
-
-	const handleCancel = (event: { preventDefault: () => void }) => {
-		event.preventDefault();
-		navigate("/categories");
 	};
 
 	return (
