@@ -30,6 +30,7 @@ export const Login = () => {
         updateGlobalVar(value);
 
         console.log(product.roles);
+        console.log(product.roles[0]);
         updateUserRole(product.roles[0]);
         updateUserName(product.username);
         console.log(userName);

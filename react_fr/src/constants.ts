@@ -10,7 +10,6 @@ export function updateGlobalVar(newValue: string) {
     authorization = newValue;
 }
 export let userRole = "ROLE_ANONYMOUS"
-export let userName = ""
 export function updateUserRole(newValue: string) {
     userRole = newValue;
 }
@@ -22,7 +21,7 @@ export function isLoggedIn() {
     return  userRole !== "ROLE_ANONYMOUS";
 }
 
-
+export let userName = ""
 export const logOut = () => {
     userRole = "ROLE_ANONYMOUS";
     userName = "";
