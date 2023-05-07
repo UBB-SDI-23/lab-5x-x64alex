@@ -5,6 +5,8 @@ import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
+import Cookies from 'js-cookie';
+
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -15,7 +17,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
-        document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+        Cookies.set('myCookie', 'cookieValue', { expires: 7 });
 		event.preventDefault();
         const requestOptions = {
             method: 'POST',
