@@ -7,7 +7,7 @@ import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
 
 
-export const Login = () => {
+export const Confirmation = () => {
 	const navigate = useNavigate();
 
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({
@@ -37,7 +37,7 @@ export const Login = () => {
         updateUserRole(product.roles[0]);
         console.log(userRole);
 
-        alert("User"+userName+" signed in")
+        alert("Account is confirmed")
 		navigate("/");
         }catch(error){
             alert("Error")
@@ -59,23 +59,14 @@ export const Login = () => {
 						<TextField
                             type="string"
 							id="name"
-							label="username"
+							label="Confirmation code"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => loginRequest.username = newValue.target.value}
 						/>
-                        <TextField
-                            type="password"
-							id="name"
-							label="password"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => loginRequest.password = newValue.target.value}
-						/>
 
-						<Button id = "submitButton" type="submit"> Login </Button>
+						<Button id = "submitButton" type="submit"> Confirm </Button>
 					</form>
                     <h2>Do not have an account yet?</h2>
                     <IconButton component={Link} sx={{ mr: 3 }} to={`/register`}>

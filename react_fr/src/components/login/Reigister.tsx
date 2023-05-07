@@ -7,7 +7,7 @@ import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
 
 
-export const Login = () => {
+export const Register = () => {
 	const navigate = useNavigate();
 
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({
@@ -37,8 +37,8 @@ export const Login = () => {
         updateUserRole(product.roles[0]);
         console.log(userRole);
 
-        alert("User"+userName+" signed in")
-		navigate("/");
+        alert("Registration code is: "+userName)
+		navigate("/confirmation");
         }catch(error){
             alert("Error")
         }
@@ -75,7 +75,7 @@ export const Login = () => {
 							onChange={(newValue) => loginRequest.password = newValue.target.value}
 						/>
 
-						<Button id = "submitButton" type="submit"> Login </Button>
+						<Button id = "submitButton" type="submit"> Register </Button>
 					</form>
                     <h2>Do not have an account yet?</h2>
                     <IconButton component={Link} sx={{ mr: 3 }} to={`/register`}>
