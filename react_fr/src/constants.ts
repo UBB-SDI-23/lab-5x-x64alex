@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export const  BACKEND_API_URL = "http://localhost:8000/api";
 
 
@@ -19,7 +21,10 @@ export function isLoggedIn() {
     return  userRole !== "ROLE_ANONYMOUS";
 }
 
+
 export function logOut(){
-    userRole = "ROLE_ANONYMOUS"
-    alert("signed out")
+	const navigate = useNavigate();
+    userRole = "ROLE_ANONYMOUS";
+    alert("signed out");
+    navigate("/");
 }
