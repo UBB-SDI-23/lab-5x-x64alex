@@ -27,23 +27,18 @@ export const Login = () => {
         const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
         const product = await response.json();
         console.log(product.jwtToken);
-        console.log(product.jwtToken);
+        const value = product.jwtToken.split('=')[1];
+        console.log(value);
 
-        Cookies.set('cookie','231');
-        Cookies.set('cookie','231');
+        Cookies.set('cookieda','231');
 
-        document.cookie = "cookieName=cookieValue; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/; domain=localhost; secure=false; HttpOnly";
-
-        document.cookie = product.jwtToken;
-
-
-        // Cookies.set('confirmation', product.jwtToken,{
-        //     httpOnly: true,
-        //     path: '/api',
-        //     domain: 'localhost',
-        //     secure: false,
-        //     expires: 0, // Session cookie
-        //   });
+        Cookies.set('confirmation', value,{
+            httpOnly: true,
+            path: '/api',
+            domain: 'localhost',
+            secure: false,
+            expires: 0, // Session cookie
+          });
 
 		alert("Sigin")
 		navigate("/");
