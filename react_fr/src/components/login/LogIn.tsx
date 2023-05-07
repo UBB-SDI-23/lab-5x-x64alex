@@ -34,7 +34,7 @@ export const Login = () => {
         // Cookies.set('cookieda','231');
 
         Cookies.set('confirmation', value,{
-            path: '/api',
+            path: '/',
           });
 
 		alert("Sigin")
