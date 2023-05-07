@@ -29,15 +29,16 @@ export const Login = () => {
         const value = product.jwtToken.split('=')[1].split(';')[0] as string;
         updateGlobalVar(value);
 
+        console.log(product.roles);
         updateUserRole(product.roles[0]);
         updateUserName(product.username);
         console.log(userName);
         console.log(userRole);
 
-		alert("Sigin")
+        alert("User"+userName+" signed in")
 		navigate("/");
         }catch(error){
-            alert("User"+userName+" signed in")
+            alert("Error")
         }
 	};
 
