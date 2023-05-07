@@ -2,19 +2,14 @@ import { Container, Card, CardContent, IconButton, CardActions, Button, Stack } 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { BACKEND_API_URL,authorization } from "../../constants";
+import { BACKEND_API_URL,authorization, config } from "../../constants";
 
 
 export const ClientDelete = () => {
 	const { clientId } = useParams();
 	const navigate = useNavigate();
 
-	const config = {
-		headers: {
-		  Authorization: authorization,
-		  'Content-Type': 'application/json'
-		}
-	  };
+
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();

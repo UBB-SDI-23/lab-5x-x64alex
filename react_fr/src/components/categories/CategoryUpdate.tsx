@@ -2,9 +2,7 @@ import { Autocomplete, Button, Card, CardActions, CardContent, IconButton, Stack
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { BACKEND_API_URL, config } from "../../constants";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Category } from "../../models/Category/Category";
@@ -29,7 +27,7 @@ export const CategoryUpdate = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`);
+			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`, config);
 			const data = await response.json();
             setCategoryName(data.categoryName);
             setCategoryPopularity(data.categoryProfitability)

@@ -2,7 +2,7 @@ import { Container, Card, CardContent, IconButton, CardActions, Button, Stack } 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 
 export const ProductDelete = () => {
 	const { productId } = useParams();
@@ -10,7 +10,7 @@ export const ProductDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/products/${productId}`);
+		await axios.delete(`${BACKEND_API_URL}/products/${productId}`, config);
 		alert("Product deleted")
 		navigate("/products");
 	};

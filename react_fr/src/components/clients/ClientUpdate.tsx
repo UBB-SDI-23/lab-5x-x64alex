@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { ClientUpdateDTO } from "../../models/Client/ClientUpdateDTO";
@@ -36,7 +36,7 @@ export const ClientUpdate= () => {
 
     useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`);
+			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`, config);
 			const data = await response.json();
             setClientFirstName(data.clientFirstName)
             setClientLastName(data.clientLastName)

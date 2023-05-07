@@ -26,3 +26,10 @@ export const logOut = () => {
     userRole = "ROLE_ANONYMOUS";
     alert("signed out");
 }
+
+export const config = {
+    headers: {
+      Authorization: authorization,
+      'Content-Type': 'application/json'
+    }
+  };

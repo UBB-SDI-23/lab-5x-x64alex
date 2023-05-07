@@ -2,7 +2,7 @@ import { Autocomplete, Button, Card, CardActions, CardContent, IconButton, Stack
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -23,7 +23,7 @@ export const ProductUpdate = () => {
 
 		event.preventDefault();
 		try {
-			await axios.put(`${BACKEND_API_URL}/products/${productId}`, product);
+			await axios.put(`${BACKEND_API_URL}/products/${productId}`, product, config);
 			alert("Product updated")
 			navigate("/products");
 		} catch (error) {

@@ -88,7 +88,9 @@ export const AppMenu = () => {
 					}
 					{isAdmin() &&
 					<Button
-						onClick={handleLogOut}>
+						onClick={handleLogOut}
+						color="inherit"
+						sx={{ mr: 10 }}>
 						LogOut
 					</Button>
 					}

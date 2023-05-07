@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { Client } from "../../models/Client/Client";
@@ -31,7 +31,7 @@ export const ClientAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/clients`, client);
+			axios.post(`${BACKEND_API_URL}/clients`, client, config);
 			alert("Client added")
 			navigate("/clients");
 		} catch (error) {

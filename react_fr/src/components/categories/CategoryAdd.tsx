@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Category } from "../../models/Category/Category";
 import axios from "axios";
@@ -30,7 +30,7 @@ export const CategoryAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category);
+			axios.post(`${BACKEND_API_URL}/categories`, category, config);
 			alert("Product added")
 			navigate("/categories");
 		} catch (error) {

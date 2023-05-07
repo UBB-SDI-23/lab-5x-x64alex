@@ -3,7 +3,7 @@ import { Button, Card, CardActions, CardContent, IconButton, Stack, TextField } 
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, config } from "../../constants";
 import EditIcon from "@mui/icons-material/Edit";
 import Autocomplete from '@mui/material/Autocomplete';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -138,7 +138,7 @@ export const ProductAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/products`, product);
+			axios.post(`${BACKEND_API_URL}/products`, product, config);
 			alert("Product added")
 			navigate("/products");
 		} catch (error) {
