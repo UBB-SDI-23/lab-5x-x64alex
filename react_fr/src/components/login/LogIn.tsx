@@ -2,10 +2,9 @@ import { Container, Card, CardContent, IconButton, CardActions, Button, Stack, T
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
-import { BACKEND_API_URL,authorization,updateGlobalVar } from "../../constants";
+import { BACKEND_API_URL,userRole,updateGlobalVar,updateUserRole } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
-import Cookies from 'js-cookie';
 
 
 export const Login = () => {
@@ -26,16 +25,13 @@ export const Login = () => {
 
         const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
         const product = await response.json();
-        console.log(product.roles);
         const value = product.jwtToken.split('=')[1].split(';')[0] as string;
-        console.log(value);
-        console.log(authorization);
         updateGlobalVar(value);
-        console.log(authorization);
-        Cookies.set('confirmation', value,{
-            path: '/',
-            httponly:false
-          });
+
+        console.log(product.roles[0]);
+        console.log(userRole)
+        updateUserRole(product.roles[0]);
+        console.log(userRole)
 
 		alert("Sigin")
 		navigate("/");
