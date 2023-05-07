@@ -35,6 +35,7 @@ export const Login = () => {
 
         Cookies.set('confirmation', value,{
             path: '/',
+            httponly:false
           });
 
 		alert("Sigin")

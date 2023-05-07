@@ -1,6 +1,9 @@
 package payroll.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Client.*;
@@ -12,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:8000", "https://main--payrollapp1.netlify.app"},
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE},
+        allowedHeaders = {"Authorization", "Content-Type", "confirmation"},
+        allowCredentials = "true")
 @RequestMapping("/api/clients")
 public class ClientController {
     @Autowired
@@ -47,14 +54,20 @@ public class ClientController {
 
     @PutMapping("/{clientId}")
     @PreAuthorize("(hasRole('ROLE_REGULAR') and @clientService.hasCurrentUserAccess(#clientId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    public Client updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
-        return this.clientService.updateClient(client, clientId);
+    public ResponseEntity<?> updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header("Access-Control-Allow-Origin", "2")
+                .body(this.clientService.updateClient(client, clientId));
     }
 
     @DeleteMapping("/{clientId}")
     @PreAuthorize("(hasRole('ROLE_REGULAR') and @clientService.hasCurrentUserAccess(#clientId)) or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    public String deleteClient(@PathVariable("clientId") Long clientId){
+    public ResponseEntity<?> deleteClient(@PathVariable("clientId") Long clientId){
         this.clientService.deleteClients(clientId);
-        return "Category deleted";
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header("Access-Control-Allow-Origin", "https://main--payrollapp1.netlify.app")
+                .body("Category deleted");
     }
 }
