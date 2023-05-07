@@ -3,16 +3,22 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
+import { LoginRequest } from "../../models/Login/LoginRequest";
+import { useState } from "react";
 
 export const Login = () => {
-	const { categoryId } = useParams();
 	const navigate = useNavigate();
+
+    const [loginRequest, setLoginRequest] = useState<LoginRequest>({
+	    username: "",
+        password: ""
+	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/categories/${categoryId}`);
-		alert("Category deleted")
-		navigate("/categories");
+		await axios.post(`${BACKEND_API_URL}/signin`, loginRequest);
+		alert("Sigin")
+		navigate("/");
 	};
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
@@ -28,6 +34,7 @@ export const Login = () => {
 						<IconButton component={Link} sx={{ mr: 3 }} to={`/categories`} >
 							<ArrowBackIcon />
 						</IconButton>{" "}
+                        <h3>LogIn</h3>
 					</Stack>
 
 					<form onSubmit={handleLogin}>
@@ -38,7 +45,7 @@ export const Login = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							// onChange={(newValue) => category.categoryName = newValue.target.value}
+							onChange={(newValue) => loginRequest.username = newValue.target.value}
 						/>
                         <TextField
                             type="password"
@@ -47,7 +54,7 @@ export const Login = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							// onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
+							onChange={(newValue) => loginRequest.password = newValue.target.value}
 						/>
 
 						<Button id = "submitButton" type="submit">Login</Button>
