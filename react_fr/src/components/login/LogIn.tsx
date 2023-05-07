@@ -22,7 +22,10 @@ export const Login = () => {
             body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password})
         };
         fetch(`${BACKEND_API_URL}/signin`, requestOptions)
-            .then(response =>{return response.json()})
+            .then(response =>{
+                console.log(response);
+                return response.json()
+            })
 
 	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest)
         .then((response: AxiosResponse) => {
