@@ -19,9 +19,9 @@ export const Login = () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ loginRequest })
+            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.passwords})
         };
-        fetch('https://reqres.in/api/posts', requestOptions)
+        fetch(`${BACKEND_API_URL}/signin`, requestOptions)
             .then(response =>{return response.json()})
 
 	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest)
