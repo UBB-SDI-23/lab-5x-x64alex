@@ -35,6 +35,7 @@ function App() {
 				<AppMenu />
 
 				<Routes>
+
 					<Route path="/" element={<AppHome />} />
 					<Route path="/products" element={<AllProducts />} />
           			<Route path="/products/add" element={<ProductAdd />} />

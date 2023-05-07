@@ -1,12 +1,18 @@
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { isAdmin, isLoggedIn, logOut } from "../constants";
 
 export const AppMenu = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const path = location.pathname;
+
+	const handleLogOut = () => {
+		logOut()
+		navigate("/");
+	}
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
@@ -82,9 +88,7 @@ export const AppMenu = () => {
 					}
 					{isAdmin() &&
 					<Button
-						onClick={logOut}
-						color="inherit"
-						sx={{ mr: 10 }}>
+						onClick={handleLogOut}>
 						LogOut
 					</Button>
 					}
