@@ -5,8 +5,12 @@ import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
+import Cookies from 'js-cookie';
+
 
 export const Login = () => {
+    Cookies.set('name', 'value', { expires: 7 });
+
 	const navigate = useNavigate();
 
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({
