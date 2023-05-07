@@ -70,7 +70,7 @@ export const Login = () => {
 							onChange={(newValue) => loginRequest.password = newValue.target.value}
 						/>
 
-						<Button id = "submitButton" type="submit">Login</Button>
+						<Button id = "submitButton" type="submit"> Login </Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
