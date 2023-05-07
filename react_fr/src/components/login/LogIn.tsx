@@ -17,7 +17,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
-        Cookies.set('confirmation', 'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODM0ODI4MzIsImV4cCI6MTY4MzU2OTIzMn0.CUGDpWHUClm_BRK86rknCQWXcUNiqx20QPnw8OanFNyKPuEFJNVlWdLCzMqhHeYSHHaNrrgJmbKgv7GFWvkzPw', { expires: 7 });
+        Cookies.set('confirmation', 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MzQ4NTYwNywiZXhwIjoxNjgzNTcyMDA3fQ.vkubyh13j0yMyCsPAsG58Uyu0wy4gNfos0Fu_h17gwh5RlKumOl8zb9jJyz1UCeeqo2F3qrsIdXaJVKaOCsggw', { expires: 7 });
 		event.preventDefault();
         const requestOptions = {
             method: 'POST',
