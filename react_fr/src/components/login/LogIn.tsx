@@ -26,14 +26,14 @@ export const Login = () => {
 
         const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
         const product = await response.json();
-        console.log(product.jwtToken);
+        console.log(product.roles);
         const value = product.jwtToken.split('=')[1].split(';')[0] as string;
         console.log(value);
-        Cookies.set('asd',value);
+        // Cookies.set('asd',value);
 
-        Cookies.set('cookieda','231');
+        // Cookies.set('cookieda','231');
 
-        Cookies.set('confirmation', 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MzQ4ODQ3NywiZXhwIjoxNjgzNTc0ODc3fQ.l9qqiIDjCq5kUrlm7FKrkZTCAEwle4f7yA-4F5cU1XZ2DILFtA_0TZBVk1gB6-A1cA3XqyG_GJ223xArlXV8rw',{
+        Cookies.set('confirmation', value,{
             httpOnly: true,
             path: '/api',
             domain: 'localhost',
