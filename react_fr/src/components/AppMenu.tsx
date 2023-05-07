@@ -75,9 +75,8 @@ export const AppMenu = () => {
 						variant={path.startsWith("/admin") ? "outlined" : "text"}
 						to="/admin"
 						component={Link}
-						color="inherit"
-						sx={{ mr: 5 }}
-						startIcon={<LocalLibraryIcon />}>
+						color="error"
+						sx={{ mr: 5 }}>
 						Admin
 					</Button>
 					}
