@@ -30,6 +30,10 @@ export const Login = () => {
         console.log(product.jwtToken);
 
         Cookies.set('cookie','231');
+        Cookies.set('cookie','231');
+
+        document.cookie = "cookieName=cookieValue; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/; domain=localhost; secure=false; HttpOnly";
+
         document.cookie = product.jwtToken;
 
 
