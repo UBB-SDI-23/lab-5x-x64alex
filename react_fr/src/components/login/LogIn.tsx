@@ -17,6 +17,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
