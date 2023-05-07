@@ -29,15 +29,17 @@ export const Login = () => {
         console.log(product.jwtToken);
         console.log(product.jwtToken);
 
+        Cookies.set('cookie','231');
+        document.cookie = product.jwtToken;
 
 
-        Cookies.set('confirmation', product.jwtToken,{
-            httpOnly: true,
-            path: '/api',
-            domain: 'localhost',
-            secure: false,
-            expires: 0, // Session cookie
-          });
+        // Cookies.set('confirmation', product.jwtToken,{
+        //     httpOnly: true,
+        //     path: '/api',
+        //     domain: 'localhost',
+        //     secure: false,
+        //     expires: 0, // Session cookie
+        //   });
 
 		alert("Sigin")
 		navigate("/");
