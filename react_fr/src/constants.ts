@@ -11,3 +11,6 @@ export let userRole = "ROLE_ANONYMOUS"
 export function updateUserRole(newValue: string) {
     userRole = newValue;
 }
+export function isAdmin() {
+    return  userRole === "ROLE_ADMIN";
+}
