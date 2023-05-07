@@ -15,6 +15,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
+        document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
 		event.preventDefault();
         const requestOptions = {
             method: 'POST',
