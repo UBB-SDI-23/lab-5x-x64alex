@@ -1,7 +1,7 @@
 import { Container, Card, CardContent, IconButton, CardActions, Button, Stack, TextField } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import axios from "axios";
+import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
 import { BACKEND_API_URL } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
@@ -16,7 +16,20 @@ export const Login = () => {
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.post(`${BACKEND_API_URL}/signin`, loginRequest);
+	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest)
+        .then((response: AxiosResponse) => {
+            // Manually define the type of the headers object as AxiosHeaders
+            const headers: AxiosResponseHeaders = response.headers as AxiosResponseHeaders;
+            // Get the Set-Cookie header from the headers object
+            const setCookieHeader = headers['set-cookie'];
+            console.log(setCookieHeader); // Prints the Set-Cookie header to the console
+
+          })
+          .catch(error => {
+            // Handle any errors that occur during the request
+            console.error(error);
+          });
+
 		alert("Sigin")
 		navigate("/");
 	};
