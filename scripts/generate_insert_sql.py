@@ -1,9 +1,9 @@
 from faker import Faker
 import random as rand
 
-batches_no = 1 #1000 for last version
-inserts_no = 1 #1000 for last version
-number_users = 2
+batches_no = 100 #1000 for last version
+inserts_no = 100 #1000 for last version
+number_users = 10000
 many_to_many_no = inserts_no*10
 fake = Faker(False)
 
@@ -24,7 +24,18 @@ productDescription = [
 userBio = ["A user", "beautifl user", "real madrid fan", "barcelona fan"]
 gender = ["male","female"]
 
-file.write('TRUNCATE category, products, clients, transactions, user_roles, roles, user_profiles,users cascade;\n')
+file.write('TRUNCATE category, products, clients, transactions, user_roles, roles, user_profiles,users cascade;\n\n')
+# script Admin 
+file.write('INSERT INTO user_profiles(id,bio,birthdate,gender,location,name) VALUES (10001,\'a\',\'2020-09-09\',\'male\',\'Turda\',\'Alex\');\n')
+file.write('INSERT INTO roles(id,name) VALUES (10001,\'ROLE_ADMIN\');\n')
+file.write(f'INSERT INTO users(id,username,password,user_profile_id) VALUES (10001,\'admin\',\'{password}\',10001);\n')
+file.write('INSERT INTO user_roles(user_id,role_id) VALUES (10001,10001);\n\n')
+
+# script moderator 
+file.write('INSERT INTO user_profiles(id,bio,birthdate,gender,location,name) VALUES (10002,\'a\',\'2020-09-09\',\'male\',\'Turda\',\'Alex\');\n')
+file.write('INSERT INTO roles(id,name) VALUES (10002,\'ROLE_MODERATOR\');\n')
+file.write(f'INSERT INTO users(id,username,password,user_profile_id) VALUES (10002,\'moderator\',\'{password}\',10002);\n')
+file.write('INSERT INTO user_roles(user_id,role_id) VALUES (10002,10002);\n\n')
 
 for i in range(int(number_users/batches_no)):
     print(i)
