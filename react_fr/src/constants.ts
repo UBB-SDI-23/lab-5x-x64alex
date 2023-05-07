@@ -21,4 +21,5 @@ export function isLoggedIn() {
 
 export function logOut(){
     userRole = "ROLE_ANONYMOUS"
+    alert("signed out")
 }
