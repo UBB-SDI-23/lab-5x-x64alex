@@ -19,7 +19,7 @@ export const Login = () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.passwords})
+            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password})
         };
         fetch(`${BACKEND_API_URL}/signin`, requestOptions)
             .then(response =>{return response.json()})
