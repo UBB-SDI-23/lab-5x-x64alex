@@ -9,6 +9,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserProfileNotFoundException.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Products/ProductDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/ProductService.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client/ClientGetOneDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/request/LoginRequest.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotFoundException.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotAuthorizedException.java
@@ -33,6 +34,8 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Category/CategoryDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Transactions/Transaction.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/JwtTokenInvalidException.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Category/CategoryProductIdDTO.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/ScriptController.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client/ClientUpdateDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client/ClientNameDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/RoleRepository.java
@@ -48,12 +51,13 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/ERole.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/TransactionService.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/ClientController.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/UserController.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/AuthController.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/WebSecurityConfig.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/response/UserInfoResponse.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserStatistics.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/TransactionRepository.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Products/Product.java
-/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/ClientInterface.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Transactions/TransactionAvgClientOrderQuantity.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/PayrollApplication.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Category/CategoryProductDTO.java

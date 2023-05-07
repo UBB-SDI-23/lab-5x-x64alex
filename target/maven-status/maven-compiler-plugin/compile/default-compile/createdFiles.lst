@@ -4,7 +4,6 @@ payroll/Repository/CategoryRepository.class
 payroll/Model/Transactions/TransactionDTO.class
 payroll/Security/Payload/response/UserInfoResponse.class
 payroll/Security/Services/UserDetailsServiceImpl.class
-payroll/Service/ClientInterface.class
 payroll/Service/CategoryService.class
 payroll/Model/Transactions/TransactionAvgClientOrderQuantity.class
 payroll/Model/Client/ClientUpdateDTO.class
@@ -13,6 +12,7 @@ payroll/Model/Products/ProductDTO.class
 payroll/Service/UserService.class
 payroll/Service/TransactionService.class
 payroll/Security/JWT/AuthEntryPointJwt.class
+payroll/Model/User/UserStatistics.class
 payroll/Model/Category/Category.class
 payroll/Exception/UserProfileNotFoundException.class
 payroll/Repository/ProductRepository.class
@@ -22,6 +22,7 @@ payroll/Model/Transactions/TransactionIdDTO.class
 payroll/Model/User/User.class
 payroll/Security/JWT/AuthTokenFilter.class
 payroll/Controller/CategoryController.class
+payroll/Model/Client/ClientGetOneDTO.class
 payroll/Repository/TransactionRepository.class
 payroll/Controller/TransactionController.class
 payroll/Controller/ClientController.class
@@ -30,16 +31,19 @@ payroll/Model/Client/ClientDTO.class
 payroll/Model/Category/CategoryDTO.class
 payroll/Service/ProductService$1.class
 payroll/Model/User/Role.class
+payroll/Controller/ScriptController.class
 payroll/Model/Category/CategoryNoProductDTO.class
 payroll/Model/RegisterDTO.class
 payroll/Model/User/UserProfile.class
 payroll/Model/Transactions/Transaction.class
 payroll/Service/ProductService.class
 payroll/Model/Products/ProductClientDTO.class
+payroll/Model/Category/CategoryProductIdDTO.class
 payroll/Exception/UserNotAuthorizedException.class
 payroll/PayrollApplication.class
 payroll/Model/Category/CategoryNameDTO.class
 payroll/Security/Services/UserDetailsImpl.class
+payroll/Controller/UserController.class
 payroll/Repository/RoleRepository.class
 payroll/Model/Client/Client$ClientBuilder.class
 payroll/Security/Payload/response/MessageResponse.class
