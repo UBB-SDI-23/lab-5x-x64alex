@@ -107,7 +107,7 @@ export const AllCategories = () => {
 									<TableCell align="right">{category.categoryNumberProducts}</TableCell>
 									<TableCell align="right">{category.categoryAveragePrice}</TableCell>
 									<TableCell align="right">
-										<Link to={`/user/${category.categoryId}`} title="View user details">
+										<Link to={`/user/${category.userName}`} title="View user details">
 											{category.userName}
 										</Link>
 									</TableCell>

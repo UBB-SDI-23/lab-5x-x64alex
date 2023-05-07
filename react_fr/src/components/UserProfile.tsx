@@ -9,18 +9,18 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { UserDetails } from "../models/Login/UserDetails";
 
 export const UserProfile = () => {
-	const { userId } = useParams();
+	const { userName } = useParams();
 	const [userProfile, setUserProfile] = useState<UserDetails>();
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/user/${userId}`);
+			const response = await fetch(`${BACKEND_API_URL}/user/${userName}`);
 			const user = await response.json();
 			setUserProfile(user);
 
 		};
 		fetchProduct();
-	}, [userId]);
+	}, [userName]);
 
 	return (
 		<Container>
