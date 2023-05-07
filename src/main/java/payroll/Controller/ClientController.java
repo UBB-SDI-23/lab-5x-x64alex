@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:8000", "https://main--payrollapp1.netlify.app"},
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE},
-        allowedHeaders = {"Authorization", "Content-Type", "confirmation"},
-        allowCredentials = "true")
 @RequestMapping("/api/clients")
 public class ClientController {
     @Autowired
@@ -67,7 +63,6 @@ public class ClientController {
         this.clientService.deleteClients(clientId);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .header("Access-Control-Allow-Origin", "https://main--payrollapp1.netlify.app")
                 .body("Category deleted");
     }
 }
