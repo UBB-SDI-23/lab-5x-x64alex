@@ -48,5 +48,6 @@ export function canAdd() {
 
 
   export function canEdit(user: String) {
-        return (user === userName && userRole === "ROLE_REGULAR") || (userRole === "ROLE_MODERATOR") || (userRole === "ROLE_ADMIN")
+    console.log(user,userName,userRole);
+        return (user === userName && userRole === "ROLE_REGULAR") || (userRole === "ROLE_MODERATOR") || (userRole === "ROLE_ADMIN");
   }

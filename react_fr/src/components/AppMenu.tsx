@@ -67,7 +67,7 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Transactions
 					</Button>
-					{!isAdmin() &&
+					{!isLoggedIn() &&
 					<Button
 						variant={path.startsWith("/login") ? "outlined" : "text"}
 						to="/login"
