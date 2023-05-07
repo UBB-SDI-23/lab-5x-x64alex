@@ -41,22 +41,6 @@ export const CategoryDetails = () => {
 					<p>Category Profitability: {category?.categoryProfitability}</p>
 					<p>Category ReturnsPerMonth: {category?.categoryReturnsPerMonth}</p>
 					<p>Category Sales: {category?.categorySales}</p>
-					{/* <p>Category products:</p>
-					<ul>
-                        {category?.products.map(
-                            (product: Product) => {
-                                <li>
-                                <p>Product Name: {product?.productName}</p>
-                                <p>Product Price: {product?.productPrice}</p>
-                                <p>Product Quantity: {product?.productQuantity}</p>
-                                <p>Product Sale: {String(product?.productOnSale)}</p>
-                                <p>Product Weight: {product?.productWeight}</p>
-                                <p>Product Description: {product?.productDescription}</p>
-                            }
-                            </li>
-                        )
-                        }
-					</ul> */}
 				</Stack>
 
 			

@@ -24,6 +24,7 @@ import { AllTransactions } from './components/transactions/AllTransactions'
 import { TransactionDelete } from './components/transactions/TransactionDelete'
 import { TransactionAdd } from './components/transactions/TransactionAdd'
 import { TransactionDetails } from './components/transactions/TransactionDetails'
+import { Login } from '@mui/icons-material'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -59,6 +60,7 @@ function App() {
 					<Route path="/transactions/:transactionId/delete" element={<TransactionDelete />} />
 					<Route path="/transactions/:transactionId/edit" element={<TransactionAdd />} />
 
+					<Route path="/login" element={<Login/>} />
 
 
 				</Routes>

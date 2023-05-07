@@ -60,6 +60,15 @@ export const AppMenu = () => {
 						startIcon={<LocalLibraryIcon />}>
 						Transactions
 					</Button>
+					<Button
+						variant={path.startsWith("/login") ? "outlined" : "text"}
+						to="/login"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<LocalLibraryIcon />}>
+						Login
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</Box>
