@@ -182,7 +182,9 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, jwtCookie)
                 .body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
-                        roles));
+                        roles,
+                        jwtCookie
+                        ));
     }
 
     @PostMapping("/signout")
