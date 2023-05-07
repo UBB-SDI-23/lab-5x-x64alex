@@ -34,11 +34,7 @@ export const Login = () => {
         // Cookies.set('cookieda','231');
 
         Cookies.set('confirmation', value,{
-            httpOnly: true,
             path: '/api',
-            domain: 'localhost',
-            //secure: false,
-            expires: 0, // Session cookie
           });
 
 		alert("Sigin")
