@@ -21,7 +21,7 @@ export const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
         };
-        fetch('https://example.com', {
+        fetch(`${BACKEND_API_URL}/signin`, {
             method: 'POST',
             body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
             credentials: 'include'
