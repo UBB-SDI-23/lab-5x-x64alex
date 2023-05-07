@@ -11,7 +11,9 @@ export function updateGlobalVar(newValue: string) {
 }
 export let userRole = "ROLE_ANONYMOUS"
 export function updateUserRole(newValue: string) {
+    console.log(userRole, newValue);
     userRole = newValue;
+    console.log(userRole, newValue);
 }
 export function isAdmin() {
     return  userRole === "ROLE_ADMIN";
