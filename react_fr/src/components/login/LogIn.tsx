@@ -21,6 +21,8 @@ export const Login = () => {
             // Manually define the type of the headers object as AxiosHeaders
             const headers: AxiosResponseHeaders = response.headers as AxiosResponseHeaders;
             // Get the Set-Cookie header from the headers object
+            console.log(headers); // Prints the Set-Cookie header to the console
+            console.log(response.headers);
             const setCookieHeader = headers['set-cookie'];
             console.log(setCookieHeader); // Prints the Set-Cookie header to the console
 
