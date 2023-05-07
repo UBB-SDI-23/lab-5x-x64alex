@@ -25,6 +25,7 @@ import { TransactionDelete } from './components/transactions/TransactionDelete'
 import { TransactionAdd } from './components/transactions/TransactionAdd'
 import { TransactionDetails } from './components/transactions/TransactionDetails'
 import { Login } from './components/login/LogIn'
+import { UserProfile } from './components/UserProfile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -63,6 +64,7 @@ function App() {
 
 					<Route path="/login" element={<Login/>} />
 
+					<Route path="/user/:userId" element={<UserProfile/>} />
 
 				</Routes>
 			</Router>

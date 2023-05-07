@@ -55,8 +55,6 @@ export const ClientDetails = () => {
                     </Grid> 
 				</Stack>
 
-			
-
 
 				</CardContent>
 				<CardActions>
