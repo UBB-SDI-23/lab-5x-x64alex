@@ -37,7 +37,7 @@ export const Login = () => {
             httpOnly: true,
             path: '/api',
             domain: 'localhost',
-            secure: false,
+            //secure: false,
             expires: 0, // Session cookie
           });
 
