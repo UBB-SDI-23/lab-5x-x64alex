@@ -1,0 +1,4 @@
+
+*.class
+target/classes/scripts/sql_script100k.sql
+src/main/resources/scripts/sql_script100k.sql

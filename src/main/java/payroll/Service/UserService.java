@@ -5,6 +5,7 @@ import payroll.Exception.UserNotFoundException;
 import payroll.Exception.UserProfileNotFoundException;
 import payroll.Model.User.User;
 import payroll.Model.User.UserProfile;
+import payroll.Model.User.UserStatistics;
 import payroll.Repository.UserProfileRepository;
 import payroll.Repository.UserRepository;
 
@@ -21,6 +22,18 @@ public class UserService {
         this.userProfileRepository = userProfileRepository;
     }
 
+    public void deleteAllEntities(){
+        userRepository.deleteAllDataEntities();
+    }
+    public UserStatistics getUserStatistics(Long userId) {
+        return new UserStatistics(userId,
+                userRepository.getNumberCategory(userId),
+                userRepository.getNumberProducts(userId),
+                userRepository.getNumberClients(userId),
+                userRepository.getNumberTransactions(userId)
+        );
+    }
+
     public UserProfile getUserProfileById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -32,6 +45,7 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(username));
         return user.getUserProfile();
     }
+
 
     public User getUserByUsername(String username) {
         return this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
