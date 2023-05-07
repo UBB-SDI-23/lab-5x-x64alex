@@ -16,6 +16,7 @@ export const Login = () => {
 	});
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
+        try{
         event.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -28,13 +29,14 @@ export const Login = () => {
         const value = product.jwtToken.split('=')[1].split(';')[0] as string;
         updateGlobalVar(value);
 
-        console.log(product.roles[0]);
-        console.log(userRole)
         updateUserRole(product.roles[0]);
         console.log(userRole)
 
 		alert("Sigin")
 		navigate("/");
+        }catch{
+            alert("Error")
+        }
 	};
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
