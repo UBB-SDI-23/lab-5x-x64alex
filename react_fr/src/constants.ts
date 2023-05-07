@@ -1,2 +1,2 @@
-export const  BACKEND_API_URL = "https://alexcant.twilightparadox.com";
+export const  BACKEND_API_URL = "http://localhost:8000";
 
