@@ -53,7 +53,7 @@ export const Login = () => {
                 return response.json()
             })
 
-	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest)
+	    axios.post(`${BACKEND_API_URL}/signin`, loginRequest,{withCredentials: true})
         .then((response: AxiosResponse) => {
             // Manually define the type of the headers object as AxiosHeaders
             const headers: AxiosResponseHeaders = response.headers as AxiosResponseHeaders;
