@@ -1,41 +1,23 @@
-import {
-	Container,
-	IconButton,
-	TextField,
-	Stack,
-    Card,
-    CardContent,
-    Button,
-    CardActions,
-} from "@mui/material";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Category } from "../../models/Category/Category";
+import { Container, Card, CardContent, IconButton, CardActions, Button, Stack, TextField } from "@mui/material";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { BACKEND_API_URL } from "../../constants";
 
 export const Login = () => {
+	const { categoryId } = useParams();
 	const navigate = useNavigate();
 
-	const [category, setCategory] = useState<Category>({
-	    categoryName:"",
-        categoryPopularity: 0,
-        categorySales: 0,
-        categoryReturnsPerMonth: 0,
-        categoryProfitability: 0
-	});
-
-	const addCategory = (event: { preventDefault: () => void }) => {
-
+	const handleLogin = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category);
-			alert("Product added")
-			navigate("/categories");
-		} catch (error) {
-			alert(error);
-		}
+		await axios.delete(`${BACKEND_API_URL}/categories/${categoryId}`);
+		alert("Category deleted")
+		navigate("/categories");
+	};
+
+	const handleCancel = (event: { preventDefault: () => void }) => {
+		event.preventDefault();
+		navigate("/categories");
 	};
 
 	return (
@@ -48,54 +30,27 @@ export const Login = () => {
 						</IconButton>{" "}
 					</Stack>
 
-					<form onSubmit={addCategory}>
+					<form onSubmit={handleLogin}>
 						<TextField
                             type="string"
 							id="name"
-							label="Name"
+							label="username"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryName = newValue.target.value}
+							// onChange={(newValue) => category.categoryName = newValue.target.value}
 						/>
                         <TextField
-                            type="number"
+                            type="password"
 							id="name"
-							label="Popularity"
+							label="password"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
-						/>
-                        <TextField
-                            type="number"
-							id="name"
-							label="Profitability"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
-                        />
-                        <TextField
-                            type="number"
-							id="name"
-							label="ReturnsPerMonth"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
-                        />
-                        <TextField
-                            type="number"
-							id="name"
-							label="Sales"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
+							// onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
 						/>
 
-						<Button id = "submitButton" type="submit">Add Category</Button>
+						<Button id = "submitButton" type="submit">Login</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>

@@ -24,7 +24,7 @@ import { AllTransactions } from './components/transactions/AllTransactions'
 import { TransactionDelete } from './components/transactions/TransactionDelete'
 import { TransactionAdd } from './components/transactions/TransactionAdd'
 import { TransactionDetails } from './components/transactions/TransactionDetails'
-import { Login } from '@mui/icons-material'
+import { Login } from './components/login/LogIn'
 
 function App() {
   const [count, setCount] = useState(0)
