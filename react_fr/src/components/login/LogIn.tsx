@@ -27,7 +27,7 @@ export const Login = () => {
         const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
         const product = await response.json();
         console.log(product.jwtToken);
-        const value = product.jwtToken.split('=')[1];
+        const value = product.jwtToken.split('=')[1].split(';')[0];
         console.log(value);
 
         Cookies.set('cookieda','231');
