@@ -10,11 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import payroll.Model.User.User;
 import payroll.Model.User.UserProfile;
 import payroll.Model.User.UserStatistics;
@@ -30,6 +28,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @GetMapping("/{username}")
     public ResponseEntity getUserProfile(@PathVariable("username") String username){
@@ -58,6 +58,37 @@ public class UserController {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username does not exist!"));
+        }
+    }
+
+    @GetMapping("/deleteAllEntities")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity deleteAllData(){
+        try {
+            userService.deleteAllEntities();
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new MessageResponse("Delete was successful!"));
+        }catch (Exception e){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Delete all encountered the error: "+e.getMessage()));
+        }
+    }
+
+    @GetMapping ("/run-script")
+    public ResponseEntity<String> runScript(@RequestParam(defaultValue = "sql_script10k.sql") String scriptName) {
+        try {
+            ClassPathResource resource = new ClassPathResource("scripts/"+scriptName);
+            byte[] content = FileCopyUtils.copyToByteArray(resource.getInputStream());
+            String script = new String(content);
+
+
+            jdbcTemplate.execute(script);
+
+            return ResponseEntity.ok("Script executed successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to execute script: " + e.getMessage());
         }
     }
 }

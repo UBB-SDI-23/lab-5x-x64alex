@@ -22,6 +22,9 @@ public class UserService {
         this.userProfileRepository = userProfileRepository;
     }
 
+    public void deleteAllEntities(){
+        userRepository.deleteAllDataEntities();
+    }
     public UserStatistics getUserStatistics(Long userId) {
         return new UserStatistics(userId,
                 userRepository.getNumberCategory(userId),

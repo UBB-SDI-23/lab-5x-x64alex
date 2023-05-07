@@ -18,6 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import payroll.Exception.JwtTokenInvalidException;
 import payroll.Model.RegisterDTO;
@@ -70,38 +72,42 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+        try {
+            if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+                return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+            }
+
+            if (userConfirmationRepository.existsByUsername(signUpRequest.getUsername())) {
+                userConfirmationRepository.deleteByUsername(signUpRequest.getUsername());
+            }
+
+            String confirmationToken = UUID.randomUUID().toString();
+
+            UserConfirmation userConfirmation = new UserConfirmation();
+            userConfirmation.setUsername(signUpRequest.getUsername());
+            userConfirmation.setPassword(encoder.encode(signUpRequest.getPassword()));
+            userConfirmation.setConfirmationToken(confirmationToken);
+
+            userConfirmation.setName(signUpRequest.getName());
+            userConfirmation.setBio(signUpRequest.getBio());
+            userConfirmation.setGender(signUpRequest.getGender());
+            userConfirmation.setLocation(signUpRequest.getLocation());
+            userConfirmation.setBirthdate(signUpRequest.getBirthdate());
+
+            Calendar date = Calendar.getInstance();
+            long timeInSecs = date.getTimeInMillis();
+            Date afterAdding10Mins = new Date(timeInSecs + (10 * 60 * 1000));
+
+            userConfirmation.setExpirationDate(afterAdding10Mins);
+
+            userConfirmationRepository.save(userConfirmation);
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new RegisterDTO(userConfirmation.getUsername(), userConfirmation.getConfirmationToken()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to register user: " + e.getMessage());
         }
-
-        if (userConfirmationRepository.existsByUsername(signUpRequest.getUsername())) {
-            userConfirmationRepository.deleteByUsername(signUpRequest.getUsername());
-        }
-
-        String confirmationToken = UUID.randomUUID().toString();
-
-        UserConfirmation userConfirmation = new UserConfirmation();
-        userConfirmation.setUsername(signUpRequest.getUsername());
-        userConfirmation.setPassword(encoder.encode(signUpRequest.getPassword()));
-        userConfirmation.setConfirmationToken(confirmationToken);
-
-        userConfirmation.setName(signUpRequest.getName());
-        userConfirmation.setBio(signUpRequest.getBio());
-        userConfirmation.setGender(signUpRequest.getGender());
-        userConfirmation.setLocation(signUpRequest.getLocation());
-        userConfirmation.setBirthdate(signUpRequest.getBirthdate());
-
-        Calendar date = Calendar.getInstance();
-        long timeInSecs = date.getTimeInMillis();
-        Date afterAdding10Mins = new Date(timeInSecs + (10 * 60 * 1000));
-
-        userConfirmation.setExpirationDate(afterAdding10Mins);
-
-        userConfirmationRepository.save(userConfirmation);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new RegisterDTO(userConfirmation.getUsername(), userConfirmation.getConfirmationToken()));
     }
 
     @PostMapping("register/confirm/{confirmationToken}")
@@ -187,5 +193,17 @@ public class AuthController {
                 .status(HttpStatus.OK)
                 .header(HttpHeaders.SET_COOKIE, cookie)
                 .body(new MessageResponse("You've been signed out!"));
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
