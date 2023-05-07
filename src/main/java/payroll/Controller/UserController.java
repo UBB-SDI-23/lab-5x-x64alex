@@ -28,9 +28,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
     @GetMapping("/{username}")
     public ResponseEntity getUserProfile(@PathVariable("username") String username){
         try {
@@ -76,19 +73,6 @@ public class UserController {
         }
     }
 
-    @GetMapping ("/run-script")
-    public ResponseEntity<String> runScript(@RequestParam(defaultValue = "sql_script10k.sql") String scriptName) {
-        try {
-            ClassPathResource resource = new ClassPathResource("scripts/"+scriptName);
-            byte[] content = FileCopyUtils.copyToByteArray(resource.getInputStream());
-            String script = new String(content);
 
 
-            jdbcTemplate.execute(script);
-
-            return ResponseEntity.ok("Script executed successfully.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to execute script: " + e.getMessage());
-        }
-    }
 }
