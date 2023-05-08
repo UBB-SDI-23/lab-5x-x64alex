@@ -128,7 +128,7 @@ export const Register = () => {
 							id="birthdate"
 							label="birthdate"
 							variant="outlined"
-                            defaultValue={signup.birthdate}
+                            defaultValue={new Date('2023-05-08')}
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => signup.birthdate = new Date(newValue.target.value)}
