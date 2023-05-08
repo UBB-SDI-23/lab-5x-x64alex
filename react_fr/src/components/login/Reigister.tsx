@@ -26,15 +26,15 @@ export const Register = () => {
     const handleButtonClick = () => {
         if (signup.password.length < 8) {
           setError(true);
+          return true;
         } else {
           setError(false);
-          // Do something with the password
+          return false;
         }
       };
 
 	const handleRegister = async (event: { preventDefault: () => void }) => {
-        handleButtonClick()
-        if(!error){
+        if(!handleButtonClick()){
                 event.preventDefault();
         
                 axios.post(`${BACKEND_API_URL}/register`, signup)
