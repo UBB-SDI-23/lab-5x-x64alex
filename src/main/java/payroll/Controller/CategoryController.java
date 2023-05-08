@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Category.*;
 import payroll.Service.CategoryService;
+import payroll.Service.EntriesService;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    EntriesService entriesService;
     @GetMapping()
     public List<CategoryDTO> getCategories() {
         return this.categoryService.getCategoryDTOList();
@@ -26,7 +30,8 @@ public class CategoryController {
     @GetMapping("/averagePriceProduct")
     public List<CategoryProductDTO> getCategoryProducts(@RequestParam(defaultValue = "0") int pageNumber,
                                                         @RequestParam(defaultValue = "100") int pageSize) {
-        return this.categoryService.averagePriceProduct(pageNumber, pageSize);
+        int entities = entriesService.getEntries();
+        return this.categoryService.averagePriceProduct(pageNumber, entities);
     }
 
     @GetMapping("/{categoryId}")

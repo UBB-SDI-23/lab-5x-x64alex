@@ -9,6 +9,7 @@ import payroll.Model.Products.ProductIdDTO;
 import payroll.Model.Products.Product;
 import payroll.Model.Products.ProductAggregate;
 import payroll.Model.Products.ProductNameDTO;
+import payroll.Service.EntriesService;
 import payroll.Service.ProductService;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    EntriesService entriesService;
     @GetMapping()
     public List<ProductIdDTO> getProducts(){
         return this.productService.getProductIdDTOList();
@@ -55,7 +58,8 @@ public class ProductController {
                                                     @RequestParam(defaultValue = "0") int pageNumber,
                                                     @RequestParam(defaultValue = "100") int pageSize,
                                                          @RequestParam(defaultValue = "0") int sortByQuantityDescending){
-        return this.productService.getFilterGreaterThanPageable(filterValue,pageNumber,pageSize, sortByQuantityDescending).stream().map(product -> product.getProductAggregate(productService.getTransactionsCount(product.getProductId()))).toList();
+        int entities = entriesService.getEntries();
+        return this.productService.getFilterGreaterThanPageable(filterValue,pageNumber,entities, sortByQuantityDescending).stream().map(product -> product.getProductAggregate(productService.getTransactionsCount(product.getProductId()))).toList();
     }
 
 

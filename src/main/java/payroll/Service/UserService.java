@@ -1,15 +1,16 @@
 package payroll.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Exception.UserNotFoundException;
 import payroll.Exception.UserProfileNotFoundException;
-import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.User.User;
 import payroll.Model.User.UserNameDTO;
 import payroll.Model.User.UserProfile;
 import payroll.Model.User.UserStatistics;
+import payroll.Repository.EntriesRepository;
 import payroll.Repository.UserProfileRepository;
 import payroll.Repository.UserRepository;
 
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Service
 public class UserService {
+    @Autowired
+    private EntriesRepository entriesRepository;
 
     private final UserRepository userRepository;
 

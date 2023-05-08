@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import payroll.Model.Client.*;
 import payroll.Model.Products.ProductTransactionDTO;
 import payroll.Service.ClientService;
+import payroll.Service.EntriesService;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -20,10 +21,14 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    EntriesService entriesService;
+
     @GetMapping()
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){
-        return this.clientService.getClients(pageNumber,pageSize).stream().map(client -> client.getClientDTO(clientService.getTransactionsCount(client.getClientId()))).toList();
+        int entities = entriesService.getEntries();
+        return this.clientService.getClients(pageNumber,entities).stream().map(client -> client.getClientDTO(clientService.getTransactionsCount(client.getClientId()))).toList();
     }
 
     @GetMapping("/names")

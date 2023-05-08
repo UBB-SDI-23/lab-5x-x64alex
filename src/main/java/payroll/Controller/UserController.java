@@ -14,10 +14,13 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Category.CategoryNameDTO;
+import payroll.Model.EntriesPerPage;
+import payroll.Model.Transactions.TransactionIdDTO;
 import payroll.Model.User.*;
 import payroll.Repository.RoleRepository;
 import payroll.Security.Payload.response.MessageResponse;
 import payroll.Security.Payload.response.UserInfoResponse;
+import payroll.Service.EntriesService;
 import payroll.Service.UserService;
 
 import java.nio.charset.StandardCharsets;
@@ -32,6 +35,9 @@ public class UserController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    EntriesService entriesService;
 
     @GetMapping("/{username}")
     public ResponseEntity getUserProfile(@PathVariable("username") String username){
@@ -103,6 +109,21 @@ public class UserController {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Delete all encountered the error: "+e.getMessage()));
+        }
+    }
+
+    @PostMapping("/modifyEntryPerPage")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity modifyEntryPerPage(@RequestBody EntriesPerPage entriesPerPage){
+        try {
+            entriesService.modifyUserPerPage(entriesPerPage);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new MessageResponse("Modify was successful!"));
+        }catch (Exception e){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Modify encountered the error: "+e.getMessage()));
         }
     }
 

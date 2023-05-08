@@ -5,6 +5,7 @@ import axios from "axios";
 import { BACKEND_API_URL, authorization } from "../constants";
 import { UserNameDTO } from "../models/Login/UserNameDTO";
 import { useEffect, useState } from "react";
+import { EntityPerPage } from "../models/EntityPerPage";
 
 export const AdminDashboard = () => {
 	const scriptName = "sql_script10k.sql";
@@ -58,6 +59,27 @@ export const AdminDashboard = () => {
 	};
 	
 
+
+    const [entities, setEntities] = useState<EntityPerPage>(
+        {
+            entries:50
+        }
+    );
+
+	const handleEntitiesPerPage = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+
+        axios.post(`${BACKEND_API_URL}/user/modifyEntryPerPage`,entities)
+        .then((response) => {
+            console.log(response.data);
+            alert("Entities per page have been modified")
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Error: "+error)
+          });   
+    }
 
 	return (
 		<Container>
@@ -134,6 +156,27 @@ export const AdminDashboard = () => {
                             />}
 						/>
 						<Button id = "submitButton" type="submit">Edit role </Button>
+					</form>
+				</CardContent>
+			</Card>
+            <Card>
+				<CardContent>
+                <Stack direction="row" spacing={10}   alignItems="center"> 
+                Set entries per page   
+                </Stack>
+
+
+                <form onSubmit={handleEntitiesPerPage}>
+                        <TextField
+                            type="number"
+							id="name"
+							label="Entities per page"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => entities.entries = Number(newValue.target.value)}
+						/>
+						<Button id = "submitButton" type="submit">Submit </Button>
 					</form>
 				</CardContent>
 			</Card>

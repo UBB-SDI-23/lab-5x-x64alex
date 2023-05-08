@@ -7,6 +7,7 @@ import payroll.Model.Transactions.TransactionAvgClientOrderQuantity;
 import payroll.Model.Transactions.TransactionDTO;
 import payroll.Model.Transactions.TransactionIdDTO;
 import payroll.Model.Transactions.Transaction;
+import payroll.Service.EntriesService;
 import payroll.Service.TransactionService;
 
 import java.util.List;
@@ -17,10 +18,15 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
+    @Autowired
+    EntriesService entriesService;
+
     @GetMapping()
     public List<TransactionAvgClientOrderQuantity> getTransactions(@RequestParam(defaultValue = "0") int pageNumber,
-                                                                   @RequestParam(defaultValue = "100") int pageSize){
-        return this.transactionService.getTransactions(pageNumber, pageSize).stream().map(transaction -> transaction.getTransactionAvgClientOrderQuantity(this.transactionService.getClientAvgOrderQuantity(transaction.getClient().getClientId()))).toList();
+                                                                   @RequestParam(defaultValue = "100") int pageSize)
+    {
+        int entities = entriesService.getEntries();
+        return this.transactionService.getTransactions(pageNumber, entities).stream().map(transaction -> transaction.getTransactionAvgClientOrderQuantity(this.transactionService.getClientAvgOrderQuantity(transaction.getClient().getClientId()))).toList();
     }
     @GetMapping("/{transactionId}")
     public TransactionDTO getOneTransaction(@PathVariable("transactionId") Long transactionId){

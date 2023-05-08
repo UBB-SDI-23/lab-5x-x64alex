@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import payroll.Model.Category.CategoryNameDTO;
+import payroll.Model.EntriesPerPage;
 import payroll.Model.User.User;
 import payroll.Model.User.UserNameDTO;
 
