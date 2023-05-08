@@ -7,7 +7,7 @@ import { UserNameDTO } from "../models/Login/UserNameDTO";
 import { useEffect, useState } from "react";
 
 export const AdminDashboard = () => {
-	const { transactionId } = useParams();
+	const scriptName = "sql_script1k.sql";
 	const navigate = useNavigate();
 	const config = {
 		headers: {
@@ -16,14 +16,7 @@ export const AdminDashboard = () => {
 		}
 	}
 
-    const config1 = {
-        params: {
-            scriptName: "sql_script1k.sql"
-          },
-		headers: {
-		  Authorization: authorization,
-		}
-	}
+
     const [users, setUsers] = useState<UserNameDTO[]>([]);
     const [userId, setUserId] = useState<Number>(0);
 	const [searchString, setSearchString] = useState("");
@@ -52,14 +45,14 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await fetch(`${BACKEND_API_URL}/run-script`, config1);
+		await fetch(`${BACKEND_API_URL}/run-script?scriptName=${scriptName}`,config);
 		alert("Script finished")
 		navigate("/");
 	};
 
     const editRoles = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.post(`${BACKEND_API_URL}/user/usernames/${userId}?newRole=${newUserRole}`, config);
+		await axios.post(`${BACKEND_API_URL}/user/usernames/${userId}?newRole=${newUserRole}`, null, config);
 		alert("Role has been edited")
 		navigate("/");
 	};
