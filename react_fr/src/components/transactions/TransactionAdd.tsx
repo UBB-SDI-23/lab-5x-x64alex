@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, authorization } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { Client } from "../../models/Client/Client";
@@ -24,6 +24,12 @@ export const TransactionAdd = () => {
 	const [clients, setClients] = useState<ClientName[]>([]);
 	const [searchString, setSearchString] = useState("");
 
+	const config = {
+		headers: {
+		  Authorization: authorization,
+		  'Content-Type': 'application/json'
+		}
+	}
 
     const [products, setProducts] = useState<ProductName[]>([]);
 	const [searchString2, setSearchString2] = useState("");
@@ -55,7 +61,7 @@ export const TransactionAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/transactions`, transaction);
+			axios.post(`${BACKEND_API_URL}/transactions`, transaction, config);
 			alert("Transaction added")
 			navigate("/transactions");
 		} catch (error) {

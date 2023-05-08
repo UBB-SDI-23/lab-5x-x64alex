@@ -5,4 +5,5 @@ export interface TransactionAvgClientOrderQuantity {
     clientId: number;
     productId: number;
     avgClientOrderQuantity: number;
+    userName: string;
 }

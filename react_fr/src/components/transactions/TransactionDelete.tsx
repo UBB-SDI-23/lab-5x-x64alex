@@ -2,18 +2,27 @@ import { Container, Card, CardContent, IconButton, CardActions, Button, Stack } 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, authorization } from "../../constants";
 
 export const TransactionDelete = () => {
 	const { transactionId } = useParams();
 	const navigate = useNavigate();
+	const config = {
+		headers: {
+		  Authorization: authorization,
+		  'Content-Type': 'application/json'
+		}
+	}
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`);
+		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`, config);
 		alert("transaction deleted")
 		navigate("/transactions");
 	};
+
+	
+
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
 		event.preventDefault();

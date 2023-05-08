@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canAdd } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ClientDTO } from "../../models/Client/ClientDTO";
@@ -78,6 +78,7 @@ export const AllTransactions = () => {
 								<TableCell align="left">Date</TableCell>
 								<TableCell align="right">Quantity</TableCell>
 								<TableCell align="right">Average Client order quantity</TableCell>
+								<TableCell align="right">username</TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -95,6 +96,12 @@ export const AllTransactions = () => {
 									<TableCell align="right">{transaction.transactionQuantity}</TableCell>
 									<TableCell align="right">{transaction.avgClientOrderQuantity}</TableCell>
 									<TableCell align="right">
+										<Link to={`/user/${transaction.userName}`} title="View user details">
+											{transaction.userName}
+										</Link>
+									</TableCell>
+									{canEdit(transaction.userName)&&
+									<TableCell align="right">
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transaction.transactionId}/edit`}>
 											<EditIcon />
 										</IconButton>
@@ -103,6 +110,7 @@ export const AllTransactions = () => {
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>
+									}
 								</TableRow>
 							))}
 						</TableBody>
