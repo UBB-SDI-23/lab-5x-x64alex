@@ -14,6 +14,15 @@ export const AdminDashboard = () => {
 		}
 	}
 
+    const config1 = {
+        params: {
+            scriptName: "sql_script1k.sql"
+          },
+		headers: {
+		  Authorization: authorization,
+		  'Content-Type': 'application/json'
+		}
+	}
 	const deleteAllData = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		await axios.get(`${BACKEND_API_URL}/user/deleteAllEntities`, config);
@@ -23,7 +32,7 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.get(`${BACKEND_API_URL}/run-script}`, config);
+		await axios.get(`${BACKEND_API_URL}/run-script}`, config1);
 		alert("Script finished")
 		navigate("/");
 	};
@@ -74,8 +83,11 @@ export const AdminDashboard = () => {
 			</Card>
             <Card>
 				<CardContent>
+                Edit roles
                 <Stack direction="row" spacing={2}   alignItems="center">
-					Edit roles
+                        
+
+
                 </Stack>
 
 				</CardContent>
