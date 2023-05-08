@@ -27,7 +27,7 @@ export const AdminDashboard = () => {
     const [users, setUsers] = useState<UserNameDTO[]>([]);
     const [userId, setUserId] = useState<Number>(0);
 	const [searchString, setSearchString] = useState("");
-    const roles = ['The Godfather', 'Pulp Fiction', 'ROLE_ANONYMOUS'];
+    const roles = ['ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_REGULAR', 'ROLE_ANONYMOUS'];
     const [newUserRole, setNewUserRole] = useState<String>("ROLE_ANONYMOUS");
 
 
@@ -52,14 +52,14 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await fetch(`${BACKEND_API_URL}/run-script}`, config);
+		await fetch(`${BACKEND_API_URL}/run-script`, config1);
 		alert("Script finished")
 		navigate("/");
 	};
 
     const editRoles = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.post(`${BACKEND_API_URL}/user/usernames/${userId}`, config);
+		await axios.post(`${BACKEND_API_URL}/user/usernames/${userId}?newRole=${newUserRole}`, config);
 		alert("Role has been edited")
 		navigate("/");
 	};
