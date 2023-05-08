@@ -20,7 +20,6 @@ export const AdminDashboard = () => {
           },
 		headers: {
 		  Authorization: authorization,
-		  'Content-Type': 'application/json'
 		}
 	}
 	const deleteAllData = async (event: { preventDefault: () => void }) => {
