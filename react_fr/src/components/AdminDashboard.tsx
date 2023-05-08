@@ -7,7 +7,7 @@ import { UserNameDTO } from "../models/Login/UserNameDTO";
 import { useEffect, useState } from "react";
 
 export const AdminDashboard = () => {
-	const scriptName = "sql_script100k.sql";
+	const scriptName = "sql_script10k.sql";
 	const navigate = useNavigate();
 	const config = {
 		headers: {
