@@ -46,7 +46,7 @@ export const Register = () => {
                   })
                   .catch((error) => {
                     console.log(error);
-                    alert("Error")
+                    alert("Already exits this user in database")
                   });                  
 
         }
@@ -113,7 +113,24 @@ export const Register = () => {
 							sx={{ mb: 2 }}
 							onChange={(newValue) => signup.gender = newValue.target.value}
 						/>
-
+                        <TextField
+                            type="string"
+							id="location"
+							label="location"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => signup.location = newValue.target.value}
+						/>
+                        <TextField
+                            type="date"
+							id="birthdate"
+							label="birthdate"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(newValue) => signup.birthdate = new Date(newValue.target.value)}
+						/>
 						<Button id = "submitButton" type="submit"> Register </Button>
 					</form>
 				</CardContent>
