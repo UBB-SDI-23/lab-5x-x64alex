@@ -2,6 +2,7 @@ package payroll.Security.Payload.request;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,8 @@ import java.util.Date;
 public class SignupRequest {
 
     @NotBlank
+    @NotNull
+    @Size(min = 1, max = 30)
     private String username;
 
     @NotBlank(message = "Password is mandatory")
