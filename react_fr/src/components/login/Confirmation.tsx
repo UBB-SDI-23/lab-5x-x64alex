@@ -68,10 +68,6 @@ export const Confirmation = () => {
 
 						<Button id = "submitButton" type="submit"> Confirm </Button>
 					</form>
-                    <h2>Do not have an account yet?</h2>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/register`}>
-						<h3>Register now</h3>
-					</IconButton>
 				</CardContent>
 				<CardActions></CardActions>
 			</Card>

@@ -5,44 +5,64 @@ import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
 import { BACKEND_API_URL,userRole,updateGlobalVar,updateUserRole,updateUserName, userName } from "../../constants";
 import { LoginRequest } from "../../models/Login/LoginRequest";
 import { useState } from "react";
+import { SignUpRequest } from "../../models/Login/SignUpRequest";
 
 
 export const Register = () => {
 	const navigate = useNavigate();
 
-    const [loginRequest, setLoginRequest] = useState<LoginRequest>({
-	    username: "",
-        password: ""
-	});
+    const [error, setError] = useState(false);
+    const [signup, setSignUp] = useState<SignUpRequest>(
+        {
+            username: "",
+            password: "",
+            name: "",
+            gender: "",
+            bio: "",
+            location: "",
+            birthdate: new Date()
+        }
+    );
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            username: signup.username,
+            password:signup.password,
+            name: signup.name,
+            gender: signup.gender,
+            bio: signup.bio,
+            location: signup.location,
+            birthdate: signup.birthdate
+        }),
+    };
 
-	const handleLogin = async (event: { preventDefault: () => void }) => {
-        try{
-        event.preventDefault();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
-        };
-
-        const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
-        const product = await response.json();
-        const value = product.jwtToken.split('=')[1].split(';')[0] as string;
-        updateGlobalVar(value);
-
-        updateUserName(product.username);
-        console.log(userName);
-
-        console.log(product.roles);
-        console.log(product.roles[0]);
-        updateUserRole(product.roles[0]);
-        console.log(userRole);
-
-        alert("Registration code is: "+userName)
-		navigate("/confirmation");
-        }catch(error){
-            alert("Error")
+	const handleRegister = async (event: { preventDefault: () => void }) => {
+        handleButtonClick()
+        if(!error){
+            try{
+                event.preventDefault();
+        
+        
+                const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
+                const code = await response.json();
+        
+                alert("Registration code is: "+code)
+                navigate("/confirmation");
+                }catch(error){
+                    alert("Error")
+                }
         }
 	};
+
+    const handleButtonClick = () => {
+        if (signup.password.length < 8) {
+          setError(true);
+        } else {
+          setError(false);
+          // Do something with the password
+        }
+      };
 
 	return (
 		<Container>
@@ -55,7 +75,7 @@ export const Register = () => {
                         <h3>LogIn</h3>
 					</Stack>
 
-					<form onSubmit={handleLogin}>
+					<form onSubmit={handleRegister}>
 						<TextField
                             type="string"
 							id="name"
@@ -63,7 +83,7 @@ export const Register = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => loginRequest.username = newValue.target.value}
+							onChange={(newValue) => signup.username = newValue.target.value}
 						/>
                         <TextField
                             type="password"
@@ -72,15 +92,13 @@ export const Register = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => loginRequest.password = newValue.target.value}
+							onChange={(newValue) => signup.password = newValue.target.value}
+                            error={error}
+                            helperText={error ? "Password must be at least 8 characters long" : ""}
 						/>
 
 						<Button id = "submitButton" type="submit"> Register </Button>
 					</form>
-                    <h2>Do not have an account yet?</h2>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/register`}>
-						<h3>Register now</h3>
-					</IconButton>
 				</CardContent>
 				<CardActions></CardActions>
 			</Card>

@@ -77,9 +77,9 @@ export const Login = () => {
 
 						<Button id = "submitButton" type="submit"> Login </Button>
 					</form>
-                    <h2>Do not have an account yet?</h2>
+                    <h4>Do not have an account yet?</h4>
                     <IconButton component={Link} sx={{ mr: 3 }} to={`/register`}>
-						<h3>Register now</h3>
+						Register now
 					</IconButton>
 				</CardContent>
 				<CardActions></CardActions>
