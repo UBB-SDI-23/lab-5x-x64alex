@@ -69,7 +69,7 @@ export const AdminDashboard = () => {
 	const handleEntitiesPerPage = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
-        axios.post(`${BACKEND_API_URL}/user/modifyEntryPerPage`,entities)
+        axios.post(`${BACKEND_API_URL}/user/modifyEntryPerPage`,entities, config)
         .then((response) => {
             console.log(response.data);
             alert("Entities per page have been modified")

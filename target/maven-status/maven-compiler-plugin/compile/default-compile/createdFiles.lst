@@ -15,10 +15,12 @@ payroll/Service/TransactionService.class
 payroll/Security/JWT/AuthEntryPointJwt.class
 payroll/Model/User/UserStatistics.class
 payroll/Model/Category/Category.class
+payroll/Repository/EntriesRepository.class
 payroll/Exception/UserProfileNotFoundException.class
 payroll/Repository/ProductRepository.class
 payroll/Controller/AuthController.class
 payroll/Model/Category/CategoryProductDTO.class
+payroll/Model/EntriesPerPage.class
 payroll/Model/Transactions/TransactionIdDTO.class
 payroll/Model/User/User.class
 payroll/Security/JWT/AuthTokenFilter.class
@@ -29,6 +31,7 @@ payroll/Controller/TransactionController.class
 payroll/Controller/ClientController.class
 payroll/Model/Products/ProductNameDTO.class
 payroll/Model/Client/ClientDTO.class
+payroll/Service/EntriesService.class
 payroll/Model/Category/CategoryDTO.class
 payroll/Service/ProductService$1.class
 payroll/Model/User/Role.class

@@ -13,6 +13,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/request/LoginRequest.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotFoundException.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotAuthorizedException.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/EntriesService.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserNameDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client/Client.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/TransactionController.java
@@ -48,6 +49,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Products/ProductNameDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/ProductRepository.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserConfirmation.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/EntriesRepository.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/ClientService.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/JWT/AuthTokenFilter.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/ERole.java
@@ -59,6 +61,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/response/UserInfoResponse.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserStatistics.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/TransactionRepository.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/EntriesPerPage.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Products/Product.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Transactions/TransactionAvgClientOrderQuantity.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/PayrollApplication.java
