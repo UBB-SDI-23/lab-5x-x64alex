@@ -35,7 +35,7 @@ export const Confirmation = () => {
 						<IconButton component={Link} sx={{ mr: 3 }} to={`/`} >
 							<ArrowBackIcon />
 						</IconButton>{" "}
-                        <h3>LogIn</h3>
+                        <h3>Confirm:</h3>
 					</Stack>
 
 					<form onSubmit={handleLogin}>
