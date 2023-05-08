@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canEdit } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
@@ -48,11 +48,13 @@ export const AllClients = () => {
 			<h1>All clients</h1>
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a client:</h3>
+				{canAdd()&&
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/add`}>
 					<Tooltip title="Add a new client" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
+				}
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
       			</IconButton>
