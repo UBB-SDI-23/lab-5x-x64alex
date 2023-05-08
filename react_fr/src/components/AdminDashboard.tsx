@@ -23,16 +23,16 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`, config);
-		alert("transaction deleted")
-		navigate("/transactions");
+		await axios.delete(`${BACKEND_API_URL}/run-script}`, config);
+		alert("Script finished")
+		navigate("/");
 	};
 
     const editRoles = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`, config);
-		alert("transaction deleted")
-		navigate("/transactions");
+		alert("Role has been edited")
+		navigate("/");
 	};
 	
 
@@ -45,6 +45,7 @@ export const AdminDashboard = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
+                    Admin Dashboard
                 </Stack>
 				</CardContent>
 
