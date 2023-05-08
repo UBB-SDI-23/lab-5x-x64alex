@@ -62,6 +62,9 @@ public class UserService {
     public User getUserByUsername(String username) {
         return this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
     }
+    public User getUserById(Long userId) {
+        return this.userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
 
     public UserProfile updateUserProfile(UserProfile newUserProfile, Long id) {
         User user = userRepository.findById(id)

@@ -14,22 +14,24 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import payroll.Model.Category.CategoryNameDTO;
-import payroll.Model.User.User;
-import payroll.Model.User.UserNameDTO;
-import payroll.Model.User.UserProfile;
-import payroll.Model.User.UserStatistics;
+import payroll.Model.User.*;
+import payroll.Repository.RoleRepository;
 import payroll.Security.Payload.response.MessageResponse;
 import payroll.Security.Payload.response.UserInfoResponse;
 import payroll.Service.UserService;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @GetMapping("/{username}")
     public ResponseEntity getUserProfile(@PathVariable("username") String username){
@@ -64,6 +66,29 @@ public class UserController {
     @GetMapping("/usernames")
     public List<UserNameDTO> getUserNames(@RequestParam(defaultValue = "") String searchString) {
         return this.userService.getUserNames(searchString);
+    }
+
+    @PostMapping ("/usernames/{userId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity changeRole(@PathVariable("userId") Long userId,@RequestParam(defaultValue = "ROLE_ANONYMOUS") ERole newRole) {
+        try {
+            User user = userService.getUserById(userId);
+            Optional<Role> optionalRole = roleRepository.findById(user.getRoles().iterator().next().getId());
+            if(optionalRole.isPresent()){
+                Role newRoleName = optionalRole.get();
+                newRoleName.setName(newRole);
+                roleRepository.save(newRoleName);
+            }
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(user);
+
+        }catch (Exception e){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Can not change role"));
+        }
     }
 
     @GetMapping("/deleteAllEntities")
