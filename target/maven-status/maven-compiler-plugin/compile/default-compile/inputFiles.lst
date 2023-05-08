@@ -13,6 +13,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/request/LoginRequest.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotFoundException.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Exception/UserNotAuthorizedException.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserNameDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Client/Client.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Controller/TransactionController.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Service/UserService.java
@@ -23,6 +24,7 @@
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/User/UserProfile.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Transactions/TransactionDTO.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Repository/ClientRepository.java
+/Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Cors/CorsFilter.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Model/Category/Category.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Payload/response/MessageResponse.java
 /Users/acantor/Documents/GitHub/lab-5x-x64alex/src/main/java/payroll/Security/Services/UserDetailsImpl.java

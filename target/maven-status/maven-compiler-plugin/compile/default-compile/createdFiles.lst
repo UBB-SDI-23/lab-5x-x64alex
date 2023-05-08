@@ -5,6 +5,7 @@ payroll/Model/Transactions/TransactionDTO.class
 payroll/Security/Payload/response/UserInfoResponse.class
 payroll/Security/Services/UserDetailsServiceImpl.class
 payroll/Service/CategoryService.class
+payroll/Model/User/UserNameDTO.class
 payroll/Model/Transactions/TransactionAvgClientOrderQuantity.class
 payroll/Model/Client/ClientUpdateDTO.class
 payroll/Model/Products/ProductTransactionDTO.class
@@ -59,6 +60,7 @@ payroll/Exception/JwtTokenInvalidException.class
 payroll/Repository/ClientRepository.class
 payroll/Model/Products/ProductAggregate.class
 payroll/Model/Products/Product.class
+payroll/Cors/CorsFilter.class
 payroll/Security/Payload/request/LoginRequest.class
 payroll/Controller/ProductController.class
 payroll/Model/Client/Client.class
