@@ -6,5 +6,5 @@ export interface ClientDTO {
     "clientAddress": string;
     "clientPhoneNumber": string;
     "transactionsCount": number;
-
+    "userName": string
 }

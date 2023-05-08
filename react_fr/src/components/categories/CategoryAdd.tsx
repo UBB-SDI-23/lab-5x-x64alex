@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_API_URL, config } from "../../constants";
+import { BACKEND_API_URL, authorization } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Category } from "../../models/Category/Category";
 import axios from "axios";
@@ -18,6 +18,12 @@ import axios from "axios";
 export const CategoryAdd = () => {
 	const navigate = useNavigate();
 
+	const config = {
+			headers: {
+			  Authorization: authorization,
+			  'Content-Type': 'application/json'
+			}
+	};
 	const [category, setCategory] = useState<Category>({
 	    categoryName:"",
         categoryPopularity: 0,
@@ -30,7 +36,7 @@ export const CategoryAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category, config());
+			axios.post(`${BACKEND_API_URL}/categories`, category, config);
 			alert("Product added")
 			navigate("/categories");
 		} catch (error) {

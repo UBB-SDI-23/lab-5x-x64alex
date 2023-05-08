@@ -2,13 +2,20 @@ import { Autocomplete, Button, Card, CardActions, CardContent, IconButton, Stack
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL, config } from "../../constants";
+import { BACKEND_API_URL, authorization } from "../../constants";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { Category } from "../../models/Category/Category";
 
 export const CategoryUpdate = () => {
     const { categoryId } = useParams();
+
+	const config = {
+		headers: {
+		  Authorization: authorization,
+		  'Content-Type': 'application/json'
+		}
+};
 
     const navigate = useNavigate();
     const [categoryName, setCategoryName] = useState<String>("");
@@ -27,7 +34,7 @@ export const CategoryUpdate = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`, config());
+			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`, config);
 			const data = await response.json();
             setCategoryName(data.categoryName);
             setCategoryPopularity(data.categoryProfitability)

@@ -10,12 +10,19 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL, config } from "../../constants";
+import { BACKEND_API_URL, authorization } from "../../constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios";
 import { ClientUpdateDTO } from "../../models/Client/ClientUpdateDTO";
 
 export const ClientUpdate= () => {
+
+	const config = {
+		headers: {
+		  Authorization: authorization,
+		  'Content-Type': 'application/json'
+		}
+};
     const { clientId } = useParams();
 	const navigate = useNavigate();
     const [clientFirstName, setClientFirstName] = useState<String>("");
@@ -36,7 +43,7 @@ export const ClientUpdate= () => {
 
     useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`, config());
+			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`, config);
 			const data = await response.json();
             setClientFirstName(data.clientFirstName)
             setClientLastName(data.clientLastName)

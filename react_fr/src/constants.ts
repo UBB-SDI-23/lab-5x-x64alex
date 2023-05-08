@@ -31,26 +31,7 @@ export const logOut = () => {
     alert("signed out");
 }
 
-export function config() {
-    const [configVar, setConfig] = useState({
-        headers: {
-            Authorization: authorization,
-            'Content-Type': 'application/json'
-          }
-        });
 
-    useEffect(() => {
-        setConfig({
-            headers: {
-              Authorization: authorization,
-              'Content-Type': 'application/json'
-            }
-        });
-      }, [authorization]);
-
-    return configVar;
-
-  };
 
 
 export function updateUserName(newValue: string) {
