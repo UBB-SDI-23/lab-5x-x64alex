@@ -42,8 +42,6 @@ export const AllCategories = () => {
 	const [loading, setLoading] = useState(false);
     const [categories, setCategory] = useState<CategoryProduct[]>([]);
 
-	const [page, setPage] = useState(1)
-	const [multi, setMulti] = useState(1)
 	return (
 		<Container>
 			<h1>All categories</h1>
@@ -77,7 +75,7 @@ export const AllCategories = () => {
 					}}}>
         			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
       			</IconButton>
-				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
+				<IconButton edge="start" onClick={() => setPageNumber(pageNumber+1)}>
         			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
