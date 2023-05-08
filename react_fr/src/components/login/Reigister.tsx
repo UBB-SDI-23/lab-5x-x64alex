@@ -35,7 +35,7 @@ export const Register = () => {
 
 	const handleRegister = async (event: { preventDefault: () => void }) => {
         if(!handleButtonClick()){
-                event.preventDefault();
+                //event.preventDefault();
         
                 axios.post(`${BACKEND_API_URL}/register`, signup)
                 .then((response) => {
