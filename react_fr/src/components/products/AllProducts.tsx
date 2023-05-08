@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL } from "../../constants";
+import { BACKEND_API_URL, canAdd } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
@@ -66,11 +66,16 @@ export const AllProducts = () => {
 			<h1>All products</h1>
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a product:</h3>
+				{canAdd()&&
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/products/add`}>
 					<Tooltip title="Add a new product" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
+				}
+				{!canAdd()&&
+				<h3>Can not add</h3>
+				}
 				<h3>Filter by quantity greater than:</h3>
 				<TextField value={productQuantityString} 
 					error={productQuantityError} 

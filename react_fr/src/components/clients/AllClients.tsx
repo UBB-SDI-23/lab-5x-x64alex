@@ -55,6 +55,9 @@ export const AllClients = () => {
 					</Tooltip>
 				</IconButton>
 				}
+				{!canAdd()&&
+				<h3>Can not add</h3>
+				}
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
       			</IconButton>

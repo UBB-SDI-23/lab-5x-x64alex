@@ -56,6 +56,9 @@ export const AllCategories = () => {
 					</Tooltip>
 				</IconButton>
 				}
+				{!canAdd()&&
+				<h3>Can not add</h3>
+				}
 				<Pagination count={19999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
 					if(pageNumber === Math.floor(value/10)){
 						setPageNumber( Math.floor(value/10)-1);  
