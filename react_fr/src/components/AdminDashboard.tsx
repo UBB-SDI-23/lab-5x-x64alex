@@ -23,7 +23,7 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/run-script}`, config);
+		await axios.get(`${BACKEND_API_URL}/run-script}`, config);
 		alert("Script finished")
 		navigate("/");
 	};
