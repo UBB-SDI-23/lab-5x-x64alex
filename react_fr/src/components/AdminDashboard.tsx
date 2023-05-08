@@ -27,6 +27,10 @@ export const AdminDashboard = () => {
     const [users, setUsers] = useState<UserNameDTO[]>([]);
     const [userId, setUserId] = useState<Number>(0);
 	const [searchString, setSearchString] = useState("");
+    const roles = ['The Godfather', 'Pulp Fiction', 'ROLE_ANONYMOUS'];
+    const [newUserRole, setNewUserRole] = useState<String>("ROLE_ANONYMOUS");
+
+
 
 
     useEffect(() => {
@@ -48,7 +52,7 @@ export const AdminDashboard = () => {
 
     const runScript = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		fetch(`${BACKEND_API_URL}/run-script}`, config1);
+		await fetch(`${BACKEND_API_URL}/run-script}`, config);
 		alert("Script finished")
 		navigate("/");
 	};
@@ -99,7 +103,7 @@ export const AdminDashboard = () => {
 			</Card>
             <Card>
 				<CardContent>
-                <Stack direction="row" spacing={2}   alignItems="center"> 
+                <Stack direction="row" spacing={10}   alignItems="center"> 
                 Edit roles   
                 </Stack>
 
@@ -123,23 +127,19 @@ export const AdminDashboard = () => {
 							}}/>}
 						/>
 
-                        {/* <Autocomplete
+                        <Autocomplete
 							disablePortal
 							id="combo-box-demo"
-							options={products.map((product) => product.productName)}
+							options={roles}
 							sx={{ mb: 2}}
 							onChange={(e, value) => {
-								for (let i = 0; i < products.length; i++) {
-									if(products[i].productName === value){
-										transaction.productId = products[i].productId;
-									}
-								}
+                                if (value !== null) {
+                                    setNewUserRole(value);
+                                  }
 							}}
-							renderInput={(params) => <TextField {...params} label="Product Names" 	
-							onChange={(newValue) => {
-								setSearchString(newValue.target.value)
-							}}/>}
-						/> */}
+							renderInput={(params) => <TextField {...params} label="User Role"
+                            />}
+						/>
 					
 
 						<Button id = "submitButton" type="submit">Add Transaction </Button>
