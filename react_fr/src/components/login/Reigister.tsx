@@ -20,7 +20,7 @@ export const Register = () => {
             gender: "",
             bio: "",
             location: "",
-            birthdate: new Date()
+            birthdate: new Date("20.02.2002")
         }
     );
     const handleButtonClick = () => {
@@ -40,8 +40,9 @@ export const Register = () => {
                 axios.post(`${BACKEND_API_URL}/register`, signup)
                 .then((response) => {
                     console.log(response.data);
-                    const code =  response.data;
-                    alert("Registration code is: "+code)
+                    const { username, confirmationToken } = response.data;
+                    console.log(username, confirmationToken);
+                    alert("Registration code is: "+confirmationToken)
                     navigate("/confirmation");
                   })
                   .catch((error) => {

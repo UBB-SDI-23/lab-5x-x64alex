@@ -10,37 +10,19 @@ import { useState } from "react";
 export const Confirmation = () => {
 	const navigate = useNavigate();
 
-    const [loginRequest, setLoginRequest] = useState<LoginRequest>({
-	    username: "",
-        password: ""
-	});
+    const [confirmationToken, setConfirmationToken] = useState<String>("");
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
         try{
         event.preventDefault();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: loginRequest.username,password:loginRequest.password}),
-        };
 
-        const response = await fetch(`${BACKEND_API_URL}/signin`,requestOptions);
+        const response = await fetch(`${BACKEND_API_URL}/confirmation/${confirmationToken}`);
         const product = await response.json();
-        const value = product.jwtToken.split('=')[1].split(';')[0] as string;
-        updateGlobalVar(value);
-
-        updateUserName(product.username);
-        console.log(userName);
-
-        console.log(product.roles);
-        console.log(product.roles[0]);
-        updateUserRole(product.roles[0]);
-        console.log(userRole);
 
         alert("Account is confirmed")
 		navigate("/");
         }catch(error){
-            alert("Error")
+            alert("Error: "+error)
         }
 	};
 
@@ -63,7 +45,7 @@ export const Confirmation = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => loginRequest.username = newValue.target.value}
+							onChange={(newValue) => setConfirmationToken( newValue.target.value)}
 						/>
 
 						<Button id = "submitButton" type="submit"> Confirm </Button>
