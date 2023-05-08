@@ -16,7 +16,7 @@ export const Confirmation = () => {
         try{
         event.preventDefault();
 
-        const response = await fetch(`${BACKEND_API_URL}/confirmation/${confirmationToken}`);
+        const response = await fetch(`${BACKEND_API_URL}/register/confirm/${confirmationToken}`);
         const product = await response.json();
 
         alert("Account is confirmed")
