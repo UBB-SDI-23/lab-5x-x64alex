@@ -37,7 +37,7 @@ export const Register = () => {
         if(!error){
                 event.preventDefault();
         
-                axios.post(`${BACKEND_API_URL}/signin`, signup)
+                axios.post(`${BACKEND_API_URL}/register`, signup)
                 .then((response) => {
                     console.log(response.data);
                     const code =  response.data;
@@ -127,6 +127,7 @@ export const Register = () => {
 							id="birthdate"
 							label="birthdate"
 							variant="outlined"
+                            defaultValue={signup.birthdate}
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => signup.birthdate = new Date(newValue.target.value)}

@@ -84,6 +84,7 @@ import java.util.List;
                 .authorizeRequests((requests) -> requests
                         .antMatchers(HttpMethod.POST,"/api/signin").permitAll()
                         .antMatchers(HttpMethod.GET,"/api/**").permitAll()
+                        .antMatchers(HttpMethod.POST,"/api/register/**").permitAll()
                         .anyRequest().authenticated()
 
                 );
