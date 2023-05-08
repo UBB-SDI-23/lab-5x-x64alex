@@ -16,9 +16,9 @@ export const AdminDashboard = () => {
 
 	const deleteAllData = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`, config);
-		alert("transaction deleted")
-		navigate("/transactions");
+		await axios.get(`${BACKEND_API_URL}/user/deleteAllEntities`, config);
+		alert("all data is deleted")
+		navigate("/");
 	};
 
     const runScript = async (event: { preventDefault: () => void }) => {
@@ -28,6 +28,12 @@ export const AdminDashboard = () => {
 		navigate("/transactions");
 	};
 
+    const editRoles = async (event: { preventDefault: () => void }) => {
+		event.preventDefault();
+		await axios.delete(`${BACKEND_API_URL}/transactions/${transactionId}`, config);
+		alert("transaction deleted")
+		navigate("/transactions");
+	};
 	
 
 
@@ -39,28 +45,41 @@ export const AdminDashboard = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
-					Are you sure you want to delete this transaction? This cannot be undone!
+                </Stack>
+				</CardContent>
+
+			</Card>
+            <Card>
+				<CardContent>
+                <Stack direction="row" spacing={2}   alignItems="center">
+					Delete All data
                 </Stack>
 
 				</CardContent>
 				<CardActions>
 					<Button onClick={deleteAllData}>Delete it</Button>
-					<Button onClick={runScript}>Cancel</Button>
 				</CardActions>
 			</Card>
             <Card>
 				<CardContent>
                 <Stack direction="row" spacing={2}   alignItems="center">
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/`}>
-						<ArrowBackIcon />
-					</IconButton>{" "}
-					Are you sure you want to delete this transaction? This cannot be undone!
+					Run Generate script
                 </Stack>
 
 				</CardContent>
 				<CardActions>
-					<Button onClick={deleteAllData}>Delete it</Button>
-					<Button onClick={runScript}>Cancel</Button>
+					<Button onClick={runScript}>Run script</Button>
+				</CardActions>
+			</Card>
+            <Card>
+				<CardContent>
+                <Stack direction="row" spacing={2}   alignItems="center">
+					Edit roles
+                </Stack>
+
+				</CardContent>
+				<CardActions>
+					<Button onClick={editRoles}>edit</Button>
 				</CardActions>
 			</Card>
 		</Container>
