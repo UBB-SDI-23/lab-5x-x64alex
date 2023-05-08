@@ -61,7 +61,7 @@ export const AllClients = () => {
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
       			</IconButton>
-				<IconButton edge="start" onClick={() => {if(clients.length == pageSize){setPageNumber(pageNumber+1)}}}>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
         			<ArrowForwardIcon>Go to next clients:</ArrowForwardIcon>
       			</IconButton>
 			</Stack>
