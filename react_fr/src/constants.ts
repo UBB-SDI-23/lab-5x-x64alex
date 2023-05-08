@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const  BACKEND_API_URL = "http://localhost:8000/api";
 
@@ -30,12 +30,22 @@ export const logOut = () => {
     alert("signed out");
 }
 
-export const config = {
+export const [config, setConfig] = useState({
     headers: {
       Authorization: authorization,
       'Content-Type': 'application/json'
     }
-  };
+});
+
+useEffect(() => {
+    setConfig({
+        headers: {
+          Authorization: authorization,
+          'Content-Type': 'application/json'
+        }
+    });
+  }, [authorization]);
+
 
 
 export function updateUserName(newValue: string) {
