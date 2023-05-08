@@ -10,7 +10,7 @@ export const CategoryDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/categories/${categoryId}`, config);
+		await axios.delete(`${BACKEND_API_URL}/categories/${categoryId}`, config());
 		alert("Category deleted")
 		navigate("/categories");
 	};

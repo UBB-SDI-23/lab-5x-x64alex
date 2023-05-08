@@ -27,7 +27,7 @@ export const CategoryUpdate = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`, config);
+			const response = await fetch(`${BACKEND_API_URL}/categories/${categoryId}`, config());
 			const data = await response.json();
             setCategoryName(data.categoryName);
             setCategoryPopularity(data.categoryProfitability)

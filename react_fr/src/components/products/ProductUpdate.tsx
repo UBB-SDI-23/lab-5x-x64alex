@@ -23,7 +23,7 @@ export const ProductUpdate = () => {
 
 		event.preventDefault();
 		try {
-			await axios.put(`${BACKEND_API_URL}/products/${productId}`, product, config);
+			await axios.put(`${BACKEND_API_URL}/products/${productId}`, product, config());
 			alert("Product updated")
 			navigate("/products");
 		} catch (error) {

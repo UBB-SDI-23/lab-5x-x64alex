@@ -13,7 +13,7 @@ export const ClientDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/clients/${clientId}`,config);
+		await axios.delete(`${BACKEND_API_URL}/clients/${clientId}`,config());
 		alert("client deleted")
 		navigate("/clients");
 	};

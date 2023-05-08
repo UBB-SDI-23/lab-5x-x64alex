@@ -31,7 +31,7 @@ export const ClientAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/clients`, client, config);
+			axios.post(`${BACKEND_API_URL}/clients`, client, config());
 			alert("Client added")
 			navigate("/clients");
 		} catch (error) {

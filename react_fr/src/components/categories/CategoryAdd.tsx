@@ -30,7 +30,7 @@ export const CategoryAdd = () => {
 
 		event.preventDefault();
 		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category, config);
+			axios.post(`${BACKEND_API_URL}/categories`, category, config());
 			alert("Product added")
 			navigate("/categories");
 		} catch (error) {

@@ -36,7 +36,7 @@ export const ClientUpdate= () => {
 
     useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`, config);
+			const response = await fetch(`${BACKEND_API_URL}/clients/${clientId}`, config());
 			const data = await response.json();
             setClientFirstName(data.clientFirstName)
             setClientLastName(data.clientLastName)
