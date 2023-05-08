@@ -133,14 +133,9 @@ export const AdminDashboard = () => {
 							renderInput={(params) => <TextField {...params} label="User Role"
                             />}
 						/>
-					
-
-						<Button id = "submitButton" type="submit">Add Transaction </Button>
+						<Button id = "submitButton" type="submit">Edit role </Button>
 					</form>
 				</CardContent>
-				<CardActions>
-					<Button onClick={editRoles}>edit</Button>
-				</CardActions>
 			</Card>
 		</Container>
 	);
