@@ -13,18 +13,19 @@ export const Confirmation = () => {
     const [confirmationToken, setConfirmationToken] = useState<String>("");
 
 	const handleLogin = async (event: { preventDefault: () => void }) => {
-        try{
         event.preventDefault();
 
-        const response = await fetch(`${BACKEND_API_URL}/register/confirm/${confirmationToken}`);
-        const product = await response.json();
-
-        alert("Account is confirmed")
-		navigate("/");
-        }catch(error){
+        axios.post(`${BACKEND_API_URL}/register/confirm/${confirmationToken}`)
+        .then((response) => {
+            console.log(response.data);
+            alert("Account is confirmed")
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
             alert("Error: "+error)
-        }
-	};
+          });   
+    }
 
 	return (
 		<Container>
