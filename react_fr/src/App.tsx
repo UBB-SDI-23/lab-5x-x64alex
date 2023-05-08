@@ -28,6 +28,7 @@ import { Login } from './components/login/LogIn'
 import { UserProfile } from './components/UserProfile'
 import { Register } from './components/login/Reigister'
 import { Confirmation } from './components/login/Confirmation'
+import { AdminDashboard } from './components/AdminDashboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -69,7 +70,7 @@ function App() {
 					<Route path="/user/:userName" element={<UserProfile/>} />
 					<Route path="/register" element={<Register/>} />
 					<Route path="/confirmation" element={<Confirmation/>} />
-					<Route path="/confirmation" element={<Confirmation/>} />
+					<Route path="/admin" element={<AdminDashboard/>} />
 
 
 				</Routes>
