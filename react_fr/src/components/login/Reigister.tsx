@@ -82,7 +82,7 @@ export const Register = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
-							onChange={(newValue) => signup.password = newValue.target.value}
+							onChange={(newValue) => {signup.password = newValue.target.value; handleButtonClick();}}
                             error={error}
                             helperText={error ? "Password must be at least 8 characters long" : ""}
 						/>
