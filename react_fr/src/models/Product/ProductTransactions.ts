@@ -6,4 +6,5 @@ export interface ProductTransactions{
     productOnSale: boolean;
     productWeight: number;
     transactionsCount: number;
+    userName: string;
 }
