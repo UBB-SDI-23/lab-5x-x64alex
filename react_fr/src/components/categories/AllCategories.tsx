@@ -59,7 +59,7 @@ export const AllCategories = () => {
 				{!canAdd()&&
 				<h3>Can not add</h3>
 				}
-				<Pagination count={1999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
+				{/* <Pagination count={1999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
 					if(pageNumber === Math.floor(value/10)){
 						setPageNumber( Math.floor(value/10)-1);  
 					}
@@ -69,7 +69,13 @@ export const AllCategories = () => {
 					setMulti(value*pageSize);
 				}
 					else{setPageNumber(value);  setMulti((value-1)*pageSize);}
-					}}/>
+					}}/> */}
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+        			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
+      			</IconButton>
+				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
+        			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
+      			</IconButton>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
