@@ -70,7 +70,11 @@ export const AllCategories = () => {
 				}
 					else{setPageNumber(value);  setMulti((value-1)*pageSize);}
 					}}/> */}
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){
+					console.log(pageNumber)
+					setPageNumber(pageNumber-1)
+					console.log(pageNumber)
+					}}}>
         			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
       			</IconButton>
 				<IconButton edge="start" onClick={() => {if(categories.length == pageSize){setPageNumber(pageNumber+1)}}}>
