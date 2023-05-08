@@ -1,4 +1,4 @@
 export interface UserNameDTO {
-    id?:number;
+    id:number;
     username: string;
 }
