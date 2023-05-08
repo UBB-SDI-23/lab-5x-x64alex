@@ -13,7 +13,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.User.User;
+import payroll.Model.User.UserNameDTO;
 import payroll.Model.User.UserProfile;
 import payroll.Model.User.UserStatistics;
 import payroll.Security.Payload.response.MessageResponse;
@@ -21,6 +23,7 @@ import payroll.Security.Payload.response.UserInfoResponse;
 import payroll.Service.UserService;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -56,6 +59,11 @@ public class UserController {
                     .badRequest()
                     .body(new MessageResponse("Error: Username does not exist!"));
         }
+    }
+
+    @GetMapping("/usernames")
+    public List<UserNameDTO> getUserNames(@RequestParam(defaultValue = "") String searchString) {
+        return this.userService.getUserNames(searchString);
     }
 
     @GetMapping("/deleteAllEntities")

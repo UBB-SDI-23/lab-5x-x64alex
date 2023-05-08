@@ -1,13 +1,19 @@
 package payroll.Service;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import payroll.Exception.UserNotFoundException;
 import payroll.Exception.UserProfileNotFoundException;
+import payroll.Model.Category.CategoryNameDTO;
 import payroll.Model.User.User;
+import payroll.Model.User.UserNameDTO;
 import payroll.Model.User.UserProfile;
 import payroll.Model.User.UserStatistics;
 import payroll.Repository.UserProfileRepository;
 import payroll.Repository.UserRepository;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -16,6 +22,12 @@ public class UserService {
 
 
     private final UserProfileRepository userProfileRepository;
+
+
+    public List<UserNameDTO> getUserNames(String givenString){
+        Pageable page = PageRequest.of(0, 10);
+        return this.userRepository.findUserNames(givenString, page);
+    }
 
     public UserService(UserRepository userRepository, UserProfileRepository userProfileRepository) {
         this.userRepository = userRepository;

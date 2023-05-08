@@ -69,6 +69,8 @@ function App() {
 					<Route path="/user/:userName" element={<UserProfile/>} />
 					<Route path="/register" element={<Register/>} />
 					<Route path="/confirmation" element={<Confirmation/>} />
+					<Route path="/confirmation" element={<Confirmation/>} />
+
 
 				</Routes>
 			</Router>
