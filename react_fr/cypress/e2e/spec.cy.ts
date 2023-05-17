@@ -30,7 +30,7 @@ describe('Payroll tests', () => {
     cy.contains('Products').click()
 
     cy.get('input#filterQuantity').clear().type(75869675486)
-    cy.contains("No products found").should('exist')
+    cy.wait(2000).contains("No products found").should('exist')
   })
 
   it('AddProduct', () => {

@@ -67,7 +67,7 @@ export const AllProducts = () => {
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a product:</h3>
 				{canAdd()&&
-				<IconButton component={Link} sx={{ mr: 3 }} to={`/products/add`}>
+				<IconButton id="addButton" component={Link} sx={{ mr: 3 }} to={`/products/add`}>
 					<Tooltip title="Add a new product" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
