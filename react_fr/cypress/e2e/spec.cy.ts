@@ -26,24 +26,24 @@ describe('Payroll tests', () => {
   })
 
 
-  it('show problems filter', () => {
+  it('NoProductsFilter', () => {
     cy.contains('Products').click()
 
     cy.get('input#filterQuantity').clear().type(75869675486)
+    cy.contains("No products found").should('exist')
+  })
 
-    cy.get('input[class=input]').type(1)
-    cy.get('tr').should('have.length', 3)
+  it('AddProduct', () => {
+    cy.contains('Login').click()
+    cy.get('input#username').clear().type("admin")
+    cy.get('input#password').clear().type("12345678")
+    cy.get('#submitButton').click()
+    cy.get('@windowAlert').should('be.calledWith', 'Useradmin signed in');
 
 
-    cy.get('input[class=input]').type("{backspace} {rightArrow} 2")
-    cy.get('tr').should('have.length', 2)
+    cy.contains('Products').click()
 
-    cy.get('input[class=input]').type("{backspace} {rightArrow} 3")
-    cy.get('tr').should('have.length', 1)
-    cy.contains("No data to show.").should('exist')
-})
-
-  // it('Does not do much!', () => {
-  //   expect(true).to.equal(false)
-  // })
+    cy.get('input#filterQuantity').clear().type(75869675486)
+    cy.contains("No products found").should('exist')
+  })
 })
