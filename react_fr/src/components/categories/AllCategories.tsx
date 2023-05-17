@@ -48,7 +48,7 @@ export const AllCategories = () => {
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a category:</h3>
 				{canAdd()&&
-				<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/add`}>
+				<IconButton component={Link}id="addButton" sx={{ mr: 3 }} to={`/categories/add`}>
 					<Tooltip title="Add a new category" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>

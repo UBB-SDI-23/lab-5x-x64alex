@@ -33,6 +33,34 @@ describe('Payroll tests', () => {
   //   cy.wait(2000).contains("No products found").should('exist')
   // })
 
+  it('AddCategory', () => {
+    cy.contains('Login').click()
+    cy.get('input#username').clear().type("admin")
+    cy.get('input#password').clear().type("12345678")
+    cy.get('#submitButton').click()
+    cy.get('@windowAlert').should('be.calledWith', 'Useradmin signed in');
+
+
+    cy.contains('Categories').click()
+    cy.get('#addButton').click()
+
+    cy.get('input#productName').clear().type("testAddProduct")
+    cy.get('input#productPrice').clear().type(1)
+    cy.get('input#productQuantity').clear().type(758696754)
+    cy.get('input#productSale').clear().type("true")
+    cy.get('input#productWeight').clear().type(1)
+
+    cy.get('input#combo-box-demo').type('1');
+    cy.contains('1').click()
+
+
+    cy.get('#submitButton').click()
+
+    cy.contains('Products').click()
+    cy.get('input#filterQuantity').clear().type(758696753)
+    cy.contains("testAddProduct").should('exist')
+  })
+
   it('AddProduct', () => {
     cy.contains('Login').click()
     cy.get('input#username').clear().type("admin")
@@ -44,8 +72,20 @@ describe('Payroll tests', () => {
     cy.contains('Products').click()
     cy.get('#addButton').click()
 
-    // cy.contains('Products').click()
-    // cy.get('input#filterQuantity').clear().type(75869675486)
-    // cy.contains("No products found").should('exist')
+    cy.get('input#productName').clear().type("testAddProduct")
+    cy.get('input#productPrice').clear().type(1)
+    cy.get('input#productQuantity').clear().type(758696754)
+    cy.get('input#productSale').clear().type("true")
+    cy.get('input#productWeight').clear().type(1)
+
+    cy.get('input#combo-box-demo').type('1');
+    cy.contains('1').click()
+
+
+    cy.get('#submitButton').click()
+
+    cy.contains('Products').click()
+    cy.get('input#filterQuantity').clear().type(758696753)
+    cy.contains("testAddProduct").should('exist')
   })
 })
