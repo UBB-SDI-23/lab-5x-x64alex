@@ -79,7 +79,7 @@ export const AllProducts = () => {
 				<h3>Filter by quantity greater than:</h3>
 				<TextField value={productQuantityString} 
 					error={productQuantityError} 
-					id="Outlined" 
+					id="filterQuantity" 
 					label="Quantity" 
 					variant="outlined" 
 					helperText={productQuantityHelper}
