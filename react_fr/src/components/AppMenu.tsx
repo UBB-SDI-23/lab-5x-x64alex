@@ -91,10 +91,11 @@ export const AppMenu = () => {
 					}
 					{isLoggedIn() &&
 					<Button
+						id="logout"
 						onClick={handleLogOut}
 						color="inherit"
 						sx={{ mr: 10 }}>
-						LogOut
+						Logout
 					</Button>
 					}
 				</Toolbar>
