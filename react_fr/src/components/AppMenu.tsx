@@ -69,6 +69,7 @@ export const AppMenu = () => {
 					</Button>
 					{!isLoggedIn() &&
 					<Button
+						id="login"
 						variant={path.startsWith("/login") ? "outlined" : "text"}
 						to="/login"
 						component={Link}
