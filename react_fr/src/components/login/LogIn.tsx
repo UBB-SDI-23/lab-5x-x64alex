@@ -58,7 +58,7 @@ export const Login = () => {
 					<form onSubmit={handleLogin}>
 						<TextField
                             type="string"
-							id="name"
+							id="username"
 							label="username"
 							variant="outlined"
 							fullWidth
@@ -67,7 +67,7 @@ export const Login = () => {
 						/>
                         <TextField
                             type="password"
-							id="name"
+							id="password"
 							label="password"
 							variant="outlined"
 							fullWidth
