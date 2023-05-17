@@ -1,6 +1,13 @@
 -- ALTER USER postgres WITH PASSWORD 'postgres';
+CREATE DATABASE db1;
+CREATE USER dbuser WITH PASSWORD '1234';
 
--- \c mpp;
+ALTER ROLE dbuser SET client_encoding TO 'utf8';
+ALTER ROLE dbuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE dbuser SET timezone TO 'UTC';
+
+GRANT ALL PRIVILEGES ON DATABASE db1 TO dbuser;
+\c db1;
 
 -- CREATE TABLE app_user (
 --     id SERIAL PRIMARY KEY,
