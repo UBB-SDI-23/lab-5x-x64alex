@@ -166,7 +166,7 @@ export const ProductAdd = () => {
 
 					<form onSubmit={addProduct}>
 						<TextField
-							id="name"
+							id="productName"
 							label="Product Name"
 							variant="outlined"
 							fullWidth
@@ -176,6 +176,7 @@ export const ProductAdd = () => {
 						<TextField 
 							value={productPriceString} 
 							error={productPriceError} 
+							id="productPrice"
 							label="Product Price"
 							variant="outlined" 
 							fullWidth
@@ -186,7 +187,8 @@ export const ProductAdd = () => {
 							}}/>
 						<TextField 
 							value={productQuantityString} 
-							error={productQuantityError} 
+							error={productQuantityError}
+							id="productQuantity" 
 							label="Product Quantity"
 							variant="outlined" 
 							fullWidth
@@ -199,6 +201,7 @@ export const ProductAdd = () => {
 							value={productSaleString} 
 							error={productSaleError} 
 							label="Product Sale"
+							id="productSale" 
 							variant="outlined" 
 							fullWidth
 							sx={{ mb: 2 }}
@@ -210,6 +213,7 @@ export const ProductAdd = () => {
 						<TextField 
 							value={productWeightString} 
 							error={productWeightError} 
+							id="productWeight" 
 							label="Product Weight"
 							variant="outlined" 
 							fullWidth
@@ -231,7 +235,7 @@ export const ProductAdd = () => {
 									}
 								}
 							}}
-							renderInput={(params) => <TextField {...params} label="Category Names" 	
+							renderInput={(params) => <TextField {...params} label="Category Names" id ="categoryName" 	
 							onChange={(newValue) => {
 								setSearchString(newValue.target.value)
 							}}/>}

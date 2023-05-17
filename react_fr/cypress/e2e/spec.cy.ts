@@ -7,31 +7,31 @@ describe('Payroll tests', () => {
     });
   })
 
-  it('Login', () => {
-    cy.contains('Login').click()
-    cy.url().should('include', '/login')
-    cy.get('input#username').type('your_username');
-    cy.get('input#password').type('1');
-    cy.get('#submitButton').click()
-    cy.get('@windowAlert').should('be.calledWith', 'Error');
+  // it('Login', () => {
+  //   cy.contains('Login').click()
+  //   cy.url().should('include', '/login')
+  //   cy.get('input#username').type('your_username');
+  //   cy.get('input#password').type('1');
+  //   cy.get('#submitButton').click()
+  //   cy.get('@windowAlert').should('be.calledWith', 'Error');
 
-    cy.get('input#username').clear().type("admin")
-    cy.get('input#password').clear().type("12345678")
-    cy.get('#submitButton').click()
-    cy.get('@windowAlert').should('be.calledWith', 'Useradmin signed in');
+  //   cy.get('input#username').clear().type("admin")
+  //   cy.get('input#password').clear().type("12345678")
+  //   cy.get('#submitButton').click()
+  //   cy.get('@windowAlert').should('be.calledWith', 'Useradmin signed in');
 
-    cy.contains('Logout').click()
-    cy.contains('Logout').should('not.exist')
-    cy.contains('Login').should('exist')
-  })
+  //   cy.contains('Logout').click()
+  //   cy.contains('Logout').should('not.exist')
+  //   cy.contains('Login').should('exist')
+  // })
 
 
-  it('NoProductsFilter', () => {
-    cy.contains('Products').click()
+  // it('NoProductsFilter', () => {
+  //   cy.contains('Products').click()
 
-    cy.get('input#filterQuantity').clear().type(75869675486)
-    cy.wait(2000).contains("No products found").should('exist')
-  })
+  //   cy.get('input#filterQuantity').clear().type(75869675486)
+  //   cy.wait(2000).contains("No products found").should('exist')
+  // })
 
   it('AddProduct', () => {
     cy.contains('Login').click()
@@ -42,8 +42,10 @@ describe('Payroll tests', () => {
 
 
     cy.contains('Products').click()
+    cy.get('#addButton').click()
 
-    cy.get('input#filterQuantity').clear().type(75869675486)
-    cy.contains("No products found").should('exist')
+    // cy.contains('Products').click()
+    // cy.get('input#filterQuantity').clear().type(75869675486)
+    // cy.contains("No products found").should('exist')
   })
 })

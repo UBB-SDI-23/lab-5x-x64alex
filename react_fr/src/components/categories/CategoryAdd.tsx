@@ -57,7 +57,7 @@ export const CategoryAdd = () => {
 					<form onSubmit={addCategory}>
 						<TextField
                             type="string"
-							id="name"
+							id="categoryName"
 							label="Name"
 							variant="outlined"
 							fullWidth
@@ -66,7 +66,7 @@ export const CategoryAdd = () => {
 						/>
                         <TextField
                             type="number"
-							id="name"
+							id="categoryPopularity"
 							label="Popularity"
 							variant="outlined"
 							fullWidth
@@ -75,7 +75,7 @@ export const CategoryAdd = () => {
 						/>
                         <TextField
                             type="number"
-							id="name"
+							id="categoryProfitability"
 							label="Profitability"
 							variant="outlined"
 							fullWidth
@@ -84,7 +84,7 @@ export const CategoryAdd = () => {
                         />
                         <TextField
                             type="number"
-							id="name"
+							id="categoryReturnsPerMonth"
 							label="ReturnsPerMonth"
 							variant="outlined"
 							fullWidth
@@ -93,7 +93,7 @@ export const CategoryAdd = () => {
                         />
                         <TextField
                             type="number"
-							id="name"
+							id="categorySales"
 							label="Sales"
 							variant="outlined"
 							fullWidth
