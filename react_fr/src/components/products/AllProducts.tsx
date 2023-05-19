@@ -64,17 +64,16 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-			<Stack direction="row" spacing={2}   alignItems="center">
-				<h3>Add a product:</h3>
+			<Stack direction="row" spacing={2}   alignItems="center" sx={{ flexWrap: 'wrap' }}>
 				{canAdd()&&
-				<IconButton id="addButton" component={Link} sx={{ mr: 3 }} to={`/products/add`}>
-					<Tooltip title="Add a new product" arrow>
-						<AddIcon color="primary" />
-					</Tooltip>
-				</IconButton>
-				}
-				{!canAdd()&&
-				<h3>Can not add</h3>
+					<Stack direction="row" spacing={2} alignItems="center">
+						<h3>Add a product:</h3>
+						<IconButton id="addButton" component={Link} sx={{ mr: 3 }} to={`/products/add`}>
+							<Tooltip title="Add a new product" arrow>
+								<AddIcon color="primary" />
+							</Tooltip>
+						</IconButton>
+					</Stack>
 				}
 				<h3>Filter by quantity greater than:</h3>
 				<TextField value={productQuantityString} 
