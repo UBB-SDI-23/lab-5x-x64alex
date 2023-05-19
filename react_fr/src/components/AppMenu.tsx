@@ -78,8 +78,7 @@ export const AppMenu = () => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static" sx={{ marginBottom: "20px" }}>
-				<Toolbar disableGutters>
-
+				<Toolbar>
 					<Typography
 						variant="h6"
 						noWrap
