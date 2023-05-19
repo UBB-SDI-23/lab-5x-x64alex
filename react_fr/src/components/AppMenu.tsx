@@ -126,22 +126,21 @@ export const AppMenu = () => {
 						}}
 						>
 						{pages.map((button, index) => (
-							<MenuItem key={button.id} onClick={handleCloseNavMenu}>
-								button.visible && (
-								<Button
+							button.visible && (
+
+							<MenuItem
 									key={index}
-									variant={button.variant as "outlined" | "text" | "contained"}
 									to={button.to as "string"}
 									component={Link}
 									color="inherit"
 									sx={{ mr: 5 }}
-									onClick={button.onClick}
+									onClick={button.onClick && handleCloseNavMenu}
 									id={button.id}
-								>
+							>
 									{button.label}
-								</Button>
-								)
+						
 							</MenuItem>
+							)
 						))}
 						</Menu>
 					</Box>
