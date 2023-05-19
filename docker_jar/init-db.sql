@@ -1,3 +1,7 @@
+CREATE DATABASE db2;
+CREATE USER dbuser2 WITH PASSWORD '1234';
+
+
 -- ALTER USER postgres WITH PASSWORD 'postgres';
 
 -- \c mpp;
