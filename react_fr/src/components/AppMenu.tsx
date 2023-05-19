@@ -1,12 +1,29 @@
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { isAdmin, isLoggedIn, logOut } from "../constants";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useEffect, useState } from "react";
+
+
 
 
 export const AppMenu = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const path = location.pathname;
+	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(
+		null
+	  );
+	
+	  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorElNav(event.currentTarget);
+	  };
+	
+	  const handleCloseNavMenu = () => {
+		setAnchorElNav(null);
+	  };
 
 	const handleLogOut = () => {
 		logOut()
@@ -16,22 +33,26 @@ export const AppMenu = () => {
 		{
 			label: "Categories",
 			variant: path.startsWith("/categories") ? "outlined" : "text",
-			to: "/categories"
+			to: "/categories",
+			visible: true
 		  },
 		  {
 			label: "Products",
 			variant: path.startsWith("/products") ? "outlined" : "text",
-			to: "/products"
+			to: "/products",
+			visible: true
 		  },
 		  {
 			label: "Clients",
 			variant: path.startsWith("/clients") ? "outlined" : "text",
-			to: "/clients"
+			to: "/clients",
+			visible: true
 		  },
 		  {
 			label: "Transactions",
 			variant: path.startsWith("/transactions") ? "outlined" : "text",
-			to: "/transactions"
+			to: "/transactions",
+			visible: true
 		  },
 		  {
 			label: "Login",
@@ -76,7 +97,7 @@ export const AppMenu = () => {
 					>
 						Payroll
 					</Typography>
-					{/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
 						size="large"
 						aria-label="account of current user"
@@ -105,13 +126,26 @@ export const AppMenu = () => {
 							display: { xs: "block", md: "none" }
 						}}
 						>
-						{pages.map((page) => (
-							<MenuItem key={page} onClick={handleCloseNavMenu}>
-								<Typography textAlign="center">{page}</Typography>
+						{pages.map((button, index) => (
+							<MenuItem key={button.id} onClick={handleCloseNavMenu}>
+								button.visible && (
+								<Button
+									key={index}
+									variant={button.variant as "outlined" | "text" | "contained"}
+									to={button.to as "string"}
+									component={Link}
+									color="inherit"
+									sx={{ mr: 5 }}
+									onClick={button.onClick}
+									id={button.id}
+								>
+									{button.label}
+								</Button>
+								)
 							</MenuItem>
 						))}
 						</Menu>
-					</Box> */}
+					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 					{pages.map((button, index) => (
 						button.visible && (
