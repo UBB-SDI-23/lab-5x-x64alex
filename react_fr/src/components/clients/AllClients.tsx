@@ -178,9 +178,6 @@ export const AllClients = () => {
 									<Typography variant="subtitle1" component="div">
 										{client.transactionsCount}
 									</Typography>
-									<Typography variant="subtitle1" component="div">
-										{client.userName}
-									</Typography>
 									<Link to={`/user/${client.userName}`} title="View user details">
 										<Typography variant="subtitle1" component="div">
 										{client.userName}
