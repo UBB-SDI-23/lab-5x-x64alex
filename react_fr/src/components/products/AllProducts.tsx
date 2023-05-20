@@ -64,7 +64,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-			<Stack direction="row" spacing={2}   alignItems="center" sx={{ flexWrap: 'wrap' }}>
+			<Stack direction="column" spacing={2}   alignItems="center">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -164,7 +164,7 @@ export const AllProducts = () => {
 					</Table>
 				</TableContainer>
 			)}
-			<Stack direction="row" spacing={2}   alignItems="center" sx={{ flexWrap: 'wrap' }}>
+			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
       			</IconButton>
