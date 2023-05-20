@@ -166,11 +166,39 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
-				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, borderRadius: '6px'}}>
+				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, width: '100%'}}>
 					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row" spacing={2000} alignItems="left" >
+						<Stack direction="row" spacing={2000} alignItems="left" sx={{ borderRadius: '6px'}} >
 							<Stack direction="column" spacing={2}   alignItems="left">
 								<Typography variant="subtitle1" component="div">
+									#
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Price
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Quantity
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Sale
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Weight
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Nr. Transactions
+								</Typography>
+								<Typography variant="subtitle1" component="div">
+									Username
+								</Typography>
+								{canEdit(product.userName) && (
+									<Typography variant="subtitle1" component="div">
+									Operations
+									</Typography>
+								)}
+							</Stack>
+							<Stack direction="column" spacing={2}  alignItems="right">
+							<Typography variant="subtitle1" component="div">
 									{index}
 								</Typography>
 								<Typography variant="subtitle1" component="div">
@@ -192,17 +220,6 @@ export const AllProducts = () => {
 									<Typography variant="subtitle1" component="div">
 									{product.userName}
 									</Typography>
-								</Link>
-							</Stack>
-							<Stack direction="column" spacing={2}  alignItems="right">
-								<h4>{index}</h4>
-								<h4>{product.productPrice}</h4>
-								<h4>{product.productQuantity}</h4>
-								<h4>{String(product.productOnSale)}</h4>
-								<h4>{product.productWeight}</h4>
-								<h4>{product.transactionsCount}</h4>
-								<Link to={`/user/${product.userName}`} title="View user details">
-											{product.userName}
 								</Link>
 								<Stack direction="row" spacing={2} alignItems="center">
 								{canEdit(product.userName) && (
