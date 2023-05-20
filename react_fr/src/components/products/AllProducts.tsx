@@ -169,7 +169,7 @@ export const AllProducts = () => {
 				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }}}>
 					<Stack direction="column" spacing={1} alignItems="left" >
 						{products.map((product: ProductTransactions, index) => (
-							<Stack bgcolor="grey.200" p={2} direction="row" spacing={20} alignItems="left" sx={{ borderRadius: '6px'}} >
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={20} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px', width:100%}} >
 								<Stack direction="column" spacing={2}   alignItems="left">
 									<Typography variant="subtitle1" component="div">
 										#
