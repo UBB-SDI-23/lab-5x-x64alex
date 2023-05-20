@@ -48,25 +48,16 @@ export const AllClients = () => {
 	return (
 		<Container>
 			<h1>All clients</h1>
+			{canAdd()&&
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a client:</h3>
-				{canAdd()&&
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/add`}>
 					<Tooltip title="Add a new client" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				}
-				{!canAdd()&&
-				<h3>Can not add</h3>
-				}
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-        			<ArrowForwardIcon>Go to next clients:</ArrowForwardIcon>
-      			</IconButton>
 			</Stack>
+			}
 			 			
 			{loading && <CircularProgress />}
 			{!loading && clients.length === 0 && <p>No clients found</p>}
@@ -202,6 +193,12 @@ export const AllClients = () => {
 					</Stack>
 				</Box>
 			)}
+			<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+				<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
+			</IconButton>
+			<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+				<ArrowForwardIcon>Go to next clients:</ArrowForwardIcon>
+			</IconButton>
 		</Container>
 	);
 };
