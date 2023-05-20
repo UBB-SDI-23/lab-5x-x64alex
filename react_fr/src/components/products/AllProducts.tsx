@@ -14,7 +14,7 @@ import {
 	Stack,
 	TableSortLabel,
 } from "@mui/material";
-import React from "react";
+import Box from '@mui/material/Box';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -165,21 +165,51 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
-				<Stack direction="row" spacing={2}  alignItems="left" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-					<Stack direction="column" spacing={2}   alignItems="left">
-						<h4>#</h4>
-						<h4>Price</h4>
-						<h4>Quantity</h4>
-						<h4>Sale</h4>
-						<h4>Weight</h4>
-						<h4>Nr. Transactions</h4>
-						<h4>Operations</h4>
-					</Stack>
+				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+					{products.map((product: ProductTransactions, index) => (
+						<Stack direction="row" spacing={2} bgcolor="grey.200" p={2} alignItems="left" >
+							<Stack direction="column" spacing={2}   alignItems="left">
+								<h4>#</h4>
+								<h4>Price</h4>
+								<h4>Quantity</h4>
+								<h4>Sale</h4>
+								<h4>Weight</h4>
+								<h4>Nr. Transactions</h4>
+								<h4>Username</h4>
+								{canEdit(product.userName) && (
+									<h4>Operations</h4>
+								)}
+							</Stack>
 
-					<Stack direction="column" spacing={2}   alignItems="right">
+							<Stack direction="column" spacing={2}   alignItems="right">
+								<h4>{index}</h4>
+								<h4>{product.productPrice}</h4>
+								<h4>{product.productQuantity}</h4>
+								<h4>{String(product.productOnSale)}</h4>
+								<h4>{product.productWeight}</h4>
+								<h4>{product.transactionsCount}</h4>
+								<Link to={`/user/${product.userName}`} title="View user details">
+											{product.userName}
+								</Link>
+								<Stack direction="row" spacing={2} alignItems="center">
+								{canEdit(product.userName) && (
+									<>
+									<IconButton component={Link} to={`/products/${product.productId}/edit`} sx={{ mr: 3 }}>
+										<EditIcon />
+									</IconButton>
 
-					</Stack>
-				</Stack>
+									<IconButton component={Link} to={`/products/${product.productId}/delete`} sx={{ mr: 3 }}>
+										<DeleteForeverIcon sx={{ color: 'red' }} />
+									</IconButton>
+									</>
+								)}
+								</Stack>
+							</Stack>
+						</Stack>
+					))}
+
+				</Box>
+
 				)}
 			{!loading && products.length > 0 && (
 
