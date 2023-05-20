@@ -166,25 +166,22 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
-				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } ,fontWeight: 'normal'}}>
 					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row" spacing={20} bgcolor="grey.200" p={2} alignItems="left" >
+						<Stack direction="row"  bgcolor="grey.200" p={2} alignItems="left" >
 							<Stack direction="column" spacing={2}   alignItems="left">
-								<Typography variant="h4" component="div" sx={{ fontWeight: 'normal' }}>
-
-								<h4>#</h4>
-								<h4>Price</h4>
-								<h4>Quantity</h4>
-								<h4>Sale</h4>
-								<h4>Weight</h4>
-								<h4>Nr. Transactions</h4>
-								<h4>Username</h4>
-								{canEdit(product.userName) && (
-									<h4>Operations</h4>
-								)}
-								</Typography>
+									<h4>#</h4>
+									<h4>Price</h4>
+									<h4>Quantity</h4>
+									<h4>Sale</h4>
+									<h4>Weight</h4>
+									<h4>Nr. Transactions</h4>
+									<h4>Username</h4>
+									{canEdit(product.userName) && (
+										<h4>Operations</h4>
+									)}
 							</Stack>
-							<Stack direction="column" spacing={2}   alignItems="right">
+							<Stack direction="column" spacing={2}   alignItems="right" sx={{ marginRight: '0' }}>
 								<h4>{index}</h4>
 								<h4>{product.productPrice}</h4>
 								<h4>{product.productQuantity}</h4>
