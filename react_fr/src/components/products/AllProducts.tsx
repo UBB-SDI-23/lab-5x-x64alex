@@ -165,6 +165,23 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
+				<Stack direction="row" spacing={2}  alignItems="left" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+					<Stack direction="column" spacing={2}   alignItems="left">
+						<h4>#</h4>
+						<h4>Price</h4>
+						<h4>Quantity</h4>
+						<h4>Sale</h4>
+						<h4>Weight</h4>
+						<h4>Nr. Transactions</h4>
+						<h4>Operations</h4>
+					</Stack>
+
+					<Stack direction="column" spacing={2}   alignItems="right">
+
+					</Stack>
+				</Stack>
+				)}
+			{!loading && products.length > 0 && (
 
 				<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 					<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
