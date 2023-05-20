@@ -122,7 +122,7 @@ export const AllCategories = () => {
 				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", width:'100%'}}}>
 					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
 						{categories.map((category: CategoryProduct, index) => (
-							<Stack bgcolor="grey.200" p={2} direction="row" spacing={10} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={2} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
 								<Stack direction="column" spacing={2}   alignItems="left">
 									<Typography variant="subtitle1" component="div">
 										#
