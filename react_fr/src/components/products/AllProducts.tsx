@@ -168,20 +168,33 @@ export const AllProducts = () => {
 			{!loading && products.length > 0 && (
 				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } ,fontWeight: 'normal'}}>
 					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row"  bgcolor="grey.200" p={2} alignItems="left" >
+						<Stack direction="row" spacing={2000} bgcolor="grey.200" p={2} alignItems="left" >
 							<Stack direction="column" spacing={2}   alignItems="left">
-									<h4>#</h4>
-									<h4>Price</h4>
-									<h4>Quantity</h4>
-									<h4>Sale</h4>
-									<h4>Weight</h4>
-									<h4>Nr. Transactions</h4>
-									<h4>Username</h4>
-									{canEdit(product.userName) && (
-										<h4>Operations</h4>
-									)}
+								<Typography variant="h4" component="div">
+									{index}
+								</Typography>
+								<Typography variant="h4" component="div">
+									{product.productPrice}
+								</Typography>
+								<Typography variant="h4" component="div">
+									{product.productQuantity}
+								</Typography>
+								<Typography variant="h4" component="div">
+									{String(product.productOnSale)}
+								</Typography>
+								<Typography variant="h4" component="div">
+									{product.productWeight}
+								</Typography>
+								<Typography variant="h4" component="div">
+									{product.transactionsCount}
+								</Typography>
+								<Link to={`/user/${product.userName}`} title="View user details">
+									<Typography variant="h4" component="div">
+									{product.userName}
+									</Typography>
+								</Link>
 							</Stack>
-							<Stack direction="column" spacing={2}   alignItems="right" sx={{ marginRight: '0' }}>
+							<Stack direction="column" spacing={2}  alignItems="right">
 								<h4>{index}</h4>
 								<h4>{product.productPrice}</h4>
 								<h4>{product.productQuantity}</h4>
