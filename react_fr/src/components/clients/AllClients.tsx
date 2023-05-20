@@ -177,11 +177,11 @@ export const AllClients = () => {
 									<Stack direction="row" spacing={0.5} alignItems="center">
 									{canEdit(client.userName) && (
 										<>
-										<IconButton component={Link} to={`/products/${client.clientId}/edit`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/clients/${client.clientId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} to={`/products/${client.clientId}/delete`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/clients/${client.clientId}/delete`} sx={{ mr: 0 }}>
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>

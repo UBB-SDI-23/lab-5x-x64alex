@@ -245,9 +245,7 @@ export const AllProducts = () => {
 							</Stack>
 						))}
 					</Stack>
-
 				</Box>
-
 			)}
 			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>

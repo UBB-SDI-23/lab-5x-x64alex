@@ -190,11 +190,11 @@ export const AllCategories = () => {
 									<Stack direction="row" spacing={0.5} alignItems="center">
 									{canEdit(category.userName) && (
 										<>
-										<IconButton component={Link} to={`/products/${category.categoryId}/edit`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/categories/${category.categoryId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} to={`/products/${category.categoryId}/delete`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/categories/${category.categoryId}/delete`} sx={{ mr: 0 }}>
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>

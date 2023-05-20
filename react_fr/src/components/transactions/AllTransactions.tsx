@@ -13,6 +13,8 @@ import {
 	TextField,
 	Stack,
 	TableSortLabel,
+	Box,
+	Typography,
 } from "@mui/material";
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
@@ -107,6 +109,70 @@ export const AllTransactions = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
+			)}
+			{!loading && transaction.length > 0 && (
+				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", width:'100%'}}}>
+					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
+						{transaction.map((transaction: TransactionAvgClientOrderQuantity, index) => (
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={10} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
+								<Stack direction="column" spacing={2}   alignItems="left">
+									<Typography variant="subtitle1" component="div">
+										#
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Date
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Quantity
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Average Client order quantity
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Username
+									</Typography>
+									{canEdit(transaction.userName) && (
+										<Typography variant="subtitle1" component="div">
+										Operations
+										</Typography>
+									)}
+								</Stack>
+								<Stack direction="column" spacing={2}  alignItems="right">
+								<Typography variant="subtitle1" component="div">
+										{index}
+									</Typography>
+									<Link to={`/transactions/${transaction.transactionId}/details`} title="View client details">
+											{new Date(transaction.transactionDate).toLocaleDateString()}
+									</Link>
+									<Typography variant="subtitle1" component="div">
+										{transaction.transactionQuantity}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{transaction.avgClientOrderQuantity}
+									</Typography>
+									<Link to={`/user/${transaction.userName}`} title="View user details">
+										<Typography variant="subtitle1" component="div">
+										{transaction.userName}
+										</Typography>
+									</Link>
+									<Stack direction="row" spacing={0.5} alignItems="center">
+									{canEdit(transaction.userName) && (
+										<>
+										<IconButton component={Link} to={`/transactions/${transaction.transactionId}/edit`} sx={{ mr: 0 }}>
+											<EditIcon />
+										</IconButton>
+
+										<IconButton component={Link} to={`/transactions/${transaction.transactionId}/delete`} sx={{ mr: 0 }}>
+											<DeleteForeverIcon sx={{ color: 'red' }} />
+										</IconButton>
+										</>
+									)}
+									</Stack>
+								</Stack>
+							</Stack>
+						))}
+					</Stack>
+				</Box>
 			)}
 			<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to back transactions:</ArrowBackIcon>
