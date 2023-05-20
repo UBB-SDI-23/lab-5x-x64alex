@@ -64,7 +64,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-			<Stack direction="column" spacing={2}   alignItems="center">
+`			<Stack direction="column" spacing={2}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -77,7 +77,7 @@ export const AllProducts = () => {
 				}
 				<h3>Filter by quantity greater than:</h3>
 				<TextField value={productQuantityString}
-					sx={{ minWidth: 650 }} 
+					sx={{ width: '100%' }} 
 					error={productQuantityError} 
 					id="filterQuantity" 
 					label="Quantity" 
@@ -107,7 +107,7 @@ export const AllProducts = () => {
 			{!loading && products.length === 0 && <p>No products found</p>}
 
 			{!loading && products.length > 0 && (
-				<TableContainer component={Paper}>
+				<TableContainer component={Paper} sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
 							<TableRow>
@@ -163,7 +163,7 @@ export const AllProducts = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			)}
+			)}`
 			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
         			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
