@@ -242,7 +242,7 @@ export const AllProducts = () => {
 
 				</Box>
 
-				)}
+			)}
 			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
 					<ArrowBackIcon>Go to next products:</ArrowBackIcon>

@@ -11,7 +11,9 @@ import {
 	IconButton,
 	Tooltip,
 	Stack,
-	Pagination
+	Pagination,
+	Box,
+	Typography
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -45,40 +47,16 @@ export const AllCategories = () => {
 	return (
 		<Container>
 			<h1>All categories</h1>
+			{canAdd()&&
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a category:</h3>
-				{canAdd()&&
 				<IconButton component={Link}id="addButton" sx={{ mr: 3 }} to={`/categories/add`}>
 					<Tooltip title="Add a new category" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				}
-				{!canAdd()&&
-				<h3>Can not add</h3>
-				}
-				{/* <Pagination count={1999} page={page}  siblingCount={3} boundaryCount={5} hidePrevButton hideNextButton onChange={(event, value) => {setPage(value); if(value>200){
-					if(pageNumber === Math.floor(value/10)){
-						setPageNumber( Math.floor(value/10)-1);  
-					}
-					else{
-						setPageNumber( Math.floor(value/10));  
-					}
-					setMulti(value*pageSize);
-				}
-					else{setPageNumber(value);  setMulti((value-1)*pageSize);}
-					}}/> */}
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){
-					console.log(pageNumber)
-					setPageNumber(pageNumber-1)
-					console.log(pageNumber)
-					}}}>
-        			<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => setPageNumber(pageNumber+1)}>
-        			<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
-      			</IconButton>
 			</Stack>
+			}
 			 			
 			{loading && <CircularProgress />}
 			{!loading && categories.length === 0 && <p>No categories found</p>}
@@ -105,7 +83,6 @@ export const AllCategories = () => {
 								<TableRow key={category.categoryId}>
 									<TableCell component="th" scope="row">
 										{pageNumber*pageSize+index+1}
-										{/* {multi+index} */}
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/categories/${category.categoryId}/details`} title="View category details">
@@ -141,6 +118,104 @@ export const AllCategories = () => {
 					</Table>
 				</TableContainer>
 			)}
+			{!loading && categories.length > 0 && (
+				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", width:'100%'}}}>
+					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
+						{categories.map((category: CategoryProduct, index) => (
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={10} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
+								<Stack direction="column" spacing={2}   alignItems="left">
+									<Typography variant="subtitle1" component="div">
+										#
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Name
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Popularity
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Sales
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										ReturnsPerMonth
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Profitability
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Nr Products
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Avg Product price
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Username
+									</Typography>
+									{canEdit(category.userName) && (
+										<Typography variant="subtitle1" component="div">
+										Operations
+										</Typography>
+									)}
+								</Stack>
+								<Stack direction="column" spacing={2}  alignItems="right">
+								<Typography variant="subtitle1" component="div">
+										{index}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.categoryName}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.categoryPopularity}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{String(category.categorySales)}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.categoryReturnsPerMonth}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.categoryProfitability}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.categoryAveragePrice}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{category.userName}
+									</Typography>
+									<Link to={`/user/${category.userName}`} title="View user details">
+										<Typography variant="subtitle1" component="div">
+										{category.userName}
+										</Typography>
+									</Link>
+									<Stack direction="row" spacing={0.5} alignItems="center">
+									{canEdit(category.userName) && (
+										<>
+										<IconButton component={Link} to={`/products/${category.categoryId}/edit`} sx={{ mr: 0 }}>
+											<EditIcon />
+										</IconButton>
+
+										<IconButton component={Link} to={`/products/${category.categoryId}/delete`} sx={{ mr: 0 }}>
+											<DeleteForeverIcon sx={{ color: 'red' }} />
+										</IconButton>
+										</>
+									)}
+									</Stack>
+								</Stack>
+							</Stack>
+						))}
+					</Stack>
+
+				</Box>
+
+			)}
+			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+					<ArrowBackIcon>Go to back categories:</ArrowBackIcon>
+				</IconButton>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+					<ArrowForwardIcon>Go to next categories:</ArrowForwardIcon>
+				</IconButton>
+			</Stack>
 		</Container>
 	);
 };
