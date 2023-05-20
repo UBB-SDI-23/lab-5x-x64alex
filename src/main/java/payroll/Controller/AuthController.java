@@ -144,7 +144,7 @@ public class AuthController {
         Set<Role> roles = new HashSet<>();
         Role userRole = new Role();
 
-        userRole.setName(ERole.ROLE_REGULAR );
+        userRole.setName(ERole.ROLE_REGULAR);
         roleRepository.save(userRole);
         roles.add(userRole);
         user.setRoles(roles);
@@ -162,6 +162,26 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        if(userRepository.existsByUsername("admin")){
+            userRepository.delete(userRepository.findByUsername("admin").get());
+        }
+        UserProfile userProfile = new UserProfile();
+        userProfileRepository.save(userProfile);
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword(encoder.encode("1"));
+
+        Set<Role> userRoles = new HashSet<>();
+        Role userRole = new Role();
+
+        userRole.setName(ERole.ROLE_ADMIN);
+        roleRepository.save(userRole);
+        userRoles.add(userRole);
+        user.setRoles(userRoles);
+
+
+        user.setUserProfile(userProfile);
+        userRepository.save(user);
 
 
         Authentication authentication = authenticationManager
