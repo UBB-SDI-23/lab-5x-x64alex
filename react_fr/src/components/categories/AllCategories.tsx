@@ -62,8 +62,8 @@ export const AllCategories = () => {
 			{!loading && categories.length === 0 && <p>No categories found</p>}
 
 			{!loading && categories.length > 0 && (
-				<TableContainer component={Paper}>
-					<Table sx={{ minWidth: 650 }} aria-label="simple table" sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+				<TableContainer component={Paper} sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+					<Table sx={{ minWidth: 650 }} aria-label="simple table" >
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
