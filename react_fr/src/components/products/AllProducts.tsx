@@ -64,7 +64,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-`			<Stack direction="column" spacing={2}  alignItems="left">
+`			<Stack direction="column" spacing={0.5}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -164,14 +164,18 @@ export const AllProducts = () => {
 					</Table>
 				</TableContainer>
 			)}`
-			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-        			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
-      			</IconButton>
-			</Stack>
+			{!loading && products.length > 0 && (
+
+				<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
+					<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+						<ArrowBackIcon>Go to next products:</ArrowBackIcon>
+					</IconButton>
+					<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+						<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
+					</IconButton>
+				</Stack>
+			)}`
+
 		</Container>
 	);
 };

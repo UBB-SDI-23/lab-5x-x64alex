@@ -134,7 +134,12 @@ export const AppMenu = () => {
 									component={Link}
 									color="inherit"
 									sx={{ mr: 5 }}
-									onClick={button.onClick && handleCloseNavMenu}
+									onClick={() => {
+										if (button.onClick) {
+										  button.onClick();
+										}
+										handleCloseNavMenu();
+									  }}
 									id={button.id}
 							>
 									{button.label}
