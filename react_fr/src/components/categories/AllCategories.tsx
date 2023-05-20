@@ -63,7 +63,7 @@ export const AllCategories = () => {
 
 			{!loading && categories.length > 0 && (
 				<TableContainer component={Paper}>
-					<Table sx={{ minWidth: 650 }} aria-label="simple table">
+					<Table sx={{ minWidth: 650 }} aria-label="simple table" sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
