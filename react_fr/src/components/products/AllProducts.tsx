@@ -184,7 +184,6 @@ export const AllProducts = () => {
 								)}
 								</Typography>
 							</Stack>
-							<Spacer />
 							<Stack direction="column" spacing={2}   alignItems="right">
 								<h4>{index}</h4>
 								<h4>{product.productPrice}</h4>
