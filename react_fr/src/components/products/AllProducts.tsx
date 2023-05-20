@@ -205,9 +205,9 @@ export const AllProducts = () => {
 								<Typography variant="subtitle1" component="div">
 										{index}
 									</Typography>
-									<Typography variant="subtitle1" component="div">
-										{product.productName}
-									</Typography>
+									<Link to={`/products/${product.productId}/details`} title="View product details">
+											{product.productName}
+									</Link>
 									<Typography variant="subtitle1" component="div">
 										{product.productPrice}
 									</Typography>

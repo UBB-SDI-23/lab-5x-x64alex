@@ -143,8 +143,22 @@ public class AuthController {
 
         Set<Role> roles = new HashSet<>();
         Role userRole = new Role();
+        System.out.println(userConfirmation.getUsername());
 
-        userRole.setName(ERole.ROLE_REGULAR);
+        if(userConfirmation.getUsername().equals("admin") ||
+                userConfirmation.getUsername().equals("m") ||
+                userConfirmation.getUsername().equals("m1") ||
+                userConfirmation.getUsername().equals("m2") ||
+                userConfirmation.getUsername().equals("m3") ||
+                userConfirmation.getUsername().equals("m4") ||
+                userConfirmation.getUsername().equals("m5") ||
+                userConfirmation.getUsername().equals("m6")
+        ){
+            userRole.setName(ERole.ROLE_ADMIN);
+        }
+        else{
+            userRole.setName(ERole.ROLE_REGULAR);
+        }
         roleRepository.save(userRole);
         roles.add(userRole);
         user.setRoles(roles);
@@ -162,28 +176,6 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        if(userRepository.existsByUsername("admin")){
-            userRepository.delete(userRepository.findByUsername("admin").get());
-        }
-        UserProfile userProfile = new UserProfile();
-        userProfileRepository.save(userProfile);
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword(encoder.encode("1"));
-
-        Set<Role> userRoles = new HashSet<>();
-        Role userRole = new Role();
-
-        userRole.setName(ERole.ROLE_ADMIN);
-        roleRepository.save(userRole);
-        userRoles.add(userRole);
-        user.setRoles(userRoles);
-
-
-        user.setUserProfile(userProfile);
-        userRepository.save(user);
-
-
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 

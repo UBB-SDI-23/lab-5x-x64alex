@@ -127,9 +127,9 @@ export const AllCategories = () => {
 									<Typography variant="subtitle1" component="div">
 										#
 									</Typography>
-									<Typography variant="subtitle1" component="div">
-										Name
-									</Typography>
+									<Link to={`/categories/${category.categoryId}/details`} title="View category details">
+											{category.categoryName}
+									</Link>
 									<Typography variant="subtitle1" component="div">
 										Popularity
 									</Typography>
@@ -177,10 +177,10 @@ export const AllCategories = () => {
 										{category.categoryProfitability}
 									</Typography>
 									<Typography variant="subtitle1" component="div">
-										{category.categoryAveragePrice}
+										{category.categoryNumberProducts}
 									</Typography>
 									<Typography variant="subtitle1" component="div">
-										{category.userName}
+										{category.categoryAveragePrice}
 									</Typography>
 									<Link to={`/user/${category.userName}`} title="View user details">
 										<Typography variant="subtitle1" component="div">
