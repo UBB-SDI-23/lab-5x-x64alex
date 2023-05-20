@@ -166,78 +166,78 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
-				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, width: '100%'}}>
+				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }}}>
 					<Stack direction="column" spacing={1} alignItems="left" >
-					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row" spacing={20} alignItems="left" sx={{ borderRadius: '6px'}} >
-							<Stack direction="column" spacing={2}   alignItems="left">
-								<Typography variant="subtitle1" component="div">
-									#
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Price
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Quantity
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Sale
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Weight
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Nr. Transactions
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									Username
-								</Typography>
-								{canEdit(product.userName) && (
+						{products.map((product: ProductTransactions, index) => (
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={20} alignItems="left" sx={{ borderRadius: '6px'}} >
+								<Stack direction="column" spacing={2}   alignItems="left">
 									<Typography variant="subtitle1" component="div">
-									Operations
+										#
 									</Typography>
-								)}
-							</Stack>
-							<Stack direction="column" spacing={2}  alignItems="right">
-							<Typography variant="subtitle1" component="div">
-									{index}
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									{product.productPrice}
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									{product.productQuantity}
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									{String(product.productOnSale)}
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									{product.productWeight}
-								</Typography>
-								<Typography variant="subtitle1" component="div">
-									{product.transactionsCount}
-								</Typography>
-								<Link to={`/user/${product.userName}`} title="View user details">
 									<Typography variant="subtitle1" component="div">
-									{product.userName}
+										Price
 									</Typography>
-								</Link>
-								<Stack direction="row" spacing={2} alignItems="center">
-								{canEdit(product.userName) && (
-									<>
-									<IconButton component={Link} to={`/products/${product.productId}/edit`} sx={{ mr: 3 }}>
-										<EditIcon />
-									</IconButton>
+									<Typography variant="subtitle1" component="div">
+										Quantity
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Sale
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Weight
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Nr. Transactions
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Username
+									</Typography>
+									{canEdit(product.userName) && (
+										<Typography variant="subtitle1" component="div">
+										Operations
+										</Typography>
+									)}
+								</Stack>
+								<Stack direction="column" spacing={2}  alignItems="right">
+								<Typography variant="subtitle1" component="div">
+										{index}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{product.productPrice}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{product.productQuantity}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{String(product.productOnSale)}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{product.productWeight}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{product.transactionsCount}
+									</Typography>
+									<Link to={`/user/${product.userName}`} title="View user details">
+										<Typography variant="subtitle1" component="div">
+										{product.userName}
+										</Typography>
+									</Link>
+									<Stack direction="row" spacing={2} alignItems="center">
+									{canEdit(product.userName) && (
+										<>
+										<IconButton component={Link} to={`/products/${product.productId}/edit`} sx={{ mr: 3 }}>
+											<EditIcon />
+										</IconButton>
 
-									<IconButton component={Link} to={`/products/${product.productId}/delete`} sx={{ mr: 3 }}>
-										<DeleteForeverIcon sx={{ color: 'red' }} />
-									</IconButton>
-									</>
-								)}
+										<IconButton component={Link} to={`/products/${product.productId}/delete`} sx={{ mr: 3 }}>
+											<DeleteForeverIcon sx={{ color: 'red' }} />
+										</IconButton>
+										</>
+									)}
+									</Stack>
 								</Stack>
 							</Stack>
-						</Stack>
-					))}
+						))}
 					</Stack>
 
 				</Box>
