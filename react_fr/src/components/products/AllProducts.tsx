@@ -222,14 +222,14 @@ export const AllProducts = () => {
 										{product.userName}
 										</Typography>
 									</Link>
-									<Stack direction="row" spacing={2} alignItems="center">
+									<Stack direction="row" spacing={0.5} alignItems="center">
 									{canEdit(product.userName) && (
 										<>
-										<IconButton component={Link} to={`/products/${product.productId}/edit`} sx={{ mr: 3 }}>
+										<IconButton component={Link} to={`/products/${product.productId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} to={`/products/${product.productId}/delete`} sx={{ mr: 3 }}>
+										<IconButton component={Link} to={`/products/${product.productId}/delete`} sx={{ mr: 0 }}>
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>
