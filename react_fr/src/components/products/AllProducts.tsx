@@ -167,6 +167,7 @@ export const AllProducts = () => {
 			)}
 			{!loading && products.length > 0 && (
 				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, width: '100%'}}>
+					<Stack direction="column" spacing={1} alignItems="left" >
 					{products.map((product: ProductTransactions, index) => (
 						<Stack direction="row" spacing={20} alignItems="left" sx={{ borderRadius: '6px'}} >
 							<Stack direction="column" spacing={2}   alignItems="left">
@@ -237,6 +238,7 @@ export const AllProducts = () => {
 							</Stack>
 						</Stack>
 					))}
+					</Stack>
 
 				</Box>
 
