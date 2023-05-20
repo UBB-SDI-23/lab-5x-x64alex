@@ -76,7 +76,8 @@ export const AllProducts = () => {
 					</Stack>
 				}
 				<h3>Filter by quantity greater than:</h3>
-				<TextField value={productQuantityString} 
+				<TextField value={productQuantityString}
+					sx={{ minWidth: 650 }} 
 					error={productQuantityError} 
 					id="filterQuantity" 
 					label="Quantity" 
@@ -100,12 +101,6 @@ export const AllProducts = () => {
 							setProductQuantity(-1);
 						}
 					}}/>
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-        			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
-      			</IconButton>
 			</Stack>
 			 			
 			{loading && <CircularProgress />}
@@ -169,6 +164,14 @@ export const AllProducts = () => {
 					</Table>
 				</TableContainer>
 			)}
+			<Stack direction="row" spacing={2}   alignItems="center" sx={{ flexWrap: 'wrap' }}>
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+        			<ArrowBackIcon>Go to next products:</ArrowBackIcon>
+      			</IconButton>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+        			<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
+      			</IconButton>
+			</Stack>
 		</Container>
 	);
 };
