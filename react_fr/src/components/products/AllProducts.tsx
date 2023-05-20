@@ -65,7 +65,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-`			<Stack direction="column" spacing={20}  alignItems="left">
+`			<Stack direction="column" spacing={1}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -168,7 +168,7 @@ export const AllProducts = () => {
 			{!loading && products.length > 0 && (
 				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row" spacing={2} bgcolor="grey.200" p={2} alignItems="left" >
+						<Stack direction="row" spacing={20} bgcolor="grey.200" p={2} alignItems="left" >
 							<Stack direction="column" spacing={2}   alignItems="left">
 								<Typography variant="h4" component="div" sx={{ fontWeight: 'normal' }}>
 
