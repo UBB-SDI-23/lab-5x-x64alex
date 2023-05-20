@@ -14,7 +14,7 @@ import {
 	Stack,
 	TableSortLabel,
 } from "@mui/material";
-import Box from '@mui/system/Box';
+import Box from '@mui/material/Box';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -224,17 +224,14 @@ export const AllProducts = () => {
 				</Box>
 
 				)}
-
-			{!loading && products.length > 0 && (
-				<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
-					<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-						<ArrowBackIcon>Go to next products:</ArrowBackIcon>
-					</IconButton>
-					<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-						<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
-					</IconButton>
-				</Stack>
-			)}
+			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+					<ArrowBackIcon>Go to next products:</ArrowBackIcon>
+				</IconButton>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+					<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
+				</IconButton>
+			</Stack>
 
 		</Container>
 	);
