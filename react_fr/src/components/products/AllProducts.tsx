@@ -166,30 +166,30 @@ export const AllProducts = () => {
 				</TableContainer>
 			)}
 			{!loading && products.length > 0 && (
-				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } ,fontWeight: 'normal'}}>
+				<Box bgcolor="grey.200" p={2} sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, borderRadius: '6px'}}>
 					{products.map((product: ProductTransactions, index) => (
-						<Stack direction="row" spacing={2000} bgcolor="grey.200" p={2} alignItems="left" >
+						<Stack direction="row" spacing={2000} alignItems="left" >
 							<Stack direction="column" spacing={2}   alignItems="left">
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{index}
 								</Typography>
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{product.productPrice}
 								</Typography>
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{product.productQuantity}
 								</Typography>
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{String(product.productOnSale)}
 								</Typography>
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{product.productWeight}
 								</Typography>
-								<Typography variant="h4" component="div">
+								<Typography variant="subtitle1" component="div">
 									{product.transactionsCount}
 								</Typography>
 								<Link to={`/user/${product.userName}`} title="View user details">
-									<Typography variant="h4" component="div">
+									<Typography variant="subtitle1" component="div">
 									{product.userName}
 									</Typography>
 								</Link>
@@ -224,8 +224,8 @@ export const AllProducts = () => {
 				</Box>
 
 				)}
-			{!loading && products.length > 0 && (
 
+			{!loading && products.length > 0 && (
 				<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
 					<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
 						<ArrowBackIcon>Go to next products:</ArrowBackIcon>
