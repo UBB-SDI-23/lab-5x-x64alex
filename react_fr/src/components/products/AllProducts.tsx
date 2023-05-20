@@ -23,6 +23,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Typography from '@mui/material/Typography';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
 
 
@@ -64,7 +65,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-`			<Stack direction="column" spacing={1}  alignItems="left">
+`			<Stack direction="column" spacing={20}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -169,6 +170,8 @@ export const AllProducts = () => {
 					{products.map((product: ProductTransactions, index) => (
 						<Stack direction="row" spacing={2} bgcolor="grey.200" p={2} alignItems="left" >
 							<Stack direction="column" spacing={2}   alignItems="left">
+								<Typography variant="h4" component="div" sx={{ fontWeight: 'normal' }}>
+
 								<h4>#</h4>
 								<h4>Price</h4>
 								<h4>Quantity</h4>
@@ -179,8 +182,9 @@ export const AllProducts = () => {
 								{canEdit(product.userName) && (
 									<h4>Operations</h4>
 								)}
+								</Typography>
 							</Stack>
-
+							<Spacer />
 							<Stack direction="column" spacing={2}   alignItems="right">
 								<h4>{index}</h4>
 								<h4>{product.productPrice}</h4>
