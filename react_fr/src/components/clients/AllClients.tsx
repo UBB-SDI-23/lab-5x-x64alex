@@ -13,6 +13,8 @@ import {
 	TextField,
 	Stack,
 	TableSortLabel,
+	Box,
+	Typography,
 } from "@mui/material";
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
@@ -70,7 +72,7 @@ export const AllClients = () => {
 			{!loading && clients.length === 0 && <p>No clients found</p>}
 
 			{!loading && clients.length > 0 && (
-				<TableContainer component={Paper}>
+				<TableContainer component={Paper} sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
 							<TableRow>
@@ -123,6 +125,85 @@ export const AllClients = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
+			)}
+			{!loading && clients.length > 0 && (
+				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", width:'100%'}}}>
+					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
+						{clients.map((client: ClientDTO, index) => (
+							<Stack bgcolor="grey.200" p={2} direction="row" spacing={10} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
+								<Stack direction="column" spacing={2}   alignItems="left">
+									<Typography variant="subtitle1" component="div">
+										#
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										First Name
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Last Name
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Email
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Phone number
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Nr. Transactions
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Username
+									</Typography>
+									{canEdit(client.userName) && (
+										<Typography variant="subtitle1" component="div">
+										Operations
+										</Typography>
+									)}
+								</Stack>
+								<Stack direction="column" spacing={2}  alignItems="right">
+								<Typography variant="subtitle1" component="div">
+										{index}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.clientFirstName}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.clientLastName}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.clientEmail}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.clientPhoneNumber}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.transactionsCount}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{client.userName}
+									</Typography>
+									<Link to={`/user/${client.userName}`} title="View user details">
+										<Typography variant="subtitle1" component="div">
+										{client.userName}
+										</Typography>
+									</Link>
+									<Stack direction="row" spacing={0.5} alignItems="center">
+									{canEdit(client.userName) && (
+										<>
+										<IconButton component={Link} to={`/products/${client.clientId}/edit`} sx={{ mr: 0 }}>
+											<EditIcon />
+										</IconButton>
+
+										<IconButton component={Link} to={`/products/${client.clientId}/delete`} sx={{ mr: 0 }}>
+											<DeleteForeverIcon sx={{ color: 'red' }} />
+										</IconButton>
+										</>
+									)}
+									</Stack>
+								</Stack>
+							</Stack>
+						))}
+					</Stack>
+				</Box>
 			)}
 		</Container>
 	);

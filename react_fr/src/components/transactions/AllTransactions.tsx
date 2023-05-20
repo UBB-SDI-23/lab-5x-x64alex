@@ -46,31 +46,22 @@ export const AllTransactions = () => {
 	return (
 		<Container>
 			<h1>All transactions</h1>
+			{canAdd()&&
 			<Stack direction="row" spacing={2}   alignItems="center">
 				<h3>Add a transaction:</h3>
-				{canAdd()&&
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/add`}>
 					<Tooltip title="Add a new transaction" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				}
-				{!canAdd()&&
-				<h3>Can not add</h3>
-				}
-				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
-      			</IconButton>
-				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-        			<ArrowForwardIcon>Go to next transactions:</ArrowForwardIcon>
-      			</IconButton>
 			</Stack>
+			}
 			 			
 			{loading && <CircularProgress />}
 			{!loading && transaction.length === 0 && <p>No transactions found</p>}
 
 			{!loading && transaction.length > 0 && (
-				<TableContainer component={Paper}>
+				<TableContainer component={Paper} sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
 							<TableRow>
@@ -117,6 +108,12 @@ export const AllTransactions = () => {
 					</Table>
 				</TableContainer>
 			)}
+			<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+        			<ArrowBackIcon>Go to back transactions:</ArrowBackIcon>
+      		</IconButton>
+			<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+        			<ArrowForwardIcon>Go to next transactions:</ArrowForwardIcon>
+      		</IconButton>
 		</Container>
 	);
 };
