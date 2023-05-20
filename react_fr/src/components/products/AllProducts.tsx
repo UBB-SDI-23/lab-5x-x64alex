@@ -65,7 +65,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-`			<Stack direction="column" spacing={1}  alignItems="left">
+			<Stack direction="column" spacing={1}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -175,6 +175,9 @@ export const AllProducts = () => {
 										#
 									</Typography>
 									<Typography variant="subtitle1" component="div">
+										Name
+									</Typography>
+									<Typography variant="subtitle1" component="div">
 										Price
 									</Typography>
 									<Typography variant="subtitle1" component="div">
@@ -201,6 +204,9 @@ export const AllProducts = () => {
 								<Stack direction="column" spacing={2}  alignItems="right">
 								<Typography variant="subtitle1" component="div">
 										{index}
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										{product.productName}
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										{product.productPrice}
