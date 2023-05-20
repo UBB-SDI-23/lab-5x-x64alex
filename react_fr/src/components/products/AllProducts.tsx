@@ -14,7 +14,7 @@ import {
 	Stack,
 	TableSortLabel,
 } from "@mui/material";
-import Box from '@mui/material/Box';
+import Box from '@mui/system/Box';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
