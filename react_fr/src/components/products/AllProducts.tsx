@@ -64,7 +64,7 @@ export const AllProducts = () => {
 	return (
 		<Container>
 			<h1>All products</h1>
-`			<Stack direction="column" spacing={0.5}  alignItems="left">
+`			<Stack direction="column" spacing={1}  alignItems="left">
 				{canAdd()&&
 					<Stack direction="row" spacing={2} alignItems="center">
 						<h3>Add a product:</h3>
@@ -163,7 +163,7 @@ export const AllProducts = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			)}`
+			)}
 			{!loading && products.length > 0 && (
 
 				<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
@@ -174,7 +174,7 @@ export const AllProducts = () => {
 						<ArrowForwardIcon>Go to next products:</ArrowForwardIcon>
 					</IconButton>
 				</Stack>
-			)}`
+			)}
 
 		</Container>
 	);
