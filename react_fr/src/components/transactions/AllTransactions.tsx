@@ -111,7 +111,7 @@ export const AllTransactions = () => {
 				</TableContainer>
 			)}
 			{!loading && transaction.length > 0 && (
-				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", width:'100%'}}}>
+				<Box sx={{ display: { xs: "flex", md: "none", width:'100%'}}}>
 					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
 						{transaction.map((transaction: TransactionAvgClientOrderQuantity, index) => (
 							<Stack bgcolor="grey.200" p={2} direction="row" spacing={2} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
@@ -138,7 +138,7 @@ export const AllTransactions = () => {
 									)}
 								</Stack>
 								<Stack direction="column" spacing={2}  alignItems="right">
-								<Typography variant="subtitle1" component="div">
+									<Typography variant="subtitle1" component="div">
 										{index}
 									</Typography>
 									<Link to={`/transactions/${transaction.transactionId}/details`} title="View client details">
