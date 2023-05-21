@@ -58,7 +58,6 @@ public class ClientController {
     public ResponseEntity<?> updateClient(@RequestBody ClientUpdateDTO client, @PathVariable("clientId") Long clientId){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .header("Access-Control-Allow-Origin", "2")
                 .body(this.clientService.updateClient(client, clientId));
     }
 
