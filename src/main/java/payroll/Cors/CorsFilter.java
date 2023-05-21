@@ -21,8 +21,8 @@ public class CorsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         final HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "https://main--payrollapp1.netlify.app");
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+        //response.setHeader("Access-Control-Allow-Origin", "https://main--payrollapp1.netlify.app");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4173");
 
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");

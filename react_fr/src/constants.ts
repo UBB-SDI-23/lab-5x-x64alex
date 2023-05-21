@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-//export const  BACKEND_API_URL = "https://alexcant.twilightparadox.com/api";
-export const  BACKEND_API_URL = "http://localhost:8000/api";
+//export const  BACKEND_API_URL_CHAT = "https://alexcant.twilightparadox.com";
+export const  BACKEND_API_URL_CHAT = "http://localhost:8000";
+
+export const  BACKEND_API_URL = BACKEND_API_URL_CHAT+"/api";
 
 
 
 
-export let authorization = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MzQ5NDc5OCwiZXhwIjoxNjgzNTgxMTk4fQ.Qtfg7d_cJXWDuhjNhMBTS3WFeap5OBdWU7wQIqrERs4ePKOzyLI8CDD1dr1nl7TxTLCkmtNt5eZDpCnkfmobXA";
+
+export let authorization = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NDY3NDYxMiwiZXhwIjoxNjg0NzYxMDEyfQ.rcWBesGZTSIOYrJSEeIR1dW5cOH17gW36dNWNQEgbJuHGD2vhdBdSyDYKMdb0w6mEUpbsjEbXL9i2LalqN2ewQ";
 export function updateGlobalVar(newValue: string) {
     authorization = newValue;
 }

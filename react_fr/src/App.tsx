@@ -29,6 +29,7 @@ import { UserProfile } from './components/UserProfile'
 import { Register } from './components/login/Reigister'
 import { Confirmation } from './components/login/Confirmation'
 import { AdminDashboard } from './components/AdminDashboard'
+import { AppChat } from './components/chat/Chat'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -71,6 +72,8 @@ function App() {
 					<Route path="/register" element={<Register/>} />
 					<Route path="/confirmation" element={<Confirmation/>} />
 					<Route path="/admin" element={<AdminDashboard/>} />
+					<Route path="/chat" element={<AppChat />} />
+
 
 
 				</Routes>

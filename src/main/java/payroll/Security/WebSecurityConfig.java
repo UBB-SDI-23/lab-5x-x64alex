@@ -14,14 +14,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import payroll.Security.JWT.AuthEntryPointJwt;
 import payroll.Security.JWT.AuthTokenFilter;
 import payroll.Security.Services.UserDetailsServiceImpl;
-import java.util.Arrays;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -84,10 +81,19 @@ import java.util.List;
                 .authorizeRequests((requests) -> requests
                         .antMatchers(HttpMethod.POST,"/api/signin").permitAll()
                         .antMatchers(HttpMethod.GET,"/api/**").permitAll()
+                        .antMatchers(HttpMethod.GET,"/ws/**").permitAll()
                         .antMatchers(HttpMethod.POST,"/api/register/**").permitAll()
                         .anyRequest().authenticated()
-
-                );
+                )
+                .requestMatcher(webSocketMatcher())
+                .antMatcher("/ws/**")
+                .headers().frameOptions().disable(); // Allow WebSocket connections in an iframe
     }
+
+        private RequestMatcher webSocketMatcher() {
+            return (HttpServletRequest request) ->
+                    "websocket".equalsIgnoreCase(request.getHeader("Upgrade")) ||
+                            "websocket".equalsIgnoreCase(request.getHeader("Sec-WebSocket-Protocol"));
+        }
 
 }
