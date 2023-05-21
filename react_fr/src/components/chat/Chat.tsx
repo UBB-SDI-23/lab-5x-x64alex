@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
+import { Button, Card, CardContent, Container, Stack, TextField, Typography } from '@mui/material';
 
 export const AppChat = () => {
   const [stompClient, setStompClient] = useState<any>(null);
@@ -49,29 +50,97 @@ export const AppChat = () => {
     setMessages((prevMessages) => [...prevMessages, messageOutput]);
   }
 
+
+//   return (
+    
+//     <div >
+//       <div>
+//         <TextField
+//           type="text"
+//           value={from}
+//           onChange={(e) => setFrom(e.target.value)}
+//           placeholder="Choose a nickname"
+//         />
+//       </div>
+//       <div >
+//         <Button disabled={connected} onClick={connect} variant="contained" color="primary">
+//           Connect
+//         </Button>
+//         <Button disabled={!connected} onClick={disconnect} variant="contained" color="secondary">
+//           Disconnect
+//         </Button>
+//       </div>
+//       <div>
+//         <div>
+//           <TextField
+//             type="text"
+//             value={text}
+//             onChange={(e) => setText(e.target.value)}
+//             placeholder="Write a message..."
+//           />
+//           <Button onClick={sendMessage} variant="contained" color="primary">
+//             Send
+//           </Button>
+//         </div>
+//         <div>
+//           {messages.map((messageOutput, index) => (
+//             <Typography
+//               key={index}
+//               variant="body1"
+//             >
+//               {`${messageOutput.from}: ${messageOutput.text} (${messageOutput.time})`}
+//             </Typography>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
   return (
-    <div>
-      <div>
-        <input type="text" value={from} onChange={(e) => setFrom(e.target.value)} placeholder="Choose a nickname" />
-      </div>
-      <br />
-      <div>
-        <button disabled={connected} onClick={connect}>Connect</button>
-        <button disabled={!connected} onClick={disconnect}>Disconnect</button>
-      </div>
-      <br />
-      <div id="conversationDiv">
-        <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Write a message..." />
-        <button onClick={sendMessage}>Send</button>
-        <p id="response">
-          {messages.map((messageOutput, index) => (
-            <span key={index}>
-              {messageOutput.from}: {messageOutput.text} ({messageOutput.time})
-              <br />
-            </span>
-          ))}
-        </p>
-      </div>
-    </div>
-  );
+    <Container>
+        <Card>
+            <CardContent>
+                <TextField
+                    type="text"
+                    value={from}
+                    sx={{ mb: 2 }}
+                    onChange={(e) => setFrom(e.target.value)}
+                    placeholder="Choose a nickname"
+                />
+                <Stack direction="row" spacing={2}  sx={{ mb: 2 }}  alignItems="center">
+                    <Button disabled={connected} onClick={connect} variant="contained" color="primary">
+                    Connect
+                    </Button>
+                    <Button disabled={!connected} onClick={disconnect} variant="contained" color="secondary">
+                    Disconnect
+                    </Button>
+                </Stack>
+                <Stack direction="row" spacing={2}   sx={{ mb: 2 }}  alignItems="center">
+                    <Typography variant="h4">
+                        Message:
+                    </Typography>
+                    <TextField
+                    type="text"
+                    sx={{ mb: 2 }}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Write a message..."
+                    />
+                    <Button onClick={sendMessage} variant="contained" color="primary">
+                        Send
+                    </Button>
+                </Stack>
+
+                {messages.map((messageOutput, index) => (
+                    <Typography
+                    key={index}
+                    variant="body1"
+                    >
+                    {`${messageOutput.from}: ${messageOutput.text} (${messageOutput.time})`}
+                    </Typography>
+                ))}
+
+            </CardContent>
+        </Card>
+    </Container>
+);
 };
