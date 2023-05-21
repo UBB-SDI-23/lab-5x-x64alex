@@ -115,7 +115,7 @@ export const AllTransactions = () => {
 					<Stack direction="column" spacing={1} alignItems="left" sx={{ width:'100%'}} >
 						{transaction.map((transaction: TransactionAvgClientOrderQuantity, index) => (
 							<Stack bgcolor="grey.200" p={2} direction="row" spacing={2} justifyContent="space-between" alignItems="center" sx={{ borderRadius: '6px'}} >
-								<Stack direction="column" spacing={2}   alignItems="left">
+								<Stack direction="column" spacing={2} alignItems="left">
 									<Typography variant="subtitle1" component="div">
 										#
 									</Typography>
@@ -158,11 +158,11 @@ export const AllTransactions = () => {
 									<Stack direction="row" spacing={0.5} alignItems="center">
 									{canEdit(transaction.userName) && (
 										<>
-										<IconButton component={Link} to={`/transactions/${transaction.transactionId}/edit`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/products/${transaction.transactionId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} to={`/transactions/${transaction.transactionId}/delete`} sx={{ mr: 0 }}>
+										<IconButton component={Link} to={`/products/${transaction.transactionId}/delete`} sx={{ mr: 0 }}>
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>
