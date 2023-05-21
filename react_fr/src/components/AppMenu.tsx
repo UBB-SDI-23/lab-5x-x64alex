@@ -68,6 +68,12 @@ export const AppMenu = () => {
 			visible: isAdmin()
 		  },
 		  {
+			label: "Chat",
+			variant: path.startsWith("/chat") ? "outlined" : "text",
+			to: "/chat",
+			visible: true
+		  },
+		  {
 			label: "Logout",
 			onClick: handleLogOut,
 			id: "logout",
