@@ -99,6 +99,9 @@ export const AppChat = () => {
     <Container>
         <Card>
             <CardContent>
+                <Typography variant="subtitle1">
+                    Username:
+                </Typography>
                 <TextField
                     type="text"
                     value={from}
@@ -114,10 +117,10 @@ export const AppChat = () => {
                     Disconnect
                     </Button>
                 </Stack>
-                <Stack direction="row" spacing={2}   sx={{ mb: 2 }}  alignItems="center">
-                    <Typography variant="h4">
+                <Typography variant="subtitle1">
                         Message:
-                    </Typography>
+                </Typography>
+                <Stack direction="row" spacing={2}   sx={{ mb: 2 }}  alignItems="center">
                     <TextField
                     type="text"
                     sx={{ mb: 2 }}
