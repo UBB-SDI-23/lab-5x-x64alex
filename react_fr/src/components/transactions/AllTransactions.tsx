@@ -137,7 +137,7 @@ export const AllTransactions = () => {
 										</Typography>
 									)}
 								</Stack>
-								<Stack direction="column" spacing={2}  alignItems="right">
+								<Stack direction="column" spacing={2}  alignItems="left">
 									<Typography variant="subtitle1" component="div">
 										{index}
 									</Typography>
