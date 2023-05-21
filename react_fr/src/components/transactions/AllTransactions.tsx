@@ -174,12 +174,14 @@ export const AllTransactions = () => {
 					</Stack>
 				</Box>
 			)}
-			<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-        			<ArrowBackIcon>Go to back transactions:</ArrowBackIcon>
-      		</IconButton>
-			<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-        			<ArrowForwardIcon>Go to next transactions:</ArrowForwardIcon>
-      		</IconButton>
+			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+						<ArrowBackIcon>Go to back transactions:</ArrowBackIcon>
+				</IconButton>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+						<ArrowForwardIcon>Go to next transactions:</ArrowForwardIcon>
+				</IconButton>
+			</Stack>
 		</Container>
 	);
 };

@@ -139,7 +139,7 @@ export const AllClients = () => {
 										Phone number
 									</Typography>
 									<Typography variant="subtitle1" component="div">
-										Nr. Transactions
+										Transactions
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										Username
@@ -193,12 +193,14 @@ export const AllClients = () => {
 					</Stack>
 				</Box>
 			)}
-			<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
-				<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
-			</IconButton>
-			<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
-				<ArrowForwardIcon>Go to next clients:</ArrowForwardIcon>
-			</IconButton>
+			<Stack direction="row" spacing={2}   alignItems="center" justifyContent="center">
+				<IconButton edge="start" onClick={() => {if(pageNumber>0){setPageNumber(pageNumber-1)}}}>
+					<ArrowBackIcon>Go to back clients:</ArrowBackIcon>
+				</IconButton>
+				<IconButton edge="start" onClick={() => {setPageNumber(pageNumber+1)}}>
+					<ArrowForwardIcon>Go to next clients:</ArrowForwardIcon>
+				</IconButton>
+			</Stack>
 		</Container>
 	);
 };
