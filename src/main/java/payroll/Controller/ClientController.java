@@ -27,6 +27,7 @@ public class ClientController {
     @GetMapping()
     public List<ClientDTO> getClients(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "100") int pageSize){
+        System.out.println(1);
         int entities = entriesService.getEntries();
         return this.clientService.getClients(pageNumber,entities).stream().map(client -> client.getClientDTO(clientService.getTransactionsCount(client.getClientId()))).toList();
     }

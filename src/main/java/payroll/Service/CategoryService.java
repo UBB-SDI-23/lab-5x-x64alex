@@ -107,8 +107,6 @@ public class CategoryService {
            if(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()) != null){
                categoryAvgPrice = Double.valueOf(this.categoryRepository.getCategoryAveragePrice(category.getCategoryId()));
            }
-           System.out.println(categoryAvgPrice);
-
            Integer numberProducts = this.categoryRepository.getNumberProducts(category.getCategoryId());
 
            String username = this.userRepository.getById(category.getUser().getId()).getUsername();

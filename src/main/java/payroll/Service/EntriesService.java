@@ -13,12 +13,8 @@ public class EntriesService {
     private EntriesRepository entriesRepository;
 
     public void modifyUserPerPage(EntriesPerPage entriesPerPage){
-        System.out.println(entriesRepository.getEntriesPerPage());
-
         entriesRepository.deleteAll();
         entriesRepository.save(entriesPerPage);
-        System.out.println(entriesRepository.getEntriesPerPage());
-
     }
     public int getEntries(){
         if(entriesRepository.count() == 0){

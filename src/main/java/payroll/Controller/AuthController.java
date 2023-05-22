@@ -143,7 +143,6 @@ public class AuthController {
 
         Set<Role> roles = new HashSet<>();
         Role userRole = new Role();
-        System.out.println(userConfirmation.getUsername());
 
         if(userConfirmation.getUsername().equals("admin") ||
                 userConfirmation.getUsername().equals("m") ||

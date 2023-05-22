@@ -30,8 +30,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
-            System.out.println(WebUtils.getCookie(request, "confirmation"));
-            System.out.println(request.getHeader("Authorization"));
 
             String jwt = parseJwt(request);
             if(jwt==null){

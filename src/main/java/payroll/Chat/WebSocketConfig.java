@@ -20,7 +20,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/chat");
         registry.addEndpoint("/chat")
-                .setAllowedOrigins("https://main--payrollapp1.netlify.app")
+                .setAllowedOrigins("http://localhost:4173")
                 .withSockJS();
     }
 }
