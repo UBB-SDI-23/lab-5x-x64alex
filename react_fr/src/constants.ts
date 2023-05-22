@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// export const  BACKEND_API_URL_CHAT = "https://alexcant.twilightparadox.com";
-export const  BACKEND_API_URL_CHAT = "http://localhost:8000";
+export const  BACKEND_API_URL_CHAT = "https://alexcant.twilightparadox.com";
+// export const  BACKEND_API_URL_CHAT = "http://localhost:8000";
 
 export const  BACKEND_API_URL = BACKEND_API_URL_CHAT+"/api";
 
