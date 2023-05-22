@@ -50,51 +50,6 @@ export const AppChat = () => {
     setMessages((prevMessages) => [...prevMessages, messageOutput]);
   }
 
-
-//   return (
-    
-//     <div >
-//       <div>
-//         <TextField
-//           type="text"
-//           value={from}
-//           onChange={(e) => setFrom(e.target.value)}
-//           placeholder="Choose a nickname"
-//         />
-//       </div>
-//       <div >
-//         <Button disabled={connected} onClick={connect} variant="contained" color="primary">
-//           Connect
-//         </Button>
-//         <Button disabled={!connected} onClick={disconnect} variant="contained" color="secondary">
-//           Disconnect
-//         </Button>
-//       </div>
-//       <div>
-//         <div>
-//           <TextField
-//             type="text"
-//             value={text}
-//             onChange={(e) => setText(e.target.value)}
-//             placeholder="Write a message..."
-//           />
-//           <Button onClick={sendMessage} variant="contained" color="primary">
-//             Send
-//           </Button>
-//         </div>
-//         <div>
-//           {messages.map((messageOutput, index) => (
-//             <Typography
-//               key={index}
-//               variant="body1"
-//             >
-//               {`${messageOutput.from}: ${messageOutput.text} (${messageOutput.time})`}
-//             </Typography>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
   return (
     <Container>
         <Card>
