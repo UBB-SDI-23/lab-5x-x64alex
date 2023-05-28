@@ -5,6 +5,7 @@ import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
 import Checkbox from '@mui/material/Checkbox';
 import { Button, Card, CardContent, CardMedia, Container, Stack, TextField, Typography } from '@mui/material';
 import * as deepai from 'deepai';
+import axios from 'axios';
 
 
 export const AppChat = () => {
@@ -49,15 +50,23 @@ export const AppChat = () => {
 
   function sendMessage(): void {
     if(checked){
-      console.log("send to api")
-      deepai.setApiKey('0c00b471-5d4c-4def-94e6-34960fac56c3');
+        axios.post('https://api.deepai.org/api/text2img', {
+          text: text,
+          grid_size: "1"
+        }, {
+          headers: {
+            'api-key': '0c00b471-5d4c-4def-94e6-34960fac56c3'
+          }
+        })
+        .then(function (response) {
+          const responseData = response.data;
 
-      (async function() {
-          var resp = await deepai.callStandardApi("text2img", {
-                  text: text,
-          });
-          setUrl(resp["output_url"])
-      })()
+          console.log(responseData);
+          setUrl(responseData["output_url"])
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
     if(!checked){
       if (stompClient) {
