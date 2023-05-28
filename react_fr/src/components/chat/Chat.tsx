@@ -51,8 +51,7 @@ export const AppChat = () => {
   function sendMessage(): void {
     if(checked){
         axios.post('https://api.deepai.org/api/text2img', {
-          text: text,
-          grid_size: "1"
+          text: text
         }, {
           headers: {
             'api-key': '0c00b471-5d4c-4def-94e6-34960fac56c3'
