@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.15",
     "axios": "^1.3.4",
+    "deepai": "^1.0.21",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,6 +24,7 @@
     "stompjs": "^2.3.3"
   },
   "devDependencies": {
+    "@types/deepai": "^1.0.0",
     "@types/jest": "^29.5.0",
     "@types/js-cookie": "^3.0.3",
     "@types/node": "^18.15.11",

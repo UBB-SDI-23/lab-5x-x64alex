@@ -4,6 +4,8 @@ import Stomp from 'stompjs';
 import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
 import Checkbox from '@mui/material/Checkbox';
 import { Button, Card, CardContent, Container, Stack, TextField, Typography } from '@mui/material';
+import * as deepai from 'deepai';
+
 
 export const AppChat = () => {
   const [stompClient, setStompClient] = useState<any>(null);
@@ -47,8 +49,6 @@ export const AppChat = () => {
   function sendMessage(): void {
     if(checked){
       console.log("send to api")
-      const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
-
       deepai.setApiKey('0c00b471-5d4c-4def-94e6-34960fac56c3');
 
       (async function() {
