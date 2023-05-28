@@ -56,8 +56,6 @@ export const AppChat = () => {
           var resp = await deepai.callStandardApi("text2img", {
                   text: text,
           });
-          console.log(resp);
-          console.log(resp["output_url"])
           setUrl(resp["output_url"])
       })()
     }
@@ -135,7 +133,7 @@ export const AppChat = () => {
                     {`${messageOutput.from}: ${messageOutput.text} (${messageOutput.time})`}
                     </Typography>
                 ))}
-                {!checked && url != '' &&
+                {checked && url != '' &&
                 <CardMedia
                     component="img"
                     src={url}
