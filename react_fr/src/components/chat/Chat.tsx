@@ -5,7 +5,6 @@ import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
 import Checkbox from '@mui/material/Checkbox';
 import { Button, Card, CardContent, CardMedia, Container, Stack, TextField, Typography } from '@mui/material';
 import * as deepai from 'deepai';
-import axios from 'axios';
 
 
 export const AppChat = () => {
@@ -50,22 +49,17 @@ export const AppChat = () => {
 
   function sendMessage(): void {
     if(checked){
-        axios.post('https://api.deepai.org/api/text2img', {
-          text: text
-        }, {
-          headers: {
-            'api-key': '0c00b471-5d4c-4def-94e6-34960fac56c3'
-          }
-        })
-        .then(function (response) {
-          const responseData = response.data;
+      console.log("send to api")
+      deepai.setApiKey('0c00b471-5d4c-4def-94e6-34960fac56c3');
 
-          console.log(responseData);
-          setUrl(responseData["output_url"])
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      (async function() {
+          var resp = await deepai.callStandardApi("text2img", {
+                  text: text,
+          });
+          console.log(resp);
+          console.log(resp["output_url"])
+          setUrl(resp["output_url"])
+      })()
     }
     if(!checked){
       if (stompClient) {
@@ -84,7 +78,7 @@ export const AppChat = () => {
             <CardContent>
               <Stack direction="row" spacing={2}  sx={{ mb: 2 }}  alignItems="center">
                   <Typography variant="subtitle1">
-                        Generate image from message:
+                        Generate images from message:
                   </Typography>
                   <Checkbox
                     checked={checked}
