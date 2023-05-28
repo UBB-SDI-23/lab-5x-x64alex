@@ -3,7 +3,7 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
 import Checkbox from '@mui/material/Checkbox';
-import { Button, Card, CardContent, Container, Stack, TextField, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Container, Stack, TextField, Typography } from '@mui/material';
 import * as deepai from 'deepai';
 
 
@@ -14,6 +14,7 @@ export const AppChat = () => {
   const [text, setText] = useState<string>('');
   const [messages, setMessages] = useState<any[]>([]);
   const [checked, setChecked] = useState(false);
+  const [url, setUrl] = useState<string>('');
 
 
 
@@ -56,6 +57,8 @@ export const AppChat = () => {
                   text: text,
           });
           console.log(resp);
+          console.log(resp["output_url"])
+          setUrl(resp["output_url"])
       })()
     }
     if(!checked){
@@ -75,7 +78,7 @@ export const AppChat = () => {
             <CardContent>
               <Stack direction="row" spacing={2}  sx={{ mb: 2 }}  alignItems="center">
                   <Typography variant="subtitle1">
-                        Generate text from message:
+                        Generate image from message:
                   </Typography>
                   <Checkbox
                     checked={checked}
@@ -132,6 +135,13 @@ export const AppChat = () => {
                     {`${messageOutput.from}: ${messageOutput.text} (${messageOutput.time})`}
                     </Typography>
                 ))}
+                {!checked && url != '' &&
+                <CardMedia
+                    component="img"
+                    src={url}
+                    alt="Image"
+                  />
+                }
 
             </CardContent>
         </Card>
