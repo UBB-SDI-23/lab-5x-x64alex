@@ -47,6 +47,16 @@ export const AppChat = () => {
   function sendMessage(): void {
     if(checked){
       console.log("send to api")
+      const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
+
+      deepai.setApiKey('0c00b471-5d4c-4def-94e6-34960fac56c3');
+
+      (async function() {
+          var resp = await deepai.callStandardApi("text2img", {
+                  text: text,
+          });
+          console.log(resp);
+      })()
     }
     if(!checked){
       if (stompClient) {
