@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { BACKEND_API_URL_CHAT, authorization } from '../../constants';
+import Checkbox from '@mui/material/Checkbox';
 import { Button, Card, CardContent, Container, Stack, TextField, Typography } from '@mui/material';
 
 export const AppChat = () => {
@@ -10,6 +11,9 @@ export const AppChat = () => {
   const [from, setFrom] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [messages, setMessages] = useState<any[]>([]);
+  const [checked, setChecked] = useState(false);
+
+
 
   useEffect(() => {
     disconnect(); // Disconnect on component mount
@@ -41,8 +45,13 @@ export const AppChat = () => {
   }
 
   function sendMessage(): void {
-    if (stompClient) {
-      stompClient.send('/app/chat', {}, JSON.stringify({ 'from': from, 'text': text }));
+    if(checked){
+      console.log("send to api")
+    }
+    if(!checked){
+      if (stompClient) {
+        stompClient.send('/app/chat', {}, JSON.stringify({ 'from': from, 'text': text }));
+      }
     }
   }
 
@@ -54,9 +63,23 @@ export const AppChat = () => {
     <Container>
         <Card>
             <CardContent>
-                <Typography variant="subtitle1">
-                    Username:
-                </Typography>
+              <Stack direction="row" spacing={2}  sx={{ mb: 2 }}  alignItems="center">
+                  <Typography variant="subtitle1">
+                        Generate text from message:
+                  </Typography>
+                  <Checkbox
+                    checked={checked}
+                    onChange={(e) => setChecked(!checked)}
+                    color="primary"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                  />
+                </Stack>
+                {!checked &&
+                  <Typography variant="subtitle1">
+                      Username:
+                  </Typography>
+                }
+                {!checked &&
                 <TextField
                     type="text"
                     value={from}
@@ -64,6 +87,8 @@ export const AppChat = () => {
                     onChange={(e) => setFrom(e.target.value)}
                     placeholder="Choose a nickname"
                 />
+                }
+                {!checked &&
                 <Stack direction="row" spacing={2}  sx={{ mb: 2 }}  alignItems="center">
                     <Button disabled={connected} onClick={connect} variant="contained" color="primary">
                     Connect
@@ -72,6 +97,7 @@ export const AppChat = () => {
                     Disconnect
                     </Button>
                 </Stack>
+                }
                 <Typography variant="subtitle1">
                         Message:
                 </Typography>
