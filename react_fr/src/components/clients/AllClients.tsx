@@ -146,7 +146,7 @@ export const AllClients = () => {
 									</Typography>
 									{canEdit(client.userName) && (
 										<Typography variant="subtitle1" component="div">
-										Operations
+										Operations1
 										</Typography>
 									)}
 								</Stack>
@@ -174,8 +174,8 @@ export const AllClients = () => {
 										{client.userName}
 										</Typography>
 									</Link>
-									<Stack direction="row" spacing={0.5} alignItems="center">
 									{canEdit(client.userName) && (
+									<Stack direction="row" spacing={0.5} alignItems="center">
 										<>
 										<IconButton component={Link} to={`/clients/${client.clientId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
@@ -185,8 +185,8 @@ export const AllClients = () => {
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>
-									)}
 									</Stack>
+									)}
 								</Stack>
 							</Stack>
 						))}
