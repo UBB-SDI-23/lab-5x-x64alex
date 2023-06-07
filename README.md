@@ -26,7 +26,7 @@ Welcome to the documentation for the Payroll App. This document provides informa
 To access the Payroll App, open a web browser and enter the following URL: [https://main--payrollapp1.netlify.app/](https://main--payrollapp1.netlify.app/). You will be directed to the home page of the Payroll App.
 
 ## 2. Installation
-To install and run the Payroll App you must first:
+To install and run the Payroll App you must first (in that order!):
 - change the permission of the backend to the url where frontend will be deployed
 - make sure you have docker installed on backend server and npm or yarn installed on frontend server
 - deploy backend
