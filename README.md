@@ -153,7 +153,7 @@ To log in to the Payroll App, follow these steps:
 4. Click the "Login" or "Sign In" button to submit the login form.
 5. If the provided credentials are valid, you will be logged in and redirected to the app's dashboard or main page.
 
-## 7. Admin
+## 8. Admin
 If user logged in with an admin account he can enter the admin page.
 On the admin page he can do the following:
 - delete all data
