@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit, isLoggedIn } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Typography from '@mui/material/Typography';
@@ -120,11 +120,10 @@ export const AllProducts = () => {
 									Quantity
 									</TableSortLabel>
 								</TableCell>
-								<TableCell>Sale</TableCell>
-								<TableCell align="right">Weight</TableCell>
-								<TableCell align="center">Nr. Transactions</TableCell>
 								<TableCell align="right">username</TableCell>
+								{isLoggedIn() && (
                                 <TableCell align="center">Operations</TableCell>
+								)}
 							</TableRow>
 						</TableHead>
 						<TableBody>
@@ -140,9 +139,6 @@ export const AllProducts = () => {
 									</TableCell>
 									<TableCell align="right">{product.productPrice}</TableCell>
 									<TableCell align="right">{product.productQuantity}</TableCell>
-									<TableCell align="right">{String(product.productOnSale)}</TableCell>
-									<TableCell align="right">{product.productWeight}</TableCell>
-									<TableCell align="center">{product.transactionsCount}</TableCell>
 									<TableCell align="right">
 										<Link to={`/user/${product.userName}`} title="View user details">
 											{product.userName}
