@@ -4,10 +4,10 @@
 Welcome to the documentation for the Payroll App. This document provides information on how to use and navigate the Payroll App website, specifically focusing on the Clients section. The Payroll App is a web-based application designed to manage payroll information for businesses and their clients.
 
 ## Table of Contents
-1. [Accessing the Payroll App](#accessing-the-payroll-app)
-2. [Clients Section](#clients-section)
-   - 2.1 [Viewing Clients](#viewing-clients)
-   - 2.2 [Adding a New Client](#adding-a-new-client)
+1. [Accessing the Payroll App](#1-accessing-the-payroll-app)
+2. [Clients Section](#2-clients-section)
+   - 2.1 [Viewing Clients](#2-1-viewing-clients)
+   - 2.2 [Adding a New Client](#2-2-adding-a-new-client)
    - 2.3 [Editing Client Information](#editing-client-information)
    - 2.4 [Deleting a Client](#deleting-a-client)
 
