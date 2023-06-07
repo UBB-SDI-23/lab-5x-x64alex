@@ -21,7 +21,7 @@ To install and run the Payroll App you must first:
 - deploy backend
 - change url of proxy freedns to the url of backend
 - deploy frontend
-#Observations:
+# Observations:
 - frontend is currently deployed on netifly 
 ### 2.1 Backend
 1. Clone the repository from GitHub:
