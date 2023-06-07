@@ -37,6 +37,7 @@ export const AllCategories = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setCategory(data);
+				setPageSize(categories.length)
 				setLoading(false);
 			});
 	}, [pageNumber]);
