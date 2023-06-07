@@ -68,12 +68,7 @@ export const AllClients = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
-								<TableCell align="left">First Name</TableCell>
-								<TableCell align="right">Last Name</TableCell>
-								<TableCell align="right">Email</TableCell>
-								<TableCell align="right">Address</TableCell>
-								<TableCell align="right">Phone number</TableCell>
-								<TableCell align="center">Nr. Transactions</TableCell>
+								<TableCell align="left">Name</TableCell>
 								<TableCell align="right">username</TableCell>
 								{isLoggedIn() && (
 								<TableCell align="center">Operations</TableCell>
@@ -88,14 +83,9 @@ export const AllClients = () => {
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/clients/${client.clientId}/details`} title="View client details">
-											{client.clientFirstName}
+											{client.clientFirstName+client.clientLastName}
 										</Link>
 									</TableCell>
-									<TableCell align="right">{client.clientLastName}</TableCell>
-									<TableCell align="right">{client.clientEmail}</TableCell>
-									<TableCell align="right">{client.clientAddress}</TableCell>
-									<TableCell align="right">{client.clientPhoneNumber}</TableCell>
-									<TableCell align="center">{client.transactionsCount}</TableCell>
 									<TableCell align="right">
 										<Link to={`/user/${client.userName}`} title="View user details">
 											{client.userName}
