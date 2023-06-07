@@ -69,6 +69,7 @@ export const AllClients = () => {
 							<TableRow>
 								<TableCell>#</TableCell>
 								<TableCell align="left">Name</TableCell>
+								<TableCell align="center">Nr. Transactions</TableCell>
 								<TableCell align="right">username</TableCell>
 								{isLoggedIn() && (
 								<TableCell align="center">Operations</TableCell>
@@ -83,9 +84,10 @@ export const AllClients = () => {
 									</TableCell>
 									<TableCell component="th" scope="row">
 										<Link to={`/clients/${client.clientId}/details`} title="View client details">
-											{client.clientFirstName+client.clientLastName}
+											{client.clientFirstName+""+client.clientLastName}
 										</Link>
 									</TableCell>
+									<TableCell align="center">{client.transactionsCount}</TableCell>
 									<TableCell align="right">
 										<Link to={`/user/${client.userName}`} title="View user details">
 											{client.userName}

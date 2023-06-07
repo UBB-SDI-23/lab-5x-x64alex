@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit, isLoggedIn } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CategoryProduct } from "../../models/Category/CategoryProduct";
@@ -75,7 +75,10 @@ export const AllCategories = () => {
 								<TableCell align="right">Nr Products</TableCell>
 								<TableCell align="right">Avg Product price</TableCell>
 								<TableCell align="right">username</TableCell>
+								{isLoggedIn() && (
+
                                 <TableCell align="center">Operations</TableCell>
+								)}
 							</TableRow>
 						</TableHead>
 						<TableBody>
@@ -90,9 +93,6 @@ export const AllCategories = () => {
 										</Link>
 									</TableCell>
 									<TableCell align="right">{category.categoryPopularity}</TableCell>
-									<TableCell align="right">{category.categorySales}</TableCell>
-									<TableCell align="right">{category.categoryReturnsPerMonth}</TableCell>
-									<TableCell align="right">{category.categoryProfitability}</TableCell>
 									<TableCell align="right">{category.categoryNumberProducts}</TableCell>
 									<TableCell align="right">{category.categoryAveragePrice}</TableCell>
 									<TableCell align="right">
@@ -132,15 +132,6 @@ export const AllCategories = () => {
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										Popularity
-									</Typography>
-									<Typography variant="subtitle1" component="div">
-										Sales
-									</Typography>
-									<Typography variant="subtitle1" component="div">
-										ReturnsPerMonth
-									</Typography>
-									<Typography variant="subtitle1" component="div">
-										Profitability
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										Nr Products
