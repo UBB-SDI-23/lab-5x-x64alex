@@ -36,15 +36,15 @@ To install and run the Payroll App you must first (in the order below!):
 ### 2.1 Backend
 1. Clone the repository from GitHub:
 git clone https://github.com/UBB-SDI-23/lab-5x-x64alex.git
-2. Enter docker folder
+2. Enter docker folder:
 cd docker_jar
-3. Run docker
+3. Run docker:
 docker-compose up
 
 ### 2.1 Frontend
 1. Clone the repository from GitHub:
 git clone https://github.com/UBB-SDI-23/lab-5x-x64alex.git
-2. Enter frontend folder
+2. Enter frontend folder:
 cd react_fr
 3. Install the necessary dependencies using npm or Yarn:
 yarn install or npm install
