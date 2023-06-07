@@ -21,6 +21,8 @@ Welcome to the documentation for the Payroll App. This document provides informa
 7. [Register and Login](#7-register-and-login)
    - 7.1 [Registering a New Account](#71-registering-a-new-account)
    - 7.2 [Logging in to the Payroll App](#72-logging-in-to-the-payroll-app)
+8. [Admin](#8-admin)
+
 
 ## 1. Accessing the Payroll App
 To access the Payroll App, open a web browser and enter the following URL: [https://main--payrollapp1.netlify.app/](https://main--payrollapp1.netlify.app/). You will be directed to the home page of the Payroll App.
@@ -150,6 +152,14 @@ To log in to the Payroll App, follow these steps:
 3. Enter your registered username or email and password in the login form.
 4. Click the "Login" or "Sign In" button to submit the login form.
 5. If the provided credentials are valid, you will be logged in and redirected to the app's dashboard or main page.
+
+## 7. Admin
+If user logged in with an admin account he can enter the admin page.
+On the admin page he can do the following:
+- delete all data
+- generate data from script
+- edit user roles
+- set entities per page
 
 # Observations:
 - frontend is currently deployed on netifly
