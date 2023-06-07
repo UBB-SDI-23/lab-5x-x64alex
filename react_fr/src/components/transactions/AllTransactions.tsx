@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit, isLoggedIn } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ClientDTO } from "../../models/Client/ClientDTO";
@@ -72,7 +72,10 @@ export const AllTransactions = () => {
 								<TableCell align="right">Quantity</TableCell>
 								<TableCell align="right">Average Client order quantity</TableCell>
 								<TableCell align="right">username</TableCell>
+								{isLoggedIn() && (
+
 								<TableCell align="center">Operations</TableCell>
+								)}
 							</TableRow>
 						</TableHead>
 						<TableBody>
