@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import { BACKEND_API_URL, canAdd, canEdit } from "../../constants";
+import { BACKEND_API_URL, canAdd, canEdit, isLoggedIn } from "../../constants";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ProductTransactions } from "../../models/Product/ProductTransactions";
@@ -75,7 +75,9 @@ export const AllClients = () => {
 								<TableCell align="right">Phone number</TableCell>
 								<TableCell align="center">Nr. Transactions</TableCell>
 								<TableCell align="right">username</TableCell>
+								{isLoggedIn() && (
 								<TableCell align="center">Operations</TableCell>
+								)}
 							</TableRow>
 						</TableHead>
 						<TableBody>
@@ -146,7 +148,7 @@ export const AllClients = () => {
 									</Typography>
 									{canEdit(client.userName) && (
 										<Typography variant="subtitle1" component="div">
-										Operations1
+										Operations
 										</Typography>
 									)}
 								</Stack>
@@ -174,8 +176,8 @@ export const AllClients = () => {
 										{client.userName}
 										</Typography>
 									</Link>
-									{canEdit(client.userName) && (
 									<Stack direction="row" spacing={0.5} alignItems="center">
+									{canEdit(client.userName) && (
 										<>
 										<IconButton component={Link} to={`/clients/${client.clientId}/edit`} sx={{ mr: 0 }}>
 											<EditIcon />
@@ -185,8 +187,8 @@ export const AllClients = () => {
 											<DeleteForeverIcon sx={{ color: 'red' }} />
 										</IconButton>
 										</>
-									</Stack>
 									)}
+									</Stack>
 								</Stack>
 							</Stack>
 						))}
