@@ -69,9 +69,6 @@ export const AllCategories = () => {
 								<TableCell>#</TableCell>
 								<TableCell align="left">Name</TableCell>
 								<TableCell align="right">Popularity</TableCell>
-								<TableCell align="right">Sales</TableCell>
-								<TableCell align="right">ReturnsPerMonth</TableCell>
-								<TableCell align="right">Profitability</TableCell>
 								<TableCell align="right">Nr Products</TableCell>
 								<TableCell align="right">Avg Product price</TableCell>
 								<TableCell align="right">username</TableCell>
@@ -132,6 +129,15 @@ export const AllCategories = () => {
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										Popularity
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Sales
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										ReturnsPerMonth
+									</Typography>
+									<Typography variant="subtitle1" component="div">
+										Profitability
 									</Typography>
 									<Typography variant="subtitle1" component="div">
 										Nr Products
