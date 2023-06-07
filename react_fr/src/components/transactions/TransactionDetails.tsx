@@ -59,7 +59,7 @@ export const TransactionDetails = () => {
 
 
 				</CardContent>
-				<CardActions>
+				{/* <CardActions>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/edit`}>
 						<EditIcon />
 					</IconButton>
@@ -67,7 +67,7 @@ export const TransactionDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
-				</CardActions>
+				</CardActions> */}
 			</Card>
 		</Container>
 	);

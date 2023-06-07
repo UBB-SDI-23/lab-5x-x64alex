@@ -57,7 +57,7 @@ export const ClientDetails = () => {
 
 
 				</CardContent>
-				<CardActions>
+				{/* <CardActions>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/edit`}>
 						<EditIcon />
 					</IconButton>
@@ -65,7 +65,7 @@ export const ClientDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
-				</CardActions>
+				</CardActions> */}
 			</Card>
 		</Container>
 	);

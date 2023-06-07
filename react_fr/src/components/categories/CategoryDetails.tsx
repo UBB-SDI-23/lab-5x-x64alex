@@ -47,7 +47,7 @@ export const CategoryDetails = () => {
 
 
 				</CardContent>
-				<CardActions>
+				{/* <CardActions>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${categoryId}/edit`}>
 						<EditIcon />
 					</IconButton>
@@ -55,7 +55,7 @@ export const CategoryDetails = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${categoryId}/delete`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
-				</CardActions>
+				</CardActions> */}
 			</Card>
 		</Container>
 	);
