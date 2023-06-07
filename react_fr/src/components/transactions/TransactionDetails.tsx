@@ -51,23 +51,9 @@ export const TransactionDetails = () => {
                         <li>Price: {transaction?.productDTO.productPrice}</li>
                         <li>Quantity: {transaction?.productDTO.productQuantity}</li>
                         <li>Weight: {transaction?.productDTO.productWeight}</li>
-                        <li>OnSale: {String(transaction?.productDTO.productOnSale)}</li>
                     </ul>
 				</Stack>
-
-			
-
-
 				</CardContent>
-				{/* <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/edit`}>
-						<EditIcon />
-					</IconButton>
-
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/transactions/${transactionId}/delete`}>
-						<DeleteForeverIcon sx={{ color: "red" }} />
-					</IconButton>
-				</CardActions> */}
 			</Card>
 		</Container>
 	);
