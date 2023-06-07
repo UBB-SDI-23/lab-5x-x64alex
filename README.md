@@ -6,10 +6,10 @@ Welcome to the documentation for the Payroll App. This document provides informa
 ## Table of Contents
 1. [Accessing the Payroll App](#1-accessing-the-payroll-app)
 2. [Clients Section](#2-clients-section)
-   - 2.1 [Viewing Clients](#2-1-viewing-clients)
-   - 2.2 [Adding a New Client](#2-2-adding-a-new-client)
-   - 2.3 [Editing Client Information](#editing-client-information)
-   - 2.4 [Deleting a Client](#deleting-a-client)
+   - 2.1 [Viewing Clients](#21-viewing-clients)
+   - 2.2 [Adding a New Client](#22-adding-a-new-client)
+   - 2.3 [Editing Client Information](#23-editing-client-information)
+   - 2.4 [Deleting a Client](#24-deleting-a-client)
 
 ## 1. Accessing the Payroll App
 To access the Payroll App, open a web browser and enter the following URL: [https://main--payrollapp1.netlify.app/](https://main--payrollapp1.netlify.app/). You will be directed to the home page of the Payroll App.
