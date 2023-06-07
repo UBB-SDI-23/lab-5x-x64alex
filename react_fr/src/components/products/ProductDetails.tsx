@@ -54,15 +54,6 @@ export const ProductDetails = () => {
 
 
 				</CardContent>
-				{/* <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${productId}/edit`}>
-						<EditIcon />
-					</IconButton>
-
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/products/${productId}/delete`}>
-						<DeleteForeverIcon sx={{ color: "red" }} />
-					</IconButton>
-				</CardActions> */}
 			</Card>
 		</Container>
 	);

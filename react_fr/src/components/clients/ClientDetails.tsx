@@ -54,18 +54,7 @@ export const ClientDetails = () => {
                     })}
                     </Grid> 
 				</Stack>
-
-
 				</CardContent>
-				{/* <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/edit`}>
-						<EditIcon />
-					</IconButton>
-
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/clients/${clientId}/delete`}>
-						<DeleteForeverIcon sx={{ color: "red" }} />
-					</IconButton>
-				</CardActions> */}
 			</Card>
 		</Container>
 	);

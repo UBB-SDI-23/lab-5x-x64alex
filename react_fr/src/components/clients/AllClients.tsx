@@ -38,6 +38,7 @@ export const AllClients = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setclient(data);
+				setPageSize(clients.length)
 				setLoading(false);
 			});
 	}, [pageNumber]);

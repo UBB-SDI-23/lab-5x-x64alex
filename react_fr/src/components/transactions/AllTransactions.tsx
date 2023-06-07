@@ -38,6 +38,7 @@ export const AllTransactions = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setTransaction(data);
+				setPageSize(transaction.length)
 				setLoading(false);
 			});
 	}, [pageNumber]);

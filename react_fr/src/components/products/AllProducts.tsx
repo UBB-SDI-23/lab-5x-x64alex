@@ -46,6 +46,7 @@ export const AllProducts = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setproducts(data);
+				setPageSize(products.length)
 				setLoading(false);
 			});
 	}, [productQuantity, pageNumber, sortByQuantityDescending]);

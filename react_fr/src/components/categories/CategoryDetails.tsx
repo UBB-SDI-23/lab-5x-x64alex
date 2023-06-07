@@ -3,12 +3,8 @@ import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { ProductCategory } from "../../models/Product/ProductDetails";
 import { Category } from "../../models/Category/Category";
-import { Product } from "../../models/Product/Product";
 
 export const CategoryDetails = () => {
 	const { categoryId } = useParams();
@@ -34,7 +30,6 @@ export const CategoryDetails = () => {
 							<ArrowBackIcon />
 						</IconButton>{" "}
 						<h1>Category Details</h1>
-
 					</Stack>
 					<p>Category Name: {category?.categoryName}</p>
 					<p>Category Popularity: {category?.categoryPopularity}</p>
@@ -42,20 +37,7 @@ export const CategoryDetails = () => {
 					<p>Category ReturnsPerMonth: {category?.categoryReturnsPerMonth}</p>
 					<p>Category Sales: {category?.categorySales}</p>
 				</Stack>
-
-			
-
-
 				</CardContent>
-				{/* <CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${categoryId}/edit`}>
-						<EditIcon />
-					</IconButton>
-
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/categories/${categoryId}/delete`}>
-						<DeleteForeverIcon sx={{ color: "red" }} />
-					</IconButton>
-				</CardActions> */}
 			</Card>
 		</Container>
 	);
