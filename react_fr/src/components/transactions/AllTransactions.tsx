@@ -86,7 +86,7 @@ export const AllTransactions = () => {
 										{pageNumber*pageSize+index+1}
 									</TableCell>
 									<TableCell component="th" scope="row">
-										<Link to={`/transactions/${transaction.transactionId}/details`} title="View client details">
+										<Link to={`/products/${transaction.transactionId}/details`} title="View client details">
 											{new Date(transaction.transactionDate).toLocaleDateString()}
 										</Link>
 									</TableCell>
@@ -145,7 +145,7 @@ export const AllTransactions = () => {
 									<Typography variant="subtitle1" component="div">
 										{index}
 									</Typography>
-									<Link to={`/transactions/${transaction.transactionId}/details`} title="View client details">
+									<Link to={`/products/${transaction.transactionId}/details`} title="View client details">
 											{new Date(transaction.transactionDate).toLocaleDateString()}
 									</Link>
 									<Typography variant="subtitle1" component="div">
