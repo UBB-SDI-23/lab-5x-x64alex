@@ -26,21 +26,27 @@ export const CategoryAdd = () => {
 	};
 	const [category, setCategory] = useState<Category>({
 	    categoryName:"",
-        categoryPopularity: 0,
-        categorySales: 0,
-        categoryReturnsPerMonth: 0,
-        categoryProfitability: 0
+        categoryPopularity: -1000,
+        categorySales: -1000,
+        categoryReturnsPerMonth: -1000,
+        categoryProfitability: -1000
 	});
 
 	const addCategory = (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
-		try {
-			axios.post(`${BACKEND_API_URL}/categories`, category, config);
-			alert("Product added")
-			navigate("/categories");
-		} catch (error) {
-			alert(error);
+		if(category.categoryName === "" || category.categoryPopularity === -1000 || category.categorySales === -1000 || category.categoryReturnsPerMonth === -1000 || category.categoryProfitability ===-1000)
+		{
+			alert("Error: all textfileds must not be empty")
+		}
+		else{
+			try {
+				axios.post(`${BACKEND_API_URL}/categories`, category, config);
+				alert("Product added")
+				navigate("/categories");
+			} catch (error) {
+				alert(error);
+			}
 		}
 	};
 
