@@ -37,10 +37,10 @@ export const TransactionAdd = () => {
 
 	const [transaction, setTransaction] = useState<TransactionIdDTO>({
 	    transactionDate: new Date(),
-        transactionQuantity: 0,
-        transactionId: 0,
-        clientId: 1,
-        productId: 1 
+        transactionQuantity: -1000,
+        transactionId: -1000,
+        clientId: -1000,
+        productId: -1000 
 	});
 
     useEffect(() => {
@@ -58,14 +58,19 @@ export const TransactionAdd = () => {
 	}, [searchString, searchString2]);
 
 	const addTransaction = (event: { preventDefault: () => void }) => {
-
-		event.preventDefault();
-		try {
-			axios.post(`${BACKEND_API_URL}/transactions`, transaction, config);
-			alert("Transaction added")
-			navigate("/transactions");
-		} catch (error) {
-			alert(error);
+		if(transaction.clientId ===-1000 || transaction.productId === -1000 || transaction.transactionId === -1000||transaction.transactionQuantity ===-1000)
+		{
+			alert("Error: all textfileds must not be empty")
+		}
+		else{
+			event.preventDefault();
+			try {
+				axios.post(`${BACKEND_API_URL}/transactions`, transaction, config);
+				alert("Transaction added")
+				navigate("/transactions");
+			} catch (error) {
+				alert(error);
+			}
 		}
 	};
 
