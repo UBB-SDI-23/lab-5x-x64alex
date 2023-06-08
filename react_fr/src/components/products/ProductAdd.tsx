@@ -51,6 +51,12 @@ export const ProductAdd = () => {
 		setProductPriceString(newValue);
 		setAddButtonDissabled(false);
 
+		if(newValue === ""){
+			setProductQuantityError(true);
+			setProductQuantityHelper("The input must not be empty");
+			setAddButtonDissabled(true);
+		}
+
 		var newPrice = Number(newValue);
 		if (isNaN(newPrice)){
 			setProductPriceError(true);
@@ -73,6 +79,12 @@ export const ProductAdd = () => {
 		setProductQuantityHelper("");
 		setProductQuantityString(newValue);
 		setAddButtonDissabled(false);
+
+		if(newValue === ""){
+			setProductQuantityError(true);
+			setProductQuantityHelper("The input must not be empty");
+			setAddButtonDissabled(true);
+		}
 
 
 		var newQuantity = Number(newValue);
@@ -100,6 +112,12 @@ export const ProductAdd = () => {
 		setAddButtonDissabled(false);
 
 
+		if(newValue === ""){
+			setProductQuantityError(true);
+			setProductQuantityHelper("The input must not be empty");
+			setAddButtonDissabled(true);
+		}
+
 		if (newValue !== "true" && newValue !== "false"){
 			setProductSaleError(true);
 			setProductSaleHelper("The input must be a bool");
@@ -124,6 +142,12 @@ export const ProductAdd = () => {
 		setProductWeightString(newValue);
 		setAddButtonDissabled(false);
 
+		if(newValue === ""){
+			setProductQuantityError(true);
+			setProductQuantityHelper("The input must not be empty");
+			setAddButtonDissabled(true);
+		}
+
 
 		var newWeight = Number(newValue);
 		if (isNaN(newWeight)){
@@ -143,7 +167,7 @@ export const ProductAdd = () => {
 
 	const addProduct = (event: { preventDefault: () => void }) => {
 		if(product.productName === "" || product.productPrice === -1000 || product.productQuantity === -100 || product.productWeight === -1000 || product.categoryId === -1000){
-			alert("Error: all textfileds must not be empty")
+			//alert("Error: all textfileds must not be empty")
 		}else{
 			event.preventDefault();
 			try {
