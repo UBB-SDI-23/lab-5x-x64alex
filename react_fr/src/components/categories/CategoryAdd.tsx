@@ -94,8 +94,8 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
-							error={firstSubmit && category.categorySales===-1000}
-                        />
+							error={(firstSubmit && category.categorySales === -1000) || (!firstSubmit && category.categorySales !== -1000)}
+							/>
                         <TextField
                             type="number"
 							id="categoryReturnsPerMonth"
