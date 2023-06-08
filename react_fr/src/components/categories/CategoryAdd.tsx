@@ -19,7 +19,7 @@ import axios from "axios";
 export const CategoryAdd = () => {
 	const navigate = useNavigate();
 	const [validationError, setValidationError] = useState(false);
-	const [firstSubmit, setFirstSubmit] = useState(true);
+	const [firstSubmit, setFirstSubmit] = useState(false);
 
 
 	const config = {
@@ -37,7 +37,7 @@ export const CategoryAdd = () => {
 	});
 
 	const addCategory = (event: { preventDefault: () => void }) => {
-		setFirstSubmit(false);
+		setFirstSubmit(true);
 		event.preventDefault();
 		if(category.categoryName === "" || category.categoryPopularity === -1000 || category.categorySales === -1000 || category.categoryReturnsPerMonth === -1000 || category.categoryProfitability ===-1000)
 		{
@@ -74,7 +74,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryName = newValue.target.value}
-							error={firstSubmit || category.categoryName===""}
+							error={firstSubmit && category.categoryName===""}
 						/>
                         <TextField
                             type="number"
@@ -84,7 +84,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
-							error={firstSubmit || category.categoryPopularity===-1000}
+							error={firstSubmit && category.categoryPopularity===-1000}
 						/>
                         <TextField
                             type="number"
@@ -94,7 +94,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
-							error={firstSubmit || category.categorySales===-1000}
+							error={firstSubmit && category.categorySales===-1000}
                         />
                         <TextField
                             type="number"
@@ -104,7 +104,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
-							error={firstSubmit || category.categoryReturnsPerMonth===-1000}
+							error={firstSubmit && category.categoryReturnsPerMonth===-1000}
                         />
                         <TextField
                             type="number"
@@ -114,7 +114,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
-							error={firstSubmit || category.categorySales===-1000}
+							error={firstSubmit && category.categorySales===-1000}
 						/>
 						{validationError && (
         					<FormHelperText error>Fields cannot be empty</FormHelperText>
