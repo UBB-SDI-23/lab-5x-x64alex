@@ -117,7 +117,7 @@ export const CategoryAdd = () => {
 								const newSales = Number(newValue.target.value);
 								category.categorySales = newSales;
 							}}
-							error={ category.categorySales===-1000}
+							error={firstSubmit && category.categorySales===-1000}
 						/>
 						{validationError && (
         					<FormHelperText error>Fields cannot be empty</FormHelperText>
