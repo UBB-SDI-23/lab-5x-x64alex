@@ -7,6 +7,7 @@ import {
     CardContent,
     Button,
     CardActions,
+	FormHelperText,
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,6 +18,8 @@ import axios from "axios";
 
 export const CategoryAdd = () => {
 	const navigate = useNavigate();
+	const [validationError, setValidationError] = useState(false);
+
 
 	const config = {
 			headers: {
@@ -37,7 +40,8 @@ export const CategoryAdd = () => {
 		event.preventDefault();
 		if(category.categoryName === "" || category.categoryPopularity === -1000 || category.categorySales === -1000 || category.categoryReturnsPerMonth === -1000 || category.categoryProfitability ===-1000)
 		{
-			alert("Error: all textfileds must not be empty")
+			//alert("Error: all textfileds must not be empty")
+			setValidationError(true)
 		}
 		else{
 			try {
@@ -69,7 +73,11 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryName = newValue.target.value}
+							error={validationError}
 						/>
+						{validationError && (
+        					<FormHelperText error>Field cannot be empty</FormHelperText>
+      )}
                         <TextField
                             type="number"
 							id="categoryPopularity"
