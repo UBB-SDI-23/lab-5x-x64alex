@@ -114,7 +114,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
-							error={firstSubmit && category.categorySales===-1000}
+							error={category.categorySales===-1000}
 						/>
 						{validationError && (
         					<FormHelperText error>Fields cannot be empty</FormHelperText>
