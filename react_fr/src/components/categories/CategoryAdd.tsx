@@ -73,7 +73,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryName = newValue.target.value}
-							error={category.categoryName===""}
+							error={validationError && category.categoryName===""}
 						/>
                         <TextField
                             type="number"
@@ -83,7 +83,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryPopularity = Number(newValue.target.value)}
-							error={category.categoryPopularity===-1000}
+							error={validationError && category.categoryPopularity===-1000}
 						/>
                         <TextField
                             type="number"
@@ -93,7 +93,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryProfitability = Number(newValue.target.value)}
-							error={category.categorySales===-1000}
+							error={validationError && category.categorySales===-1000}
                         />
                         <TextField
                             type="number"
@@ -103,7 +103,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categoryReturnsPerMonth = Number(newValue.target.value)}
-							error={category.categoryReturnsPerMonth===-1000}
+							error={validationError && category.categoryReturnsPerMonth===-1000}
                         />
                         <TextField
                             type="number"
@@ -113,7 +113,7 @@ export const CategoryAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(newValue) => category.categorySales = Number(newValue.target.value)}
-							error={category.categorySales===-1000}
+							error={validationError && category.categorySales===-1000}
 						/>
 						{validationError && (
         					<FormHelperText error>Fields cannot be empty</FormHelperText>
