@@ -37,12 +37,18 @@ export const ClientAdd = () => {
 	const addclient = (event: { preventDefault: () => void }) => {
 
 		event.preventDefault();
-		try {
-			axios.post(`${BACKEND_API_URL}/clients`, client, config);
-			alert("Client added")
-			navigate("/clients");
-		} catch (error) {
-			alert(error);
+		if(client.clientFirstName === "" || client.clientLastName || client.clientEmail === "" || client.clientAddress === "" || client.clientPhoneNumber === "")
+		{
+			alert("Error: all textfileds must not be empty")
+		}
+		else{
+			try {
+				axios.post(`${BACKEND_API_URL}/clients`, client, config);
+				alert("Client added")
+				navigate("/clients");
+			} catch (error) {
+				alert(error);
+			}
 		}
 	};
 
