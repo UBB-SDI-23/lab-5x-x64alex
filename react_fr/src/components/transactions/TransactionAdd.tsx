@@ -20,6 +20,7 @@ import { ClientName } from "../../models/Client/ClientName";
 import { ProductName } from "../../models/Product/ProductName";
 
 export const TransactionAdd = () => {
+	const date = new Date();
 	const navigate = useNavigate();
 	const [clients, setClients] = useState<ClientName[]>([]);
 	const [searchString, setSearchString] = useState("");
@@ -36,7 +37,7 @@ export const TransactionAdd = () => {
 
 
 	const [transaction, setTransaction] = useState<TransactionIdDTO>({
-	    transactionDate: new Date(),
+	    transactionDate: date,
         transactionQuantity: -1000,
         transactionId: -1000,
         clientId: -1000,
@@ -58,7 +59,7 @@ export const TransactionAdd = () => {
 	}, [searchString, searchString2]);
 
 	const addTransaction = (event: { preventDefault: () => void }) => {
-		if(transaction.clientId ===-1000 || transaction.productId === -1000 || transaction.transactionId === -1000||transaction.transactionQuantity ===-1000)
+		if(transaction.clientId ===-1000 || transaction.productId === -1000 || transaction.transactionDate === date ||transaction.transactionQuantity ===-1000)
 		{
 			alert("Error: all textfileds must not be empty")
 		}
