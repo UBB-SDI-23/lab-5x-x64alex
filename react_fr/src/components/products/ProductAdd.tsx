@@ -23,12 +23,12 @@ export const ProductAdd = () => {
 };
 
 	const [product, setProduct] = useState<Product>({
-	    productName: "Dumbbell",
-    	productPrice: 0,
-    	productQuantity: 0,
+	    productName: "",
+    	productPrice: -1000,
+    	productQuantity: -1000,
     	productOnSale: false,
-    	productWeight: 0,
-		categoryId: 0,
+    	productWeight: -1000,
+		categoryId: -1000,
 	});
 	const [categories, setCategories] = useState<CategoryName[]>([]);
 	const [searchString, setSearchString] = useState("");
@@ -142,15 +142,18 @@ export const ProductAdd = () => {
 
 
 	const addProduct = (event: { preventDefault: () => void }) => {
-
-		event.preventDefault();
-		try {
-			axios.post(`${BACKEND_API_URL}/products`, product, config);
-			alert("Product added")
-			navigate("/products");
-		} catch (error) {
-			setAddButtonDissabled(true);
-			console.log(error);
+		if(product.productName === "" || product.productPrice === -1000 || product.productQuantity === -100 || product.productWeight === -1000 || product.categoryId === -1000){
+			alert("Error: all textfileds must not be empty")
+		}else{
+			event.preventDefault();
+			try {
+				axios.post(`${BACKEND_API_URL}/products`, product, config);
+				alert("Product added")
+				navigate("/products");
+			} catch (error) {
+				setAddButtonDissabled(true);
+				console.log(error);
+			}
 		}
 	};
 
